@@ -1,0 +1,18 @@
+{
+  "nights": 12,
+  "note": "Night 1 is Monday of week one. Each inclusive interval lists nights when the named facility, route or service is unavailable. Both bathrooms normally contain a WC and shower. Daytime outages are agreed separately.",
+  "plans": {
+    "simultaneous demolition": {
+      "upstairs_bathroom": [[1, 4]], "downstairs_shower": [[1, 9]],
+      "common_water": [], "hall_to_downstairs": []
+    },
+    "staggered but uncoordinated": {
+      "upstairs_bathroom": [[1, 4]], "downstairs_shower": [[6, 9]],
+      "common_water": [[3, 3]], "hall_to_downstairs": [[2, 2]]
+    },
+    "occupied programme": {
+      "upstairs_bathroom": [[1, 4]], "downstairs_shower": [[6, 9]],
+      "common_water": [], "hall_to_downstairs": []
+    }
+  }
+}

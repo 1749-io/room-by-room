@@ -1,0 +1,9 @@
+{
+  "FreeCAD": "1.1.4",
+  "document": "Scratch opening.FCStd",
+  "solid_elements": 3072,
+  "nodes": 4365,
+  "mid_vertical_mm": -0.91868,
+  "mid_top_Sxx_MPa": -5.86044,
+  "mid_bottom_Sxx_MPa": 5.86044
+}

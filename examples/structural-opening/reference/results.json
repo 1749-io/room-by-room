@@ -1,0 +1,37 @@
+{
+  "case": "Fictional kitchen opening, linear elastic solver benchmark",
+  "hand": {
+    "reaction_each_N": 1500.0,
+    "mid_deflection_mm": 0.91552734375,
+    "mid_moment_Nmm": 1125000.0,
+    "outer_fibre_stress_MPa": 5.859375
+  },
+  "pynite": {
+    "version": "3.2.1",
+    "left_N": 1500.0,
+    "right_N": 1500.0,
+    "mid_deflection_mm": 0.91552734375,
+    "mid_moment_Nmm": 1125000.0
+  },
+  "calculix": {
+    "coarse": {
+      "nodes": 735,
+      "elements": 384,
+      "down_mm": 0.91799,
+      "left_N": 1500.0,
+      "right_N": 1500.0,
+      "mid_top_Sxx_MPa": -5.85582,
+      "mid_bottom_Sxx_MPa": 5.85582
+    },
+    "fine": {
+      "nodes": 4365,
+      "elements": 3072,
+      "down_mm": 0.91868,
+      "left_N": 1500.0,
+      "right_N": 1500.0,
+      "mid_top_Sxx_MPa": -5.86044,
+      "mid_bottom_Sxx_MPa": 5.86044
+    }
+  },
+  "coarse_to_fine_deflection_percent": 0.07510776331258756
+}

@@ -1,0 +1,30 @@
+# A house's records, including text registers and revision manifests, are private.
+/houses/
+/source/
+/models/
+/views/
+/handover/
+/backups/
+/private-backups/
+/House Renovation Backups/
+/.codex/
+
+# Local environments, credentials, credentials stores and scratch output.
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+.ruff_cache/
+.pytest_cache/
+*.pem
+*.key
+*.p12
+*.pfx
+*.zip
+*.blend
+*.blend[0-9]
+*.FCBak
+*.FCStd
+!examples/structural-opening/reference/Scratch opening.FCStd
+!examples/whole-house-changes/reference/Example rear rooms.FCStd

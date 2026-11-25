@@ -1,0 +1,40 @@
+digraph Renovation {
+  graph [rankdir=TB, bgcolor="#FBFAF7", pad="0.27", nodesep="0.38", ranksep="0.34", fontname="Arial", splines=polyline]
+  node [shape=box, style="rounded,filled", fillcolor="#EFF3F5", color="#577387", fontname="Arial", fontsize=13, fontcolor="#192D39", margin="0.18,0.10"]
+  edge [color="#617582", arrowsize=0.68, fontname="Arial", fontsize=10, fontcolor="#314C59"]
+  intake [label="Renovation pack skill\nBrief, sources, budget, shopping and change preferences"]
+  shell [label="FreeCAD skill  ·  FreeCAD MCP\nScripts build levels, slabs, walls, openings and options"]
+  fixed [shape=diamond,style=filled,fillcolor="#FFF0D4",label="Existing CAD\nfits the sources?"]
+  study [label="Blender skill  ·  Blender MCP\nOptional unrendered furniture study on the checked shell",fillcolor="#EAE6F4",color="#7B698E"]
+  options [label="FreeCAD MCP  ·  proposed option\nReopen and compare occupied journeys with the baseline\nShapely clearance and NetworkX routes"]
+  living [shape=diamond,style=filled,fillcolor="#FFF0D4",label="Whole room works\nand choice resolved?"]
+  decide [label="Agent + homeowner\nAdjust a permitted option, resolve a trade-off\nor obtain the deciding measurement",fillcolor="#F8E9E1",color="#9C735C"]
+  finish [label="Blender MCP  ·  furnished scene and camera\nDress the whole room after fit and render release",fillcolor="#EAE6F4",color="#7B698E"]
+  style [label="Homeowner colour and styling choice\nOptional color-expert advice or AI styling study",fillcolor="#EAE6F4",color="#7B698E"]
+  fidelity [shape=diamond,style=filled,fillcolor="#FFF0D4",label="Lighting, products and\nwhole-room palette pass?"]
+  ai [label="Image tool  ·  final finish photo\nUse the reviewed camera and product references"]
+  decor [label="Decorator issue, when requested\nCheck each surface, named finish and approval",fillcolor="#D8EBDD",color="#577E5F"]
+  release [label="Renovation pack skill  ·  handover\nCheck image fidelity, native files, costs and issued packs",fillcolor="#D8EBDD",color="#577E5F"]
+  intake -> shell [label="brief pass"]
+  shell -> fixed
+  fixed -> shell [label="correct fabric"]
+  fixed -> options [label="pass"]
+  fixed -> study [label="pass + study in scope"]
+  study -> options [label="candidate poses"]
+  options -> living
+  living -> decide [label="hold"]
+  decide -> options [label="revise or compare"]
+  living -> finish [label="pass + agreed look"]
+  living -> style [label="look undecided"]
+  style -> finish [label="items sourced, fit verified"]
+  finish -> fidelity
+  fidelity -> finish [label="fix scene or item"]
+  fidelity -> style [label="ask about open choice"]
+  fidelity -> ai [label="pass + AI released"]
+  ai -> release [label="image and colours pass"]
+  ai -> ai [label="retry from camera"]
+  intake -> decor [style=dashed,label="separate finish schedule"]
+  {rank=same; finish; style}
+  {rank=same; study; fixed}
+  {rank=same; living; decide}
+}

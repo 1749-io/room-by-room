@@ -1,0 +1,21 @@
+{
+  "title": "Fictional kitchen opening, linear elastic solver benchmark",
+  "span_mm": 3000,
+  "width_mm": 80,
+  "depth_mm": 120,
+  "E_MPa": 100000,
+  "poisson": 0.3,
+  "line_load_N_per_mm": 1,
+  "meshes_xyz": {
+    "coarse": [
+      48,
+      2,
+      4
+    ],
+    "fine": [
+      96,
+      4,
+      8
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+---
+name: freecad-renovation
+description: Build and review existing and proposed homes through live FreeCAD MCP, using deterministic geometry, measured occupied layouts, sections and editable CAD handovers.
+---
+
+# FreeCAD renovation workflow
+
+For house outputs use `house.py begin-revision` before native Save As. Work on the private copy, reopen it for the geometry check and use `save-revision` for the model and its evidence. Link the published paths to the review. [Output history and recovery](../../docs/output-revisions.md)
+
+Use the [household route study](references/route-studies.md) inside the existing-condition and occupied-layout reviews. Assess the baseline, then rerun affected journeys when furniture, door operation or building geometry changes. Use the reopened CAD export for Shapely and NetworkX and bring the route and pinch back to the plan.
+
+1. Confirm the live connection, active file, revision, units and intended option. Use the connector’s document and object queries and a top or oblique view. On a new setup, build, save and reopen a scratch feature before working on a house. If the connection drops during a change, inspect the document and object IDs before retrying.
+2. Read the house brief, original sources, decisions and intervention preferences. Set a stable origin, axes and levels. Calibrate against measured dimensions or label a listing trace and its uncertainty. Build the existing shell in native CAD, including the parts that affect the activity. Check the perimeter against photographs and inspect a plan and section. Keep a photographed door when an inspiration image omits it. Resolve uncertain handing with both swings when it matters.
+3. Script repeatable building work through FreeCAD MCP. Levels, slabs and stair voids, walls and apertures, roofs, service envelopes and permitted building options can all be parameterised from the house’s sources. Use stable IDs, explicit millimetres and degrees and native editable features where practical. Keep original files intact and use a separate named option. The [straight wall helper](scripts/wall_openings.py) supplies `build_wall` for a finite wall with rectangular openings and `solid_spans` for independent section measurements. Pass the selected document explicitly. Save and reload through MCP.
+4. For changes to the occupied layout, import candidate furniture poses from any in-scope Blender viewport study, checking origin, axes, units and product fronts. Compare the as-saved positions on one plan at a common scale. Verify grouped objects against the actual shared outline and measure each intended seat, task, reach, connected journey and operating space. Use a section for sightlines and height-dependent decisions. Inspect a top and oblique view and confirm labels clear lines on the exported sheet.
+5. Record the connector, reopened filename and revision, checked IDs, measurements, assumptions, limits and evidence. Compare plausible options against the same routine. Rework what the homeowner permits. If a consequential compromise persists, show it and ask which requirement can flex. Structural, services and critical fit questions go in the architect or survey brief.
+At the final furnishing handover, model each selected item whose footprint, height or operation affects use. For example, test the usable part of a lamp table, rug edges on the route, curtain stacks at valves and doors, or a new table foot under a sofa. Record purely decorative items for the Blender schedule. If a styling choice changes fit, reopen only the affected CAD checks before returning its revision to Blender.
+
+6. Issue the dimensioned concept plan, relevant sections and native document. For Blender transfer match a known length, landmarks, direction and levels. Use `check-layout` on the actual reviewed revision before furnishing. Record consequential CAD changes in the room register and reopen affected downstream reviews.
+
+Call the connector’s `execute_code` for deterministic native operations. Pure maths, route analysis or sheet export can use the saved measurements outside FreeCAD. A successful build call alone cannot establish that a wall, opening or chair occupies its intended position. Inspect the reopened native shape and a view before passing it on. [FreeCAD MCP](https://github.com/neka-nat/freecad-mcp)
