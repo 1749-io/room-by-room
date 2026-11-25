@@ -19,6 +19,12 @@ All four seated positions had a view of the sampled points on the screen. The th
 
 The reviewer then checked the furnished Blender camera, a reverse view and the finishes in neutral light, reconciling 15 shopping lines with the scene. An early AI image introduced sunlight absent from the approved camera. The reviewer rejected that image. At handover the team compared all 18 files in the issue archive with their sources and reopened the CAD models and packed Blender scene. Site measurements, the proposed opening and physical finish samples still needed professional or homeowner confirmation before building or ordering.
 
+## Why the adjoining rooms stayed open
+
+The same household also wanted to serve eight people at an extended dining table. In the later kitchen and dining study, the serving route measured 1,197 mm with everyone seated. Pulling one chair back a further 300 mm reduced the continuous route at the hand-off point to 600 mm. Checking only the chairs at rest would have missed the conflict.
+
+The reviewer carried the arrangement forward for a measured survey. The kitchen, breakfast and dining layouts stayed on hold pending the actual support footprint, door openings and furniture dimensions. The lounge concept could still be handed over. Each room kept its own review status.
+
 ## Run a comparable check
 
 The [fictional sideboard exercise](README.md#replay-the-sideboard-example) lets you run the same kind of occupied-route decision with shareable geometry. It includes an initial restriction, a furniture move that still fails and a second move that clears the route. The real lounge dimensions above are recorded results. The executable example uses a different plan.
