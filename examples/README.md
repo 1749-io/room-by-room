@@ -41,10 +41,10 @@ Choose by the homeowner's question. **Replay** means you can run the calculation
 
 ## Replay the sideboard example
 
-From the repository root, install the [optional route dependencies](../requirements-routes.txt) in the active Python environment. Then run the two existing tests.
+From the repository root, install the [optional route dependencies](../requirements/routes.txt) in the active Python environment. Then run the two existing tests.
 
 ```sh
-python -m pip install -r requirements-routes.txt
+python -m pip install -r requirements/routes.txt
 python -m unittest discover -s tests -p test_routes.py -k buyer_can_review -v
 python -m unittest discover -s tests -p test_routes.py -k rearrange_only_the_sideboard -v
 ```

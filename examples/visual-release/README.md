@@ -3,7 +3,7 @@
 A fictional homeowner has accepted a 900 mm opening in the south wall and excluded the fixing detail. The example saves editable native parameters and their drawing generator, the actual fictional decision, its acceptance binding, a floor plan, a section and a schematic camera image. Its reviewer records what each derivative shows and where it may be used.
 
 ```sh
-python -m pip install -r requirements-packs.txt Pillow playwright
+python -m pip install -r requirements/packs.txt Pillow playwright
 python -m playwright install chromium
 python examples/visual-release/replay.py "../Visual release example"
 ```

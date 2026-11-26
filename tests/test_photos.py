@@ -9,9 +9,9 @@ from zipfile import ZipFile
 from PIL import Image
 
 import house
-import house_photos as photos
-import house_revisions as revisions
-import house_visuals as visuals
+from room_by_room import house_photos as photos
+from room_by_room import house_revisions as revisions
+from room_by_room import house_visuals as visuals
 
 
 class PhotoRelease(unittest.TestCase):
@@ -343,7 +343,7 @@ class PhotoRelease(unittest.TestCase):
         path.write_text(json.dumps(manifest))
         staged = photos.exterior_review(self.root, self.out, "R1", inventory, final=True)
         self.assertIn("exterior/R1/sunroom.png", staged)
-        with patch("house.status_through", return_value=(True, "pass")), patch("house_revisions.verify_revision") as verify:
+        with patch("house.status_through", return_value=(True, "pass")), patch("room_by_room.house_revisions.verify_revision") as verify:
             self.assertIn("exterior/R1/sunroom.png", photos.house_issue(self.root))
             verify.assert_called_once_with(self.root, "R1")
         (self.out / image["camera"]).write_bytes(b"changed")

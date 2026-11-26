@@ -2,7 +2,7 @@
 import json
 import math
 
-import house_revisions as revisions
+from . import house_revisions as revisions
 
 
 def number(value):

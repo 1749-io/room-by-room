@@ -11,8 +11,8 @@ from pathlib import Path
 import fitz
 import openpyxl
 
-import house_delivery as delivery
-import house_revisions as revisions
+from room_by_room import house_delivery as delivery
+from room_by_room import house_revisions as revisions
 from tools.house_pack import build_house, resolve_house
 from tools.schedule_data import cost_rows, programme_rows, resolve_schedule
 from tools.schedule_pack import build_schedule, totals, verify_schedule

@@ -7,7 +7,7 @@ import tempfile
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
-import house_revisions as revisions
+from . import house_revisions as revisions
 
 COMPONENTS = ("room-review", "drawing", "shopping")
 EDITIONS = {"homeowner-presentation": ("room-review", "shopping"),
@@ -86,7 +86,7 @@ def context_files(root, req):
         return inputs_for(root, req)
     if req.get("profile") == "edition":
         from tools.audience_packs import editorial_inputs
-        from house_visuals import REGISTERS
+        from .house_visuals import REGISTERS
         visual = any(isinstance(row, dict) and set(row) & {"drawing", "room-review"} for row in req["rooms"].values())
         return [*editorial_inputs(root, req), *(REGISTERS if visual else ())]
     room = "rooms/" + house.identifier(req["room"])
@@ -94,7 +94,7 @@ def context_files(root, req):
         raise ValueError(f"Unregistered room: {req['room']}")
     files = []
     if set(req["components"]) & {"room-review", "drawing"}:
-        from house_visuals import REGISTERS
+        from .house_visuals import REGISTERS
         files.extend((room + "/README.md", room + "/review.csv", *REGISTERS))
         if req.get("sheet_source"):
             files.append(room + "/layout-checks.csv")
@@ -195,7 +195,7 @@ def design_evidence(root, inputs, req, slug):
     assets = {"sheet": path}
     captions = {}
     if through == "handover":
-        import house_photos
+        from . import house_photos
         output = revisions.record_dir(root, rev) / "outputs"
         review = house_photos.review(output, room, rev)
         for number, photo in enumerate(review["photos"], 1):
@@ -236,7 +236,7 @@ def resolve(root, base, folder, *, components=None):
     assets = {}
     if set(spec["components"]) & {"room-review", "drawing"}:
         spec["finding"], assets, spec["view_captions"] = design_evidence(root, inputs, req, slug)
-        from house_visuals import Catalogue, checked_placement
+        from .house_visuals import Catalogue, checked_placement
         live, frozen = Catalogue(root), Catalogue(root, inputs)
         spec["visual_reviews"] = {}
         for role, path in assets.items():

@@ -16,7 +16,7 @@ A fictional homeowner is deciding whether to add two oak shelves to the library.
 Run from the repository root with Python 3.11 or newer. Choose a new directory outside any live house. The replay creates its own house, draft revisions and verified backups there.
 
 ```sh
-python -m pip install -r requirements-packs.txt
+python -m pip install -r requirements/packs.txt
 python examples/audience-packs/replay.py "../Alder reader example"
 ```
 

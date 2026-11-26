@@ -82,7 +82,7 @@ def replay(folder):
     assert "based on PIER-R1" in before and "646 mm" in before
     print(command(recovered, "restore", archive))
     assert "Restored 0 missing files" in command(recovered, "restore", archive)
-    from house_revisions import inventory
+    from room_by_room.house_revisions import inventory
     files, _ = inventory(root, house=True)
     for name in files:
         assert (root / name).read_bytes() == (restored / name).read_bytes(), name

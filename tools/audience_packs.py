@@ -6,8 +6,8 @@ from urllib.parse import quote, unquote
 
 import fitz
 
-import house_revisions as revisions
-from house_delivery import EDITIONS, digest, required
+from room_by_room import house_revisions as revisions
+from room_by_room.house_delivery import EDITIONS, digest, required
 from tools import audience_pages as pages
 from tools import render_pack
 from tools.check_delivery import Page
@@ -109,7 +109,7 @@ def resolve_edition(root, req, issue, inputs):
     costs = []
     room_pages = []
     visual_inputs = {}
-    from house_visuals import Catalogue, checked_placement
+    from room_by_room.house_visuals import Catalogue, checked_placement
     live = frozen = None
     def chapter(title, entries):
         return {"title": title, "notes": entries, "visual": None}
