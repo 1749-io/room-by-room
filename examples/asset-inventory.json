@@ -1,11 +1,11 @@
 {
   "examples/audience-packs/reference/Alder-Cottage-audience-editions.zip": {
-    "sha256": "9732c71a0050bbdf5ec599c517282e7c3545623b9c1ca5e633b8103dd06a55fc",
+    "sha256": "02a31c6d9165b0535c829b053eba70865448cec4b83b3b6672a6175b4319d56b",
     "origin": "Fictional Alder Cottage recipient archive. Regenerate with examples/audience-packs/replay.py.",
     "rights": "Original illustrative fixture under LICENSE. Editable PowerPoint includes packaging from python-pptx. See THIRD-PARTY.md."
   },
   "examples/component-pack/reference/Alder-Cottage-handover.zip": {
-    "sha256": "3890089809c6da1d0ee6806698159845029292a2c7ac7c55722aaa539229368b",
+    "sha256": "59201b87654e30f9974cbcd60ef7935ad2e24c5329304bf003bc0eb0bac24bf0",
     "origin": "Fictional Alder Cottage recipient archive. Regenerate with examples/component-pack/replay.py.",
     "rights": "Original illustrative fixture under LICENSE."
   },
