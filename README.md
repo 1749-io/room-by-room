@@ -8,6 +8,10 @@ Plan a renovation room by room, from the first viewing to the drawings, shopping
 
 *What would it take to eat breakfast here in January and still enjoy the orchard view in July?* At the fictional Orchard Fold, a field maple shades the reading chair late in the day, but the glass roof lets in the midday sun. Follow the household from its first question through a year of modelled temperatures to the furnished design.
 
+**Watch the Orchard Fold walkthrough**
+
+https://github.com/user-attachments/assets/2b56c71a-fcbd-4ecf-aa00-cb0d9256ff42
+
 [Explore the survey, models and results](examples/conservatory/README.md) · [Browse more worked examples](examples/README.md) · [Download an Alder Cottage handover pack](examples/furnished-room/README.md#download-just-one-pack)
 
 ## Start a project
