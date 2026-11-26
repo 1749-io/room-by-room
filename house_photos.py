@@ -7,6 +7,7 @@ import zipfile
 from pathlib import Path
 
 import house_revisions as revisions
+import house_openings
 
 
 def digest(path):
@@ -161,7 +162,8 @@ def exterior_review(root, outputs, revision, inventory, *, final=False):
     return staged
 
 
-def review(outputs, room, revision, *, final_windows=False, require_windows=True, require_details=True, require_heads=True):
+def review(outputs, room, revision, *, final_windows=False, require_windows=True, require_details=True, require_heads=True,
+           shared_doorways=None):
     """The reviewer judges the images. The gate checks coverage and exact evidence."""
     # Addenda let an existing camera acquire a reviewed brief without editing its issue.
     root = room.parent.parent
@@ -308,11 +310,47 @@ def review(outputs, room, revision, *, final_windows=False, require_windows=True
             if other["status"] == "matched":
                 for k in ("revision", "reference", "sha256"):
                     required_text(other.get(k), "adjoining room " + k)
+                if shared_doorways is not None:
+                    for opening, visibility in image["openings"].items():
+                        if visibility == "visible" and portals[opening] == slug:
+                            connections = plan.get("shared_openings", {})
+                            if not isinstance(connections, dict):
+                                raise ValueError("Map the shared openings in the photographic brief")
+                            shared_doorways[opening] = (slug, connections.get(opening))
         if found != expected:
             raise ValueError(f"{photo}: adjoining rooms differ from visible openings")
     if seen != set(pairs) or covered != set(required):
         raise ValueError(f"{room.name}: incomplete photo coverage. Missing photographs {sorted(set(pairs)-seen)}, views {sorted(set(required)-covered)}")
     return doc
+
+
+def compare_shared_opening(opening, entry, local, adjoining, sections):
+    if not isinstance(entry, dict):
+        raise ValueError(f"{opening}: identify the shared opening in the photographic brief")
+    if entry.get("kind") in ("fixed-glazing", "open-passage", "reflection"):
+        required_text(entry.get("basis"), f"why {opening} has no shared operating door")
+        return
+    if entry.get("kind") != "doorway" or type(entry.get("mirror_x")) is not bool:
+        raise ValueError(f"{opening}: record the shared doorway ID and section orientation")
+    doorway = required_text(entry.get("id"), "shared doorway ID")
+
+    def leaves(room, neighbour):
+        found = {}
+        for section in sections(room).values():
+            shared = section[4]
+            if shared and shared["id"] == doorway and shared["adjoining_room"] == neighbour:
+                leaf = shared["leaf"]
+                if leaf in found:
+                    raise ValueError(f"{doorway}: repeated shared leaf {leaf} in {room}")
+                found[leaf] = section
+        return found
+
+    first, second = leaves(local, adjoining), leaves(adjoining, local)
+    if not first or first.keys() != second.keys():
+        raise ValueError(f"{opening}: identify the same shared leaves in both rooms' native sections")
+    for leaf, section in first.items():
+        if not house_openings.same_head_section(section, second[leaf], entry["mirror_x"]):
+            raise ValueError(f"{opening}: shared doorway sections differ for {leaf}")
 
 
 def house_issue(root, *, visual_uses=None):
@@ -322,6 +360,7 @@ def house_issue(root, *, visual_uses=None):
     if not rooms:
         raise ValueError("The house has no room reviews")
     problems, ready, staged = [], {}, {}
+    shared = {}
     for register in rooms:
         room = register.parent
         try:
@@ -332,7 +371,8 @@ def house_issue(root, *, visual_uses=None):
             stages = {row["stage"]: row for row in rows}
             revision = stages["handover"]["revision"]
             outputs = revisions.record_dir(root, revision) / "outputs"
-            doc = review(outputs, room, revision, final_windows=True)
+            shared[room.name] = {}
+            doc = review(outputs, room, revision, final_windows=True, shared_doorways=shared[room.name])
             pack = revisions.local_path(root, stages["handover"]["evidence"])
             if pack.suffix.lower() != ".zip":
                 raise ValueError("issue a portable room ZIP")
@@ -353,7 +393,19 @@ def house_issue(root, *, visual_uses=None):
                                 staged[f"{room.name}/corrected/{name}"] = revisions.local_path(supplement, name)
         except (ValueError, KeyError, TypeError, OSError) as exc:
             problems.append(f"{room.name}: {exc}")
+    native_heads, verified = {}, {}
+    def sections(room):
+        if room not in native_heads:
+            native_heads[room] = house_openings.shared_head_sections(root, room, ready[room][1], verified)
+        return native_heads[room]
+
     for slug, (_, _, doc, _) in ready.items():
+        for opening, (other_room, entry) in shared[slug].items():
+            if other_room in ready:
+                try:
+                    compare_shared_opening(opening, entry, slug, other_room, sections)
+                except (OSError, ValueError, KeyError, TypeError) as exc:
+                    problems.append(f"{slug} / {other_room}: adjoining opening check: {exc}")
         for photo in doc["photos"]:
             for other in photo["visible_rooms"]:
                 target = ready.get(other["room"])

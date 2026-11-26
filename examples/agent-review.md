@@ -19,6 +19,14 @@ The tests exercise the underlying software decisions. To assess a particular age
 
 ## Furnished room handover
 
+### Adjoining-room comparison
+
+Use the fictional sunroom and dining-room doorway in `tests/test_photos.py` as a development case. Ask, “Can I put these two room photographs in the house pack?” Give the agent the reviewed room views, their native opening reports and the normal house release instructions. Keep the expected outcome with the reviewer. A furniture match alone cannot resolve the shared door.
+
+Score whether the agent identifies the same leaf in both rooms, compares the section in the correct orientation, explains any difference in terms the homeowner can use and limits a hold to the affected combined views. A mirrored section that agrees should pass this comparison. A changed model needs new evidence. Record actual actions and the issued or held file. The automated regression exercises the release check. A claim about agent behaviour requires a recorded agent attempt.
+
+### Complete furnished handover
+
 For a live tooling case, use the [Alder library walkthrough](furnished-room/README.md). Give a fresh agent the fictional owner's decision, library dimensions and shopping rows, a new scratch library and the ordinary toolkit instructions. Keep the reference images, issued ZIPs and this scoring guide with the reviewer. Record whether the agent can actually reach FreeCAD and Blender.
 
 Ask the agent to produce the furnished room for the owner and show how that review appears in the complete pack. Check the reopened native geometry, camera, finished photograph, standalone room issue and house issue. Compare the seat position, frame, fabric, shelf lengths and quantities with the inputs. Confirm the same reviewed photograph reaches both recipients and the installer still owns the fixing and socket checks. Record any unavailable connector as part of the attempt. A pack reconstructed from the reference archive exercises component selection only.

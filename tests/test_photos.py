@@ -38,6 +38,8 @@ class PhotoRelease(unittest.TestCase):
             Image.new("RGB",(64,40),"red").save(self.out/(slug+".png"))
             Image.new("RGB",(64,40),"grey").save(self.out/(slug+"-camera.png"))
             brief = {"windows":{}, "basis":"Glazed room brief","views":{"whole-room":"Show the whole layout","operation":"Show deployed shade"},"openings":{"partition":"dining"} if slug=="sunroom" else {}}
+            if slug == "sunroom":
+                brief["shared_openings"] = {"partition": {"kind": "fixed-glazing", "basis": "Two fixed panes separate the rooms."}}
             brief["architectural_details"] = {"wall_mounts": [], "openings": list(brief["openings"])}
             self.put(slug+"-brief",brief)
             item = {k:"Inspected against the model" for k in ["reviewer","composition","products_and_operation","light_and_finish","architecture","opening_inspection"]}
@@ -177,6 +179,76 @@ class PhotoRelease(unittest.TestCase):
 
     def doc(self):
         return json.loads((self.out/"photo-reviews/sunroom.json").read_text())
+
+    @patch("house.status_through", return_value=(True, "pass"))
+    def test_shared_doorway_is_checked_on_both_sides_before_house_issue(self, _):
+        brief = json.loads((self.out / "photo-reviews/sunroom-brief.json").read_text())
+        mapping = {"kind": "doorway", "id": "garden-link", "mirror_x": True}
+        brief["shared_openings"] = {"partition": mapping}
+        self.put("sunroom-brief", brief)
+        (self.out.parent / "inputs").mkdir()
+        (self.out / "openings").mkdir()
+
+        def record_room(room, neighbour, left_gap, right_gap, leaf="garden-end"):
+            def band(role, points):
+                return {"id": room + role, "role": role, "xz": points}
+            pieces = [band("open", [[0, 0], [800, 0], [800, right_gap], [0, left_gap]]),
+                      band("opaque", [[0, left_gap], [800, right_gap], [800, 200], [0, 200]])]
+            head = {"design_reference": "outputs/room-geometry.json",
+                    "design_sha256": photos.digest(self.out / "room-geometry.json"),
+                    "basis": "Fictional native section at the centre of the shared wall", "field_mm": [800, 200],
+                    "expected": pieces, "observed": pieces,
+                    "shared_opening": {"id": "garden-link", "leaf": leaf, "adjoining_room": neighbour}}
+            for camera, ext in ((False, ".FCStd"), (True, ".blend")):
+                model = self.out / (room + ext)
+                model.write_bytes(b"synthetic native-file identity fixture")
+                spec = {"revision": "R1", "room": room, "units": "mm", "basis": "Synthetic read-back",
+                        "model": "outputs/" + model.name, "model_sha256": photos.digest(model),
+                        "door_heads": {room + "-local-id": head}}
+                if camera:
+                    spec["cad_revision"] = "R1"
+                suffix = ".camera.json" if camera else ".json"
+                (self.out / "openings" / (room + suffix)).write_text(json.dumps(spec))
+
+        def seal():
+            files = {p.relative_to(self.out).as_posix(): photos.digest(p)
+                     for p in self.out.rglob("*") if p.is_file()}
+            (self.out.parent / "record.json").write_text(json.dumps(
+                {"house": "fixture", "revision": "R1", "inputs": {}, "outputs": files}))
+
+        record_room("sunroom", "dining", 4, 6)
+        record_room("dining", "sunroom", 6, 4)
+        seal()
+        photos.house_issue(self.root)
+        for left, right, leaf, problem in [(6, 34, "garden-end", "sections differ"),
+                                           (4, 6, "garden-end", "sections differ"),
+                                           (6, 4, "other-leaf", "same shared leaves")]:
+            with self.subTest(left=left, leaf=leaf):
+                record_room("dining", "sunroom", left, right, leaf)
+                seal()
+                with self.assertRaisesRegex(ValueError, problem):
+                    photos.house_issue(self.root)
+        record_room("dining", "sunroom", 6, 4)
+        seal()
+        (self.out / "dining.blend").write_bytes(b"changed")
+        with self.assertRaisesRegex(ValueError, "Checksum differs"):
+            photos.house_issue(self.root)
+        record_room("dining", "sunroom", 6, 4)
+        for suffix in (".json", ".camera.json"):
+            path = self.out / "openings" / ("dining" + suffix)
+            spec = json.loads(path.read_text())
+            extra = json.loads(json.dumps(spec["door_heads"]["dining-local-id"]))
+            extra["shared_opening"]["leaf"] = "house-end"
+            spec["door_heads"]["second leaf"] = extra
+            path.write_text(json.dumps(spec))
+            seal()
+            problem = "CAD and the furnished model" if suffix == ".json" else "same shared leaves"
+            with self.assertRaisesRegex(ValueError, problem):
+                photos.house_issue(self.root)
+        del brief["shared_openings"]
+        self.put("sunroom-brief", brief)
+        with self.assertRaisesRegex(ValueError, "identify the shared opening"):
+            photos.house_issue(self.root)
 
     def test_room_coverage_is_bound_to_pixels_and_sightlines(self):
         room=self.root/"rooms/sunroom"

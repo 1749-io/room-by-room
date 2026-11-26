@@ -95,47 +95,103 @@ def door_heads(spec, design_folder):
         if (layers["expected"].keys() != layers["observed"].keys()
                 or any(not poly.equals(layers["observed"][role]) for role, poly in layers["expected"].items())):
             raise ValueError(f"{name}: modelled wall, glazing or air above the door differs from the design")
-        intent[name] = (reference, door["design_sha256"], door["field_mm"], door["expected"])
+        shared = door.get("shared_opening")
+        if shared is not None and (not isinstance(shared, dict) or
+                any(not isinstance(shared.get(k), str) or not shared[k].strip()
+                    for k in ("id", "leaf", "adjoining_room"))):
+            raise ValueError(f"{name}: identify the shared doorway, leaf and adjoining room")
+        intent[name] = (reference, door["design_sha256"], door["field_mm"], door["expected"], shared)
     return intent
+
+
+def registered_opening_folder(root, room, revision, verified):
+    """Resolve the current geometry with the frozen receipts for a saved correction."""
+    folder = revisions.record_dir(root, revision)
+    pointer = revisions.local_path(root, f"rooms/{room}/opening-review-addendum.json")
+    if not pointer.is_file():
+        return folder
+    active = revisions.stored_json(pointer)
+    if revisions.revision_id(active["source_revision"]) != revision:
+        return folder
+
+    def receipt(key):
+        if key not in verified:
+            verified[key] = revisions.verify_revision(root, key)
+        return verified[key]
+
+    binder = revisions.revision_id(active["revision"])
+    saved = receipt(binder)
+    name = f"opening-addenda/{room}.json"
+    if name not in saved["outputs"]:
+        raise ValueError(f"Missing saved opening addendum for {room}")
+    binding = revisions.stored_json(revisions.record_dir(root, binder) / "outputs" / name)
+    if (binding["source_revision"] != revision or binding["room"] != room
+            or not isinstance(binding["reviewer"], str) or not binding["reviewer"].strip()):
+        raise ValueError("Opening addendum must match the source revision, room and reviewer")
+    study = revisions.revision_id(binding["study_revision"])
+    if study == revision:
+        raise ValueError("An opening correction requires a separate saved study")
+    for key in (revision, study):
+        outputs = receipt(key)["outputs"]
+        for suffix in (".json", ".camera.json"):
+            report = f"openings/{room}{suffix}"
+            frozen = f"revisions/{key}/outputs/{report}"
+            if report not in outputs or saved["inputs"].get(frozen) != outputs[report]:
+                raise ValueError(f"Missing or stale opening study binding: {frozen}")
+    return revisions.record_dir(root, study)
 
 
 def registered_review(root, room, revision, *, camera=False, heads_only=False, verified=None):
     """Apply a saved room addendum only to the registered source revision it reviewed."""
     folder = revisions.record_dir(root, revision)
     try:
-        pointer = revisions.local_path(root, f"rooms/{room}/opening-review-addendum.json")
-        if pointer.is_file():
-            active = revisions.stored_json(pointer)
-            if revisions.revision_id(active["source_revision"]) == revision:
-                binder = revisions.revision_id(active["revision"])
-                checked = {} if verified is None else verified
-                def receipt(key):
-                    if key not in checked:
-                        checked[key] = revisions.verify_revision(root, key)
-                    return checked[key]
-                saved = receipt(binder)
-                name = f"opening-addenda/{room}.json"
-                if name not in saved["outputs"]:
-                    raise ValueError(f"Missing saved opening addendum for {room}")
-                binding = revisions.stored_json(revisions.record_dir(root, binder) / "outputs" / name)
-                if (binding["source_revision"] != revision or binding["room"] != room
-                        or not isinstance(binding["reviewer"], str) or not binding["reviewer"].strip()):
-                    raise ValueError("Opening addendum must match the source revision, room and reviewer")
-                study = revisions.revision_id(binding["study_revision"])
-                if study == revision:
-                    raise ValueError("An opening correction requires a separate saved study")
-                for key in (revision, study):
-                    outputs = receipt(key)["outputs"]
-                    for suffix in (".json", ".camera.json"):
-                        report = f"openings/{room}{suffix}"
-                        frozen = f"revisions/{key}/outputs/{report}"
-                        if report not in outputs or saved["inputs"].get(frozen) != outputs[report]:
-                            raise ValueError(f"Missing or stale opening study binding: {frozen}")
-                return review(folder, room, revision, camera=camera, heads_only=heads_only,
-                              correction=revisions.record_dir(root, study))
+        current = registered_opening_folder(root, room, revision, {} if verified is None else verified)
     except (KeyError, OSError, TypeError, ValueError) as exc:
         return f"invalid saved opening addendum: {exc}"
-    return review(folder, room, revision, camera=camera, heads_only=heads_only)
+    return review(folder, room, revision, camera=camera, heads_only=heads_only,
+                  correction=current if current != folder else None)
+
+
+def shared_head_sections(root, room, stages, verified):
+    """Read the current saved sections for the two registered native handovers."""
+    heads = []
+    for camera, stage in ((False, "proposed-cad"), (True, "blender")):
+        revision = stages[stage]["revision"]
+        folder = registered_opening_folder(root, room, revision, verified)
+        if folder.name not in verified:
+            verified[folder.name] = revisions.verify_revision(root, folder.name)
+        suffix = ".camera.json" if camera else ".json"
+        if f"openings/{room}{suffix}" not in verified[folder.name]["outputs"]:
+            raise ValueError(f"{room}: shared doorway needs its saved {stage} opening report")
+        spec = native_study(folder, room, folder.name, camera)
+        if not camera:
+            cad_folder = folder
+        elif spec.get("cad_revision") != cad_folder.name:
+            raise ValueError(f"{room}: furnished doorway section uses a different CAD revision")
+        heads.append(door_heads(spec, cad_folder))
+    if heads[0] != heads[1]:
+        raise ValueError(f"{room}: reconcile the shared doorway in CAD and the furnished model")
+    return heads[0]
+
+
+def same_head_section(left, right, mirror_x):
+    """Compare like sections from the leaf top, independent of labels and model-floor datums."""
+    from shapely.affinity import scale
+    from shapely.geometry import Polygon
+    from shapely.ops import unary_union
+
+    if left[2] != right[2]:
+        return False
+    def regions(pieces):
+        shapes = {}
+        for piece in pieces:
+            shapes.setdefault(piece["role"], []).append(Polygon(piece["xz"]))
+        return {role: unary_union(parts) for role, parts in shapes.items()}
+    first, second = regions(left[3]), regions(right[3])
+    if mirror_x:
+        origin = (left[2][0] / 2, 0)
+        second = {role: scale(shape, xfact=-1, origin=origin) for role, shape in second.items()}
+    return first.keys() == second.keys() and all(shape.equals(second[role]) for role, shape in first.items())
 
 
 def native_study(folder, room, revision, camera):

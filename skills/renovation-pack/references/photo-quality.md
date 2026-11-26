@@ -64,6 +64,20 @@ Run `python house.py check-exterior-photos "House" --input-revision R3` on the d
 
 Run `python house.py check-room-photos "House" "Room" --input-revision R3` on each room before release, using its actual revision. Run `python house.py check-house-photos "House"` to see all outstanding rooms and sightlines. Once clear, begin a separate revision and run `python house.py pack-house-photos "House" ISSUE`. This checks every registered room and creates the combined room-packs ZIP. Saving the revision rechecks the ZIP against the current room packs. Historic concept packs keep their original review status. Reissue their photographs against the current brief before including them in a final combined pack. A selected-room gallery remains a progress deliverable.
 
+### When two rooms show the same doorway
+
+For a visible opening into another commissioned room, mark the adjoining view provisional until both sides have been compared. Furniture and finish matches cover only part of that comparison. Inspect the shut leaves, their operating state and the section at the head from both rooms.
+
+For a whole-house match, add an entry under `shared_openings` in the source room's photographic brief. This example uses the name from the brief's `openings` map.
+
+```json
+{"shared_openings": {"garden partition": {"kind": "doorway", "id": "garden-link", "mirror_x": true}}}
+```
+
+Use one stable physical doorway ID and leaf IDs in both rooms. Record `shared_opening` on every associated leaf in each room's saved CAD and furnished opening reports. For example, the dining-side section can carry `{"id":"garden-link","leaf":"garden-end","adjoining_room":"sunroom"}`. Use `dining` as the neighbour on the sunroom side. Local model object names can differ. Measure at the same plane in the shared construction, from the shut leaf top to the same physical partition top. Set `mirror_x` to true when the horizontal section axes run in opposite directions. The house check compares field dimensions and the areas occupied by air, glazing and solid material across each leaf. The comparison uses the current registered native files, including saved opening corrections.
+
+Where the sightline genuinely passes through fixed glazing, an open passage or a reflection, use `fixed-glazing`, `open-passage` or `reflection` as the kind and give a specific `basis` for the classification. A glazed operating door is a doorway. Classify the physical opening during camera review. An outside-frame doorway needs its normal framing evidence. A missing section or unresolved fit keeps the affected combined view provisional. Existing standalone photographs retain their own review scope.
+
 Passing these checks means the photo evidence and the reviewer’s visual judgement are recorded. Record homeowner acceptance, survey release, order decisions and professional construction information separately.
 
 
