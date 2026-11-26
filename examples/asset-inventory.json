@@ -9,6 +9,11 @@
     "origin": "Fictional Alder Cottage recipient archive. Regenerate with examples/component-pack/replay.py.",
     "rights": "Original illustrative fixture under LICENSE."
   },
+  "examples/furnished-room/reference/Alder-Cottage-furnished-handover.zip": {
+    "sha256": "ea35b2b2601105d82e6854566d71f1fdacc6b9d2683863038f7c1c152f8fa1a1",
+    "origin": "Fictional one-room Alder commission. Nine independently checked component issues assembled with house.py. Component receipts are preserved in furnished-room/reference/components.json.",
+    "rights": "Original procedural library camera and its ImageGen derivative. All embedded imagery originates from this fictional example. Office packaging notices in THIRD-PARTY.md."
+  },
   "examples/furnished-room/reference/library-camera.png": {
     "sha256": "c5911d72b2018f13e935df63613c6fe48c3932d57803b4400262c3371852215b",
     "origin": "Original fictional library rendered from the included procedural Blender scene.",

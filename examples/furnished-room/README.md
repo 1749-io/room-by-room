@@ -2,6 +2,18 @@
 
 The fictional owner wants to reach the bookcase while someone reads beside the south window. The accepted layout retains one oak chair in sage linen and provides two 875 mm oiled oak shelves. The installer still needs to confirm shelf fixings and the socket location. [Decision and editable dimensions](library.json)
 
+## Open or share the handover
+
+Download the [furnished Alder Cottage house pack](reference/Alder-Cottage-furnished-handover.zip), extract it and open `Start here.html`. This fictional commission covers the library. The house edition contains the reviewed room and drawing, shopping schedule, homeowner presentation, architect pack, buyer brief, decorator finishes, editable costs and programme.
+
+To share just one component, run the selector from the repository root with Python. It uses the recipient files in the house archive and the original standalone issue's index and link register. This works offline with the Python standard library.
+
+```sh
+python examples/furnished-room/select_component.py room-review "Alder library.zip"
+python examples/furnished-room/select_component.py decorator-finishes "Decorator instruction.zip"
+python examples/furnished-room/select_component.py --help
+```
+
 ## Replay the layout check
 
 Open the FreeCAD Python console and run the following, substituting the location of your clone and a new output folder. The script creates a separate document, saves an editable model, reopens it, and measures the door movement against the chair, bookcase and lamp.
@@ -66,8 +78,8 @@ The native file contains a single L01 chair and two L02 shelf boards, each 875 m
 
 The photograph adds linen weave, book spines and oak grain. Compare the chair arms, the join between the two oak boards, the lamp and the window mullion with the camera above. The original west door is behind the camera in both images. The [comparison record](reference/review.json) identifies the two exact files, their source, reviewer and limits. Rebuilding the room can produce different pixels across Blender versions. Review any new camera and derivative together before issue.
 
-## Open the existing handover
+## Earlier CAD-only handover
 
 The same room dimensions and selections appear in the [standalone room, drawing and shopping editions](../component-pack/README.md). The [complete worked house ZIP](../trade-schedules/reference/Alder-Cottage-trade-handover.zip) also includes the homeowner presentation, architect pack, buyer brief, decorator finishes, editable costs and programme. Extract it and open `Start here.html`.
 
-That downloadable issue uses a CAD-only room review. A furnished room issue also needs the final concept photograph, its comparison with the camera and approval for its intended placements.
+The earlier room issue uses a CAD-only review. The furnished edition above adds the source camera and concept photograph to the room review and homeowner presentation.

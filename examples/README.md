@@ -4,6 +4,8 @@ For a purchasing handover across three rooms, run [Maple Mews](multi-room-shoppi
 
 To issue a single room, drawing or shopping schedule, replay the [Alder Cottage component handover](component-pack/README.md). It also builds an offline house edition from the saved standalone files.
 
+For a complete illustrated room, open the [furnished Alder library](furnished-room/README.md). Compare its Blender camera and concept photograph, download the nine-component house pack or select a single recipient issue.
+
 For a homeowner presentation, architect appointment pack or buyer brief, replay the [Alder Cottage audience editions](audience-packs/README.md). The example checks all three on their own and inside the full house issue.
 
 For approved surfaces, a base and option cost comparison or a dependency-linked programme, open the [trade schedules example](trade-schedules/README.md).

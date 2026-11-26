@@ -193,6 +193,35 @@ class PhotoRelease(unittest.TestCase):
         with self.assertRaises(ValueError):
             revisions.verify_room_pack(self.out,room,"R1",stages,photo_quality=True)
 
+    def test_uncommissioned_adjoining_room_must_be_entirely_outside_frame(self):
+        room = self.root / "rooms/sunroom"
+        brief = json.loads((self.out / "photo-reviews/sunroom-brief.json").read_text())
+        entry = {"outside_commission": "hall", "reason": "The hall doorway is behind this camera.",
+                 "reference": "sunroom-camera.png", "sha256": photos.digest(self.out / "sunroom-camera.png")}
+        brief["openings"]["hall door"] = entry
+        brief["architectural_details"]["openings"].append("hall door")
+        self.put("sunroom-brief", brief)
+        doc = self.doc()
+        image = doc["photos"][0]
+        image["openings"]["hall door"] = "outside-frame"
+        image["architectural_details"]["openings"]["hall door"] = {
+            "visibility": "outside-frame", "finding": entry["reason"]}
+        self.put("sunroom", doc)
+        photos.review(self.out, room, "R1")
+        for state in ("visible", "occluded"):
+            image["openings"]["hall door"] = state
+            self.put("sunroom", doc)
+            with self.assertRaisesRegex(ValueError, "register and review"):
+                photos.review(self.out, room, "R1")
+        image["openings"]["hall door"] = "outside-frame"
+        self.put("sunroom", doc)
+        for override, failure in [({"outside_commission": "dining"}, "registered"),
+                                  ({"sha256": "old"}, "framing evidence"), ({"reason": ""}, "reason")]:
+            brief["openings"]["hall door"] = dict(entry, **override)
+            self.put("sunroom-brief", brief)
+            with self.assertRaisesRegex(ValueError, failure):
+                photos.review(self.out, room, "R1")
+
     def test_each_declared_window_needs_a_comparison_even_when_room_is_hidden(self):
         room = self.root / "rooms/sunroom"
         brief_file = self.out / "photo-reviews/sunroom-brief.json"

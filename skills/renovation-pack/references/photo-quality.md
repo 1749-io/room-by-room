@@ -20,6 +20,8 @@ Record a homeowner-reported defect immediately in the affected room's `photo-def
 
 ## Evidence files
 
+For a one-room commission, an adjoining room can lie entirely behind every issued camera. In the photographic brief, keep the opening in the inventory and set its destination to an object with `outside_commission` (the adjoining room slug), `reason`, `reference` (a framing image or drawing in the review outputs) and its `sha256`. Record `outside-frame` and the finding in each photograph. If the opening enters any frame, register the adjoining room and use the ordinary sightline review. Registered rooms always use their normal room slug.
+
 In the revision outputs, write `photo-reviews/<room>-brief.json` and `photo-reviews/<room>.json`. Include both files in the downloadable room pack. The brief names an evidence basis, a map of required views with a `whole-room` entry and at least one design-specific purpose, and a map of internal sightlines to room slugs. Inspect the room brief, registered plan and sightlines when preparing it.
 
 ```json

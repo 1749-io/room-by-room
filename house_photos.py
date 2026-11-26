@@ -200,8 +200,21 @@ def review(outputs, room, revision, *, final_windows=False, require_windows=True
     portals = plan.get("openings")
     if not isinstance(portals, dict):
         raise ValueError("Declare the internal openings, glazing and reflected sightlines in the photographic brief")
+    outside = set()
     for opening, neighbour in portals.items():
         required_text(opening, "opening or reflection")
+        if isinstance(neighbour, dict):
+            destination = required_text(neighbour.get("outside_commission"), "uncommissioned room slug")
+            path = revisions.local_path(room.parent, destination)
+            if path.parent != room.parent or path.exists():
+                raise ValueError(f"{opening}: use the registered adjoining room for this opening")
+            required_text(neighbour.get("reason"), "reason the uncommissioned room is outside the frame")
+            evidence = revisions.local_path(documents, required_text(neighbour.get("reference"), "framing evidence"))
+            if (evidence.suffix.lower() not in {".png", ".jpg", ".jpeg", ".webp", ".pdf"}
+                    or not evidence.is_file() or digest(evidence) != neighbour.get("sha256")):
+                raise ValueError(f"{opening}: missing or changed framing evidence for the uncommissioned room")
+            outside.add(opening)
+            continue
         path = revisions.local_path(room.parent, neighbour)
         if path.parent != room.parent or path == room or not (path / "review.csv").is_file():
             raise ValueError(f"Unknown adjoining room in the photographic brief: {neighbour}")
@@ -267,6 +280,8 @@ def review(outputs, room, revision, *, final_windows=False, require_windows=True
         if not isinstance(visibility, dict) or visibility.keys() != portals.keys() or any(
                 state not in ("visible", "occluded", "outside-frame") for state in visibility.values()):
             raise ValueError(f"{photo}: reconcile every opening with the actual camera")
+        if any(visibility[key] != "outside-frame" for key in outside):
+            raise ValueError(f"{photo}: register and review the adjoining room when its opening enters the frame")
         issues = room / "photo-defects.csv"
         if issues.is_file():
             with issues.open(encoding="utf-8-sig", newline="") as stream:
