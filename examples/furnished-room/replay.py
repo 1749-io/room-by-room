@@ -32,6 +32,12 @@ def begin(work):
     brief = ("The owner of this fictional house requests a furnished reading-room concept. "
              + decision["accepted"] + " Exclusions: " + decision["excluded"])
     (room / "README.md").write_text("# Library\n\nLIB-01 covered the CAD assessment.\n\n" + brief + "\n", encoding="utf-8")
+    schedule = home / "shopping.csv"
+    with schedule.open(encoding="utf-8-sig", newline="") as stream:
+        items = list(csv.DictReader(stream))
+    shelf, = [item for item in items if item["item_id"] == "L02"]
+    shelf["fit_hold"] = "Purchase held until the installer confirms the wall fixings and socket position."
+    component["write_csv"](schedule, items[0].keys(), items)
     with (home / "decisions.md").open("a", encoding="utf-8") as stream:
         stream.write("\n| Fictional design acceptance | " + decision["accepted"] +
                      " | Develop the furnished concept | L01 and L02 | Installer to confirm fixings and socket. |\n")

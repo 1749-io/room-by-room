@@ -14,6 +14,8 @@ python examples/furnished-room/select_component.py decorator-finishes "Decorator
 python examples/furnished-room/select_component.py --help
 ```
 
+After reissuing the worked house, a maintainer can run `python examples/furnished-room/capture_handover.py "/path/to/houses/alder-cottage" HOUSE-FURNISHED "../Alder recipient reference"`. This rechecks the saved house against its current sources and compares each recipient file with its independently issued component. The new folder contains the recipient archive and its selector catalogue.
+
 ## Replay the layout check
 
 Open the FreeCAD Python console and run the following, substituting the location of your clone and a new output folder. The script creates a separate document, saves an editable model, reopens it, and measures the door movement against the chair, bookcase and lamp.

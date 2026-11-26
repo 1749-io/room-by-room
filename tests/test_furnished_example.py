@@ -1,3 +1,4 @@
+import csv
 import hashlib
 import io
 import json
@@ -7,6 +8,7 @@ import unittest
 import zipfile
 
 import fitz
+from openpyxl import load_workbook
 from PIL import Image
 
 
@@ -15,6 +17,24 @@ REFERENCE = EXAMPLE / "reference"
 
 
 class FurnishedExample(unittest.TestCase):
+    def test_shelf_order_holds_reach_the_csv_and_editable_workbook(self):
+        catalogue = json.loads((REFERENCE / "components.json").read_text(encoding="utf-8"))
+        with zipfile.ZipFile(REFERENCE / catalogue["house_file"]) as house:
+            csv_path, = [name for name in house.namelist() if name.endswith("-shopping.csv")]
+            workbook_path = csv_path.removesuffix(".csv") + ".xlsx"
+            table = list(csv.DictReader(io.StringIO(house.read(csv_path).decode("utf-8-sig"))))
+            book = load_workbook(io.BytesIO(house.read(workbook_path)), read_only=True, data_only=True)
+            try:
+                headers, *values = book["Shopping"].values
+                workbook_rows = [dict(zip(headers, row)) for row in values]
+            finally:
+                book.close()
+        for rows in (table, workbook_rows):
+            shelf, = [row for row in rows if row["Item ID"] == "L02"]
+            self.assertEqual(float(shelf["Quantity x unit GBP"]), 169)
+            for term in ("held", "installer", "wall fixings", "socket"):
+                self.assertIn(term, shelf["Fit / purchase hold"])
+
     def test_nine_original_component_issues_can_be_recovered(self):
         catalogue = json.loads((REFERENCE / "components.json").read_text(encoding="utf-8"))
         recover = runpy.run_path(str(EXAMPLE / "select_component.py"))["recover"]
