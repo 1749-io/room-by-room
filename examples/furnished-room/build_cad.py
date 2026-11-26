@@ -1,5 +1,6 @@
 """Build and reopen the fictional library in FreeCAD. Dimensions are in mm."""
 import json
+from hashlib import sha256
 from pathlib import Path
 
 
@@ -86,6 +87,18 @@ def build(output_folder):
             raise ValueError("A modelled opening or furniture clearance failed")
         if result["shelf_lengths_mm"] != [875, 875] or result["leaf_to_head_mm"] != door["head_reveal"]:
             raise ValueError("The saved model differs from the selected shelves or door detail")
+        def bounds(name):
+            box = doc.getObject(name).Shape.BoundBox
+            return [round(val, 3) for val in (box.XMin, box.YMin, box.ZMin, box.XMax, box.YMax, box.ZMax)]
+
+        result["bounds_mm"] = {name: bounds(name) for name in (
+            "Floor", "OpenDoor", "DoorHead", "WindowSill", "WindowHead", "Chair", "Bookcase", "Lamp")}
+        result["model_sha256"] = sha256(target.read_bytes()).hexdigest()
+        head_shape = doc.getObject("DoorHead").Shape
+        head_box = head_shape.BoundBox
+        if (len(head_shape.Solids) != 1 or not head_shape.isValid()
+                or abs(head_shape.Volume - head_box.XLength * head_box.YLength * head_box.ZLength) > 0.01):
+            raise ValueError("The head must fill its opaque rectangular partition")
         report.write_text(json.dumps(result, indent=2)+"\n", encoding="utf-8")
         return result
     finally:

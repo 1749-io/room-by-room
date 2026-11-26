@@ -1,0 +1,20 @@
+{
+  "room": "Alder Cottage library",
+  "design": "LIB-FURN-01",
+  "camera": "View from the hall",
+  "camera_file": "library-camera.png",
+  "camera_sha256": "c5911d72b2018f13e935df63613c6fe48c3932d57803b4400262c3371852215b",
+  "photo_file": "library-concept.png",
+  "photo_sha256": "0fdc25e24b995481ca3f46a83b542ebd560d6c84ad4949d8431826eccd97aaa1",
+  "source": "Original procedural Blender scene built from library.json. OpenAI ImageGen received the reviewed camera as its sole image input.",
+  "reviewer": "Toolkit example reviewer, 26 November 2026",
+  "purpose": "Illustrate the fictional owner's accepted reading arrangement in the public worked example.",
+  "findings": {
+    "chair": "One exposed oak frame with separate sage linen seat and back beside the south window. The photograph adds upholstery texture and seams.",
+    "shelves": "Two oiled oak boards meet at the upper-middle central upright of the north bookcase. The other shelves retain their painted finish. The near end of the bookcase continues outside the crop.",
+    "window": "Both images show two uncovered panes, one vertical mullion, a painted sill and a diffuse sky. The photograph introduces a cloud texture.",
+    "door": "The camera and photograph face east. The west leaf and its head are behind the camera. The reverse native view and CAD opening study establish their location and head treatment.",
+    "other": "The lamp stays behind the chair. The framed print, skirting and direction of the floorboards remain recognisable. The photograph refines the book spines and wood grain."
+  },
+  "limits": "The photograph illustrates the arrangement and finishes. Use the CAD file for dimensions. Shelf fixing, socket position, purchase and construction remain outside the fictional design acceptance."
+}
