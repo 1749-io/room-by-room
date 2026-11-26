@@ -46,6 +46,8 @@ python tests/browser/audience_packs.py
 python tests/browser/trade_schedules.py
 ```
 
+On a minimal Linux installation, use `python -m playwright install --with-deps chromium` to install the browser and its system libraries. System package installation may require administrator access.
+
 For changes to a workbook or editable deck, also run the matching browser script with `--office /path/to/soffice` to recalculate or render the edited file in LibreOffice. For a diagram change, run `python docs/render_workflow.py` with Graphviz installed. For native geometry or camera changes, follow the [tool readiness checks](docs/tools.md) on a scratch document and inspect the saved result.
 
 Use a fictional example for a regression. Show the input, deciding observation and recipient file. Keep household sources, quotes, camera exports and revision archives in private storage. For changes to agent instructions, review the [behaviour cases](examples/agent-review.md) alongside the applicable software tests.
