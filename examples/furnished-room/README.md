@@ -8,7 +8,7 @@ Download the [furnished Alder Cottage house pack](reference/Alder-Cottage-furnis
 
 ### Download just one pack
 
-[Download any of the nine standalone ZIPs in your browser](https://getsimba-ai.github.io/room-by-room/library.html#downloads).
+[Download any of the nine standalone ZIPs in your browser](https://roombyroom.pages.dev/library.html#downloads).
 
 To share just one component, run the selector from the repository root with Python. It uses the recipient files in the house archive and the original standalone issue's index and link register. This works offline with the Python standard library.
 
@@ -92,7 +92,7 @@ The earlier room issue uses a CAD-only review. The furnished edition above adds 
 
 ## Rebuild the public demo
 
-With Python and Poppler (including `pdftoppm`) installed, run `python examples/furnished-room/build_site.py ../alder-site` from the repository root. Use a new output directory. The builder reads the published Alder reference, verifies the nine standalone ZIPs and renders the issued drawing. GitHub Pages serves the generated directory from the root of the `gh-pages` branch. After changing the example, rebuild and publish that directory as the branch contents.
+With Python and Poppler (including `pdftoppm`) installed, run `python examples/furnished-room/build_site.py ../alder-site` from the repository root. Use a new output directory. The builder reads the published Alder reference, verifies the nine standalone ZIPs and renders the issued drawing.
 
 ### Deploy to Cloudflare Pages
 

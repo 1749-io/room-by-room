@@ -1,6 +1,6 @@
 # Orchard Fold conservatory
 
-A fictional Sussex household wants to read and eat breakfast beside its orchard every season. It will change the roof and glazing, retain both trees and keep the garden view. The brief sets an illustrative target of 18–26 °C during at least 95% of the 08:00–18:00 hours in **each** season. The room, owner, survey and decision are invented. [Explore the public case study](https://getsimba-ai.github.io/room-by-room/).
+A fictional Sussex household wants to read and eat breakfast beside its orchard every season. It will change the roof and glazing, retain both trees and keep the garden view. The brief sets an illustrative target of 18–26 °C during at least 95% of the 08:00–18:00 hours in **each** season. The room, owner, survey and decision are invented. [Explore the public case study](https://roombyroom.pages.dev/).
 
 ## Repeat the study
 

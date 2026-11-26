@@ -1,6 +1,6 @@
 # Worked renovation examples
 
-At [Orchard Fold](https://getsimba-ai.github.io/room-by-room/), the household wants to keep both orchard trees and use the conservatory for breakfast all year. Follow the shade across the reading chair, compare summer and winter temperatures, then step inside the furnished room. The [study files](conservatory/README.md) include the hourly results and editable models.
+At [Orchard Fold](https://roombyroom.pages.dev/), the household wants to keep both orchard trees and use the conservatory for breakfast all year. Follow the shade across the reading chair, compare summer and winter temperatures, then step inside the furnished room. The [study files](conservatory/README.md) include the hourly results and editable models.
 
 ## Handover examples
 
