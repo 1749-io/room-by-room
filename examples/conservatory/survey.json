@@ -1,0 +1,13 @@
+{
+  "study": "Orchard Fold, a fictional Sussex garden room",
+  "revision": "OF-02",
+  "datum": "Metres from the south-west floor corner, x east, y true north, z up. All dimensions and trees invented.",
+  "room_m": [5.4, 3.6, 2.7],
+  "seat_eye_m": [3.2, 1.45, 1.15],
+  "activity": "Breakfast and reading, 08:00 to 18:00 local time, daily. Aim for 18 to 26 degrees C for at least 95 percent of occupied hours in each season.",
+  "trees": [
+    {"name": "West field maple", "east": -4.2, "north": -2.0, "base": 2.1, "top": 8.5, "radius": 3.0},
+    {"name": "Garden apple", "east": 4.9, "north": -6.2, "base": 1.6, "top": 5.3, "radius": 2.1}
+  ],
+  "foliage": "Ellipsoid deciduous crowns. Direct-beam transmission 0.18 May to September, 0.72 otherwise. Rounded canopy bounds and abrupt leaf-change dates are assumptions."
+}

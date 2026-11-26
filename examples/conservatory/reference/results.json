@@ -1,0 +1,106 @@
+{
+  "Original": {
+    "hot_hours": 1667,
+    "cold_hours": 604,
+    "peak_C": 67.2,
+    "cooling_kWh": 0,
+    "heating_kWh": 2213,
+    "in_band_pct": {
+      "Winter": 49.2,
+      "Spring": 38.8,
+      "Summer": 11.5,
+      "Autumn": 52.0
+    }
+  },
+  "External screens": {
+    "hot_hours": 1478,
+    "cold_hours": 611,
+    "peak_C": 55.2,
+    "cooling_kWh": 0,
+    "heating_kWh": 2237,
+    "in_band_pct": {
+      "Winter": 49.2,
+      "Spring": 42.4,
+      "Summer": 21.0,
+      "Autumn": 58.8
+    }
+  },
+  "Cross ventilation": {
+    "hot_hours": 1547,
+    "cold_hours": 618,
+    "peak_C": 62.2,
+    "cooling_kWh": 0,
+    "heating_kWh": 2296,
+    "in_band_pct": {
+      "Winter": 50.6,
+      "Spring": 41.8,
+      "Summer": 16.1,
+      "Autumn": 54.6
+    }
+  },
+  "Roof and glazing": {
+    "hot_hours": 473,
+    "cold_hours": 602,
+    "peak_C": 34.8,
+    "cooling_kWh": 0,
+    "heating_kWh": 1831,
+    "in_band_pct": {
+      "Winter": 58.1,
+      "Spring": 80.2,
+      "Summer": 63.4,
+      "Autumn": 80.3
+    }
+  },
+  "Combined": {
+    "hot_hours": 0,
+    "cold_hours": 663,
+    "peak_C": 25.0,
+    "cooling_kWh": 0,
+    "heating_kWh": 2110,
+    "in_band_pct": {
+      "Winter": 58.1,
+      "Spring": 86.8,
+      "Summer": 99.1,
+      "Autumn": 82.7
+    }
+  },
+  "All-season design": {
+    "hot_hours": 0,
+    "cold_hours": 6,
+    "peak_C": 25.0,
+    "cooling_kWh": 1,
+    "heating_kWh": 3042,
+    "in_band_pct": {
+      "Winter": 99.3,
+      "Spring": 100.0,
+      "Summer": 100.0,
+      "Autumn": 100.0
+    }
+  },
+  "Smaller crowns": {
+    "hot_hours": 0,
+    "cold_hours": 6,
+    "peak_C": 25.0,
+    "cooling_kWh": 1,
+    "heating_kWh": 3030,
+    "in_band_pct": {
+      "Winter": 99.3,
+      "Spring": 100.0,
+      "Summer": 100.0,
+      "Autumn": 100.0
+    }
+  },
+  "Vents unavailable": {
+    "hot_hours": 0,
+    "cold_hours": 6,
+    "peak_C": 25.5,
+    "cooling_kWh": 49,
+    "heating_kWh": 2952,
+    "in_band_pct": {
+      "Winter": 99.3,
+      "Spring": 100.0,
+      "Summer": 100.0,
+      "Autumn": 100.0
+    }
+  }
+}
