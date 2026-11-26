@@ -6,7 +6,7 @@ Start from what the household actually does. Identify the origin and destination
 
 Save and reopen the named CAD revision through FreeCAD MCP. Export closed plan outlines in a single world coordinate frame in millimetres for the floor, walls, door leaves, furniture and working envelopes at the relevant height. Include floor holes, steps or impassable areas. Use a separate same-level study or a section for vertical travel. Keep the door moving, fully open and closed states distinct where they affect use. Attach the read-back, its units, the source of the chosen clearance and the approximate dimensions. Where scale or geometry is missing, ask for the deciding measurement before making a fit claim.
 
-Run the analysis locally from the checkout. Install the route dependencies in that Python environment with `python -m pip install -r requirements-routes.txt`. The normal project starter is independent of these libraries.
+Run the analysis locally from the checkout. Install the route dependencies in that Python environment with `python -m pip install -r requirements/routes.txt`. The normal project starter is independent of these libraries.
 
 Use a house-relative file ending in `.routes.json`. The following synthetic dining study shows the input format. Its dimensions are illustrative.
 

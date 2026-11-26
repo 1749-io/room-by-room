@@ -5,7 +5,7 @@ import unittest
 from pathlib import Path
 
 import house
-from house_routes import analyse
+from room_by_room.house_routes import analyse
 from shapely.geometry import LineString, Polygon
 
 

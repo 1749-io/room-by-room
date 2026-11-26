@@ -1,0 +1,4 @@
+-r routes.txt
+-r packs.txt
+matplotlib
+playwright

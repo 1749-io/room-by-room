@@ -6,8 +6,8 @@ import tempfile
 import zipfile
 from pathlib import Path
 
-import house_revisions as revisions
-import house_openings
+from . import house_revisions as revisions
+from . import house_openings
 
 
 def digest(path):
@@ -300,7 +300,7 @@ def review(outputs, room, revision, *, final_windows=False, require_windows=True
                     if defect["photo_sha256"] == image["photo_sha256"]:
                         raise ValueError(f"Reported photo defect: {defect['finding']}")
         if require_details:
-            from house_photo_details import validate
+            from .house_photo_details import validate
             validate(plan, image, require_heads=require_heads)
         expected = {portals[key] for key, state in visibility.items() if state == "visible"}
         found = set()

@@ -11,7 +11,7 @@ from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from house_visuals import arrangement_signature, checksum, signature
+from room_by_room.house_visuals import arrangement_signature, checksum, signature
 
 
 def save_json(path, value):

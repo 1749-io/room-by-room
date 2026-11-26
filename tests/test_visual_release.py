@@ -5,7 +5,7 @@ from pathlib import Path
 import tempfile
 import unittest
 
-import house_visuals as gate
+from room_by_room import house_visuals as gate
 from tools.comparison_visuals import preflight
 
 ROOT = Path(__file__).resolve().parents[1]

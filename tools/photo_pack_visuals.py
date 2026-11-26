@@ -8,8 +8,8 @@ from urllib.parse import unquote, urlsplit
 import zipfile
 
 import fitz
-import house_revisions as revisions
-from house_visuals import Catalogue, signature
+from room_by_room import house_revisions as revisions
+from room_by_room.house_visuals import Catalogue, signature
 
 
 class Images(HTMLParser):
@@ -94,7 +94,7 @@ def photo_uses(root, ready, staged):
                 for view in ("camera", "photo"):
                     if pair[view+"_sha256"] not in seen and f"{slug}/corrected/{pair[view]}" not in staged:
                         raise ValueError(f"{archive_name}: reviewed {view} is missing")
-    import house_photos
+    from room_by_room import house_photos
     for name, path in staged.items():
         if name.startswith("exterior/") and name.endswith("/"+house_photos.EXTERIOR_REVIEW):
             prefix = name.rsplit("/", 1)[0] + "/"

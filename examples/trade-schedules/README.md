@@ -15,7 +15,7 @@ A clean build on Windows and Linux is checked against the SHA-256 of the downloa
 ## Replay the example
 
 ```sh
-python -m pip install -r requirements-packs.txt
+python -m pip install -r requirements/packs.txt
 python examples/trade-schedules/replay.py "../Alder trade example"
 ```
 

@@ -14,8 +14,8 @@ import fitz
 from playwright.sync_api import sync_playwright
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
-import house_revisions as revisions
-from house_visuals import checksum
+from room_by_room import house_revisions as revisions
+from room_by_room.house_visuals import checksum
 from tools import comparison_visuals
 
 

@@ -8,8 +8,8 @@ from pathlib import Path
 from unittest.mock import patch
 
 import house
-import house_checklist as checklist
-import house_revisions as revisions
+from room_by_room import house_checklist as checklist
+from room_by_room import house_revisions as revisions
 
 
 class RenovationChecklist(unittest.TestCase):
