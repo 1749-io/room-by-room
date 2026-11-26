@@ -1,5 +1,7 @@
 # Reviewing an agent handover
 
+Use the `agent-evaluation` skill whenever evaluating a workflow. Start with the homeowner outcome and decide what evidence would establish it before running the agent. Keep the skill version or revision with the run record. When a case calls for a finished artefact, open the actual file the agent handed over.
+
 These fictional development cases exercise different decisions. Give the agent the prompt and specified inputs in a fresh scratch project. Keep the review criteria with the reviewer. Record the toolkit revision, agent and model version, available connectors, transcript, tool calls and issued files for each attempt. A second reviewer can inspect these without repeating a paid session.
 
 | Case | Prompt and inputs | What the reviewer should observe |

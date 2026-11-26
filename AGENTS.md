@@ -2,6 +2,8 @@
 
 Use the [skill routing table](CONTRIBUTING.md#route-a-request) to choose the owner of the next decision. For a standalone drawing, schedule or house ZIP, follow [pack delivery](skills/pack-delivery/SKILL.md). For paired existing and proposed brochures, use [property comparison](skills/property-comparison-pack/SKILL.md).
 
+Use the `agent-evaluation` skill for every workflow evaluation. Follow the [handover cases and scoring guide](examples/agent-review.md) and record what the agent actually did.
+
 ## Start or resume the named house
 
 For a new project, follow the root [intake and startup guide](README.md#start-a-project). Accept the homeowner's materials in their supplied form, fill the working brief from available evidence and ask only for gaps that affect the next decision. Use the [same review stages](README.md#design-and-review-stages) for every property.
