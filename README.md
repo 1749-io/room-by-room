@@ -1,6 +1,6 @@
 # Room by Room
 
-A toolkit for taking a renovation brief through survey, checked CAD, furnished concepts and shareable handover packs. [Explore the Alder Cottage library and download individual packs](https://getsimba-ai.github.io/room-by-room/). [Try a fictional house and explore the repository](CONTRIBUTING.md).
+A toolkit for taking a renovation brief through survey, checked CAD, furnished concepts and shareable handover packs. [Follow the Orchard Fold conservatory sunlight study](https://getsimba-ai.github.io/room-by-room/) or [explore the Alder Cottage library and download individual packs](https://getsimba-ai.github.io/room-by-room/library.html#downloads). [Try a fictional house and explore the repository](CONTRIBUTING.md).
 
 | What you want to do | Where to start |
 | --- | --- |

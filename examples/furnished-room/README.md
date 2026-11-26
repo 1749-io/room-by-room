@@ -8,7 +8,7 @@ Download the [furnished Alder Cottage house pack](reference/Alder-Cottage-furnis
 
 ### Download just one pack
 
-[Download any of the nine standalone ZIPs in your browser](https://getsimba-ai.github.io/room-by-room/#downloads).
+[Download any of the nine standalone ZIPs in your browser](https://getsimba-ai.github.io/room-by-room/library.html#downloads).
 
 To share just one component, run the selector from the repository root with Python. It uses the recipient files in the house archive and the original standalone issue's index and link register. This works offline with the Python standard library.
 

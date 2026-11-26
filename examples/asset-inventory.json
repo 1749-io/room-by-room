@@ -9,6 +9,31 @@
     "origin": "Fictional Alder Cottage recipient archive. Regenerate with examples/component-pack/replay.py.",
     "rights": "Original illustrative fixture under LICENSE."
   },
+  "examples/conservatory/page.html": {
+    "sha256": "e906c063f296b243040d1d7a98183c6334c4d269408b9d178531c4fa01b405df",
+    "origin": "Original public example Pages template.",
+    "rights": "Original toolkit example for public redistribution. No external photographs or purchased assets."
+  },
+  "examples/conservatory/reference/Orchard-Fold.FCStd": {
+    "sha256": "a32f02c32ee9ef0421f29eb8c6455685933bccd95ec1a1f062ea2d85f184f7c8",
+    "origin": "Original FreeCAD geometry for the fictional OF-02 redesign.",
+    "rights": "Original toolkit example for public redistribution. No external photographs or purchased assets."
+  },
+  "examples/conservatory/reference/Orchard-Fold.blend": {
+    "sha256": "b156bcdc33c13bc4f5f35f15af0a5593e35d964bc40c508567b3d8d64fc475a3",
+    "origin": "Procedural fictional Blender room, furnishings and orchard for OF-02.",
+    "rights": "Original toolkit example for public redistribution. No external photographs or purchased assets."
+  },
+  "examples/conservatory/reference/camera.png": {
+    "sha256": "ec08802b62ec3a55e81ed20e39bc82f0d2f47263976658d9f4cc123638275f2d",
+    "origin": "Rendered from the reopened procedural OF-02 model.",
+    "rights": "Original toolkit example for public redistribution. No external photographs or purchased assets."
+  },
+  "examples/conservatory/reference/concept.png": {
+    "sha256": "00771434eecc8440dd0a7336d486b663930ee1626485687c2fc7efe41d90edda",
+    "origin": "ImageGen derivative of the reviewed Orchard Fold camera with planting and two wine glasses.",
+    "rights": "Original toolkit example for public redistribution. No external photographs or purchased assets."
+  },
   "examples/furnished-room/reference/Alder-Cottage-furnished-handover.zip": {
     "sha256": "d08771db79bf67e9c7dce80c8cee2c64e4b9be50326e6191b68aee7d9651d726",
     "origin": "Fictional one-room Alder commission. Nine independently checked component issues assembled with house.py. Component receipts are preserved in furnished-room/reference/components.json.",
@@ -23,6 +48,11 @@
     "sha256": "0fdc25e24b995481ca3f46a83b542ebd560d6c84ad4949d8431826eccd97aaa1",
     "origin": "ImageGen derivative of the reviewed original Alder library camera. See the comparison record in the same directory.",
     "rights": "The source is the original toolkit render. No listing photographs, retailer images or third-party textures were supplied. Included for redistribution with the toolkit."
+  },
+  "examples/furnished-room/site/index.html": {
+    "sha256": "494ec8afdc3b776c217424e5951b3a7511a56d6d5caa1abb9baddd8026619f72",
+    "origin": "Original public example Pages template.",
+    "rights": "Original toolkit example for public redistribution. No external photographs or purchased assets."
   },
   "examples/garden-sun/september-shadow.png": {
     "sha256": "3140ab5f2bdae9be643b0a1f9ddeb724067dc919a4496301f020e2a5c66b1c25",

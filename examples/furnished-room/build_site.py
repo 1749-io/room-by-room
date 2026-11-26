@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import shutil
 import subprocess
+import runpy
 from tempfile import TemporaryDirectory
 import zipfile
 
@@ -58,6 +59,8 @@ def build(output):
         (stage / "index.html").write_text(template.replace("<!-- packs -->", "\n".join(links)),
                                          encoding="utf-8")
         (stage / ".nojekyll").touch()
+        orchard = SITE.parents[1] / "conservatory" / "build_page.py"
+        runpy.run_path(str(orchard))["build"](stage)
         stage.rename(output)
 
 
@@ -65,3 +68,4 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("output", type=Path)
     build(parser.parse_args().output.resolve())
+
