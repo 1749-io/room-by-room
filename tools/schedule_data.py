@@ -6,8 +6,8 @@ from graphlib import CycleError, TopologicalSorter
 import re
 
 import house
-import house_revisions as revisions
-from house_delivery import SCHEDULES, digest, fingerprint, required, shopping_rows
+from room_by_room import house_revisions as revisions
+from room_by_room.house_delivery import SCHEDULES, digest, fingerprint, required, shopping_rows
 
 
 def selection(values, what):

@@ -6,8 +6,8 @@ import sys
 import tempfile
 import unittest
 
-import house_openings
-import house_revisions as revisions
+from room_by_room import house_openings
+from room_by_room import house_revisions as revisions
 
 
 def box(x, y, z, width, depth, height):

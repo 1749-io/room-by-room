@@ -6,7 +6,7 @@ The furnished Alder library uses original procedural geometry, materials, book c
 
 ## PDF tools
 
-We distribute the toolkit source and the fictional recipient documents. The combined PDF tools use Artifex's open-source AGPLv3 option for PyMuPDF and its MuPDF engine. The original toolkit source retains its MIT copyright and permission notice. A checkout installs the upstream PDF dependency from [requirements-packs.txt](requirements-packs.txt). The release contains no dependency wheels, native libraries, executable installers or container images.
+We distribute the toolkit source and the fictional recipient documents. The combined PDF tools use Artifex's open-source AGPLv3 option for PyMuPDF and its MuPDF engine. The original toolkit source retains its MIT copyright and permission notice. A checkout installs the upstream PDF dependency from [requirements/packs.txt](requirements/packs.txt). The release contains no dependency wheels, native libraries, executable installers or container images.
 
 | Component | Version used by the PDF tools | Source |
 | --- | --- | --- |

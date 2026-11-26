@@ -10,8 +10,8 @@ from pathlib import Path
 import fitz
 from pptx import Presentation
 
-import house_delivery as delivery
-import house_revisions as revisions
+from room_by_room import house_delivery as delivery
+from room_by_room import house_revisions as revisions
 from tools.audience_packs import build_edition
 from tools.house_pack import resolve_house
 
@@ -126,7 +126,7 @@ class AudiencePacks(unittest.TestCase):
                 audience_pages.verify(self.folder("OWNER") / "delivery", spec, {**assets, key: substitute})
 
     def test_drawing_approved_for_room_pages_cannot_open_the_homeowner_presentation(self):
-        from house_visuals import Catalogue
+        from room_by_room.house_visuals import Catalogue
         spec, _ = self.resolve("OWNER")
         self.assertEqual([p["visual"]["purpose"] for p in spec["pages"] if p["visual"]],
                          ["homeowner-presentation.opening", "homeowner-presentation.room"])

@@ -5,8 +5,8 @@ from urllib.parse import quote
 
 import fitz
 
-import house_revisions as revisions
-from house_delivery import SCHEDULES, digest, resolve
+from room_by_room import house_revisions as revisions
+from room_by_room.house_delivery import SCHEDULES, digest, resolve
 from tools import render_pack
 
 DIRECTORIES = {"room-review": "Rooms/", "drawing": "Drawings/", "shopping": "Schedules/"}
@@ -140,7 +140,7 @@ def resolve_house(root, req, issue):
     spec = dict(req, house_name=revisions.stored_json(root / "project.json")["name"], issue=issue,
                 room="Whole house", slug="house", files=files, sources=sources)
     if placements:
-        from house_visuals import Catalogue
+        from room_by_room.house_visuals import Catalogue
         proofs = [entry["placement"] for entry in placements]
         if "drawing" in req["components"] and "room-review" in req["components"]:
             Catalogue(root).coverage(proofs, {"room/"+slug for slug in req["rooms"]},

@@ -12,8 +12,8 @@ from unittest.mock import patch
 from zipfile import ZipFile
 
 import house
-import house_backup as backups
-import house_revisions as rev
+from room_by_room import house_backup as backups
+from room_by_room import house_revisions as rev
 from PIL import Image
 
 

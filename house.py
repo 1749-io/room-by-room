@@ -10,10 +10,10 @@ import tempfile
 import unicodedata
 from pathlib import Path
 
-import house_backup
-import house_checklist
-import house_openings
-import house_revisions as revisions
+from room_by_room import house_backup
+from room_by_room import house_checklist
+from room_by_room import house_openings
+from room_by_room import house_revisions as revisions
 
 ROOT = Path(__file__).resolve().parent
 HOUSES = ROOT / "houses"
@@ -201,9 +201,9 @@ def route_report(house_path, relative, revision, option=None):
     if not path or not path.name.endswith(".routes.json"):
         raise ValueError("Link a .routes.json study within this house")
     try:
-        from house_routes import analyse, number
+        from room_by_room.house_routes import analyse, number
     except ImportError as exc:
-        raise ValueError("Install route dependencies with python -m pip install -r requirements-routes.txt") from exc
+        raise ValueError("Install route dependencies with python -m pip install -r requirements/routes.txt") from exc
     study = json.loads(path.read_text(encoding="utf-8-sig"))
     try:
         if study["revision"] != revision:
@@ -613,17 +613,17 @@ def main():
     elif args.action == "begin-revision":
         print(revisions.begin(project(args.house), args.revision, args.parent, args.inputs, pack_request=args.pack_request))
     elif args.action == "check-visual":
-        from house_visuals import Catalogue
+        from room_by_room.house_visuals import Catalogue
         proof = Catalogue(project(args.house)).approve(visual_id=args.visual_id, purpose=args.purpose, phase=args.phase,
                                                        scope=args.scope, view=args.view, page=args.page)
         print(f"{proof['id']} | {proof['state_id']} ({proof['design']['status']}) | {args.purpose} | {args.scope}")
     elif args.action == "check-design":
-        from house_visuals import Catalogue
+        from room_by_room.house_visuals import Catalogue
         register = Catalogue(project(args.house), design_only=True)
         state = register.design(args.state, register.states.get(args.state, {}).get("phase"), args.scope, accepted=True)
         print(json.dumps(state, ensure_ascii=False, indent=2))
     elif args.action in ("plan-pack", "build-pack", "check-pack"):
-        import house_delivery
+        from room_by_room import house_delivery
         print(house_delivery.command(project(args.house), args.revision, args.action,
                                      getattr(args, "reviewer", None), getattr(args, "finding", None)))
     elif args.action == "save-revision":
@@ -722,7 +722,7 @@ def main():
             sys.exit(f"decorator / hold / {problem}")
         print(f"decorator finishes checked / {args.surface or args.room} / {args.input_revision}")
     elif args.action == "check-exterior-photos":
-        import house_photos
+        from room_by_room import house_photos
         path = project(args.house)
         revision = revisions.revision_id(args.input_revision)
         folder = opening_folder(path, revision)
@@ -738,7 +738,7 @@ def main():
             print(f"{len(unresolved)} provisional window observations still need a return before house issue")
             print("\n".join(unresolved))
     elif args.action == "check-room-photos":
-        import house_photos
+        from room_by_room import house_photos
         path = project(args.house)
         revision = revisions.revision_id(args.input_revision)
         folder = opening_folder(path, revision)
@@ -748,7 +748,7 @@ def main():
         report = house_photos.review(folder / "outputs", room, revision)
         print(f"{len(report['photos'])} room photos reviewed / {room.name} / {revision}")
     elif args.action in ("check-house-photos", "pack-house-photos"):
-        import house_photos
+        from room_by_room import house_photos
         path = project(args.house)
         if args.action == "check-house-photos":
             print(f"{len(house_photos.house_issue(path))} files passed the whole-house photo check")

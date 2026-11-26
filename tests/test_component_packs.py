@@ -10,8 +10,8 @@ from pathlib import Path
 import fitz
 from openpyxl import load_workbook
 
-import house_delivery as packs
-import house_revisions as rev
+from room_by_room import house_delivery as packs
+from room_by_room import house_revisions as rev
 from tools import render_pack
 
 ROOT = Path(__file__).resolve().parents[1]

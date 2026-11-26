@@ -10,7 +10,7 @@ For a highly glazed room, use the [seasonal comfort study](../skills/renovation-
 | --- | --- | --- |
 | Start, resume or review project records | Python 3.11 or 3.12 for the standard-library starter, the repository and the relevant house records | Run `python house.py --help` and `python house.py list`. Restore private files when the requested issue depends on them. For a registered CAD route, install the route dependencies too. |
 | Tender or bathroom programme | Python standard library and the written scope, dated quotes or occupied sequence | Run the two standalone commands below. For a live commission use the actual quotes, routes and service evidence. A spreadsheet or OpenProject can be an output when requested. |
-| Occupied CAD route | Python environment with Shapely and NetworkX from the [route requirements](../requirements-routes.txt), plus native geometry read back in mm | Python 3.11 or 3.12 is a tested choice for these examples. Run the pier replay or route tests to exercise the GEOS operations on a real geometry. Check continuous clearance, the controlling object and household target. |
+| Occupied CAD route | Python environment with Shapely and NetworkX from the [route requirements](../requirements/routes.txt), plus native geometry read back in mm | Python 3.11 or 3.12 is a tested choice for these examples. Run the pier replay or route tests to exercise the GEOS operations on a real geometry. Check continuous clearance, the controlling object and household target. |
 | Editable plans, sections and native evidence | FreeCAD, its matching add-on and MCP server. BIM and TechDraw for the corresponding drawings | Start the RPC add-on, call `get_rpc_status`, then `list_documents`. Save and reopen a scratch feature through live MCP and inspect its dimensions before working on house files. The [pier example](../examples/whole-house-changes/README.md) includes a repeatable builder and read-back. [Connector installation](https://github.com/neka-nat/freecad-mcp) |
 | Structural solver benchmark | Python 3.11, the [pinned example requirements](../examples/structural-opening/requirements.txt), live FreeCAD FEM, CalculiX and the FreeCAD MCP executable | Run the [two-solver replay](../examples/structural-opening/README.md#replay) in a new scratch folder. It exercises PyNite, verifies both mesh runs and reads stress and displacement from the reopened file. The pins belong to this benchmark. |
 | Furnished scene and camera | Blender, its matching MCP add-on/server, the approved shell and product references | Call `get_addon_status` and `get_scene_info` with settings. Inspect the file, units, named camera and available asset providers. On a new machine exercise a scratch transfer with a known dimension. [Connector setup](https://github.com/ahujasid/mcp-for-blender) |
@@ -30,7 +30,7 @@ python house.py list
 python examples/whole-house-changes/replay.py quotes
 python examples/whole-house-changes/replay.py bathrooms
 python examples/garden-sun/replay.py
-python -m pip install -r requirements-dev.txt
+python -m pip install -r requirements/dev.txt
 python examples/whole-house-changes/replay.py pier
 python -m unittest discover -s tests -v
 ```
