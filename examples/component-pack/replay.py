@@ -106,7 +106,7 @@ def prepare(work):
         "--why", "Exercise delivery from a saved drawing", "--by", "Example author",
         "--affects", "Library", "--next", "Check the sheet and room register")
     sys.path.insert(0, str(REPO))
-    from house_visuals import checksum, signature
+    from room_by_room.house_visuals import checksum, signature
     def reference(filename):
         rel = "revisions/LIB-01/outputs/" + filename
         return {"revision": "LIB-01", "path": rel, "sha256": checksum(home / rel)}

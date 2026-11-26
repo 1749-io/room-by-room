@@ -5,7 +5,7 @@ import hashlib
 import json
 from pathlib import Path
 
-import house_revisions as revisions
+from . import house_revisions as revisions
 
 REGISTERS = ("design-states.json", "visual-approvals.json")
 NATIVE = {".fcstd", ".blend", ".ifc", ".dwg", ".dxf", ".step", ".stp", ".brep", ".scad", ".py", ".json"}

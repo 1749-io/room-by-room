@@ -69,10 +69,10 @@ The owner accepts agreed daytime interruptions, needs both a reachable working W
 
 ## Replay or adapt
 
-From the repository root, use Python with the [route dependencies](../../requirements-routes.txt).
+From the repository root, use Python with the [route dependencies](../../requirements/routes.txt).
 
 ```sh
-python -m pip install -r requirements-routes.txt
+python -m pip install -r requirements/routes.txt
 python examples/whole-house-changes/replay.py
 ```
 

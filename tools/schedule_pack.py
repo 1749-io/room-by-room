@@ -11,7 +11,7 @@ import openpyxl
 from openpyxl.utils import get_column_letter
 from xlsxwriter.utility import xl_col_to_name
 
-from house_delivery import SCHEDULES
+from room_by_room.house_delivery import SCHEDULES
 from tools import render_pack
 from tools.check_delivery import Page
 from tools.schedule_data import schedule_paths

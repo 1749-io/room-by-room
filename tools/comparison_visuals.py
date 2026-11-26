@@ -6,8 +6,8 @@ import io
 import fitz
 from PIL import Image, ImageOps
 
-import house_revisions as revisions
-from house_visuals import Catalogue, checksum, signature, words
+from room_by_room import house_revisions as revisions
+from room_by_room.house_visuals import Catalogue, checksum, signature, words
 
 REPORT = "Visual-uses.json"
 FILES = ("existing.html", "proposed.html", "existing.pdf", "proposed.pdf", "Comparison.pdf", "Start here.html")

@@ -9,8 +9,8 @@ import zipfile
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parents[1]))
-import house_revisions as revisions
-from house_delivery import digest, inspect_pack
+from room_by_room import house_revisions as revisions
+from room_by_room.house_delivery import digest, inspect_pack
 from tools.check_delivery import verify
 
 

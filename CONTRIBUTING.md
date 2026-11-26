@@ -7,7 +7,7 @@ Use Python 3.11 or 3.12 and Git. In a new virtual environment, run the following
 ```sh
 python -m venv .venv
 # Activate .venv before the next command
-python -m pip install -r requirements-dev.txt
+python -m pip install -r requirements/dev.txt
 python examples/trade-schedules/replay.py "../Alder demo"
 ```
 
@@ -17,7 +17,7 @@ Use a new output directory for each replay. Open the printed `Start here.html`. 
 
 | Location | Responsibility |
 | --- | --- |
-| [house.py](house.py) and the root `house_*.py` modules | Create a project, resolve its records, check a handover, save a revision and recover private backups. Start with `python house.py --help`. |
+| [house.py](house.py) and the [implementation package](room_by_room/) | Create a project, resolve its records, check a handover, save a revision and recover private backups. Start with `python house.py --help`. |
 | [AGENTS.md](AGENTS.md) and [skills](skills/) | Project instructions and the five task-specific skills. The agent interprets the brief, inspects evidence and records decisions. |
 | [templates](templates/) | The house dashboard, brief, room files and registers created by the CLI. Keep existing houses readable when adding a field. |
 | [tools](tools/) | Render, assemble and verify recipient files. Native scene and drawing helpers sit beside the skill that runs them. |
