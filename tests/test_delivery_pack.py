@@ -50,6 +50,16 @@ class DeliveryTest(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "Loose delivery differs"):
                 verify_issue(root)
 
+    def test_commissioned_downloads_are_reachable_from_the_start_page(self):
+        with tempfile.TemporaryDirectory() as directory:
+            pack = Path(directory) / "House.zip"
+            expected = {"Start here.html", "Room one.html", "Source.zip"}
+            make_pack(pack)
+            verify(pack, expected_files=expected)
+            make_pack(pack, {"Start here.html": b'<a href="Start%20here.html">Contents</a>'})
+            with self.assertRaisesRegex(ValueError, "unreachable.*Source.zip"):
+                verify(pack, expected_files=expected)
+
     def test_missing_targets_fragments_and_workstation_paths(self):
         for destination in ("Missing.html", "Room%20one.html#missing", "../private.pdf", "file:///C:/private.txt", ""):
             with self.subTest(destination=destination), tempfile.TemporaryDirectory() as root:

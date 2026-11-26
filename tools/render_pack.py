@@ -312,7 +312,7 @@ def verify_contents(envelope, spec, manifest, files):
             or set(revisions.inventory(root)[0]) != {*files, "Link-register.csv"}
             or {p.name for p in envelope.iterdir()} != {"delivery", "issue-manifest.json", name}):
         raise ValueError("The issue differs from the commissioned file list")
-    verify_issue(root, archive_folder=envelope)
+    verify_issue(root, archive_folder=envelope, expected_files=files)
     if digest(envelope / name) != manifest["archive_sha256"]:
         raise ValueError("The portable issue has changed since build")
     return name

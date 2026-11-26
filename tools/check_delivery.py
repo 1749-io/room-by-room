@@ -32,6 +32,7 @@ def inspect(archive, label, counts):
     if len(names) != len(set(names)) or archive.testzip():
         raise ValueError(f"{label}: repeated entry or damaged archive")
     pages = {n: Page(archive.read(n)) for n in names if n.lower().endswith(".html")}
+    destinations = {name: set() for name in pages}
     for name, page in pages.items():
         for link in page.links:
             url = urlsplit(link)
@@ -44,18 +45,32 @@ def inspect(archive, label, counts):
             if url.fragment and target in pages and unquote(url.fragment) not in pages[target].ids:
                 raise ValueError(f"{label}/{name}: missing destination {link}")
             counts["local links"] += 1
+            destinations[name].add(target)
     for name in names:
         if name.lower().endswith(".zip"):
             with zipfile.ZipFile(io.BytesIO(archive.read(name))) as nested:
                 inspect(nested, f"{label}/{name}", counts)
     counts["archives"] += 1
     counts["HTML pages"] += len(pages)
+    return destinations
 
 
-def verify(path):
+def verify(path, *, expected_files=None):
     counts = Counter()
     with zipfile.ZipFile(path) as archive:
-        inspect(archive, path.name, counts)
+        destinations = inspect(archive, path.name, counts)
+        if expected_files is not None:
+            if set(archive.namelist()) != {*expected_files, "Link-register.csv"}:
+                raise ValueError("The portable ZIP differs from the commissioned file list")
+            reached = {"Start here.html"}
+            pending = list(reached)
+            while pending:
+                new = destinations.get(pending.pop(), set()) - reached
+                reached.update(new)
+                pending.extend(new)
+            missing = set(expected_files) - reached
+            if missing:
+                raise ValueError(f"Files unreachable from Start here.html: {sorted(missing)}")
         rows = list(csv.DictReader(io.StringIO(archive.read("Link-register.csv").decode("utf-8-sig"))))
         targets = set()
         for row in rows:
@@ -72,10 +87,12 @@ def verify(path):
     return dict(counts)
 
 
-def verify_issue(outputs, *, archive_folder=None):
+def verify_issue(outputs, *, archive_folder=None, expected_files=None):
     """Check a registered portable issue during revision save, including its loose portal."""
     register = outputs / "Link-register.csv"
     if not register.is_file():
+        if expected_files is not None:
+            raise ValueError("The commissioned issue needs a link register")
         return
     packs = []
     for candidate in (archive_folder or outputs).glob("*.zip"):
@@ -84,7 +101,7 @@ def verify_issue(outputs, *, archive_folder=None):
                 packs.append(candidate)
     if len(packs) != 1:
         raise ValueError("A registered delivery needs one portable ZIP containing its register")
-    verify(packs[0])
+    verify(packs[0], expected_files=expected_files)
     with zipfile.ZipFile(packs[0]) as archive:
         if archive.read(register.name) != register.read_bytes():
             raise ValueError("Loose and portable link registers differ")

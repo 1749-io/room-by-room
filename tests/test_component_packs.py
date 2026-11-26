@@ -117,6 +117,22 @@ class ComponentDelivery(unittest.TestCase):
                 resolve_house(self.home, request, "NEXT")
         finally:
             schedule.write_bytes(original)
+        # A standalone schedule can identify the registered room by its slug.
+        alias_request = rev.stored_json(self.home / "request-SHOP.json")
+        alias_request["room"] = "library"
+        rev.write_json(self.home / "alias-shop.json", alias_request)
+        example.run(self.path, "begin-revision", "Alder Cottage", "ALIAS-SHOP", "--pack-request", "alias-shop.json")
+        example.run(self.path, "build-pack", "Alder Cottage", "ALIAS-SHOP")
+        example.save_example(self.path, "ALIAS-SHOP", "Checked the shopping files issued under the library slug.")
+        mixed = dict(request, rooms={"library": dict(request["rooms"]["library"], shopping="ALIAS-SHOP")})
+        rev.write_json(self.home / "mixed.json", mixed)
+        example.run(self.path, "begin-revision", "Alder Cottage", "MIXED", "--pack-request", "mixed.json")
+        entry = Path(example.run(self.path, "build-pack", "Alder Cottage", "MIXED"))
+        self.assertIn("ALIAS-SHOP-shopping.xlsx", entry.read_text(encoding="utf-8"))
+        with fitz.open(entry.parent / "Issue.pdf") as contents:
+            self.assertEqual(len(contents), 1)
+            for issue in ("ROOM", "DRAWING", "ALIAS-SHOP"):
+                self.assertIn(issue, contents[0].get_text())
         example.run(self.path, "add-room", "Alder Cottage", "Utility")
         with self.assertRaisesRegex(ValueError, "Missing.*utility"):
             resolve_house(self.home, request, "NEXT")
@@ -168,6 +184,26 @@ class ComponentDelivery(unittest.TestCase):
         register.with_suffix(".absent").rename(register)
         example.run(self.path, *args)
         self.assertIn("Verified issued pack", packs.command(self.home, "SAVE", "check-pack"))
+
+    def test_portable_zip_must_include_the_commissioned_files(self):
+        with tempfile.TemporaryDirectory() as temp:
+            folder = Path(temp) / "copy"
+            shutil.copytree(self.editions["SHOP"], folder)
+            manifest = rev.stored_json(folder / "issue-manifest.json")
+            portal = folder / "delivery" / "Start here.html"
+            portal.write_text("<h1>Shopping</h1>", encoding="utf-8")
+            register = portal.parent / "Link-register.csv"
+            rows = packs.read_rows(register)
+            entry = next(row for row in rows if row["path"] == portal.name)
+            entry["sha256"] = packs.digest(portal)
+            register.write_bytes(render_pack.csv_bytes([entry]))
+            archive = folder / manifest["archive"]
+            with zipfile.ZipFile(archive, "w") as out:
+                for path in (portal, register):
+                    out.write(path, path.name)
+            manifest["archive_sha256"] = packs.digest(archive)
+            with self.assertRaisesRegex(ValueError, "commissioned file list"):
+                render_pack.verify(folder, manifest["request"], manifest)
 
     def test_requested_shopping_rows_cannot_disappear_from_workbook(self):
         # Keep the ZIP, its loose files and their index internally consistent.

@@ -149,6 +149,11 @@ def resolve_house(root, req, issue):
     return spec, assets
 
 
+def commissioned_room_files(spec, choices):
+    issues = {revisions.revision_id(rev) for _, rev in selected_issues(choices, False)}
+    return [name for name, source in spec["sources"].items() if source["revision"] in issues]
+
+
 def build_house(envelope, spec, assets, selection_hash):
     root = envelope / "delivery"
     root.mkdir(parents=True)
@@ -157,15 +162,12 @@ def build_house(envelope, spec, assets, selection_hash):
             raise ValueError(f"Source changed during assembly: {name}")
     sections = []
     with fitz.open() as doc:
-        for slug, choices in sorted(spec["rooms"].items()):
-            issues = {revisions.revision_id(v) for _, v in selected_issues(choices, False)}
-            first = next(source for source in spec["sources"].values()
-                         if source["revision"] in issues)
-            room = first["room"]
+        for _, choices in sorted(spec["rooms"].items()):
+            names = commissioned_room_files(spec, choices)
+            room = spec["sources"][names[0]]["room"]
             links, printed = [], []
-            for name, source in spec["sources"].items():
-                if source.get("room") != room:
-                    continue
+            for name in names:
+                source = spec["sources"][name]
                 label = spec["files"][name].split(" | ", 1)[1]
                 detail = f"{label} · {Path(name).suffix[1:].upper()} · {source['revision']}"
                 links.append(f'<li><a href="{quote(name)}">{escape(detail)}</a></li>')
@@ -202,12 +204,8 @@ def verify_house(envelope, spec, manifest):
         if digest(envelope / "delivery" / member) != source["sha256"]:
             raise ValueError(f"House issue differs from the standalone component: {member}")
     with fitz.open(envelope / "delivery/Issue.pdf") as doc:
-        room_sizes = {}
-        for source in spec["sources"].values():
-            if "room" in source:
-                room = source["room"]
-                room_sizes[room] = room_sizes.get(room, 0) + 1
-        expected_pages = sum((n+ROOM_FILES_PER_PAGE-1)//ROOM_FILES_PER_PAGE for n in room_sizes.values())
+        room_sizes = (len(commissioned_room_files(spec, choices)) for choices in spec["rooms"].values())
+        expected_pages = sum((n+ROOM_FILES_PER_PAGE-1)//ROOM_FILES_PER_PAGE for n in room_sizes)
         expected_pages += (len(spec.get("editions", {})) + 3) // 4
         if len(doc) != expected_pages or any(spec["issue"] not in page.get_text() for page in doc):
             raise ValueError("Missing house transmittal page or issue identity")
