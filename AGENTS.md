@@ -40,9 +40,7 @@ Run [route studies](skills/freecad-renovation/references/route-studies.md) behin
 
 Before recording a proposed CAD pass, inspect one coordinated plan showing the room's main activities in use at the same time as its circulation. Record a current `whole-room` finding and link that plan. Apply this to new and existing houses.
 
-Check installed bodies, full opening movements and adjacent projections at their actual heights in proposed CAD. Before showing a furnished operating concept, repeat the [opening clearance check](skills/freecad-renovation/references/opening-clearances.md) against the actual Blender scene. Issue any failed interface as a labelled diagnostic and keep the affected fit on hold.
-
-Check doorway heads in CAD and in the reopened furnished scene before releasing planning concepts as well as final cameras. Review the upper opening in the issued pixels. Follow the [door elevation check](skills/freecad-renovation/references/opening-clearances.md#check-the-doorway-in-elevation).
+Review the room’s openings together. In the occupied CAD pass, check the leaf through its full movement, handles, nearby fittings and the [wall or glazing above the doorway](skills/freecad-renovation/references/opening-clearances.md#check-the-doorway-in-elevation). Repeat the room check against the reopened furnished model before issuing a planning concept or final camera. Keep a failed fit on hold and show the affected interface. During the usual photo review, inspect the head in views that show it. Record an outside-frame or obscured head with the other camera evidence. Keep the chosen framing when it already answers the brief.
 
 When a room has a glazed roof or enough glazing to affect a household activity, start the [glazed-room review](skills/renovation-pack/references/glazed-rooms.md) when the room is first requested. Record tree and building shadows, seated glare, summer heat and winter cold before passing the occupied proposal.
 
