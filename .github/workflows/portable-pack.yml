@@ -34,7 +34,7 @@ jobs:
         if: runner.os == 'Windows'
         run: python -m unittest discover -s tests -p test_trade_schedules.py -k test_clean_builds_match_all_four_archives
       - name: Reconcile three room purchases with the combined house issue
-        run: python examples/multi-room-shopping/replay.py "Maple purchasing"
+        run: python examples/multi-room-shopping/replay.py "${{ runner.temp }}/Maple purchasing"
       - name: Rebuild both brochures and exercise walkthrough links
         run: python tests/browser/comparison_pack.py
       - name: Rebuild single components and assemble a house issue
