@@ -2,9 +2,9 @@
 
 Plan a renovation room by room, from the first viewing to the drawings, shopping lists and finishes you can hand to a tradesperson.
 
-[**Visit the Orchard Fold conservatory**](https://getsimba-ai.github.io/room-by-room/) · [Start your own project](#start-a-project) · [Contributor guide](CONTRIBUTING.md)
+[**Visit the Orchard Fold conservatory**](https://roombyroom.pages.dev/) · [Start your own project](#start-a-project) · [Contributor guide](CONTRIBUTING.md)
 
-[![Furnished concept for Orchard Fold, with a breakfast table looking out through green-framed windows towards the trees](examples/conservatory/reference/concept.png)](https://getsimba-ai.github.io/room-by-room/)
+[![Furnished concept for Orchard Fold, with a breakfast table looking out through green-framed windows towards the trees](examples/conservatory/reference/concept.png)](https://roombyroom.pages.dev/)
 
 *What would it take to eat breakfast here in January and still enjoy the orchard view in July?* At the fictional Orchard Fold, a field maple shades the reading chair late in the day, but the glass roof lets in the midday sun. Follow the household from its first question through a year of modelled temperatures to the furnished design.
 
