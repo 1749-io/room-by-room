@@ -40,6 +40,22 @@
           {
             "context": "Private files and Gitleaks",
             "integration_id": 15368
+          },
+          {
+            "context": "Offline pack readers (ubuntu-latest)",
+            "integration_id": 15368
+          },
+          {
+            "context": "Offline pack readers (windows-latest)",
+            "integration_id": 15368
+          },
+          {
+            "context": "Dependency audit (toolkit)",
+            "integration_id": 15368
+          },
+          {
+            "context": "Dependency audit (solver)",
+            "integration_id": 15368
           }
         ]
       }

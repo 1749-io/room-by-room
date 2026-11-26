@@ -1,4 +1,6 @@
 import csv
+import hashlib
+import json
 import os
 import subprocess
 import sys
@@ -43,6 +45,14 @@ class HomeownerWorkflow(unittest.TestCase):
         with self.assertRaises(ValueError):
             house.initialise("Retreat",None,["Hall","Hall"])
         self.assertFalse((house.HOUSES/"retreat").exists())
+
+    def test_external_library_preserves_local_links_and_portable_toolkit_references(self):
+        house.HOUSES = self.root / "private" / "projects" / "houses"
+        root = house.initialise("Retreat", None, ["Hall"])
+        dashboard = (root / "README.md").read_text(encoding="utf-8")
+        self.assertIn("[working brief](brief.md)", dashboard)
+        self.assertIn("toolkit: `docs/output-revisions.md`", dashboard)
+        self.assertNotIn("](../../docs/", dashboard)
 
     def test_review_requires_evidence_from_this_house_and_current_revision(self):
         place=house.initialise("Terrace",None,["Kitchen"])
@@ -118,6 +128,34 @@ class HomeownerWorkflow(unittest.TestCase):
             register.write_text("\n".join([header, intent, use, journey, row]))
             self.assertIn(expected, house.check_layout_evidence(place, room, "03"))
 
+    def test_glazed_room_requires_four_current_findings_in_named_and_tagged_rooms(self):
+        place = house.initialise("Greenbank", None, ["West sunroom", "Studio", "Bedroom"])
+        for revision in ("R1", "R2"):
+            outputs = place / "revisions" / revision / "outputs"
+            outputs.mkdir(parents=True)
+            (outputs / "room.svg").write_text("<svg/>")
+        current = "revisions/R2/outputs/room.svg"
+        for room in (place / "rooms").iterdir():
+            if room.name == "studio":
+                (room / "README.md").write_text("Glazing review: required\n")
+            register = room / "layout-checks.csv"
+            header = register.read_text().splitlines()[0]
+            rows = [f"R2,{kind},survey,expectation,observation,{current},pass"
+                    for kind in ("intent", "use", "journey", "whole-room")]
+            def check(extra):
+                register.write_text("\n".join([header, *rows, *extra]))
+                return house.check_layout_evidence(place, room, "R2")
+            if room.name == "bedroom":
+                self.assertIsNone(check([]))
+                continue
+            findings = [f"R2,{kind},model,use in season,observed,{current},pass"
+                        for kind in ("external-shadow", "seated-glare", "summer-heat", "winter-cold")]
+            self.assertIn("external-shadow", check([]))
+            self.assertIn("winter-cold", check(findings[:-1]))
+            self.assertIn("current saved revision", check([f.replace("revisions/R2", "revisions/R1") for f in findings]))
+            self.assertIn("unresolved", check([*findings[:-1], findings[-1].replace(",pass", ",hold")]))
+            self.assertIsNone(check(findings))
+
     def test_each_intended_position_needs_current_evidence_for_its_activity(self):
         place = house.initialise("Workshop", None, ["Studio"])
         room = place / "rooms/studio"
@@ -153,6 +191,44 @@ class HomeownerWorkflow(unittest.TestCase):
         cli("start", "Terrace", "--room", "Kitchen")
         working = Path(cli("begin-revision", "Terrace", "R1").strip())
         (working / "review.txt").write_text("Test evidence")
+        (working / "openings").mkdir()
+        for name, suffix in [("Study.FCStd", ""), ("Room.blend", ".camera")]:
+            model = working / name
+            model.write_bytes(b"native fixture")
+            spec = dict(revision="R1", cad_revision="R1", room="kitchen", units="mm",
+                        basis="Survey and selected runner", model="outputs/" + name,
+                        model_sha256=hashlib.sha256(model.read_bytes()).hexdigest(),
+                        geometry={"case": {"xy": [[0,0],[20,0],[20,10],[0,10]], "z": [0,10]},
+                                  "drawer": {"xy": [[0,0],[20,0],[20,20],[0,20]], "z": [0,8]},
+                                  "trim": {"xy": [[22,0],[24,0],[24,10],[22,10]], "z": [0,20]}},
+                        door_heads={}, no_doors_reason="Isolated cabinet test",
+                        zones=[dict(name="Drawer and trim", travel="Closed to full extension",
+                                    installed=["case"], sweeps=["drawer"], obstacles=["trim"], required_mm=1, uncertainty_mm=0.5)])
+            (working / "openings" / ("kitchen" + suffix + ".json")).write_text(json.dumps(spec))
+        from PIL import Image
+        from zipfile import ZipFile
+        for name, colour in (("camera.png", "blue"), ("photo.png", "green")):
+            Image.new("RGB", (14, 10), colour).save(working / name)
+        evidence_dir = working / "photo-reviews"
+        evidence_dir.mkdir()
+        (evidence_dir / "kitchen-brief.json").write_text(json.dumps({
+            "architectural_details": {"wall_mounts": [], "openings": []}, "basis": "Kitchen layout", "openings": {}, "windows": {},
+            "views": {"whole-room": "Show the layout", "drawer": "Show drawer access"}}))
+        image_review = dict(photo="photo.png", camera="camera.png", reviewer="Reviewer", result="pass",
+                            architectural_details={"wall_mounts": {}, "openings": {}}, shows=["whole-room", "drawer"], openings={}, visible_rooms=[], window_treatments={},
+                            composition="Whole run visible", products_and_operation="Drawer access visible",
+                            light_and_finish="Compared paint in daylight", architecture="Shell matches the plan",
+                            opening_inspection="The crop faces the rear wall")
+        for key in ("camera", "photo"):
+            image_review[key+"_sha256"] = hashlib.sha256((working/image_review[key]).read_bytes()).hexdigest()
+        (evidence_dir / "kitchen.json").write_text(json.dumps({
+            "room": "kitchen", "revision": "R1", "photos": [image_review]}))
+        with ZipFile(working / "pack.zip", "w") as pack:
+            for path in evidence_dir.iterdir():
+                pack.write(path, "photo-reviews/" + path.name)
+            pack.write(working / "photo.png", "photos/hero.png")
+            pack.write(working / "camera.png", "photos/camera.png")
+            pack.writestr("gallery.html", "<img src='photos/hero.png'>")
         cli("save-revision", "Terrace", "R1", "--change", "Save design", "--why", "Test handovers",
             "--by", "Reviewer", "--affects", "Kitchen", "--next", "Check the plan")
         evidence = "revisions/R1/outputs/review.txt"
@@ -198,6 +274,21 @@ class HomeownerWorkflow(unittest.TestCase):
         project = kitchen.parents[1]
         review = kitchen / "review.csv"
         self.assertTrue(house.render_status(project, review, "blender", input_revision="R1")[0])
+        scene = Path(cli("begin-revision", "Terrace", "FURN-R2").strip())
+        for name in ["Room.blend", "openings/kitchen.camera.json"]:
+            dest = scene / name
+            dest.parent.mkdir(exist_ok=True)
+            dest.write_bytes((project / "revisions/R1/outputs" / name).read_bytes())
+        camera_file = scene / "openings/kitchen.camera.json"
+        camera = json.loads(camera_file.read_text())
+        camera["revision"] = "FURN-R2"
+        camera["geometry"]["trim"]["xy"] = [[12,8],[15,8],[15,12],[12,12]]
+        camera_file.write_text(json.dumps(camera))
+        args = ("--input-revision", "R1", "--scene-revision", "FURN-R2")
+        self.assertIn("drawer / trim", cli("check-render", "Terrace", "Kitchen", "blender", *args, passed=False))
+        camera["geometry"]["trim"]["z"] = [20,23]
+        camera_file.write_text(json.dumps(camera))
+        self.assertIn("blender may proceed", cli("check-render", "Terrace", "Kitchen", "blender", *args))
         allowed, finding = house.render_status(project, review, "blender", input_revision="R0")
         self.assertFalse(allowed)
         self.assertIn("input revision R0 differs from reviewed R1", finding)
@@ -231,15 +322,27 @@ class HomeownerWorkflow(unittest.TestCase):
         with review.open("w", newline="") as handle:
             csv.writer(handle).writerows(reviews)
         self.assertIn("final-ai may proceed", cli("check-render", "Terrace", "Kitchen", "final-ai", "--input-revision", "R1"))
+        reviews[5][1] = "hold"
+        with review.open("w", newline="") as handle:
+            csv.writer(handle).writerows(reviews)
+        self.assertIn("products / hold", cli("check-render", "Terrace", "Kitchen", "final-ai", passed=False))
+        reviews[5].append("purchase")
+        with review.open("w", newline="") as handle:
+            csv.writer(handle).writerows(reviews)
+        self.assertIn("final-ai may proceed", cli("check-render", "Terrace", "Kitchen", "final-ai"))
+        finishes.write_text("\n".join([finish_header, lighting, palette]))
+        self.assertIn("lighting and finish", cli("check-render", "Terrace", "Kitchen", "final-ai", passed=False))
+        finishes.write_text("\n".join([finish_header, lighting, product, palette]))
         self.assertIn("differs from reviewed", cli("check-render", "Terrace", "Kitchen", "final-ai", "--input-revision", "R0", passed=False))
         for row in reviews[6:]:
             row[1:] = ["pass", "R1", evidence, "Reviewer", "Reviewed test issue"]
+        reviews[6][3] = "revisions/R1/outputs/photo.png"
+        reviews[7][3] = "revisions/R1/outputs/pack.zip"
         with review.open("w", newline="") as handle:
             csv.writer(handle).writerows(reviews)
         self.assertIn("record the final image colour comparison", cli("status", "Terrace"))
-        (kitchen / "final.jpg").write_bytes(b"final fixture")
         with finishes.open("a") as stream:
-            stream.write(f"\nR1,ai-colour,hero,{image},rooms/kitchen/final.jpg,compared finished image,pass\n")
+            stream.write("\nR1,ai-colour,hero,revisions/R1/outputs/camera.png,revisions/R1/outputs/photo.png,compared finished image,pass\n")
         self.assertIn("kitchen: reviewed through handover / R1", cli("status", "Terrace"))
 
     def test_colour_choices_and_image_drift_hold_the_affected_handover(self):

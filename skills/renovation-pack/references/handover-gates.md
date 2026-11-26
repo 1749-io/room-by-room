@@ -1,12 +1,26 @@
 # Handover checks for a renovation concept
 
+## Finishing a furnished room
+
+Once the furnished camera is reviewed, the normal room deliverable includes the final photo and a downloadable pack. Check the selected variants, light and palette, run `check-render "House" "Room" final-ai --input-revision R3` with the actual camera revision, generate from that camera and compare the two images. A homeowner who accepts the design has supplied the design decision. Continue the routine stages without a second completion instruction.
+
+Record survey, procurement and installation actions in the shopping schedule and survey brief. When product identity and finish checks pass for the visual and purchase is still held, the `products` row in `review.csv` can retain `status=hold` with `hold_scope=purchase`. Add the optional column to an older register when needed. The usual reviewer, revision, product comparison, lighting and palette evidence are still required. An unscoped product hold, uncertain visible variant, explicit visual hold or measurement that could reverse the pictured layout still stops the image. Record what the missing fact would change.
+
+Run the [photo quality and adjoining-room review](photo-quality.md) before releasing the room ZIP, and again across completed rooms at final house assembly.
+
+Before publication, link the primary photo in the `final-ai` row, and each issued photo and its distinct Blender camera in a passing `ai-colour` row. Link the actual room pack in `handover`. The downloadable ZIP carries the reviewed photos, their checked cameras and a PDF or HTML presentation. The check compares the image contents even when the archive renames them. An interim save can record progress with `--next`. Use `house.py ask` for a decision that genuinely blocks work. `save-revision --ask` guards the later invitation to change scope, and `house.py next` identifies the outstanding room stage.
+
+If the homeowner expressly commissions cameras only, add the standalone line `Furnished deliverable: views only` in the room README beside the dated instruction. Use `Furnished deliverable: paused` for an explicit pause and remove it or change it to `Furnished deliverable: full pack` on resumption. A CAD assessment can finish within its own scope.
+
 Before final AI, record how the palette of each furnished room works against its brief. Consult [the colour decision rules](colour-decisions.md) for the evidence, homeowner choices, final-image colour fidelity and physical finish issue. Record actual discrepancies in the affected visual gate and pending physical samples on the decorator schedule.
 
-In a house workbook, run `python house.py check-render "House" "Room" blender --input-revision R3` before starting the furnished camera and use `final-ai --input-revision R3` before generating the finish study. Substitute the revision read from the actual input. Set the affected stage to hold when the homeowner pauses visuals. Record its release before resuming.
+Run `check-layout` before preparing the furnished scene. Run `python house.py check-render "House" "Room" blender --input-revision R3` before rendering it. Give `--scene-revision` when its [opening clearance evidence](../../freecad-renovation/references/opening-clearances.md) is in a separate draft. Use `final-ai --input-revision R3` before generating the finish study. Substitute the revision read from the actual input. Set the affected stage to hold when the homeowner pauses visuals. Record its release before resuming.
 
 Use the actual input revision on workbook checks. An optional unrendered furniture study follows an accepted existing shell and a `check-study` pass. Return candidate poses to proposed CAD and repeat its occupied-use checks. Record the live connector, native file, revision, measured features and discrepancies for scripted builds and placements.
 
 Maintain a review record per room and revision. For each handover, record the input file or product source, the check actually performed, pass or hold, the evidence a reviewer can inspect, and any correction required. A changed wall, product variant, material or camera reopens the affected downstream checks. If a shared route changes, reopen the adjoining rooms, their purchase or fit decisions and any affected audience sheets. Before furnishing, run the workbook's check-layout command for the room and respect any separate render hold. A room on hold can appear in a diagnostic review labelled as such. Only passed views enter the finished presentation.
+
+For a highly glazed space, four current [seasonal comfort findings](glazed-rooms.md) enter the proposed CAD check and the furnished release that depends on it. A map pin, an attractive daylight render or a benchmark simulation alone cannot establish the comfort of the occupied room.
 
 | Handover | Evidence required for a pass | Correction route |
 | --- | --- | --- |
@@ -28,3 +42,14 @@ For uncertain product identity, show the supplier reference beside the rendered 
 At drawing review size, check that each label clears walls, door arcs, dimension lines and adjacent text. Move crowded notes into the margin and inspect the exported sheet again. Before accepting a room layout, compare both camera directions with available listing photographs and record fixed features omitted from the floor plan, especially chimney breasts, hearths and radiators.
 
 At handover, open the exported issue as its intended recipient. Use the [pack content guide](deliverables.md) to check that the reader can locate the decision, follow it to the evidence and identify the next action. Cross-check repeated revisions, dimensions, product variants, quantities, costs and holds against their source records. Record the exported filename, revision and what you verified in the existing handover finding or its linked evidence.
+
+Before issue, check that the follow-up fits what the homeowner can usefully judge. Offer room for feedback and a change of priority, or ask directly about a decision needed to proceed. Follow the [homeowner decision guide](homeowner-decisions.md#at-the-end-of-a-commission) to select the prompt and record the reply.
+
+## Drawing keys
+
+Include a compact key in the margin of every homeowner diagram, including each standalone image and each diagram sheet in a PDF. Keep repeated panels on one scale and share their key. Use the actual fills, hatching, markers and line styles from the drawing. Give unfamiliar objects plain names such as “open dishwasher door” and “trial support”. Name important landmarks directly. If there are two journeys, explain their separate purposes or give each its own panel. Remove unrelated layers from a chair measurement, survey detail or finish question.
+
+For Matplotlib sheets, label the plotted artists and use the [shared key helper](../scripts/diagram_key.py) to draw the key and check label coverage, clipping and overlap with the plan panels. For native CAD and other tools, make the same checks on the exported image. Open each sheet at chat size and check a reader can identify each symbol, follow the route and read the key without using colour alone.
+## Visual placement at issue
+
+Keep the accepted arrangement separate from derivative sign-off. Link the homeowner's decision, exclusions and editable geometry, then check each plan, section and camera against the consequential feature inventory before publication. Follow the [design-state and visual release guide](../../../docs/visual-release.md).

@@ -6,6 +6,8 @@
 4. **Compare the same view at each handover.** Place a plan and a camera looking in the original direction beside the intent record. Check the visible side, orientation, adjacency, access, scale and framing before dressing Blender or requesting AI. Review each final camera against its Blender source AND the original room intent. Use a reverse view to resolve hidden areas. Record which portions are inferred or outside the frame.
 5. **Diagnose and correct the earliest failure.** Missing or reversed design intent belongs in the brief and CAD. Missing architectural fabric belongs in existing CAD. A transfer or camera mismatch belongs in Blender. A change that first appears in the finish image belongs in the AI pass. Carry a newly discovered failure forward as a repeatable check and show that it catches the rejected revision as well as passing the correction.
 
+Where exposure drives the household activity, include the [glazed-room review](glazed-rooms.md) in the occupied layout. Compare the garden view, glare and shading with the doors and controls in operation.
+
 ## Walking the room with the household
 
 ### Household route stories
@@ -49,6 +51,8 @@ For groups of furniture, identify the reference object and the arrangement that 
 Use a checked, fixed shell for an in-scope unrendered Blender MCP study of movable items. Record the source revision, units, axes, IDs and candidate world poses. Bring the candidate back to its FreeCAD option and verify the occupied room in the reopened native file. For changed fabric, build and measure the option in FreeCAD first. Apply the homeowner’s limits on interventions and visual work.
 
 ## Whole-room plan
+
+Check full travel, fittings and fixed projections at overlapping heights using the [opening clearance gate](../../freecad-renovation/references/opening-clearances.md). Inspect the same interfaces in the furnished scene before showing their operation.
 
 Use one drawing at one revision to test a realistic simultaneous use from this room's brief. In a lounge, show occupied seats, a practical place to put a drink, any requested views and the passing route. In a kitchen, show the cook, open appliance, storage destination and another person's route. In a single-use space show the user, the thing they operate and their approach. Select only layers that affect the decision.
 

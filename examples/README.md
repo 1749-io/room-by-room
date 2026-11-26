@@ -1,5 +1,15 @@
 # Worked renovation examples
 
+For a purchasing handover across three rooms, run [Maple Mews](multi-room-shopping/README.md). It reconciles shared purchases and all six recipient files.
+
+To issue a single room, drawing or shopping schedule, replay the [Alder Cottage component handover](component-pack/README.md). It also builds an offline house edition from the saved standalone files.
+
+For a homeowner presentation, architect appointment pack or buyer brief, replay the [Alder Cottage audience editions](audience-packs/README.md). The example checks all three on their own and inside the full house issue.
+
+For approved surfaces, a base and option cost comparison or a dependency-linked programme, open the [trade schedules example](trade-schedules/README.md).
+
+For a signed-off arrangement carried across a floor plan, section and camera, replay the [visual release check](visual-release/README.md).
+
 Choose by the homeowner's question. **Replay** means you can run the calculation or test. **Desk exercise** gives the inputs, reasoning and outcome to check by hand.
 
 | Homeowner question | Worked example | Kind |

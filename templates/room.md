@@ -1,5 +1,7 @@
 # {{room}}
 
+Where glazing or a glazed roof drives use, record the standalone line `Glazing review: required`. Identify the activity, viewpoint and times of use. The layout register then requires current external-shadow, seated-glare, summer-heat and winter-cold findings. Conservatories, sunrooms, winter gardens and orangeries trigger these automatically.
+
 ## How this space should work
 Before placing furniture, use [the layout register](layout-checks.csv) to record spatial preferences (`intent`), everyday activities (`use`) and connected routes (`journey`). Name the people, starting and finishing points, furniture or doors in use, and what would count as a workable result. For a shared route, identify the adjoining room. After modelling, record the observed result, revision and house-relative evidence path. Keep unresolved checks on hold and identify the measurement or decision needed.
 Describe its users, furniture and connections. Record what stays and what changes.
@@ -23,6 +25,8 @@ Link the actual FreeCAD or Blender document and revision, state the live connect
 Link one CAD plan for the current revision showing people, the things they need to use or reach, and a route while those activities are taking place. Include any viewing or door conflict that matters to this room. Record one `whole-room` row with the simultaneous scenario, the result and a house-relative path to the drawing. Hold the layout if the activities compete.
 
 ## Fit and finish
+List the moving assemblies, hardware and nearby fixed projections with their working heights, full travel and survey tolerances. Keep a current opening clearance report for CAD and for the furnished scene.
+
 For existing CAD, link the source plan, photograph checks and a cutaway or section. List consequential fixed features and unknown measurements. For proposed CAD, link the overlay and record the tightest clearance for the way the room will actually be used.
 
 Record dimensions with their sources, door swings, occupied clearances, finishes, storage, lighting, power, ventilation and accessible use.
@@ -33,6 +37,8 @@ List shopping IDs, selected variants, quantities, reused pieces and any shared i
 Record the same-camera lighting comparison and a neutral finish review for each prominent selected product in [finish-checks.csv](finish-checks.csv). For a room without named products, review its specified architectural finish. Use `lighting` and `finish` rows with the current revision, subject, reference, house-relative image or PDF evidence, finding and result.
 
 ## Review with the homeowner
+
+A reviewed furnished camera normally leads to the final room photo and downloadable pack. If the homeowner expressly limits the issue to the Blender views, record their dated instruction with the standalone line `Furnished deliverable: views only`. Use `Furnished deliverable: paused` for an explicit pause.
 
 List fixed colours and open choices. Before final AI add a `room-palette` row for this revision with the brief or decision path, furnished view and finding. Explain how the colours work together in the light shown. Locate any concern and give the smallest adjustment worth trying. For a consequential open choice, add a `palette` row with the homeowner’s question and link the decision once selected. For each final photo add `ai-colour` with the reviewed camera as its source and the actual AI image as evidence. In [decorator-finishes.csv](decorator-finishes.csv), record the selected surfaces and any outstanding samples when decoration is in scope.
 At each handover, record any conflict between property evidence, the brief and inspiration images. Show the retained layout, what a change would gain or cost, who needs to decide and which checks must wait. Link the house decision log and carry its answer to the next revision.

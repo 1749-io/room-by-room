@@ -1,0 +1,20 @@
+{
+  "house": "alder-cottage",
+  "edition": "architect-pack",
+  "audience": "Architect",
+  "chapters": {
+    "appointment": [
+      {"label": "Coordinate the library storage option", "text": "Use the existing furniture plan to review the relationship between the north bookcase, hall door and reading chair. Return a marked-up fixing zone if the shelves can be fitted.", "basis": "Fictional appointment brief. Existing library sheet L-01."}
+    ],
+    "exclusions": [
+      {"label": "Survey and construction status", "text": "The supplied existing plan covers the library only. Fixing detail, service locations, levels and wall build-up remain unverified. The sheet is for appointment discussion.", "basis": "LIB-01 records horizontal dimensions and the door swing."},
+      {"label": "Budget and outstanding decision", "text": "The homeowner has yet to commission the shelves. Agree a survey fee and fitting allowance before starting detailed work.", "basis": "Fictional appointment brief. No professional fee or installation budget has been agreed."}
+    ],
+    "survey": [
+      {"label": "Installer | Before fixing design", "text": "Record the wall build-up, fixing substrate and socket position on the north wall. Return dimensioned photographs or a marked-up measured elevation.", "basis": "Outstanding library fixing and service check.", "evidence": ["rooms/library/README.md"]}
+    ],
+    "coordination": [
+      {"label": "Architect | After survey return", "text": "Reconcile the marked-up wall with the retained bookcase. Identify any need for specialist fixing advice and return the affected sheet for review before installation.", "basis": "Fictional appointment scope. The homeowner owns the final shelf choice."}
+    ]
+  }
+}

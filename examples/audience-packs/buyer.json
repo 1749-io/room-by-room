@@ -1,0 +1,23 @@
+{
+  "house": "alder-cottage",
+  "edition": "buyer-brief",
+  "audience": "Buyer",
+  "chapters": {
+    "scenario": [
+      {"label": "Can the library work on moving day?", "text": "On the fictional existing layout, the door clears the chair and bookcase. Treat the chair and lamp as a layout example. Ask which items would actually stay with the property.", "basis": "Existing library assessment LIB-01. Contents are unconfirmed.", "evidence": ["rooms/library/README.md"]}
+    ],
+    "cost_basis": [
+      {"label": "Optional shelves", "text": "The shopping subtotal covers two oak shelves and a retained chair. Delivery, fitting, making good and contingency have no allowance. Obtain a written price before budgeting for the work.", "basis": "Fictional November 2026 schedule. No contractor quotation or whole-house estimate."},
+      {"label": "Purchase and moving costs", "text": "The buyer has supplied no acquisition figures or allowance for fees or temporary accommodation. Whole-purchase cash requirements remain open.", "basis": "Scope of this fictional viewing exercise."}
+    ],
+    "occupation": [
+      {"label": "Moving in", "text": "The existing layout can be used independently of the shelf decision if the room and furniture match the viewing. An installation date and access arrangements remain open.", "basis": "CAD-only room assessment. Occupation elsewhere in the house is outside this example."}
+    ],
+    "viewing": [
+      {"label": "During the viewing", "text": "Open the hall door fully. Stand at the bookcase while another person sits at the window. Locate the socket and ask which shelves and loose furniture are included.", "basis": "Door, bookcase and chair positions shown on sheet L-01."}
+    ],
+    "follow_up": [
+      {"label": "Before committing to works", "text": "Ask the surveyor to identify the wall construction and any signs of damp at the bookcase. Ask the conveyancer to confirm the fixtures and contents from the seller's paperwork.", "basis": "Unverified fabric, service location and sale inclusions. Record both replies before ordering."}
+    ]
+  }
+}

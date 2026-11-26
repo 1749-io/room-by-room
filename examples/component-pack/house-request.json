@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "profile": "house",
+  "house": "alder-cottage",
+  "audience": "Homeowner",
+  "purpose": "Issue the complete library commission with the reviewed floor plan and purchasing schedule.",
+  "components": ["room-review", "drawing", "shopping"],
+  "rooms": {"library": {"room-review": "ROOM", "drawing": "DRAWING", "shopping": "SHOP"}},
+  "limitation": "Fictional CAD review. The shelf purchase remains on hold.",
+  "next_action": "The installer confirms the wall fixings and socket position before the homeowner orders."
+}

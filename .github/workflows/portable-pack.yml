@@ -1,0 +1,52 @@
+name: Portable pack delivery
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  portable-pack:
+    name: Offline pack readers (${{ matrix.os }})
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -p test_delivery_pack.py -v
+      - run: python -m pip install playwright
+      - run: python -m playwright install chromium
+      - name: Build and extract a portable fixture
+        run: python -c "import sys,zipfile; from pathlib import Path; sys.path.insert(0,'tests'); from test_delivery_pack import make_pack; p=Path('sample.zip'); make_pack(p); zipfile.ZipFile(p).extractall('Portable sample')"
+      - name: Click through extracted pages in Chromium
+        run: python tools/smoke_pack_browser.py "Portable sample/Start here.html"
+      - name: Install brochure rendering dependencies
+        run: python -m pip install Pillow -r requirements-packs.txt
+      - name: Reconcile three room purchases with the combined house issue
+        run: python examples/multi-room-shopping/replay.py "Maple purchasing"
+      - name: Rebuild both brochures and exercise walkthrough links
+        run: python tests/browser/comparison_pack.py
+      - name: Rebuild single components and assemble a house issue
+        run: python -m unittest discover -s tests -p test_component_packs.py -v
+      - name: Open the extracted component editions at phone and desktop widths
+        run: python tests/browser/component_pack.py
+      - name: Open all three audience editions alone and inside the house issue on Windows
+        if: runner.os == 'Windows'
+        run: python tests/browser/audience_packs.py
+      - name: Install the independent PowerPoint reader
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libreoffice-impress libreoffice-calc fonts-liberation
+      - name: Open the audience editions and render the editable slides on Linux
+        if: runner.os == 'Linux'
+        run: python tests/browser/audience_packs.py --office soffice
+      - name: Open the three trade schedules alone and in the complete house on Windows
+        if: runner.os == 'Windows'
+        run: python tests/browser/trade_schedules.py
+      - name: Open the trade schedules and recalculate edited workbooks on Linux
+        if: runner.os == 'Linux'
+        run: python tests/browser/trade_schedules.py --office soffice

@@ -1,0 +1,43 @@
+digraph delivery {
+  graph [rankdir=TB, bgcolor="#FAF8F2", pad=0.32, nodesep=0.45, ranksep=0.38,
+         fontname="Georgia", fontsize=26, fontcolor="#183735", labelloc=t,
+         label="Renovation pack delivery\n "]
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=13,
+        margin="0.19,0.13", color="#839B8D", fillcolor="#FFFFFF", fontcolor="#183735"]
+  edge [color="#41675B", fontname="Arial", fontsize=11, fontcolor="#35584D", arrowsize=0.7]
+  { rank=same
+    design [label="Design handover\nReviewed drawing or furnished room", URL="agent-workflow.md"]
+    single [label="Individual request\nRoom review, drawing or shopping", URL="../skills/pack-delivery/SKILL.md"]
+    audience [label="Audience edition\nHomeowner presentation, architect pack or buyer brief", URL="../examples/audience-packs/README.md"]
+    schedule [label="Trade schedule\nDecorator finishes, cost schedule or programme", URL="../examples/trade-schedules/README.md"]
+    house [label="House edition\nSaved rooms and named audience editions", URL="../examples/component-pack/house-request.json"]
+  }
+  freeze [label="Freeze the commission\nbegin-revision --pack-request", fillcolor="#E5EFE4", URL="output-revisions.md"]
+  scope [shape=diamond, style=filled, fillcolor="#F1E7CA", label="plan-pack\nSources and visual placements approved?", URL="visual-release.md"]
+  fix [label="Return to the named review\nCorrect the source or record a narrower commission"]
+  build [label="build-pack\nCreate direct files, offline index and ZIP", fillcolor="#E5EFE4", URL="../examples/component-pack/README.md"]
+  check [shape=diamond, style=filled, fillcolor="#F1E7CA", label="check-pack\nFiles agree?"]
+  read [label="Open the extracted issue\nRead, print, edit slides or forward sheets"]
+  review [label="Record the reader finding\ncheck-pack --reviewer --finding"]
+  release [label="save-revision\nRecheck sources, archive and private backup", fillcolor="#D3E4D4", URL="output-revisions.md"]
+  received [label="Handover\nOpen one component or share the complete ZIP", URL="../examples/component-pack/README.md"]
+  key [shape=plain, label=<<TABLE BORDER="0" CELLBORDER="0" CELLPADDING="3">
+    <TR><TD ALIGN="LEFT"><B>Diagram key</B></TD></TR>
+    <TR><TD ALIGN="LEFT">Rounded box  ·  action or output</TD></TR>
+    <TR><TD ALIGN="LEFT">Diamond  ·  release check</TD></TR>
+    <TR><TD ALIGN="LEFT">Solid arrow  ·  continue</TD></TR>
+    <TR><TD ALIGN="LEFT">Dashed arrow  ·  correct and repeat</TD></TR></TABLE>>]
+  design -> freeze; single -> freeze; house -> freeze
+  audience -> freeze
+  schedule -> freeze
+  freeze -> scope
+  scope -> build [label="ready for this purpose"]
+  scope -> fix [label="source hold", style=dashed]
+  build -> check
+  check -> read [label="passes"]
+  check -> fix [label="missing or stale", style=dashed]
+  read -> review; review -> release; release -> received
+  fix -> freeze [label="new issue", style=dashed, constraint=false]
+  {rank=same; received; key}
+  received -> key [style=invis]
+}

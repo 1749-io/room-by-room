@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "house": "alder-cottage",
+  "room": "Library",
+  "audience": "Homeowner",
+  "purpose": "Review the reading chair beside the south window and confirm access to the bookcase.",
+  "components": ["room-review", "drawing", "shopping"],
+  "source_revision": "LIB-01",
+  "stage": "existing-cad",
+  "room_scope": "cad-review",
+  "sheet_id": "L-01",
+  "sheet_title": "Library furniture and door clearance",
+  "sheet_caption": "The door opens towards the clear west side. The chair and lamp share the window end.",
+  "scale_basis": "Dimensions in mm. Use the scale bar on the drawing.",
+  "daily_use": "Enter from the hall, reach the books along the north wall and read by the window. The chair stays in the south-east corner so a second person can browse without moving it.",
+  "limitation": "Fictional design review. Confirm the shelf fixing and the socket position before ordering.",
+  "next_action": "The installer measures the wall and socket. The homeowner can then release the shelf order."
+}

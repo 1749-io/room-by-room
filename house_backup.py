@@ -1,4 +1,6 @@
 """Verified, single-house ZIP backups and no-overwrite restoration."""
+from contextlib import contextmanager
+import hashlib
 import json
 import os
 import stat
@@ -71,7 +73,7 @@ def read_payload(archive, header, target=None):
         info = archive.getinfo("house/" + name)
         if stat.S_ISLNK(info.external_attr >> 16):
             raise ValueError(f"Linked archive member: {name}")
-        with archive.open(info) as src:
+        with archive.open("house/" + name) as src:
             if target is None:
                 digest = transfer(src)
             else:
@@ -79,6 +81,66 @@ def read_payload(archive, header, target=None):
                     digest = transfer(src, dst)
         if digest != expected:
             raise ValueError(f"Backup checksum differs: {name}")
+
+
+@contextmanager
+def recovery_archive(path, house_id, *, base_dir=None):
+    """Present a full logical house while reading unchanged bytes from one pinned full ZIP."""
+    with ZipFile(path) as current:
+        meta = json.loads(current.read(HEADER))
+        if meta.get("format") != 2:
+            yield current
+            return
+        base_name = meta["base"]
+        if len(safe_relative(base_name).parts) != 1 or base_name == path.name:
+            raise ValueError("Invalid full backup name")
+        with ZipFile(local_path(base_dir or path.parent, base_name)) as base:
+            base_header = manifest(base, house_id)
+            if hashlib.sha256(base.read(HEADER)).hexdigest() != meta["base_manifest_sha256"]:
+                raise ValueError("Full backup manifest changed")
+            sources = {digest: (base, "house/" + name) for name, digest in base_header["files"].items()}
+            needed = set(meta["files"].values()) - sources.keys()
+            members = current.namelist()
+            if len(members) != len(set(members)) or set(members) != {HEADER, *("objects/" + d for d in needed)}:
+                raise ValueError("Delta contents differ from the required objects")
+            sources.update({d: (current, "objects/" + d) for d in needed})
+            yield LogicalArchive(meta, sources)
+
+
+class LogicalArchive:
+    def __init__(self, meta, sources):
+        self.meta = dict(meta, format=1)
+        self.sources = sources
+
+    def namelist(self):
+        return [HEADER, *("house/" + name for name in self.meta["files"])]
+
+    def member(self, name):
+        return self.sources[self.meta["files"][name.removeprefix("house/")]]
+
+    def read(self, name):
+        if name == HEADER:
+            return json.dumps(self.meta).encode()
+        archive, key = self.member(name)
+        return archive.read(key)
+
+    def open(self, name):
+        archive, key = self.member(name)
+        return archive.open(key)
+
+    def getinfo(self, name):
+        archive, key = self.member(name)
+        return archive.getinfo(key)
+
+
+def full_base(directory, house_id):
+    for path in sorted(directory.glob("*.zip"), key=lambda p: p.stat().st_mtime_ns, reverse=True):
+        with ZipFile(path) as candidate:
+            header = json.loads(candidate.read(HEADER))
+            if header.get("format") == 1 and header.get("house") == house_id:
+                known = set(manifest(candidate, house_id)["files"].values())
+                return path, hashlib.sha256(candidate.read(HEADER)).hexdigest(), known
+    return None
 
 
 def backup_directory():
@@ -114,10 +176,19 @@ def backup(root, destination, repo, *, staged_revision=None):
         snapshots.append(stored_json(staged_revision / "record.json"))
     with tempfile.TemporaryDirectory(dir=destination.parent) as temp:
         staged = Path(temp) / "house.zip"
+        base = full_base(destination.parent, house_id) if staged_revision is not None else None
         hashes = {}
         with ZipFile(staged, "x", compression=ZIP_DEFLATED, allowZip64=True) as archive:
             for name, source in sources.items():
-                with source.open("rb") as src, archive.open("house/" + name, "w", force_zip64=True) as dst:
+                member = "house/" + name
+                if base:
+                    with source.open("rb") as src:
+                        hashes[name] = transfer(src)
+                    if hashes[name] in base[2]:
+                        continue
+                    member = "objects/" + hashes[name]
+                    base[2].add(hashes[name])
+                with source.open("rb") as src, archive.open(member, "w", force_zip64=True) as dst:
                     hashes[name] = transfer(src, dst)
             for record in snapshots:
                 for kind in ("inputs", "outputs"):
@@ -125,10 +196,13 @@ def backup(root, destination, repo, *, staged_revision=None):
                         key = f"revisions/{record['revision']}/{kind}/{name}"
                         if hashes.get(key) != expected:
                             raise ValueError(f"Archived bytes differ from the recorded revision: {key}")
-            archive.writestr(HEADER, json.dumps(dict(format=1, house=house_id, directories=archive_dirs, files=hashes)))
+            header = dict(format=1, house=house_id, directories=archive_dirs, files=hashes)
+            if base:
+                header.update(format=2, base=base[0].name, base_manifest_sha256=base[1])
+            archive.writestr(HEADER, json.dumps(header))
         if inventory(root, house=True) != (before, dirs):
             raise ValueError("House files changed during backup. Finish saving and retry.")
-        with ZipFile(staged) as archive:
+        with recovery_archive(staged, house_id, base_dir=destination.parent) as archive:
             read_payload(archive, manifest(archive, house_id))
         if os.name != "nt":
             staged.chmod(0o600)
@@ -144,7 +218,7 @@ def restore(house_id, archive_path, target):
         staged = Path(temp) / "house"
         staged.mkdir()
         try:
-            with ZipFile(archive_path) as archive:
+            with recovery_archive(Path(archive_path), house_id) as archive:
                 header = manifest(archive, house_id)
                 read_payload(archive, header, staged)
         except (BadZipFile, KeyError, TypeError) as exc:

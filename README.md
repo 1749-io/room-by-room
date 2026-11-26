@@ -1,8 +1,40 @@
 # House Renovations
 
-Start with a house name and what you want to change. A Rightmove listing, an email, a sketch, a shopping list or “I want a Vice City listening room” are all usable starting points. The agent creates a project for that house, works out what the available evidence supports and carries the brief through design, shopping and handover. You can commission one room, a feasibility study or a whole-house concept pack.
+A toolkit for taking a renovation brief through survey, checked CAD, furnished concepts and shareable handover packs. [Try a fictional house and explore the repository](CONTRIBUTING.md).
 
-[Agent workflow and architecture diagram](docs/agent-workflow.md) · [Start a project](#start-a-project) · [What to send](#what-to-send) · [How agents fill gaps](#how-agents-fill-gaps) · [Design and review stages](#design-and-review-stages) · [Worked examples](examples/README.md)
+| What you want to do | Where to start |
+| --- | --- |
+| Bring a listing, sketch or brief to an agent | [Start a project](#start-a-project) and [what to send](#what-to-send) |
+| Open a finished example | [Download the fictional Alder Cottage handover ZIP](examples/trade-schedules/reference/Alder-Cottage-trade-handover.zip), extract it and open `Start here.html` |
+| Issue one drawing, schedule or audience edition | [Delivery workflow](docs/pack-delivery.svg) and [component and audience examples](examples/README.md) |
+| Check an accepted design across drawings and photographs | [Release guide](docs/visual-release.md) and [comparison brochure replay](examples/visual-release/README.md) |
+| Change the toolkit or assess an agent handover | [Repository map, skills and test commands](CONTRIBUTING.md) |
+
+[Full workflow diagram](docs/workflow.svg) · [Quick reference](docs/workflow-quick.svg) · [Agent workflow guide](docs/agent-workflow.md) · [Start a project](#start-a-project) · [What to send](#what-to-send) · [How agents fill gaps](#how-agents-fill-gaps) · [Design and review stages](#design-and-review-stages) · [Worked examples](examples/README.md)
+
+## Explore the workflow
+
+[**Specialist workflow diagrams: when each tool is triggered**](docs/specialist-workflows.md) · [Open the interactive workflow SVG](docs/workflow.svg) · [Open the shorter tool map](docs/workflow-quick.svg)
+
+[![Room workflow showing tasks, review decisions and return paths](docs/workflow-preview.svg)](docs/workflow.svg)
+
+Open either SVG directly in a browser. Select a task or diamond to see its tools, or choose **Specialist studies** for questions such as beam sizing, solar panels and overheating. **Back to map** returns to the diagram. If GitHub shows an image preview, download the SVG and open the saved file. You can also expand the guide here.
+
+<details>
+<summary>Explore the stages and tools in this README</summary>
+
+| Where you are in the project | Tools and decisions |
+| --- | --- |
+| [Brief, permissions and revisions](docs/workflow-decisions.md#brief-permissions-and-revisions) | Renovation Pack and the house commands record evidence, permitted changes and homeowner decisions, then save the checked revision. |
+| [Existing building and occupied layout](docs/workflow-decisions.md#existing-building-and-occupied-proposal) | FreeCAD, BIM and TechDraw model the building. IfcOpenShell reads supplied models. Blender explores furniture positions. Shapely and NetworkX check the occupied routes back in CAD. |
+| [Specialist studies](skills/renovation-pack/references/specialist-design-tools.md#requests-that-trigger-a-specialist-study) | Follow a household question to its tools and return point, including QGIS and LiDAR for obstructions, Sun Position and pvlib for sunlight and solar, and EnergyPlus for indoor comfort. |
+| [Structural openings](docs/workflow-decisions.md#worked-example--a-support-beam-over-the-kitchen-opening) | Section the opening in FreeCAD. For a commissioned analysis, PyNite models the beam and FreeCAD FEM runs CalculiX. Return verified support sizes to the layout, tender and works programme. |
+| [Furnishing, colour and final photography](docs/workflow-decisions.md#furnishing-colour-and-final-photography) | Blender checks the furnished camera and product variants. Colour Expert supports palette decisions. Reference-image editing produces the final concept photo from the reviewed camera. |
+| [Issue, costs and occupied works](docs/workflow-decisions.md#issue-shared-costs-and-later-work) | Check the decorator schedule, compare tenders and phase essential facilities using the local programme or OpenProject. Verify the room photographs and assemble the house pack. |
+
+</details>
+
+The diagrams include whole-house photo commands from the working toolkit. Run `python house.py --help` to see which checks this checkout provides.
 
 ## Using the toolkit on a real property
 
@@ -14,13 +46,15 @@ Keep household briefs, listing photos, floor plans, models and backups in privat
 
 The original code, agent skills, documentation, templates and original example assets are available under the [MIT licence](LICENSE). Keep its copyright and permission notice with copies or substantial portions. The licence includes the warranty disclaimer and limitation of liability. External software, services, trademarks and material supplied for a house retain their respective terms. Check the rights to photographs, listing plans, product imagery and other third-party assets before redistributing them.
 
+The PDF tools depend on PyMuPDF. Its publisher offers AGPL and commercial terms. Check the terms for your intended distribution or hosted service. [PyMuPDF licence](https://pymupdf.readthedocs.io/en/latest/about.html#license-and-copyright)
+
 ## Start a project
+
+Open the house’s [renovation checklist](docs/house-checklist.md) at intake and on resume. Run `python house.py checklist "House"` to refresh room evidence and survey returns or to create the checklist for an existing house.
 
 For new drawings, models, schedules, images and packs, start a private working revision with `python house.py begin-revision`. Use `save-revision` to save the checked files and the reason for the change. It automatically creates and verifies a private whole-house backup. On resuming a house, `history` shows the previous work and `status` shows the review holds. See [saving outputs, backup location and recovery](docs/output-revisions.md).
 
 For examples of how an agent handles a brief, a failed layout or a solver check, open the [worked workflow examples and replays](examples/README.md).
-
-In one completed lounge review, reversing a door hinge reduced the modelled route past the furniture from 746 mm to 550 mm. Follow that decision from the occupied plan to the furnished camera and the issued pack in the [lounge walkthrough](examples/lounge-door.md).
 
 You can ask for a route assessment on its own, such as “Can I carry laundry to the utility while people are eating?” The agent can also check the effect of a furniture move or compare a renovation you would consider. Say which pieces or rooms are protected. Routine checks stay in the project record. You see material findings, useful measurements and choices that need your judgement. [How the CAD route review works](skills/freecad-renovation/references/route-studies.md)
 
@@ -54,7 +88,9 @@ Follow a [listening room or kitchen swap](docs/intake.md#two-ways-through-the-sa
 
 ### Verify the design tools on a new computer
 
-Use the [tool requirements and readiness checks](docs/tools.md) to see which tools each job needs, how to exercise them, and which specialist checks depend on a separate installation or service.
+Use the [tool requirements and dated readiness check](docs/tools.md) to see which tools each job needs, how to exercise them, and which specialist checks depend on a separate installation or service.
+
+For a live design decision, use [where the specialists come in](docs/agent-workflow.md#where-the-specialists-come-in) to find the responsible skill, the evidence it returns and the room, budget or house decision to update.
 
 The agent instructions and skills travel with Git. The native applications, MCP client configuration and Blender add-on belong to the computer running the agent. Read the repository copies of the skills even when the agent has no personal skills installed.
 
@@ -66,7 +102,7 @@ The agent instructions and skills travel with Git. The native applications, MCP 
 
 On a new machine, restore the named house's private files and check the native models and textures open. Before a visual handover, match the actual input revision, CAD units, two identifiable openings and named furniture to the reviewed plan. Re-run living-use checks when a room or its adjoining route changes. The [workflow diagram](docs/agent-workflow.md) shows how MCP and deterministic scripts build the shell, explore furniture, verify the chosen layout and release each output.
 
-Read [AGENTS.md](AGENTS.md) and the named house’s dashboard, original brief, decisions and room reviews. Run commands from the repository root. The project starter requires Python 3.9 or newer and uses the standard library. FreeCAD, Blender and an image-generation tool are used for the corresponding design stages. The starter creates files and registers. The agent produces and reviews the designs.
+Read [AGENTS.md](AGENTS.md) and the named house’s dashboard, original brief, decisions and room reviews. Run commands from the repository root. Use Python 3.11 or 3.12 for the tested workflows. The starter uses the standard library. FreeCAD, Blender and an image-generation tool are used for the corresponding design stages. The starter creates files and registers. The agent produces and reviews the designs.
 
 ```sh
 python house.py list
@@ -83,11 +119,19 @@ If an original brief is already a local file, include `--brief-file "path/to/bri
 | `source/`, `sources.csv` | Original inputs and the evidence register. Give each source an ID, origin or URL, date, local path if available, reliability and decision affected. |
 | `rooms/<room>/README.md`, `layout-checks.csv`, `review.csv` | Room brief and links, revision-specific design and use checks, then the status and evidence for each handover. |
 | `shopping.csv`, `budget.csv` | Item identities, variants, quantities, fit and buying decisions, plus whole-project allowances, inclusions and exclusions. |
-| `models/`, `views/`, `handover/<issue>/` | Editable models, camera studies, checked images and the audience-specific issue. |
+| `.revision-work/<ID>/outputs/` | Create or revise drawings, native files, images and packs in the private directory printed by `begin-revision`. |
+| `revisions/<ID>/outputs/`, `revisions/<ID>/record.json` | After `save-revision` verifies the backup, link the saved output from the review. The record identifies its inputs, files and reason for change. |
+| `models/`, `views/`, `handover/<issue>/` | Earlier models, images and issues can still be opened at their recorded paths. |
 
-Git ignores the entire house library, including briefs, decisions, registers, source material and issued packs. Back it up privately. To work outside the checkout, pass `--houses-dir` before the command, for example `python house.py --houses-dir "../private-houses" list`.
+The entire house library is ignored by Git. Keep your private backup outside the checkout. [Recover a house from backup](docs/output-revisions.md#back-up-or-restore-one-house).
 
 ## Design and review stages
+
+A full furnished room continues through the camera review, final concept photo and downloadable pack. Purchase-only survey holds stay attached to ordering. The next-room invitation follows the completed issue. [Room handover and shorter commissions](skills/renovation-pack/references/handover-gates.md#finishing-a-furnished-room)
+
+When a choice is easier to see, the agent shows a labelled plan, photo or comparison beside the question. The saved revision carries that exact image and its description so you can return to it later. [How visual questions are checked](docs/output-revisions.md#record-the-next-homeowner-choice)
+
+When you review a result, the agent asks what works for you and what you would change. It can suggest a detail or two from the work to help you get started. You can raise something else, move on to another part of the house or pause. If a decision is holding up the work, the agent asks about it directly and explains what your answer changes. A returning agent can pick up from your reply. [How the handover is saved](docs/output-revisions.md#record-the-next-homeowner-choice)
 
 Every house uses the same ordered room register. A listing-only buyer study or a CAD-only request can finish at its agreed deliverable. Leave later stages pending or explicitly held. A full pack continues through all seven.
 
@@ -101,7 +145,7 @@ Every house uses the same ordered room register. A listing-only buyer study or a
 | `final-ai` | Generate each final image directly from its reviewed furnished Blender camera. Compare it with that camera and the product references for altered doors, glazing, furniture identity, room geometry and clear routes. Hold misleading studies and correct the earliest stage where the error appeared. |
 | `handover` | Reopen native files, check the drawing and image revisions, inspect the presentation and verify the delivered archive. Include remaining decisions, site measurements and professional work. |
 
-Record `pending`, `hold` or `pass` for each stage. A pass requires a revision, reviewer, finding and an inspectable evidence file relative to the house. In the layout register, give each check a source, expectation, observation and result. A commissioning question, photograph or prompt alone cannot establish that a room works. Inspect the actual output. For detailed criteria use the [room and sightline checks](skills/renovation-pack/references/layout-review.md) and [handover checks](skills/renovation-pack/references/handover-gates.md).
+Record `pending`, `hold` or `pass` for each stage. A pass requires a revision, reviewer, finding and inspectable house-relative evidence. For new design handovers after the brief, link the checked file under `revisions/<ID>/outputs/`. In the layout register, give each check a source, expectation, observation and result. Inspect the actual output. For detailed criteria use the [room and sightline checks](skills/renovation-pack/references/layout-review.md) and [handover checks](skills/renovation-pack/references/handover-gates.md).
 
 ```sh
 python house.py prepare-reviews "Maple Cottage"
@@ -112,6 +156,8 @@ python house.py check-render "Maple Cottage" "Listening room" final-ai --input-r
 ```
 
 These check commands report the first unresolved prerequisite and exit unsuccessfully on a hold. Supply the actual document or camera revision with `--input-revision`. The study check covers the existing shell for an in-scope unrendered exercise. The proposed layout, furnished camera and AI image have their own checks. The commands do not generate images or release an explicit homeowner hold. Use the [renovation-pack](skills/renovation-pack/SKILL.md), [FreeCAD](skills/freecad-renovation/SKILL.md) and [Blender](skills/blender-interiors/SKILL.md) instructions for production.
+
+For a conservatory or another highly glazed room, the first room review includes seasonal use, external shadows, glare from the intended position, overheating and winter comfort. Record the four current findings before furnishing. [Glazed-room review and evidence](skills/renovation-pack/references/glazed-rooms.md)
 
 ## Shopping, costs and the finished pack
 

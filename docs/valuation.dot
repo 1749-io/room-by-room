@@ -1,0 +1,8 @@
+digraph valuation {
+graph [rankdir=TB,bgcolor="#faf8f2",pad=.3,nodesep=.3,ranksep=.45,fontname="Segoe UI",label="Renovation valuation",labelloc=t,fontsize=23]
+node [shape=box,style="rounded,filled",fontname="Segoe UI",fontsize=12,margin=".18,.12",color="#588375",fillcolor="#e4efe7"]
+edge [color="#577267",arrowsize=.65]
+subgraph cluster_1 {label="1   Describe before pricing";color="#9db8ab";style=rounded;brief[label="Existing house and proposed specification"];area[label="Survey or CAD\nReconcile main, converted and new area"];lock[label="Freeze property brief and search criteria"];brief->lock;area->lock}
+subgraph cluster_2 {label="2   Compare and reconcile";color="#b7a589";style=rounded;sales[label="Internet search\nRegistered local sales within 3 years"];text[label="Read period particulars and floorplans\nMatch condition, rooms, plot and parking"];hpi[label="UK HPI API\nSale month to latest local index"];range[label="Review adjusted evidence\nRange, sensitivity and unresolved differences"];sales->text;sales->hpi;text->range;hpi->range}
+lock->sales;range->pack;pack[label="House planning pack\nCosts and market value shown separately",fillcolor="#cddfcf"]
+}

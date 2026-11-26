@@ -1,0 +1,7 @@
+scope,low_gbp,high_gbp,basis,date,includes,exclusions,decision,room,trade,phase,cost_type,vat_basis,shopping_ids
+Wall paint and preparation materials,65,85,Fictional materials allowance,2026-11-24,Wall paint and filler,Labour,Check coverage after measuring,Library,Decorating,Preparation,Allowance,Gross allowance,
+Joinery paint and protection,25,35,Fictional materials allowance,2026-11-24,Trim finish and masking,Labour,Confirm quantities with decorator,Library,Decorating,Preparation,Allowance,Gross allowance,
+Decoration labour,120,180,Fictional labour allowance,2026-11-24,Preparation and decorating,Optional shelving,Obtain a written price,Library,Decorating,Decoration,Allowance,Gross allowance,
+Optional oak shelves,169,169,Two selected shelves at GBP 84.50 each,2026-11-01,Two 875 mm oak shelves,Fitting and delivery,Release only after fixing check,Library,Joinery,Procurement,Selected goods,Illustrative retail price,L02
+Shelf fitting and delivery,,,Installer price outstanding,2026-11-24,Fitting and delivery,Structural repairs,Obtain price after checking fixings,Library,Joinery,Installation,Unpriced,Unconfirmed,
+Private acquisition figures,9999,9999,Fixture privacy canary,2026-11-24,Private buyer only,,Separate commission,House,Purchase,Purchase,Private,Unconfirmed,

@@ -1,5 +1,7 @@
 """Append-only house outputs. Published records are portable, payloads stay private."""
+import csv
 import hashlib
+import io
 import json
 import ntpath
 import os
@@ -8,6 +10,8 @@ import shutil
 import stat
 import subprocess
 import tempfile
+import time
+import zipfile
 from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path, PureWindowsPath
@@ -15,6 +19,20 @@ from pathlib import Path, PureWindowsPath
 WORK = ".revision-work"
 HISTORY = "revisions"
 BLOCK = 1024 * 1024
+
+
+def publish_directory(staged, target):
+    """Install a complete directory, allowing a short Windows file-indexer lock to clear."""
+    for delay in (0.05, 0.15, 0.4, 1.0, None):
+        if target.exists():
+            raise FileExistsError(f"Destination already exists: {target}")
+        try:
+            staged.rename(target)
+            return
+        except PermissionError as exc:
+            if getattr(exc, "winerror", None) not in (5, 32, 33) or delay is None:
+                raise
+            time.sleep(delay)
 
 
 def safe_relative(name):
@@ -151,7 +169,7 @@ def verify_revision(root, revision):
     return record
 
 
-def begin(root, revision, parent=None, inputs=()):
+def begin(root, revision, parent=None, inputs=(), *, pack_request=None):
     revision = revision_id(revision)
     final = record_dir(root, revision)
     work = local_path(root, WORK)
@@ -165,21 +183,42 @@ def begin(root, revision, parent=None, inputs=()):
         stage.mkdir()
         (stage / "inputs").mkdir()
         out = stage / "outputs"
-        if parent:
+        if parent and pack_request:
+            # Old delivery files are never inherited into a new recipient issue.
+            verify_revision(root, parent)
+            out.mkdir()
+        elif parent:
             previous = verify_revision(root, parent)
             shutil.copytree(record_dir(root, parent) / "outputs", out)
             check_files(out, previous["outputs"])
         else:
             out.mkdir()
         captured = {}
-        context = [name for name in ("brief.md", "decisions.md") if (root / name).is_file()]
+        context = [name for name in ("brief.md", "decisions.md", "CHECKLIST.md", "survey-returns.csv", "cad-assumptions.csv",
+                                     "design-states.json", "visual-approvals.json") if (root / name).is_file()]
+        if (root / "exterior-views.csv").is_file():
+            context.append("exterior-views.csv")
+        context.extend(p.relative_to(root).as_posix() for p in sorted(local_path(root, "handover-answers").glob("*.json")))
         for name in dict.fromkeys([*context, *inputs]):
             source = local_path(root, name)
             if safe_relative(name).parts[0] == WORK or not source.is_file():
                 raise ValueError(f"Select a saved house input file: {name}")
             captured[name] = copy_file(source, stage / "inputs" / safe_relative(name))
-        write_json(stage / "draft.json", {"revision": revision, "parent": parent, "inputs": captured})
-        stage.rename(draft)
+        base = {"revision": revision, "parent": parent, "inputs": captured}
+        if pack_request:
+            import house_delivery
+            if safe_relative(pack_request).parts[0] == WORK:
+                raise ValueError("Select a house request outside the revision work area")
+            if pack_request not in captured:
+                captured[pack_request] = copy_file(local_path(root, pack_request),
+                                                   stage / "inputs" / safe_relative(pack_request))
+            request = house_delivery.read_request(stage / "inputs" / safe_relative(pack_request))
+            for name in house_delivery.context_files(root, request):
+                if name not in captured:
+                    captured[name] = copy_file(local_path(root, name), stage / "inputs" / safe_relative(name))
+            base["pack_request"] = pack_request
+        write_json(stage / "draft.json", base)
+        publish_directory(stage, draft)
     return draft / "outputs"
 
 
@@ -201,7 +240,181 @@ def _save_lock(work):
         yield
 
 
-def save(root, revision, *, change, why, author, affects, next_step):
+QUESTION_KINDS = ("visual", "scope", "timing", "budget", "administration")
+
+
+def decision_fields(out, question, kind, image, description):
+    if all(v is None for v in (question, kind, image, description)):
+        return {}
+    if not question or not question.strip():
+        raise ValueError("Supply the homeowner question.")
+    kind = kind or "visual"
+    if kind not in QUESTION_KINDS:
+        raise ValueError("Choose a supported question kind.")
+    fields = dict(question=question.strip(), question_kind=kind)
+    if image is None and description is None and kind != "visual":
+        return fields
+    if not image or not description or not description.strip():
+        raise ValueError("A visual question requires --ask-image and --image-description.")
+    path = local_path(out, image)
+    formats = {".png": "PNG", ".jpg": "JPEG", ".jpeg": "JPEG", ".webp": "WEBP"}
+    if not path.is_file() or path.suffix.lower() not in formats:
+        raise ValueError("Choose a PNG, JPEG or WebP from this revision's outputs.")
+    try:
+        from PIL import Image
+    except ImportError as exc:
+        raise ValueError("Install Pillow in the project Python environment to verify decision images.") from exc
+    data = path.read_bytes()
+    try:
+        with Image.open(io.BytesIO(data)) as opened:
+            if opened.format != formats[path.suffix.lower()]:
+                raise ValueError("Decision image format differs from its filename.")
+            opened.verify()
+        with Image.open(io.BytesIO(data)) as opened:
+            opened.load()
+    except (OSError, SyntaxError) as exc:
+        raise ValueError("The decision image could not be decoded.") from exc
+    fields["question_image"] = dict(path=image, description=description.strip(), sha256=hashlib.sha256(data).hexdigest())
+    return fields
+
+
+def ask(root, revision, question, kind=None, image=None, description=None):
+    if not question or not question.strip():
+        raise ValueError("Supply the homeowner question.")
+    revision = revision_id(revision)
+    work = local_path(root, WORK)
+    with _save_lock(work):
+        draft = local_path(root, f"{WORK}/{revision}")
+        if record_dir(root, revision).exists() or not (draft / "draft.json").is_file():
+            raise ValueError("Choose an open revision for a new question.")
+        if kind == "scope":
+            base = stored_json(draft / "draft.json")
+            remaining = furnished_actions(root, revision, base["parent"], draft / "outputs")
+            if remaining:
+                raise ValueError("Continue the agreed furnished room: " + " | ".join(remaining))
+        fields = decision_fields(draft / "outputs", question, kind, image, description)
+        staged = dict(revision=revision, **fields)
+        receipt = local_path(draft, "decision-preview.json")
+        if receipt.exists():
+            if stored_json(receipt) != staged:
+                raise ValueError("This revision already has a different question or image. Use a new revision.")
+        else:
+            with tempfile.TemporaryDirectory(dir=work, prefix=".staging-question-") as temp:
+                pending = Path(temp) / "decision.json"
+                write_json(pending, staged)
+                pending.rename(receipt)
+        return staged
+
+
+def verify_room_pack(outputs, room, revision, stages, *, photo_quality=False, require_windows=True, require_details=True, require_heads=True):
+    """A full issue must actually carry the current, camera-reviewed finish photos."""
+    from PIL import Image
+
+    prefix = Path(HISTORY, revision, "outputs")
+
+    def issued(name):
+        relative = safe_relative(name)
+        if not relative.is_relative_to(prefix):
+            raise ValueError(f"{room.name}: link this revision's issued output: {name}")
+        path = local_path(outputs, relative.relative_to(prefix).as_posix())
+        if not path.is_file():
+            raise ValueError(f"{room.name}: missing issued file: {path.name}")
+        return path
+
+    hero = issued(stages["final-ai"]["evidence"])
+    handover = issued(stages["handover"]["evidence"])
+    checks = room / "finish-checks.csv"
+    photos = set()
+    required_images = {}
+    if checks.is_file():
+        with checks.open(encoding="utf-8-sig", newline="") as stream:
+            for row in csv.DictReader(stream):
+                if row["revision"] != revision or row["kind"] != "ai-colour":
+                    continue
+                photo, camera = issued(row["evidence"]), issued(row["source"])
+                if row["result"] != "pass" or photo.suffix.lower() not in {".jpg", ".jpeg", ".webp", ".png"}:
+                    raise ValueError(f"{room.name}: review the final photo beside its furnished camera")
+                for source_image in (photo, camera):
+                    with Image.open(source_image) as opened:
+                        opened.verify()
+                with photo.open("rb") as image, camera.open("rb") as source:
+                    final_digest, camera_digest = transfer(image), transfer(source)
+                    if final_digest == camera_digest:
+                        raise ValueError(f"{room.name}: the final photo duplicates the Blender camera")
+                photos.add(photo)
+                required_images[photo] = final_digest
+                required_images[camera] = camera_digest
+    if hero not in photos:
+        raise ValueError(f"{room.name}: link the reviewed final photo in the final-ai row")
+    if photo_quality:
+        import house_photos
+        house_photos.review(outputs, room, revision, require_windows=require_windows, require_details=require_details, require_heads=require_heads)
+        for suffix in (".json", "-brief.json"):
+            item = local_path(outputs, f"photo-reviews/{room.name}{suffix}")
+            required_images[item] = house_photos.digest(item)
+    expected = set(required_images.values())
+    sizes = {path.stat().st_size for path in required_images}
+    archives = [handover] if handover.suffix.lower() == ".zip" else outputs.rglob("*.zip")
+    for archive in archives:
+        with zipfile.ZipFile(archive) as pack:
+            if not any(Path(entry.filename).suffix.lower() in {".html", ".htm", ".pdf"} and entry.file_size
+                       for entry in pack.infolist()):
+                continue
+            included = set()
+            for entry in pack.infolist():
+                if not entry.is_dir() and entry.file_size in sizes:
+                    with pack.open(entry) as content:
+                        included.add(transfer(content))
+            if expected <= included:
+                return
+    raise ValueError(f"{room.name}: include the final photo(s), checked camera(s) and presentation in the downloadable room pack")
+
+
+def furnished_actions(root, revision, parent=None, outputs=None, *, completed=None):
+    """Use room reviews and the native camera inventory, including at first publication."""
+    actions = []
+    folder = outputs if outputs is not None else record_dir(root, revision) / "outputs"
+    camera_rooms = {p.name.removesuffix(".camera.json") for p in (folder / "openings").glob("*.camera.json")}
+    if camera_rooms and not (any(folder.rglob("*.blend")) and any(
+            p.suffix.lower() in {".png", ".jpeg", ".jpg", ".webp"} for p in folder.rglob("*"))):
+        camera_rooms.clear()
+    for register in sorted((root / "rooms").glob("*/review.csv")):
+        with register.open(encoding="utf-8-sig", newline="") as stream:
+            stages = {row["stage"]: row for row in csv.DictReader(stream)}
+        camera = stages.get("blender", {})
+        room = register.parent
+        current_camera = camera.get("status") == "pass" and camera.get("revision") == revision
+        inherited_camera = parent and camera.get("status") == "pass" and camera.get("revision") == parent
+        if room.name not in camera_rooms and not (current_camera or inherited_camera):
+            continue
+        brief_file = room / "README.md"
+        brief = brief_file.read_text(encoding="utf-8-sig") if brief_file.is_file() else ""
+        if re.search(r"^Furnished deliverable:[ \t]*(views only|paused)[ \t]*\r?$", brief, re.I | re.M):
+            continue
+        if not current_camera:
+            actions.append(f"{room.name}: review the furnished camera for {revision}")
+            continue
+        for stage, action in (("products", "check the visible product variants and finishes"),
+                              ("final-ai", "make and compare the final photo with its checked camera"),
+                              ("handover", "verify and issue the room pack with the final photo")):
+            row = stages.get(stage, {})
+            purchase_only = stage == "products" and row.get("status") == "hold" and row.get("hold_scope") == "purchase"
+            if row.get("status") == "hold" and not purchase_only:
+                actions.append(f"{room.name}: resolve {stage} hold: {row.get('finding') or action}")
+                break
+            if (row.get("status") != "pass" and not purchase_only) or row.get("revision") != revision:
+                actions.append(f"{room.name}: {action} for {revision}")
+                break
+        else:
+            if outputs is not None:
+                verify_room_pack(outputs, room, revision, stages, photo_quality=True)
+            if completed is not None:
+                completed.append(room.name)
+    return actions
+
+
+def save(root, revision, *, change, why, author, affects, next_step, question=None,
+         question_image=None, image_description=None, question_kind=None):
     from house_backup import backup, backup_directory
 
     revision = revision_id(revision)
@@ -222,6 +435,7 @@ def save(root, revision, *, change, why, author, affects, next_step):
     before, folders = inventory(out)
     if not before:
         raise ValueError("Add at least one output to the draft before saving.")
+    fields = decision_fields(out, question, question_kind, question_image, image_description)
     with tempfile.TemporaryDirectory(dir=draft.parent, prefix=".staging-") as temp:
         stage = Path(temp) / revision
         stage.mkdir()
@@ -236,19 +450,57 @@ def save(root, revision, *, change, why, author, affects, next_step):
         with _save_lock(draft.parent):
             if final.exists():
                 raise ValueError(f"{revision} is already saved. Start a new revision for further work.")
+            receipt = local_path(draft, "decision-preview.json")
+            if receipt.is_file():
+                pending = stored_json(receipt)
+                if pending.pop("revision") != revision or (fields and pending != fields):
+                    raise ValueError("The handover differs from the question already presented.")
+                fields = pending
+                fields["question_purpose"] = "study"
+            from tools.check_delivery import verify_issue
+            verify_issue(stage / "outputs")
+            brochure_folders = {path.parent for path in (stage / "outputs").rglob("*")
+                                if path.name in ("Comparison.pdf", "Visual-uses.json", "existing.html", "proposed.html")
+                                and any((path.parent / other).is_file() for other in ("existing.html", "proposed.html",
+                                        "Comparison.pdf", "Visual-uses.json") if other != path.name)}
+            if brochure_folders:
+                from tools.comparison_visuals import verify_saved
+                for folder in sorted(brochure_folders):
+                    verify_saved(root, folder, records=stage / "inputs")
+            if base.get("pack_request"):
+                import house_delivery
+                details["pack_issue"] = house_delivery.release_check(root, base, stage, draft)
+            import house_photos
+            house_photos.exterior_review(root, stage / "outputs", revision,
+                                         house_photos.exterior_register(root).get(revision, {}))
+            combined = stage / "outputs" / house_photos.ARCHIVE
+            if combined.exists():
+                house_photos.verify_assembly(root, combined)
+            remaining = furnished_actions(root, revision, base["parent"], stage / "outputs")
+            scope_invitation = fields.get("question_kind") == "scope" and not answer_path(root, revision).is_file()
+            if remaining and fields and (not receipt.is_file() or scope_invitation):
+                raise ValueError("Continue the agreed furnished room before asking what is next. "
+                                 + " | ".join(remaining) + ". Save a checkpoint without --ask, "
+                                 "or use ask for a decision needed to proceed.")
+            visual = fields.get("question_image")
+            if visual and hashes.get(visual["path"]) != visual["sha256"]:
+                raise ValueError("The question image changed after validation. Preserve the original image.")
+            details.update(fields)
             saved = datetime.now(timezone.utc)
             house_id = stored_json(root / "project.json")["id"]
             filename = f"{house_id}/{revision}-{saved:%Y%m%dT%H%M%S%fZ}.zip"
             archive = backup_directory() / safe_relative(filename)
-            record = dict(version=1, house=house_id, toolkit=toolkit_checkout(), backup=filename,
+            record = dict(version=1, decision_format=1, delivery_format=5, house=house_id, toolkit=toolkit_checkout(), backup=filename,
                           saved=saved.isoformat(), **base, **details, outputs=hashes)
             write_json(stage / "record.json", record)
             final.parent.mkdir(exist_ok=True)
             backup(root, archive, Path(__file__).resolve().parent, staged_revision=stage)
             try:
-                stage.rename(final)
+                publish_directory(stage, final)
             except OSError as exc:
                 raise OSError(f"Backup verified at {archive}, but publishing {final} failed: {exc}") from exc
+    import house_checklist
+    house_checklist.try_refresh(root)
     return final
 
 
@@ -258,6 +510,97 @@ def records(root):
         return []
     return sorted((stored_json(local_path(root, path.relative_to(root).as_posix()))
                    for path in folder.glob("*/record.json")), key=lambda item: (item["saved"], item["revision"]))
+
+
+def homeowner_question(record):
+    return record.get("question") or "Would you like to take that next step, choose a different priority or pause here?"
+
+
+def question_prompt(root, record, *, draft=False):
+    visual = record.get("question_image")
+    if not visual:
+        if record.get("question_kind") == "visual":
+            raise ValueError("Visual decision is missing its checked image.")
+        return homeowner_question(record)
+    parent = local_path(root, f"{WORK}/{record['revision']}") if draft else record_dir(root, record["revision"])
+    image = local_path(parent, "outputs/" + visual["path"])
+    if not image.is_file():
+        raise ValueError(f"Decision image missing. Recover {record['revision']}/outputs/{visual['path']} before presenting the question.")
+    with image.open("rb") as stream:
+        if transfer(stream) != visual["sha256"]:
+            raise ValueError(f"Decision image changed. Recover the checked {record['revision']} image before presenting the question.")
+    alt = " ".join(visual["description"].split()).replace("\\", "\\\\").replace("[", "\\[").replace("]", "\\]")
+    target = image.resolve().as_posix().replace("%", "%25").replace("<", "%3C").replace(">", "%3E")
+    return f"![{alt}](<{target}>)\n\n{visual['description']}\n\n{homeowner_question(record)}"
+
+
+def answer_path(root, revision):
+    return local_path(root, f"handover-answers/{revision_id(revision)}.json")
+
+
+def record_answer(root, revision, reply):
+    revision = revision_id(revision)
+    answer = reply.strip()
+    if not answer:
+        raise ValueError("Supply the homeowner's actual reply.")
+    target = answer_path(root, revision)
+    work = local_path(root, WORK)
+    work.mkdir(exist_ok=True)
+    with _save_lock(work):
+        saved = local_path(record_dir(root, revision), "record.json") if record_dir(root, revision).is_dir() else None
+        record = stored_json(saved or local_path(root, f"{WORK}/{revision}/decision-preview.json"))
+        if target.is_file():
+            if stored_json(target)["answer"] != answer:
+                raise ValueError("This handover already has a reply. Record a changed instruction as a new dated decision.")
+            return target
+        target.parent.mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=work, prefix=".staging-answer-") as temp:
+            staged = Path(temp) / "reply.json"
+            write_json(staged, dict(revision=record["revision"], date=datetime.now(timezone.utc).isoformat(),
+                                    question=record.get("question"), answer=answer))
+            staged.rename(target)
+    return target
+
+
+def next_choice(root, saved, revision=None, *, suggest=True):
+    drafts = []
+    for name in open_drafts(root):
+        receipt = local_path(root, f"{WORK}/{name}/decision-preview.json")
+        if receipt.is_file():
+            drafts.append(stored_json(receipt))
+    if revision:
+        record = next((r for r in drafts if r["revision"] == revision_id(revision)), None)
+        if record is None:
+            record = stored_json(local_path(record_dir(root, revision), "record.json"))
+    elif saved or drafts:
+        # An internal save should neither bury an open choice nor repeat one already answered.
+        choices = list(reversed(drafts)) + [r for r in reversed(saved) if r.get("question") or answer_path(root, r["revision"]).is_file()]
+        record = next((r for r in choices if not answer_path(root, r["revision"]).is_file()),
+                      choices[0] if choices else saved[-1])
+        if not choices and not suggest:
+            return ""
+    else:
+        return "Which space or household routine would you like to review first?" if suggest else ""
+    answered = answer_path(root, record["revision"]).is_file()
+    if record not in drafts and (record.get("question_purpose") != "study" or answered):
+        current = record if revision or not saved else saved[-1]
+        completed = []
+        remaining = furnished_actions(root, current["revision"], current.get("parent"), completed=completed)
+        # A real outstanding decision from another study still has an owner.
+        if remaining and (not record.get("question") or answered or
+                          (record == current and record.get("question_kind") == "scope")):
+            return "Continue the agreed furnished room: " + " | ".join(remaining)
+        if completed and not revision and answered and record != current:
+            record = current
+    answer = answer_path(root, record["revision"])
+    if answer.is_file():
+        return f"Homeowner reply ({record['revision']}): {stored_json(answer)['answer']}"
+    if record in drafts:
+        return question_prompt(root, record, draft=True)
+    action = f"Next step ({record['revision']}): {record['next_step']}"
+    if record.get("decision_format") and not record.get("question"):
+        return action
+    return f"{action}\n{question_prompt(root, record)}"
 
 
 def open_drafts(root):
@@ -273,6 +616,10 @@ def describe(record, *, files=False):
     lines = [heading, record["change"], f"Why: {record['why']}", f"Affects: {record['affects']}",
              f"Next: {record['next_step']}"]
     if files:
+        if record.get("question"):
+            lines.append(f"Homeowner question at handover: {record['question']}")
+        if record.get("question_image"):
+            lines.append(f"Decision image: {record['question_image']['path']} | {record['question_image']['description']}")
         if record.get("backup"):
             lines.append(f"Private backup (relative to backup directory): {record['backup']}")
         toolkit = record.get("toolkit")

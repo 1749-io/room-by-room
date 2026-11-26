@@ -1,0 +1,100 @@
+{
+  "address": "Example House",
+  "house": "example-house",
+  "existing": {
+    "label": "existing",
+    "cover": {
+      "id": "cover",
+      "title": "Example House",
+      "text": "Property description from the identified source."
+    },
+    "directory": "Use the room directory to follow the route.",
+    "expected_rooms": [
+      "living-room"
+    ],
+    "layouts": [
+      {
+        "id": "ground",
+        "title": "Ground floor",
+        "text": "Location of the living room.",
+        "images": [
+          {
+            "path": "existing-plan.png",
+            "visual_id": "existing-plan",
+            "caption": "Ground floor | labelled plan and scale basis"
+          }
+        ]
+      }
+    ],
+    "rooms": [
+      {
+        "id": "living-room",
+        "title": "Living room",
+        "text": "Describe the evidenced layout and use.",
+        "images": [
+          {
+            "path": "existing-living.jpg",
+            "visual_id": "existing-living",
+            "caption": "existing living room"
+          }
+        ]
+      }
+    ],
+    "studies": [],
+    "particulars": [
+      {
+        "id": "specification",
+        "title": "Property particulars",
+        "text": "Enter verified area definition, tenure, energy evidence and permissions."
+      }
+    ]
+  },
+  "proposed": {
+    "label": "proposed",
+    "cover": {
+      "id": "cover",
+      "title": "Example House",
+      "text": "Property description from the identified source."
+    },
+    "directory": "Use the room directory to follow the route.",
+    "expected_rooms": [
+      "living-room"
+    ],
+    "layouts": [
+      {
+        "id": "ground",
+        "title": "Ground floor",
+        "text": "Location of the living room.",
+        "images": [
+          {
+            "path": "proposed-plan.png",
+            "visual_id": "proposed-plan",
+            "caption": "Ground floor | labelled plan and scale basis"
+          }
+        ]
+      }
+    ],
+    "rooms": [
+      {
+        "id": "living-room",
+        "title": "Living room",
+        "text": "Describe the evidenced layout and use.",
+        "images": [
+          {
+            "path": "proposed-living.jpg",
+            "visual_id": "proposed-living",
+            "caption": "proposed living room"
+          }
+        ]
+      }
+    ],
+    "studies": [],
+    "particulars": [
+      {
+        "id": "specification",
+        "title": "Property particulars",
+        "text": "Enter verified area definition, tenure, energy evidence and permissions."
+      }
+    ]
+  }
+}

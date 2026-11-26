@@ -1,0 +1,17 @@
+{
+  "house": "alder-cottage",
+  "edition": "homeowner-presentation",
+  "audience": "Homeowner",
+  "chapters": {
+    "decision": [
+      {"label": "Keep the library in use", "text": "The reading chair can stay by the south window while someone else browses the north bookcase. Decide whether the extra shelf space is worth fitting now.", "basis": "Fictional library brief and checked existing plan L-01.", "evidence": ["rooms/library/README.md"]}
+    ],
+    "options": [
+      {"label": "Keep the bookcase as it is", "text": "Retain the chair, lamp and existing storage. The household can use the room immediately without drilling the wall.", "basis": "Existing room assessment LIB-01."},
+      {"label": "Add two oak shelves", "text": "Two 875 mm shelves would add storage. Confirm the fixing positions and nearby socket before deciding to order.", "basis": "Library shopping line L02. This option has a purchase hold."}
+    ],
+    "phasing": [
+      {"label": "Measure, then decide", "text": "The installer checks the wall construction and socket position. The homeowner can then choose between retaining the bookcase alone and releasing the shelf order.", "basis": "Library shopping issue SHOP, hold on L02. Fitting and making good are unpriced."}
+    ]
+  }
+}

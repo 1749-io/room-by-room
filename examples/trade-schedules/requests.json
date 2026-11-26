@@ -1,0 +1,23 @@
+{
+  "FINISH": {
+    "components": ["decorator-finishes"], "audience": "Decorator", "share_with": ["Homeowner"],
+    "purpose": "Match the approved library wall and joinery samples on site.",
+    "limitation": "Only the walls, skirting and architrave are commissioned. The bookcase back panel awaits a sample.",
+    "next_action": "The decorator checks the sample cards against the tins before starting.",
+    "surfaces": {"Library": {"revision": "FIN-01", "surfaces": ["Library walls", "Library skirting and architrave"]}}
+  },
+  "COST": {
+    "components": ["cost-schedule"], "audience": "Homeowner",
+    "purpose": "Compare the base decoration allowance with the optional library shelves.",
+    "limitation": "Illustrative GBP allowances. There is no contractor quote or contingency allowance.",
+    "next_action": "Obtain fitting and delivery prices before releasing the shelf option.",
+    "budget_lines": {"Wall paint and preparation materials": "Base", "Joinery paint and protection": "Base", "Decoration labour": "Base", "Optional oak shelves": "Add shelves", "Shelf fitting and delivery": "Add shelves"}
+  },
+  "PROG": {
+    "components": ["programme"], "audience": "Homeowner",
+    "purpose": "Sequence the decorator, installer and shelf decision while keeping the hall accessible.",
+    "limitation": "Calendar-day forecasts. Optional works depend on the homeowner's decision and confirmed supply.",
+    "next_action": "The installer returns the fixing check and the homeowner agrees any purchase.",
+    "start_date": "2027-01-11", "tasks": "all"
+  }
+}

@@ -1,0 +1,6 @@
+task_id,task,phase,owner,predecessors,duration_days,not_before,decision_by,status,occupancy_and_services,payment_milestone,basis
+SUR,Check fixings and socket,Survey,Installer,,1,,2027-01-11,Survey outstanding,Keep hall access clear,No payment agreed,Existing library plan L-01
+PAINT,Prepare and decorate,Decoration,Decorator,,3,2027-01-12,,Forecast,Library closed during wet work; hall stays in use,Payment terms to agree,Sample cards W04 and J01
+CHOOSE,Decide whether to order shelves,Decision,Homeowner,SUR,0,,2027-01-13,Awaiting survey return,Library can be used without shelves,Release purchase only after decision,Optional shopping item L02
+LEAD,Allow for shelf delivery,Procurement,Supplier,CHOOSE,5,,,Conditional on order,No service interruption,Illustrative goods value GBP 169,Assumed five calendar days; confirm stock and lead time
+FIT,Fit optional shelves,Installation,Installer,PAINT LEAD,1,,,Conditional on survey and order,Keep library clear during drilling,Fitting price outstanding,Return fixing detail before booking

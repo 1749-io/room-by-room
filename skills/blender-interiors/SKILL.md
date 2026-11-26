@@ -7,7 +7,11 @@ description: Use live Blender MCP for unrendered furniture arrangement on a chec
 
 For house work, save the scene, its dependencies and camera exports in the workspace printed by `house.py begin-revision`. Reopen and check the camera before `save-revision`, then link the saved files at handover. [Output history and recovery](../../docs/output-revisions.md)
 
+If a viewport, product change or lighting study reveals a question about sightlines, solar exposure, fit, privacy or finishes, follow the [specialist request guide](../renovation-pack/references/specialist-design-tools.md#requests-that-trigger-a-specialist-study). Return evidence to the relevant owner and repeat affected camera and product checks when the design changes.
+
 Use the live Blender MCP. Start with `get_addon_status` and `get_scene_info` including settings. Check the file, unit scale, collection and camera before editing. If unavailable, reconnect to the intended live application and confirm its state. Work in a named copy. Read the house brief, change preferences and holds when choosing the mode.
+
+For a highly glazed room, carry the checked true-north rotation, obstruction assumptions and study times into any furnished camera. Use the occupied [glazed-room review](../renovation-pack/references/glazed-rooms.md) for comfort decisions.
 
 ## Explore furniture before a layout is selected
 
@@ -18,6 +22,8 @@ Run `python house.py check-study "House" "Room" --input-revision R3` with the sh
 Use deterministic placements and relationships through `execute_blender_code` where they help compare options. Retain IDs, units, origin, axes and per-item world coordinates and natural fronts when handing candidates back to FreeCAD. For meshes with a distinct seat, back and target, the [layout read-back helper](scripts/layout_readback.py) measures the three in evaluated world space. Send the reviewed function definitions and call through MCP in safe mode. For a single mesh inspect its actual geometry or documented local reference features. Reopen the saved study and check a top and reverse view. The occupied FreeCAD review decides whether a candidate can advance.
 
 ## Furnish and render the reviewed option
+
+Before showing a concept in operation or issuing a furnished camera, compare the [opening clearance inventory](../freecad-renovation/references/opening-clearances.md) with the actual scene. Include any projecting geometry introduced in Blender and run the camera check. Show a confirmed clash as a diagnostic and return it to CAD.
 
 Run `check-layout` and `check-render "House" "Room" blender --input-revision R3` through the house workbook using the actual input revision. Honour any visual hold. Transfer the selected native geometry in metres, verify dimensions, handedness, openings, levels and world transforms, and match the placements to the reviewed CAD plan. A poor reach, route or sightline reopens the layout check.
 
@@ -30,3 +36,9 @@ Before releasing a furnished camera, run the [lighting and finish review](refere
 For a palette study, keep the selected product variants and lighting fixed across options. Consult `color-expert` for a colour choice or cast diagnosis and return the options to the renovation-pack workflow. Once an AI image exists, compare its colours with this exact camera and record the outcome before release.
 
 Use named collections and repeatable cameras. Match the selected and reused shopping IDs, actual model or referenced reconstruction, variants, size, finish, count and distinctive features. Record local asset provenance and permissions. Check the full room and the named camera against the brief, with a reverse angle for hidden items. Render after the gate permits it. Supply the editable scene, reviewed camera image, product comparison and assumptions. The final AI stage takes that furnished image as its source after the product and render checks. [Blender MCP](https://github.com/ahujasid/mcp-for-blender)
+
+Brief and frame the whole room and the features that matter in use. Record sightlines through doors, glazing and mirrors for the [photo and house-assembly review](../renovation-pack/references/photo-quality.md).
+
+Before releasing a camera, verify wall-mounted items against architraves and door sweeps, and trace the leaves, hardware and framing of visible openings. Record the [architectural detail checks](../renovation-pack/references/photo-quality.md#architectural-detail-gate).
+
+Before issuing a furnished concept or camera, compare the reopened scene’s door heads with the intended CAD elevations, including openings seen beyond the room. Run the [door elevation check](../freecad-renovation/references/opening-clearances.md#check-the-doorway-in-elevation).

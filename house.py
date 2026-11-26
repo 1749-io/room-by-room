@@ -11,6 +11,8 @@ import unicodedata
 from pathlib import Path
 
 import house_backup
+import house_checklist
+import house_openings
 import house_revisions as revisions
 
 ROOT = Path(__file__).resolve().parent
@@ -31,7 +33,7 @@ def identifier(name):
 
 def initialise(name, original, room_names):
     slug = identifier(name)
-    HOUSES.mkdir(exist_ok=True)
+    HOUSES.mkdir(parents=True, exist_ok=True)
     dest = HOUSES / slug
     if dest.exists():
         raise ValueError(f"A project already exists at {dest}. Open its README.md to continue.")
@@ -55,11 +57,16 @@ def initialise(name, original, room_names):
                 ))
         for file in stage.glob("*.md"):
             content = file.read_text(encoding="utf-8").replace("{{house}}",name)
+            if dest.parent.parent.resolve() != ROOT:
+                # An external library can move independently of the toolkit, including to another drive.
+                content = re.sub(r"\[([^\]]+)\]\(\.\./\.\./((?:docs/|skills/|README\.md)[^)]+)\)",
+                                 r"\1 (toolkit: `\2`)", content)
             file.write_text(content, encoding="utf-8")
         (stage/"project.json").write_text(json.dumps({"name":name,"id":slug,"version":2},indent=2)+"\n",encoding="utf-8")
         for room in room_names:
-            add_room(stage, room)
-        stage.rename(dest)
+            add_room(stage, room, refresh_checklist=False)
+        house_checklist.refresh(stage, published=dest)
+        revisions.publish_directory(stage, dest)
     return dest
 
 def project(name):
@@ -68,7 +75,7 @@ def project(name):
         raise ValueError(f"House not found: {name}. Use 'list' to see your houses.")
     return path
 
-def add_room(path, name):
+def add_room(path, name, *, refresh_checklist=True):
     slug = identifier(name)
     rooms = path / "rooms"
     rooms.mkdir(exist_ok=True)
@@ -84,9 +91,11 @@ def add_room(path, name):
             shutil.copyfile(TEMPLATES/name, stage/name)
         with (stage/"review.csv").open("w",newline="",encoding="utf-8") as f:
             writer=csv.writer(f)
-            writer.writerow(["stage","status","revision","evidence","reviewer","finding"])
-            writer.writerows((g,"pending","","","","") for g in GATES)
+            writer.writerow(["stage","status","revision","evidence","reviewer","finding","hold_scope"])
+            writer.writerows((g,"pending","","","","","") for g in GATES)
         stage.rename(dest)
+    if refresh_checklist:
+        house_checklist.try_refresh(path)
 
 def check_layout_evidence(house_path, room_path, revision):
     checks = room_path / "layout-checks.csv"
@@ -99,6 +108,14 @@ def check_layout_evidence(house_path, room_path, revision):
             return "layout-checks.csv is missing required columns"
         rows = [row for row in reader if row.get("revision") == revision]
     required = {"intent", "use", "journey", "whole-room"}
+    climate = {"external-shadow", "seated-glare", "summer-heat", "winter-cold"}
+    brief = room_path / "README.md"
+    tagged = brief.is_file() and re.search(
+        r"^Glazing review:[ \t]*required[ \t]*\r?$", brief.read_text(encoding="utf-8-sig"), re.I | re.M
+    )
+    named = re.search(r"(?:^|-)(?:conservatory|sun-?room|winter-garden|orangery)(?:-|$)", room_path.name)
+    if named or tagged or any(row.get("kind") in climate for row in rows):
+        required.update(climate)
     missing = required.difference(row.get("kind") for row in rows)
     if missing:
         return "missing current layout checks: " + ", ".join(sorted(missing))
@@ -147,6 +164,10 @@ def check_layout_evidence(house_path, room_path, revision):
         evidence = (house_path / row["evidence"]).resolve()
         if Path(row["evidence"]).is_absolute() or house_path.resolve() not in evidence.parents or not evidence.is_file():
             return "layout check evidence file missing from this house"
+        if row["kind"] in climate and not evidence.is_relative_to(
+            (house_path / revisions.HISTORY / revision / "outputs").resolve()
+        ):
+            return "link the seasonal comfort evidence from this room's current saved revision"
         route_id = (row.get("check_id") or "").strip()
         if row["kind"] == "journey" and (route_id.startswith("route:") or evidence.name.endswith(".routes.json")):
             if not route_id.startswith("route:") or not evidence.name.endswith(".routes.json"):
@@ -336,16 +357,18 @@ def review_rows(room):
 
     return rows
 
-def status_through(path, room, rows, through):
+def status_through(path, room, rows, through, *, verified=None, passed=None):
     revision = None
     config = revisions.stored_json(path / "project.json")
     legacy = config.get("legacy_output_revisions", {}).get(room.parent.name, [])
-    verified = {}
+    verified = {} if verified is None else verified
     for row in rows:
         stage, state = row["stage"], row["status"]
         if state not in ("pending", "hold", "pass"):
             raise ValueError(f"Unknown status in {room}: {state}")
-        if state != "pass":
+        if row.get("hold_scope") and not (stage == "products" and state == "hold" and row["hold_scope"] == "purchase"):
+            return False, f"{stage} / use hold_scope=purchase only for a purchase-only product hold"
+        if state != "pass" and row.get("hold_scope") != "purchase":
             finding = f" / {row['finding']}" if row["finding"] else ""
             return False, f"{stage} / {state}{finding}"
         ref = (path / row["evidence"]).resolve()
@@ -374,15 +397,38 @@ def status_through(path, room, rows, through):
             problem = check_layout_evidence(path, room.parent, revision)
             if problem:
                 return False, f"{stage} / hold / {problem}"
+        if stage in ("proposed-cad", "blender") and revision not in legacy:
+            folder = revisions.record_dir(path, revision)
+            problem = house_openings.review(folder, room.parent.name, revision, camera=stage == "blender")
+            if problem:
+                return False, f"{stage} / hold / {problem}"
         if stage in ("products", "final-ai"):
             problem = check_finish_evidence(path, room.parent, revision, stage)
             if problem:
                 return False, f"{stage} / hold / {problem}"
+        if stage == "handover" and verified.get(revision, {}).get("delivery_format"):
+            try:
+                revisions.verify_room_pack(revisions.record_dir(path, revision) / "outputs", room.parent,
+                                           revision, {entry["stage"]: entry for entry in rows},
+                                           photo_quality=verified[revision]["delivery_format"] >= 2,
+                                           require_windows=verified[revision]["delivery_format"] >= 3,
+                                           require_details=verified[revision]["delivery_format"] >= 4,
+                                           require_heads=verified[revision]["delivery_format"] >= 5)
+            except (OSError, ValueError) as exc:
+                return False, f"handover / hold / {exc}"
+        if passed is not None:
+            passed.append(stage)
         if stage == through:
             return True, f"reviewed through {through} / {revision}"
     raise ValueError(f"Unknown review stage: {through}")
 
-def render_status(path, room, stage, *, input_revision=None):
+def opening_folder(path, revision):
+    folder = revisions.record_dir(path, revision)
+    if folder.is_dir():
+        return folder
+    return revisions.local_path(path, f"{revisions.WORK}/{revisions.revision_id(revision)}")
+
+def render_status(path, room, stage, *, input_revision=None, scene_revision=None):
     before = {"blender": "proposed-cad", "final-ai": "products"}[stage]
     rows = review_rows(room)
     passed, reason = status_through(path, room, rows, before)
@@ -396,6 +442,17 @@ def render_status(path, room, stage, *, input_revision=None):
     reviewed_revision = next(row["revision"] for row in rows if row["stage"] == before)
     if input_revision is not None and input_revision != reviewed_revision:
         return False, f"{stage} / hold / input revision {input_revision} differs from reviewed {reviewed_revision}"
+    if stage == "blender":
+        legacy = revisions.stored_json(path / "project.json").get("legacy_output_revisions", {}).get(room.parent.name, [])
+        if scene_revision or reviewed_revision not in legacy:
+            scene = revisions.revision_id(scene_revision or reviewed_revision)
+            folder = opening_folder(path, scene)
+            if folder.parent.name == revisions.HISTORY and scene != reviewed_revision:
+                revisions.verify_revision(path, scene)
+            problem = house_openings.review(folder, room.parent.name, scene, camera=True,
+                                            cad_folder=revisions.record_dir(path, reviewed_revision), cad_revision=reviewed_revision)
+            if problem:
+                return False, f"blender / hold / {problem}"
     return True, f"{stage} may proceed / {reason}"
 
 def read_status(path):
@@ -416,16 +473,55 @@ def main():
     room=sub.add_parser("add-room",help="Add a room brief and review record")
     room.add_argument("house")
     room.add_argument("name")
+    checklist = sub.add_parser("checklist", help="Refresh the house checklist from the room and survey evidence")
+    checklist.add_argument("house")
     status=sub.add_parser("status",help="Show the first outstanding handover for each room")
     status.add_argument("house")
+    choice = sub.add_parser("next", help="Show the next homeowner choice or its recorded reply")
+    choice.add_argument("house")
+    choice.add_argument("revision", nargs="?")
+    ask = sub.add_parser("ask", help="Check and record a mid-study question, then print it ready for the homeowner")
+    ask.add_argument("house")
+    ask.add_argument("revision")
+    ask.add_argument("--ask", required=True, help="Question to present against the open revision")
+    answer = sub.add_parser("answer", help="Record the homeowner's actual handover reply")
+    answer.add_argument("house")
+    answer.add_argument("revision")
+    answer.add_argument("reply")
     begin = sub.add_parser("begin-revision", help="Open a fresh private workspace for house outputs")
     begin.add_argument("house")
     begin.add_argument("revision")
     begin.add_argument("--from", dest="parent", help="Start from a private copy of this saved revision's outputs")
     begin.add_argument("--input", dest="inputs", action="append", default=[], help="Snapshot a house-relative input file (repeatable)")
+    begin.add_argument("--pack-request", help="Freeze a house-relative component issue request")
+    visual = sub.add_parser("check-visual", help="Check the approved design and derivative for one intended placement")
+    visual.add_argument("house")
+    visual.add_argument("visual_id")
+    for field in ("purpose", "phase", "scope", "view"):
+        visual.add_argument("--"+field, required=True)
+    visual.add_argument("--page", type=int, default=1)
+    design = sub.add_parser("check-design", help="Read the recorded arrangement and its source decision")
+    design.add_argument("house")
+    design.add_argument("state")
+    design.add_argument("--scope", required=True)
+    for cmd, description in (("plan-pack", "Check the requested components and source evidence"),
+                             ("build-pack", "Build standalone components and their portable issue"),
+                             ("check-pack", "Verify the exact issue files and record an optional reader review")):
+        pack = sub.add_parser(cmd, help=description)
+        pack.add_argument("house")
+        pack.add_argument("revision")
+        if cmd == "check-pack":
+            pack.add_argument("--reviewer")
+            pack.add_argument("--finding", help="What you checked in the extracted recipient files")
     save = sub.add_parser("save-revision", help="Back up the whole house and publish the verified revision")
     save.add_argument("house")
     save.add_argument("revision")
+    save.add_argument("--ask", help="One homeowner question to present at this handover")
+    for command in (ask, save):
+        command.add_argument("--question-kind", choices=revisions.QUESTION_KINDS,
+                             help="Defaults to visual. Use a text category for a non-spatial choice.")
+        command.add_argument("--ask-image", help="Decision image path relative to this revision's outputs")
+        command.add_argument("--image-description", help="What the homeowner should see in the decision image")
     for flag, help_text in (("change", "What changed"), ("why", "Decision or reason"),
                             ("by", "Person or agent responsible"), ("affects", "Rooms, costs or other work affected"),
                             ("next", "Next action, decision or hold")):
@@ -445,6 +541,13 @@ def main():
     restore.add_argument("--to", type=Path, help="Recover into a separate house folder")
     prepare = sub.add_parser("prepare-reviews", help="Add missing room check registers to an existing house")
     prepare.add_argument("house")
+    openings = sub.add_parser("check-openings", help="Check a CAD or furnished-scene opening study in a draft or saved revision")
+    openings.add_argument("house")
+    openings.add_argument("room")
+    openings.add_argument("--input-revision", required=True)
+    openings.add_argument("--camera", action="store_true", help="Check geometry in the actual furnished Blender scene")
+    openings.add_argument("--door-heads-only", action="store_true", help="Review doorway elevations for a planning concept")
+    openings.add_argument("--cad-revision", help="Checked CAD inventory when the furnished draft has its own revision")
     for command, purpose in (
         ("check-study", "Verify the existing shell before an unrendered furniture study"),
         ("check-layout", "Verify the occupied proposed layout before furnishing"),
@@ -453,11 +556,24 @@ def main():
         check.add_argument("house")
         check.add_argument("room")
         check.add_argument("--input-revision", help="Revision read from the native study input")
+    outside = sub.add_parser("check-exterior-photos", help="Check each exterior window against its owning room")
+    outside.add_argument("house")
+    outside.add_argument("--input-revision", required=True)
+    room_photos = sub.add_parser("check-room-photos", help="Check required views, camera comparisons and sightlines")
+    room_photos.add_argument("house")
+    room_photos.add_argument("room")
+    room_photos.add_argument("--input-revision", required=True)
+    photos = sub.add_parser("check-house-photos", help="Check every room photo and its visible adjoining rooms")
+    photos.add_argument("house")
+    assemble = sub.add_parser("pack-house-photos", help="Build the checked whole-house room pack in an open revision")
+    assemble.add_argument("house")
+    assemble.add_argument("revision")
     render = sub.add_parser("check-render", help="Check the room's prerequisites and explicit render hold")
     render.add_argument("house")
     render.add_argument("room")
     render.add_argument("stage", choices=("blender", "final-ai"))
     render.add_argument("--input-revision", help="Revision read from the actual CAD or camera input")
+    render.add_argument("--scene-revision", help="Furnished Blender snapshot or draft, when separate from the CAD input")
     decorator = sub.add_parser("check-decorator", help="Check specified finishes for decorator issue")
     decorator.add_argument("house")
     decorator.add_argument("room")
@@ -475,7 +591,9 @@ def main():
         if HOUSES.is_relative_to(ROOT) and HOUSES != ROOT / "houses":
             parser.error("Choose a separate house library outside the checkout.")
     if args.action=="start":
-        print("Open",initialise(args.name,args.brief_file,args.room)/"README.md")
+        path = initialise(args.name, args.brief_file, args.room)
+        print("Open", path / "README.md")
+        print("Checklist", path / "CHECKLIST.md")
     elif args.action=="list":
         files=sorted(HOUSES.glob("*/project.json"))
         for file in files:
@@ -485,13 +603,44 @@ def main():
         path=project(args.house)
         add_room(path,args.name)
         print("Open",path/"rooms"/identifier(args.name)/"README.md")
+    elif args.action == "checklist":
+        print(house_checklist.refresh(project(args.house)))
     elif args.action == "begin-revision":
-        print(revisions.begin(project(args.house), args.revision, args.parent, args.inputs))
+        print(revisions.begin(project(args.house), args.revision, args.parent, args.inputs, pack_request=args.pack_request))
+    elif args.action == "check-visual":
+        from house_visuals import Catalogue
+        proof = Catalogue(project(args.house)).approve(visual_id=args.visual_id, purpose=args.purpose, phase=args.phase,
+                                                       scope=args.scope, view=args.view, page=args.page)
+        print(f"{proof['id']} | {proof['state_id']} ({proof['design']['status']}) | {args.purpose} | {args.scope}")
+    elif args.action == "check-design":
+        from house_visuals import Catalogue
+        register = Catalogue(project(args.house), design_only=True)
+        state = register.design(args.state, register.states.get(args.state, {}).get("phase"), args.scope, accepted=True)
+        print(json.dumps(state, ensure_ascii=False, indent=2))
+    elif args.action in ("plan-pack", "build-pack", "check-pack"):
+        import house_delivery
+        print(house_delivery.command(project(args.house), args.revision, args.action,
+                                     getattr(args, "reviewer", None), getattr(args, "finding", None)))
     elif args.action == "save-revision":
         saved = revisions.save(project(args.house), args.revision, change=args.change, why=args.why,
-                               author=vars(args)["by"], affects=args.affects, next_step=args.next)
+                               author=vars(args)["by"], affects=args.affects, next_step=args.next, question=args.ask,
+                               question_image=args.ask_image, image_description=args.image_description,
+                               question_kind=args.question_kind)
         print(saved)
         print("Verified private backup:", house_backup.backup_directory() / revisions.stored_json(saved / "record.json")["backup"])
+        if revisions.stored_json(saved / "record.json").get("question"):
+            path = project(args.house)
+            print(revisions.next_choice(path, revisions.records(path), args.revision))
+    elif args.action == "ask":
+        path = project(args.house)
+        revisions.ask(path, args.revision, args.ask, args.question_kind, args.ask_image, args.image_description)
+        print(revisions.next_choice(path, revisions.records(path), args.revision))
+    elif args.action == "next":
+        path = project(args.house)
+        house_checklist.try_refresh(path)
+        print(revisions.next_choice(path, revisions.records(path), args.revision))
+    elif args.action == "answer":
+        print("Recorded homeowner reply:", revisions.record_answer(project(args.house), args.revision, args.reply))
     elif args.action == "history":
         path = project(args.house)
         if args.revision:
@@ -531,17 +680,69 @@ def main():
         else:
             for name, result in report["journeys"].items():
                 print(f"{name} / {report['option']} / {route_summary(result)}")
+    elif args.action == "check-openings":
+        path = project(args.house)
+        room = identifier(args.room)
+        if not (path / "rooms" / room / "review.csv").is_file():
+            sys.exit(f"Unknown room: {args.room}")
+        revision = revisions.revision_id(args.input_revision)
+        folder = opening_folder(path, revision)
+        if folder.is_dir() and folder.parent.name == revisions.HISTORY:
+            revisions.verify_revision(path, revision)
+        if not folder.is_dir():
+            sys.exit(f"No open or saved revision: {revision}")
+        cad = revisions.revision_id(args.cad_revision or revision)
+        cad_folder = opening_folder(path, cad)
+        if cad != revision and cad_folder.parent.name == revisions.HISTORY:
+            revisions.verify_revision(path, cad)
+        problem = house_openings.review(folder, room, revision, camera=args.camera, cad_folder=cad_folder, cad_revision=cad, heads_only=args.door_heads_only)
+        label = "door heads" if args.door_heads_only else "opening clearance"
+        if problem:
+            sys.exit(f"{label} / hold / {problem}")
+        print(f"{label} checked / {room} / {revision}")
     elif args.action == "check-decorator":
         path = project(args.house)
         problem = check_decorator(path, path / "rooms" / identifier(args.room), args.input_revision, args.surface)
         if problem:
             sys.exit(f"decorator / hold / {problem}")
         print(f"decorator finishes checked / {args.surface or args.room} / {args.input_revision}")
+    elif args.action == "check-exterior-photos":
+        import house_photos
+        path = project(args.house)
+        revision = revisions.revision_id(args.input_revision)
+        folder = opening_folder(path, revision)
+        if folder.parent.name == revisions.HISTORY:
+            revisions.verify_revision(path, revision)
+        inventory = house_photos.exterior_register(path).get(revision, {})
+        if not inventory:
+            raise ValueError("No current exterior photos registered for this revision")
+        house_photos.exterior_review(path, folder / "outputs", revision, inventory)
+        print(f"{len(inventory)} exterior photos checked / {revision}")
+    elif args.action == "check-room-photos":
+        import house_photos
+        path = project(args.house)
+        revision = revisions.revision_id(args.input_revision)
+        folder = opening_folder(path, revision)
+        if folder.parent.name == revisions.HISTORY:
+            revisions.verify_revision(path, revision)
+        room = path / "rooms" / identifier(args.room)
+        report = house_photos.review(folder / "outputs", room, revision)
+        print(f"{len(report['photos'])} room photos reviewed / {room.name} / {revision}")
+    elif args.action in ("check-house-photos", "pack-house-photos"):
+        import house_photos
+        path = project(args.house)
+        if args.action == "check-house-photos":
+            print(f"{len(house_photos.house_issue(path))} files passed the whole-house photo check")
+        else:
+            folder = revisions.local_path(path, f"{revisions.WORK}/{revisions.revision_id(args.revision)}")
+            if not (folder / "draft.json").is_file():
+                raise ValueError("Begin a revision for the assembled house pack first")
+            print(house_photos.package(path, folder / "outputs"))
     elif args.action in ("check-study", "check-layout", "check-render"):
         path = project(args.house)
         review = path / "rooms" / identifier(args.room) / "review.csv"
         if args.action == "check-render":
-            passed, result = render_status(path, review, args.stage, input_revision=args.input_revision)
+            passed, result = render_status(path, review, args.stage, input_revision=args.input_revision, scene_revision=args.scene_revision)
         else:
             stage = "existing-cad" if args.action == "check-study" else "proposed-cad"
             rows = review_rows(review)
@@ -556,6 +757,7 @@ def main():
         print(result)
     else:
         path = project(args.house)
+        house_checklist.try_refresh(path)
         print("\n".join(read_status(path)))
         saved = revisions.records(path)
         if saved:
@@ -563,6 +765,9 @@ def main():
         drafts = revisions.open_drafts(path)
         if drafts:
             print("Open drafts: " + ", ".join(drafts))
+        choice = revisions.next_choice(path, saved, suggest=not drafts)
+        if choice:
+            print("\n" + choice)
 
 if __name__=="__main__":
     try:

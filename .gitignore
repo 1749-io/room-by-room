@@ -28,3 +28,8 @@ __pycache__/
 *.FCStd
 !examples/structural-opening/reference/Scratch opening.FCStd
 !examples/whole-house-changes/reference/Example rear rooms.FCStd
+
+# Reviewed, reproducible reader issues from the fictional Alder Cottage examples.
+!examples/audience-packs/reference/Alder-Cottage-audience-editions.zip
+!examples/component-pack/reference/Alder-Cottage-handover.zip
+!examples/trade-schedules/reference/Alder-Cottage-trade-handover.zip

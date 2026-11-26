@@ -1,5 +1,7 @@
 # {{house}}
 
+Open the [live renovation checklist](CHECKLIST.md) for room reviews, survey follow-ups, homeowner acceptance and the whole-house issue.
+
 ## Start here
 
 Read `python house.py history "{{house}}"` with the current reviews. Use `begin-revision` before creating outputs and `save-revision` when they are ready to hand over. Each save verifies a private whole-house backup and prints its location. [Revision and recovery guide](../../docs/output-revisions.md)
@@ -18,9 +20,11 @@ Use the [house project guide](../../README.md#what-to-send) for examples of a fi
 | Room designs and evidence of review | Each room's README, layout-checks.csv and review.csv |
 | Items to keep, buy, quote or omit | [Shopping schedule](shopping.csv) |
 | Cost allowances, quotes and exclusions | [Budget](budget.csv) |
-| Existing and proposed CAD, furnished Blender scenes | `models/` |
-| Camera renders, product comparisons and final AI images | `views/` |
-| Buyer, homeowner and architect editions | `handover/<issue>/` |
+| Work in progress, including CAD, scenes, camera exports and issue packs | `.revision-work/<ID>/outputs/`, printed by `begin-revision` |
+| Checked files to link from a room review or this dashboard | `revisions/<ID>/outputs/`, published by `save-revision` after it verifies the backup |
+| Private change history | `revisions/<ID>/record.json` identifies the private files and what changed |
+
+When linking a private model, source or pack here, label it for the project computer and link its saved finding or revision record alongside it. On another computer, [restore the matching house backup](../../docs/output-revisions.md#back-up-or-restore-one-house) to open those files.
 
 Run `python house.py status "{{house}}"` from the repository folder to see the earliest outstanding review in each room.
 
