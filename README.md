@@ -1,4 +1,4 @@
-# House Renovations
+# Room by Room
 
 A toolkit for taking a renovation brief through survey, checked CAD, furnished concepts and shareable handover packs. [Try a fictional house and explore the repository](CONTRIBUTING.md).
 
