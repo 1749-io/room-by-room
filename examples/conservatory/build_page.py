@@ -56,8 +56,10 @@ def build(stage):
         page=page.replace("{{"+key+"}}",value)
     tree=stage/"orchard"
     tree.mkdir()
-    for name in ("camera.png","concept.png","results.json","hourly.csv"):
+    for name in ("camera.png","concept.png","results.json","hourly.csv","walkthrough-v3.mp4","walkthrough-v3.vtt"):
         shutil.copyfile(REF/name,tree/name)
+    for name in ("_worker.js", "_routes.json"):
+        shutil.copyfile(ROOT / name, stage / name)
     shutil.copyfile(ROOT/"survey.json",tree/"survey.json")
     shutil.copyfile(ROOT/"README.md",tree/"method.txt")
     models=stage/"examples"/"conservatory"/"reference"

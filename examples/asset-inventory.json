@@ -9,10 +9,15 @@
     "origin": "Fictional Alder Cottage recipient archive. Regenerate with examples/component-pack/replay.py.",
     "rights": "Original illustrative fixture under LICENSE."
   },
+  "examples/conservatory/_worker.js": {
+    "sha256": "f1c4d50238af4236f644fe3226e54c2948cc9c22018da6009ee876fafea4a0cf",
+    "origin": "Original single-film byte-range handler for the public Pages demo.",
+    "rights": "Created for public redistribution with the fictional Room by Room example."
+  },
   "examples/conservatory/page.html": {
-    "sha256": "e906c063f296b243040d1d7a98183c6334c4d269408b9d178531c4fa01b405df",
-    "origin": "Original public example Pages template.",
-    "rights": "Original toolkit example for public redistribution. No external photographs or purchased assets."
+    "sha256": "735a860d0df66bf72bb5214cbf0be70d898efcf859320b9e6fa42a0b77a49cd5",
+    "origin": "Public Orchard Fold homepage template.",
+    "rights": "Created for public redistribution with the fictional Room by Room example."
   },
   "examples/conservatory/reference/Orchard-Fold.FCStd": {
     "sha256": "a32f02c32ee9ef0421f29eb8c6455685933bccd95ec1a1f062ea2d85f184f7c8",
@@ -33,6 +38,16 @@
     "sha256": "00771434eecc8440dd0a7336d486b663930ee1626485687c2fc7efe41d90edda",
     "origin": "ImageGen derivative of the reviewed Orchard Fold camera with planting and two wine glasses.",
     "rights": "Original toolkit example for public redistribution. No external photographs or purchased assets."
+  },
+  "examples/conservatory/reference/walkthrough-v3.mp4": {
+    "sha256": "2e47c3198329019af0431feeb354fdc1c7e4b69b0c91c878dd472a03ff905df3",
+    "origin": "Orchard Fold 45-second study film from the fictional survey, reviewed concept and Kokoro British neural narration.",
+    "rights": "Created for public redistribution with the fictional Room by Room example."
+  },
+  "examples/conservatory/reference/walkthrough-v3.vtt": {
+    "sha256": "d178d3e8b787ea244541c448ff1dfbdc86b3ab7f554d8709f175c3e4e20f138f",
+    "origin": "English captions from the locked Orchard Fold walkthrough narration.",
+    "rights": "Created for public redistribution with the fictional Room by Room example."
   },
   "examples/furnished-room/reference/Alder-Cottage-furnished-handover.zip": {
     "sha256": "d08771db79bf67e9c7dce80c8cee2c64e4b9be50326e6191b68aee7d9651d726",

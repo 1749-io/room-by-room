@@ -93,3 +93,7 @@ The earlier room issue uses a CAD-only review. The furnished edition above adds 
 ## Rebuild the public demo
 
 With Python and Poppler (including `pdftoppm`) installed, run `python examples/furnished-room/build_site.py ../alder-site` from the repository root. Use a new output directory. The builder reads the published Alder reference, verifies the nine standalone ZIPs and renders the issued drawing. GitHub Pages serves the generated directory from the root of the `gh-pages` branch. After changing the example, rebuild and publish that directory as the branch contents.
+
+### Deploy to Cloudflare Pages
+
+From an authenticated Wrangler installation, run `python examples/furnished-room/deploy_cloudflare.py`. The command builds in a new directory and publishes to the production branch of the existing `roombyroom` project. It includes the reviewed walkthrough, English captions and the MP4 byte-range handler alongside all Alder Cottage downloads. Use `--wrangler` to specify a local CLI.
