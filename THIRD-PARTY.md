@@ -43,3 +43,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ```
+
+## Editable workbooks
+
+The toolkit generates the editable schedules with XlsxWriter 3.3.4, copyright 2013–2026 John McNamara, distributed under the BSD 2-Clause licence. The source distribution has SHA-256 `3512f4210622d4040e0f2882e2caf7263a3fd8be876704304314f0e275377fea`. [Upstream source distribution](https://pypi.org/project/XlsxWriter/3.3.4/#files) · [Copyright and licence](https://github.com/jmcnamara/XlsxWriter/blob/RELEASE_3.3.4/LICENSE.txt)
