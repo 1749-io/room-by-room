@@ -415,7 +415,7 @@ def furnished_actions(root, revision, parent=None, outputs=None, *, completed=No
 
 def save(root, revision, *, change, why, author, affects, next_step, question=None,
          question_image=None, image_description=None, question_kind=None):
-    from house_backup import backup, backup_directory
+    from house_backup import automatic_backup, backup_directory
 
     revision = revision_id(revision)
     details = dict(change=change, why=why, author=author, affects=affects, next_step=next_step)
@@ -488,13 +488,13 @@ def save(root, revision, *, change, why, author, affects, next_step, question=No
             details.update(fields)
             saved = datetime.now(timezone.utc)
             house_id = stored_json(root / "project.json")["id"]
-            filename = f"{house_id}/{revision}-{saved:%Y%m%dT%H%M%S%fZ}.zip"
+            filename = f"{house_id}/automatic/latest.zip"
             archive = backup_directory() / safe_relative(filename)
             record = dict(version=1, decision_format=1, delivery_format=5, house=house_id, toolkit=toolkit_checkout(), backup=filename,
                           saved=saved.isoformat(), **base, **details, outputs=hashes)
             write_json(stage / "record.json", record)
             final.parent.mkdir(exist_ok=True)
-            backup(root, archive, Path(__file__).resolve().parent, staged_revision=stage)
+            automatic_backup(root, archive, Path(__file__).resolve().parent, staged_revision=stage)
             try:
                 publish_directory(stage, final)
             except OSError as exc:

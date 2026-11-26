@@ -151,7 +151,30 @@ def backup_directory():
     return directory
 
 
-def backup(root, destination, repo, *, staged_revision=None):
+def automatic_backup(root, destination, repo, *, staged_revision):
+    """Replace the shared recovery point only after the full successor verifies."""
+    from house_revisions import _save_lock
+
+    if any(destination.resolve().is_relative_to(p.resolve()) for p in (repo, root.parent)):
+        raise ValueError("Choose a private backup destination outside the checkout and house library.")
+    destination.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
+    with _save_lock(destination.parent):
+        if os.path.lexists(destination):
+            regular_path(destination)
+            with ZipFile(destination) as previous:
+                header = manifest(previous, stored_json(root / "project.json")["id"])
+                if header.get("retention") != "latest":
+                    raise ValueError("The automatic recovery path contains a separately managed archive.")
+        with tempfile.TemporaryDirectory(dir=destination.parent) as temp:
+            replacement = Path(temp) / "replacement.zip"
+            backup(root, replacement, repo, staged_revision=staged_revision, managed=True)
+            if destination.exists():
+                os.replace(replacement, destination)
+            else:
+                publish_file(replacement, destination)
+
+
+def backup(root, destination, repo, *, staged_revision=None, managed=False):
     destination = destination.expanduser().absolute()
     for private_root in (repo, root.parent):
         if destination.resolve().is_relative_to(private_root.resolve()):
@@ -176,7 +199,7 @@ def backup(root, destination, repo, *, staged_revision=None):
         snapshots.append(stored_json(staged_revision / "record.json"))
     with tempfile.TemporaryDirectory(dir=destination.parent) as temp:
         staged = Path(temp) / "house.zip"
-        base = full_base(destination.parent, house_id) if staged_revision is not None else None
+        base = full_base(destination.parent, house_id) if staged_revision is not None and not managed else None
         hashes = {}
         with ZipFile(staged, "x", compression=ZIP_DEFLATED, allowZip64=True) as archive:
             for name, source in sources.items():
@@ -197,6 +220,8 @@ def backup(root, destination, repo, *, staged_revision=None):
                         if hashes.get(key) != expected:
                             raise ValueError(f"Archived bytes differ from the recorded revision: {key}")
             header = dict(format=1, house=house_id, directories=archive_dirs, files=hashes)
+            if managed:
+                header["retention"] = "latest"
             if base:
                 header.update(format=2, base=base[0].name, base_manifest_sha256=base[1])
             archive.writestr(HEADER, json.dumps(header))

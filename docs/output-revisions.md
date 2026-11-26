@@ -50,7 +50,7 @@ To open a project on another computer, restore its private backup and verify the
 
 Run the [fictional recovery exercise](../examples/whole-house-changes/README.md#recover-the-pier-revisions) to test a restore before relying on it.
 
-Each revision save writes a separate ZIP under `House Renovation Backups/<house-id>/` in your user home folder. `history "House" REVISION` lists the archive name for saves made with automatic backup. To use a private external drive or protected synchronised folder, set `HOUSE_BACKUP_DIR` to its absolute path before saving. The default copy is on this computer. Keep the destination outside the checkout and house library. The ZIP contains the private material in clear text.
+Each revision save updates `House Renovation Backups/<house-id>/automatic/latest.zip` in your user home folder. To use private external storage, set `HOUSE_BACKUP_DIR` to an absolute path outside the checkout and house library. The ZIP contains the private material in clear text.
 
 Pass the archive path printed by the save to `restore`. To take an additional backup between revisions, choose a fresh filename and use `backup` as in this example.
 
@@ -66,9 +66,9 @@ If the working house contains a conflicting file, recover into a separate direct
 
 ## Keeping automatic backups small
 
-The first automatic save creates a full private ZIP. Later saves store one copy of each changed content hash beside the newest full ZIP for that house. Each revision can be restored with its own ZIP and the named full base. Copy those two files together. Manual backups remain standalone full ZIPs. Restore through the house command so every recovered file is verified.
+Each house has one managed standalone ZIP containing its current files and all saved revisions. A save builds and verifies the successor in temporary storage before atomically replacing the previous ZIP. Allow free space for the replacement. A restore from this path recovers the latest house state, even when an older revision receipt names it. Use a separately named manual backup for a permanent milestone or an exact copy of today's working drafts and registers.
 
-Run `python tools/backup_retention.py DIRECTORY` against the private single-house directory for a read-only size report. Keep the newest recoveries, their full bases, and any milestone or unsaved work still needed. Before removing older snapshots, restore to a separate folder and check the required historic revisions. When deltas approach the size of a full backup, create a new standalone full backup in the same directory, verify it and start the next group there. Old deltas continue to require their original base.
+Older timestamped backups and manual archives retain their original format. For legacy change archives, keep the named full base. Use `python tools/backup_retention.py DIRECTORY` for a read-only review of older ZIPs and test a standalone restore before removing any.
 
 ## Issuing selected components
 

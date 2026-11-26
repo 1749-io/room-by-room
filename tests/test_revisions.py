@@ -264,12 +264,22 @@ class HouseRevisions(unittest.TestCase):
         self.assertEqual(len(rev.verify_revision(self.home, "r1")["outputs"]), 1)
         self.assertEqual(len(list(backups.backup_directory().rglob("*.zip"))), 1)
 
-    def test_each_automatic_archive_restores_its_own_house_state(self):
+    def test_rolling_backup_keeps_all_saved_revisions_and_survives_failed_replacement(self):
         self.first_revision()
+        first = rev.verify_revision(self.home, "PIER-R1")
+        archive = backups.backup_directory() / first["backup"]
+        previous = archive.read_bytes()
         (self.home / "views/new.png").write_bytes(b"later view")
         out = rev.begin(self.home, "pier-r2", "pier-r1")
         (out / "design/plan.pdf").write_bytes(b"revised")
+        with patch.object(backups, "read_payload", side_effect=ValueError("Verification failed")):
+            with self.assertRaisesRegex(ValueError, "Verification failed"):
+                rev.save(self.home, "pier-r2", **self.reason)
+        self.assertEqual(archive.read_bytes(), previous)
         rev.save(self.home, "pier-r2", **self.reason)
+        self.assertEqual(list(backups.backup_directory().rglob("*.zip")), [archive])
+        with ZipFile(archive) as recovered:
+            self.assertEqual(backups.manifest(recovered, "example-home")["format"], 1)
         for number in (1, 2):
             revision = f"PIER-R{number}"
             record = rev.verify_revision(self.home, revision)
@@ -277,8 +287,8 @@ class HouseRevisions(unittest.TestCase):
             archive = backups.backup_directory() / record["backup"]
             backups.restore("example-home", archive, target)
             self.assertEqual(rev.verify_revision(target, revision), record)
-            self.assertEqual(len(rev.records(target)), number)
-            self.assertEqual((target / "views/new.png").exists(), number == 2)
+            self.assertEqual(len(rev.records(target)), 2)
+            self.assertTrue((target / "views/new.png").is_file())
 
     def test_failed_backup_keeps_draft_and_retries_without_publishing(self):
         out = rev.begin(self.home, "r1")
