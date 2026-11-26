@@ -40,7 +40,7 @@
     "rights": "Original illustrative fixture under LICENSE."
   },
   "examples/trade-schedules/reference/Alder-Cottage-trade-handover.zip": {
-    "sha256": "a71ee6f9f1d1977ff095c6af65093f1120aee648e8043834ff159840042fee6e",
+    "sha256": "aa8a3747c285aa182f4dfc141d2cd3cecbebced51cdf3a5314871926960af558",
     "origin": "Fictional Alder Cottage recipient archive. Regenerate with examples/trade-schedules/replay.py.",
     "rights": "Original illustrative fixture under LICENSE. Editable PowerPoint includes packaging from python-pptx. See THIRD-PARTY.md."
   },

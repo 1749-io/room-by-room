@@ -10,8 +10,8 @@ We distribute the toolkit source and the fictional recipient documents. The comb
 
 | Component | Version used by the PDF tools | Source |
 | --- | --- | --- |
-| PyMuPDF | 1.26.7 | [Upstream source distribution](https://pypi.org/project/PyMuPDF/1.26.7/#files), SHA-256 `71add8bdc8eb1aaa207c69a13400693f06ad9b927bea976f5d5ab9df0bb489c3` |
-| MuPDF | 1.26.12 | [Source archive used by the PyMuPDF build](https://mupdf.com/downloads/archive/mupdf-1.26.12-source.tar.gz) and [tagged source tree](https://github.com/ArtifexSoftware/mupdf/tree/1.26.12) |
+| PyMuPDF | 2.1 | [Upstream source distribution](https://pypi.org/project/PyMuPDF/2.1/#files), SHA-256 `9ac95f98016e83eafb8f1d786396f9c60e400d559590596e5b2df9eb6384948b` |
+| MuPDF | 1.28.6 | [Source archive used by the PyMuPDF build](https://mupdf.com/downloads/archive/mupdf-1.28.6-source.tar.gz) and [tagged source tree](https://github.com/ArtifexSoftware/mupdf/tree/1.28.6) |
 
 Keep the applicable copyright and licence notices with redistributed copies. If you distribute a build containing the PDF engine, provide the corresponding source by a method allowed under section 6. Section 13 covers the source offer to remote users of a modified version. The full terms and the publisher's explanation are available here. [AGPLv3](LICENSES/AGPL-3.0.txt) · [Artifex licensing](https://artifex.com/licensing)
 
