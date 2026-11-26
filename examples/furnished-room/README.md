@@ -6,6 +6,8 @@ The fictional owner wants to reach the bookcase while someone reads beside the s
 
 Download the [furnished Alder Cottage house pack](reference/Alder-Cottage-furnished-handover.zip), extract it and open `Start here.html`. This fictional commission covers the library. The house edition contains the reviewed room and drawing, shopping schedule, homeowner presentation, architect pack, buyer brief, decorator finishes, editable costs and programme.
 
+### Download just one pack
+
 To share just one component, run the selector from the repository root with Python. It uses the recipient files in the house archive and the original standalone issue's index and link register. This works offline with the Python standard library.
 
 ```sh
