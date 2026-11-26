@@ -42,6 +42,7 @@ def window_review(root, outputs, revision, inventory, observations, *, final=Fal
     """Check each declared sightline independently of whether the interior is visible."""
     if not isinstance(inventory, dict) or not isinstance(observations, dict) or inventory.keys() != observations.keys():
         raise ValueError("Declare and review every window treatment in this camera, including obscured openings")
+    unresolved = []
     for opening, owner in inventory.items():
         required_text(opening, "window or reflected opening")
         room = revisions.local_path(root / "rooms", required_text(owner, "window's room"))
@@ -60,14 +61,13 @@ def window_review(root, outputs, revision, inventory, observations, *, final=Fal
             required_text(item.get(key), f"{opening} {key}")
         status = item.get("status")
         if status == "provisional":
-            required_text(item.get("follow_up"), f"{opening} unresolved detail and owner")
+            follow_up = required_text(item.get("follow_up"), f"{opening} unresolved detail and owner")
             if "reference" in item or "sha256" in item:
                 ref = required_text(item.get("reference"), f"{opening} provisional source")
                 source = revisions.local_path(root, ref)
                 if not source.is_file() or digest(source) != item.get("sha256"):
                     raise ValueError(f"{opening}: changed or missing provisional source")
-            if final:
-                raise ValueError(f"{opening}: provisional window treatment in {owner}")
+            unresolved.append(f"{opening}: provisional window treatment in {owner}. {follow_up}")
             continue
         if status != "matched":
             raise ValueError(f"{opening}: match or disclose the provisional treatment in {owner}")
@@ -102,6 +102,9 @@ def window_review(root, outputs, revision, inventory, observations, *, final=Fal
             raise ValueError(f"{opening}: use a reference belonging to {owner} in {source_revision}")
         if not path.is_file() or digest(path) != item.get("sha256"):
             raise ValueError(f"{opening}: changed or missing window reference in {owner}")
+    if final and unresolved:
+        raise ValueError("\n".join(unresolved))
+    return unresolved
 
 
 EXTERIOR_REGISTER = "exterior-views.csv"
@@ -130,7 +133,7 @@ def exterior_register(root, *, required=False):
     return result
 
 
-def exterior_review(root, outputs, revision, inventory, *, final=False):
+def exterior_review(root, outputs, revision, inventory, *, final=False, unresolved=None):
     """Bind standalone views to a predeclared house register and their reviewed pixels."""
     path = outputs / EXTERIOR_REVIEW
     if not inventory and not path.exists():
@@ -144,6 +147,7 @@ def exterior_review(root, outputs, revision, inventory, *, final=False):
     if manifest.get("revision") != revision or not isinstance(photos, dict) or photos.keys() != inventory.keys():
         raise ValueError(f"{revision}: review every registered exterior photograph")
     staged = {f"exterior/{revision}/{EXTERIOR_REVIEW}": path}
+    holds = []
     for name, openings in inventory.items():
         item = photos[name]
         if not isinstance(item, dict):
@@ -158,7 +162,12 @@ def exterior_review(root, outputs, revision, inventory, *, final=False):
             staged[f"exterior/{revision}/{filename}"] = file
         if item["photo_sha256"] == item["camera_sha256"]:
             raise ValueError(f"{name}: use the furnished camera and the finished photograph")
-        window_review(root, outputs, revision, openings, item.get("window_treatments"), final=final)
+        issues = window_review(root, outputs, revision, openings, item.get("window_treatments"))
+        holds.extend(f"{name} / {reason}" for reason in issues)
+    if final and holds:
+        raise ValueError("\n".join(holds))
+    if unresolved is not None:
+        unresolved.extend(holds)
     return staged
 
 

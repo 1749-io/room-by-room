@@ -350,6 +350,39 @@ class PhotoRelease(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "changed exterior camera"):
             photos.exterior_review(self.root, self.out, "R1", inventory)
 
+    def test_exterior_lists_every_provisional_sightline_and_checks_later_files(self):
+        inventory = {"sunroom.png": {"bay": "dining", "return": "sunroom"},
+                     "garden.png": {"reflection": "dining"}}
+        (self.out / "garden.png").write_bytes(b"garden photograph")
+        photos_by_name = {}
+        for filename, openings in inventory.items():
+            image = self.doc()["photos"][0]
+            image["photo_sha256"] = photos.digest(self.out / filename)
+            image["openings"] = openings
+            image["window_treatments"] = {
+                opening: {"visibility": "visible", "status": "provisional",
+                          "comparison": "Both panels are open.", "treatment": "lined curtain",
+                          "state": "open", "outside_face": "pale", "follow_up": f"Decorator to check {opening}."}
+                for opening in openings
+            }
+            photos_by_name[filename] = image
+        path = self.out / photos.EXTERIOR_REVIEW
+        path.write_text(json.dumps({"revision": "R1", "photos": photos_by_name}))
+        holds = []
+        staged = photos.exterior_review(self.root, self.out, "R1", inventory, unresolved=holds)
+        self.assertIn("exterior/R1/garden.png", staged)
+        self.assertEqual(len(holds), 3)
+        for filename, openings in inventory.items():
+            for opening, owner in openings.items():
+                self.assertIn(f"{filename} / {opening}: provisional window treatment in {owner}. "
+                              f"Decorator to check {opening}.", holds)
+        with self.assertRaises(ValueError) as result:
+            photos.exterior_review(self.root, self.out, "R1", inventory, final=True)
+        self.assertEqual(str(result.exception).splitlines(), holds)
+        (self.out / "garden.png").write_bytes(b"replaced")
+        with self.assertRaisesRegex(ValueError, "changed exterior photo"):
+            photos.exterior_review(self.root, self.out, "R1", inventory, final=True)
+
     def test_whole_house_requires_an_explicit_exterior_inventory(self):
         (self.root / photos.EXTERIOR_REGISTER).unlink()
         with patch("house.status_through", return_value=(True, "pass")), self.assertRaisesRegex(ValueError, "Declare current exterior"):

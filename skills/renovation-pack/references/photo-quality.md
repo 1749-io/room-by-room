@@ -58,7 +58,7 @@ Before making standalone images, list each current photo and opening in the hous
 
 In the revision outputs create `exterior-window-review.json` with `revision` and a `photos` object keyed by photo path. Each entry records its `openings` map from the register and contains `camera`, `camera_sha256`, `photo_sha256`, `reviewer` and `window_treatments` as above. Use paths relative to those outputs for the camera and photograph and house-relative paths for source-room evidence. With the homeowner-facing presentation, identify day/night state and any provisional openings.
 
-Run `python house.py check-exterior-photos "House" --input-revision R3` on the draft. Saving rechecks the registered views. Before combined handover, `check-house-photos` rechecks the live register, camera and source evidence and rejects provisional entries. Revisit every affected facade, return and reflected view when a room's window treatment changes.
+Run `python house.py check-exterior-photos "House" --input-revision R3` on the draft. It lists each provisional treatment by photograph, opening and owning room, with its recorded follow-up. Add `--final` to require every visible treatment to match. Saving rechecks the registered views. Before combined handover, `check-house-photos` rechecks the live register, camera and source evidence and rejects provisional entries. Revisit every affected facade, return and reflected view when a room's window treatment changes.
 
 ## Assembling the house
 

@@ -563,6 +563,7 @@ def main():
     outside = sub.add_parser("check-exterior-photos", help="Check each exterior window against its owning room")
     outside.add_argument("house")
     outside.add_argument("--input-revision", required=True)
+    outside.add_argument("--final", action="store_true", help="Require all visible window treatments to match for house issue")
     room_photos = sub.add_parser("check-room-photos", help="Check required views, camera comparisons and sightlines")
     room_photos.add_argument("house")
     room_photos.add_argument("room")
@@ -730,8 +731,12 @@ def main():
         inventory = house_photos.exterior_register(path).get(revision, {})
         if not inventory:
             raise ValueError("No current exterior photos registered for this revision")
-        house_photos.exterior_review(path, folder / "outputs", revision, inventory)
+        unresolved = []
+        house_photos.exterior_review(path, folder / "outputs", revision, inventory, final=args.final, unresolved=unresolved)
         print(f"{len(inventory)} exterior photos checked / {revision}")
+        if unresolved:
+            print(f"{len(unresolved)} provisional window observations still need a return before house issue")
+            print("\n".join(unresolved))
     elif args.action == "check-room-photos":
         import house_photos
         path = project(args.house)
