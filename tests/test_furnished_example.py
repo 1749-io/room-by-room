@@ -33,10 +33,13 @@ class FurnishedExample(unittest.TestCase):
             sheet, = [name for name in house.namelist() if name.startswith("Rooms/") and name.endswith(".pdf")]
             with fitz.open(stream=house.read(sheet), filetype="pdf") as doc:
                 for page, role in zip((doc[-2], doc[-1]), ("camera", "photo")):
-                    image, = page.get_images()
-                    delivered = doc.extract_image(image[0])["image"]
+                    images = page.get_image_info(xrefs=True)
+                    self.assertEqual(len(images), 1, f"Expected one displayed {role} image")
+                    delivered = doc.extract_image(images[0]["xref"])["image"]
                     source = (REFERENCE / review[role + "_file"]).read_bytes()
                     self.assertEqual(hashlib.sha256(source).hexdigest(), review[role + "_sha256"])
                     with Image.open(io.BytesIO(delivered)) as found, Image.open(io.BytesIO(source)) as reviewed:
                         self.assertEqual(found.size, reviewed.size)
-                        self.assertEqual(found.convert("RGB").tobytes(), reviewed.convert("RGB").tobytes())
+                        found_pixels = hashlib.sha256(found.convert("RGB").tobytes()).hexdigest()
+                        reviewed_pixels = hashlib.sha256(reviewed.convert("RGB").tobytes()).hexdigest()
+                        self.assertEqual(found_pixels, reviewed_pixels, f"Different {role} pixels")
