@@ -1,4 +1,4 @@
-PyMuPDF==1.26.7
+PyMuPDF==2.1
 Pillow
 XlsxWriter==3.3.4
 openpyxl>=3.1.5,<4
