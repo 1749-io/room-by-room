@@ -1,11 +1,12 @@
 # Worked renovation examples
 
-Start with the [Alder Cottage library](furnished-room/README.md) to see a complete room. Open the measured layout, compare the furnished camera with the concept photograph, then [choose a pack to download](furnished-room/README.md#download-just-one-pack).
+At [Orchard Fold](https://getsimba-ai.github.io/room-by-room/), the household wants to keep both orchard trees and use the conservatory for breakfast all year. Follow the shade across the reading chair, compare summer and winter temperatures, then step inside the furnished room. The [study files](conservatory/README.md) include the hourly results and editable models.
 
 ## Handover examples
 
 | If you need to… | Open this example |
 | --- | --- |
+| Download a finished room pack | [Alder Cottage library and standalone downloads](furnished-room/README.md#download-just-one-pack) |
 | Combine purchases across three rooms | [Maple Mews shopping schedule](multi-room-shopping/README.md) |
 | Issue a single drawing, room or shopping list | [Alder Cottage component handover](component-pack/README.md) |
 | Prepare a homeowner presentation, architect pack or buyer brief | [Audience editions](audience-packs/README.md) |

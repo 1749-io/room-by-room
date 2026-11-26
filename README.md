@@ -2,13 +2,13 @@
 
 Plan a renovation room by room, from the first viewing to the drawings, shopping lists and finishes you can hand to a tradesperson.
 
-[**Explore the Alder Cottage library**](https://getsimba-ai.github.io/room-by-room/library.html) · [Start your own project](#start-a-project) · [Contributor guide](CONTRIBUTING.md)
+[**Visit the Orchard Fold conservatory**](https://getsimba-ai.github.io/room-by-room/) · [Start your own project](#start-a-project) · [Contributor guide](CONTRIBUTING.md)
 
-[![Concept photograph of the fictional Alder Cottage library](examples/furnished-room/reference/library-concept.png)](examples/furnished-room/README.md)
+[![Furnished concept for Orchard Fold, with a breakfast table looking out through green-framed windows towards the trees](examples/conservatory/reference/concept.png)](https://getsimba-ai.github.io/room-by-room/)
 
-*Could someone reach the bookshelves while another person reads by the window?* The Alder Cottage example follows that question from the measured layout to the furnished room. [Compare the camera and concept](examples/furnished-room/README.md#compare-the-concept-photograph) or [download a single pack](examples/furnished-room/README.md#download-just-one-pack).
+*What would it take to eat breakfast here in January and still enjoy the orchard view in July?* At the fictional Orchard Fold, a field maple shades the reading chair late in the day, but the glass roof lets in the midday sun. Follow the household from its first question through a year of modelled temperatures to the furnished design.
 
-For an example at an earlier stage, [follow the Orchard Fold conservatory sunlight study](https://getsimba-ai.github.io/room-by-room/). The [worked examples](examples/README.md) also cover budgets, access and living in the house during the works.
+[Explore the survey, models and results](examples/conservatory/README.md) · [Browse more worked examples](examples/README.md) · [Download an Alder Cottage handover pack](examples/furnished-room/README.md#download-just-one-pack)
 
 ## Start a project
 
