@@ -1,0 +1,25 @@
+{
+  "house": "Alder Cottage",
+  "room": "Library",
+  "revision": "LIB-FURN-01",
+  "units": "mm",
+  "decision": {
+    "source": "Fictional homeowner decision for this worked example",
+    "accepted": "Retain the oak chair in sage linen beside the south window. Keep the west door swing clear and the bookcase accessible to another reader.",
+    "excluded": "Shelf fixings, socket position, purchasing and construction approval."
+  },
+  "shell": {
+    "width": 3800,
+    "depth": 3000,
+    "height": 2400,
+    "wall": 100,
+    "west_door": {"hinge_y": 360, "width": 900, "leaf_thickness": 35, "height": 2040, "head_reveal": 6},
+    "south_window": {"west_edge": 1620, "width": 1350, "sill": 850, "head": 2070}
+  },
+  "furniture": {
+    "chair": {"item": "L01", "finish": "Oak frame, sage linen", "box": [2670, 400, 0, 710, 790, 860]},
+    "bookcase": {"finish": "Existing painted carcass", "box": [840, 2710, 0, 1750, 290, 1900]},
+    "shelves": {"item": "L02", "quantity": 2, "length": 875, "finish": "Oiled oak", "shelf_top": 1375},
+    "lamp": {"status": "Retained room fitting", "centre": [3550, 560], "radius": 90, "height": 1340}
+  }
+}

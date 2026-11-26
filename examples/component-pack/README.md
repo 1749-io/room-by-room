@@ -4,6 +4,8 @@
 
 The fictional Alder Cottage commission is a CAD-only review of a reading chair, bookcase and opening door. The shelf purchase depends on a fixing check. The worked house has one registered room. A kitchen shopping row tests whether unrelated items reach the recipient.
 
+To inspect the editable native layout and measure the moving door against that chair, bookcase and lamp, follow the [FreeCAD library walkthrough](../furnished-room/README.md).
+
 Install the pack dependencies and run the replay with a **new directory outside the repository**. It creates an isolated house and backup location, issues each component separately, issues the room combination and assembles a house edition from the three standalone releases. The example records automated fixture checks. A live commission needs the actual recipient-file review described in the [delivery skill](../../skills/pack-delivery/SKILL.md).
 
 ```sh
