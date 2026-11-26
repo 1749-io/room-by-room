@@ -16,6 +16,26 @@ def git(root, *args):
     return subprocess.check_output(["git", "-C", str(root), *args])
 
 
+def private_path(name):
+    parts = tuple(part.casefold() for part in PurePosixPath(name).parts)
+    return bool(PRIVATE.intersection(parts) or parts[0] in {"source", "models", "views", "handover"})
+
+
+def check_history(root):
+    trees = set(git(root, "log", "--all", "HEAD", "--format=%T").splitlines())
+    paths = set()
+    for tree in trees:
+        paths.update(filter(None, git(root, "ls-tree", "-rz", "--name-only", tree.decode()).split(b"\0")))
+    blocked = {name.decode() for name in paths if private_path(name.decode())}
+    if paths:
+        ignored = subprocess.run(["git", "-C", str(root), "check-ignore", "--no-index", "--stdin", "-z"],
+                                 input=b"\0".join(sorted(paths)) + b"\0", stdout=subprocess.PIPE)
+        if ignored.returncode not in (0, 1):
+            ignored.check_returncode()
+        blocked.update(p.decode() for p in ignored.stdout.split(b"\0") if p)
+    return [f"Private or ignored path in Git history: {p}" for p in sorted(blocked)]
+
+
 def check(root):
     errors = []
     inventory = json.loads(git(root, "show", ":" + INVENTORY))
@@ -27,9 +47,7 @@ def check(root):
         header, name = entry.split("\t", 1)
         mode, blob, stage = header.split()
         path = PurePosixPath(name)
-        if (mode not in {"100644", "100755"} or stage != "0"
-                or PRIVATE.intersection(part.casefold() for part in path.parts)
-                or name.startswith(("source/", "models/", "views/", "handover/"))):
+        if mode not in {"100644", "100755"} or stage != "0" or private_path(name):
             errors.append(f"Private or unsupported entry: {name}")
             continue
         data = git(root, "cat-file", "blob", blob)
@@ -58,7 +76,11 @@ def check(root):
 if __name__ == "__main__":
     command = argparse.ArgumentParser(description=__doc__)
     command.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
-    errors = check(command.parse_args().root)
+    command.add_argument("--history", action="store_true", help="Also inspect every reachable historical tree")
+    args = command.parse_args()
+    errors = check(args.root)
+    if args.history:
+        errors.extend(check_history(args.root))
     if errors:
         raise SystemExit("\n".join(errors))
     print("Public file types, private paths and reviewed asset hashes pass.")

@@ -2,3 +2,4 @@
 *.FCStd binary
 *.png binary
 *.zip binary
+*.dot text diff

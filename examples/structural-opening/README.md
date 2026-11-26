@@ -22,6 +22,8 @@ uv run --no-project --python 3.11 --with-requirements examples/structural-openin
 
 Alternatively install `examples/structural-opening/requirements.txt` in a dedicated Python environment and run the same `replay.py` command with that interpreter. Supply `--mcp-command "/path/to/freecad-mcp"` if the server is outside PATH and the usual per-user bin folder. The runner uses the configured FreeCAD FEM solver, the bundled binary or `ccx` on PATH. [Connector setup](../../README.md#verify-the-design-tools-on-a-new-computer)
 
+For a repeatable run on a shared workstation, add `--freecadcmd "/path/to/FreeCADCmd"` to the command. This uses the MCP server's `execute_code_headless` tool and a separate FreeCAD process. It builds, saves and reopens the scratch model while the live design session stays available.
+
 Each run needs a new output directory. The runner prints **PASS** after the numerical and native-file checks. A missing connector, failed solve, mismatched read-back or result outside tolerance stops the run. Inspect the failing stage and its solver log, then retry in a new directory. The saved reference stays available for comparison.
 
 ## What the agent runs and checks

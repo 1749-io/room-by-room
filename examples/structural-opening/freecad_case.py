@@ -65,11 +65,12 @@ def solve_scratch(scratch_dir):
     analysis.InputBasis = "Synthetic pin and roller benchmark. Geometry, elastic constants and load are assumed. See case.json and calculix/fine/opening.inp to repeat this solve."
     analysis.addProperty("App::PropertyString", "InputDeck", "Benchmark")
     analysis.InputDeck = "calculix/fine/opening.inp"
-    item.ViewObject.Visibility = False
-    result.Mesh.ViewObject.Visibility = True
     doc.recompute()
-    Gui.activeDocument().activeView().viewAxonometric()
-    Gui.activeDocument().activeView().fitAll()
+    if App.GuiUp:
+        item.ViewObject.Visibility = False
+        result.Mesh.ViewObject.Visibility = True
+        Gui.activeDocument().activeView().viewAxonometric()
+        Gui.activeDocument().activeView().fitAll()
     doc.saveAs(str(root / "Scratch opening.FCStd"))
 
 

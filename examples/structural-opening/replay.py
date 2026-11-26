@@ -29,31 +29,39 @@ def mcp_command(explicit):
     return binary
 
 
-async def solve_and_reopen(output, command):
+async def solve_and_reopen(output, command, freecadcmd=None):
     source = (EXAMPLE / "freecad_case.py").read_text(encoding="utf-8")
     # The connector receives source text; only the output directory has to be shared with FreeCAD.
     code = source + f"\nroot = Path({str(output)!r})\n"
+    server = StdioServerParameters(command=command, args=["--freecadcmd", freecadcmd] if freecadcmd else [])
     async with (
-        stdio_client(StdioServerParameters(command=command)) as (reader, writer),
+        stdio_client(server) as (reader, writer),
         ClientSession(reader, writer) as session,
     ):
         await session.initialize()
-        for label, action in (
-            ("Solve", "solve_scratch(root)"),
-            ("Reopen", "reopen_and_measure(root)"),
-        ):
+        actions = [("Solve", "solve_scratch(root)"), ("Reopen", "reopen_and_measure(root)")]
+        tool = "execute_code"
+        options = {"include_screenshot": False}
+        if freecadcmd:
+            # One isolated process must perform both steps so the saved document can be closed and reopened.
+            actions = [("Solve and reopen", "solve_scratch(root)\nreopen_and_measure(root)")]
+            tool = "execute_code_headless"
+            options = {}
+        for label, action in actions:
             response = await session.call_tool(
-                "execute_code",
-                {
-                    "code": code + action,
-                    "include_screenshot": False,
-                    "timeout": 120,
-                },
+                tool, {"code": code + action, "timeout": 120, **options},
             )
-            if response.is_error:
-                detail = "\n".join(
-                    block.text for block in response.content if block.type == "text"
-                )
+            messages = [block.text for block in response.content if block.type == "text"]
+            outcomes = []
+            for message in messages:
+                try:
+                    outcome = json.loads(message)
+                except ValueError:
+                    continue
+                if isinstance(outcome, dict):
+                    outcomes.append(outcome)
+            if response.is_error or any(result.get("success") is False for result in outcomes):
+                detail = "\n".join(messages)
                 raise RuntimeError(f"{label} failed through FreeCAD MCP: {detail}")
             print(f"{label} completed through FreeCAD MCP.", flush=True)
 
@@ -109,6 +117,7 @@ def main():
     parser.add_argument(
         "--mcp-command", help="Path to the installed freecad-mcp executable"
     )
+    parser.add_argument("--freecadcmd", help="Run in an isolated FreeCAD process using this FreeCADCmd executable")
     args = parser.parse_args()
     command = mcp_command(args.mcp_command)
     output = args.output.expanduser().resolve()
@@ -124,7 +133,7 @@ def main():
     subprocess.run(
         [sys.executable, "-E", str(EXAMPLE / "prepare.py"), str(output)], check=True
     )
-    asyncio.run(solve_and_reopen(output, command))
+    asyncio.run(solve_and_reopen(output, command, args.freecadcmd))
     subprocess.run(
         [sys.executable, "-E", str(EXAMPLE / "compare.py"), str(output)], check=True
     )

@@ -5,10 +5,24 @@ import subprocess
 import tempfile
 import unittest
 
-from tools.check_public_tree import check
+from tools.check_public_tree import check, check_history
 
 
 class PublicDistribution(unittest.TestCase):
+    def test_removed_nested_house_is_still_private_in_history(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            git = ["git", "-C", str(root), "-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid"]
+            subprocess.run([*git, "init", "-q"], check=True)
+            path = root / "demonstration/HOUSES/record.csv"
+            path.parent.mkdir(parents=True)
+            path.write_text("fictional test")
+            subprocess.run([*git, "add", "."], check=True)
+            subprocess.run([*git, "commit", "-qm", "Seed the test"], check=True)
+            subprocess.run([*git, "rm", "-q", str(path.relative_to(root))], check=True)
+            subprocess.run([*git, "commit", "-qm", "Remove the test file"], check=True)
+            self.assertIn("demonstration/HOUSES/record.csv", "\n".join(check_history(root)))
+
     def test_staged_asset_substitution_and_private_files_are_held(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

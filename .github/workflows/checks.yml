@@ -30,20 +30,8 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - name: Verify staged file types and reviewed example assets
-        run: python3 tools/check_public_tree.py
-      - name: Check for private files staged despite ignore rules
-        shell: bash
-        run: |
-          git ls-files -ci --exclude-from=.gitignore -z > "$RUNNER_TEMP/private-paths"
-          if test -s "$RUNNER_TEMP/private-paths"; then
-            echo 'A file covered by the repository privacy rules is tracked.'
-            exit 1
-          fi
-          if test -n "$(git log --all HEAD --full-history -1 --format=%H -- houses/ source/ models/ views/ handover/ backups/ private-backups/ 'House Renovation Backups/')"; then
-            echo 'Git history contains a private project directory.'
-            exit 1
-          fi
+      - name: Verify reviewed assets and private paths across Git history
+        run: python3 tools/check_public_tree.py --history
       - name: Scan Git history and the checked-out files for secrets
         shell: bash
         working-directory: ${{ runner.temp }}
@@ -54,7 +42,7 @@ jobs:
             "https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/$archive" -o "$archive"
           echo "551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb  $archive" | sha256sum --check --status
           tar -xzf "$archive" gitleaks
-          ./gitleaks git "$GITHUB_WORKSPACE" --log-opts='--all HEAD --full-history -m' --redact --no-banner
+          ./gitleaks git "$GITHUB_WORKSPACE" --log-opts='--no-textconv --all HEAD --full-history -m' --redact --no-banner
           ./gitleaks dir "$GITHUB_WORKSPACE" --max-archive-depth=3 --redact --no-banner
 
   dependencies:
