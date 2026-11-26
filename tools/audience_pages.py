@@ -1,10 +1,9 @@
 """Lay out the reviewed edition copy once for editable slides and print."""
 import io
-import zipfile
 
 import fitz
 
-from tools.render_pack import pdf_bytes
+from tools.render_pack import pdf_bytes, stable_office_bytes
 
 INK, GREEN, MUTED, PAPER = "19352E", "30624F", "465D55", "FBF9F3"
 BASE_FONTS = {"body": "helv", "heading": "tiro", "label": "hebo"}
@@ -133,15 +132,7 @@ def slide_text(slide, blocks):
 def stable_deck(deck, thumbnail):
     stream = io.BytesIO()
     deck.save(stream)
-    out = io.BytesIO()
-    with zipfile.ZipFile(stream) as source, zipfile.ZipFile(out, "w") as target:
-        for name in sorted(source.namelist()):
-            entry = zipfile.ZipInfo(name, (2000, 1, 1, 0, 0, 0))
-            entry.create_system = 3
-            entry.external_attr = 0o100644 << 16
-            data = thumbnail if name == "docProps/thumbnail.jpeg" else source.read(name)
-            target.writestr(entry, data, compress_type=zipfile.ZIP_DEFLATED)
-    return out.getvalue()
+    return stable_office_bytes(stream, {"docProps/thumbnail.jpeg": thumbnail})
 
 
 def render(root, spec, assets):

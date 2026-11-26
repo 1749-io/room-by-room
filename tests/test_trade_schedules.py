@@ -1,4 +1,5 @@
 import csv
+import hashlib
 import importlib.util
 import io
 import json
@@ -91,6 +92,10 @@ class TradeSchedules(unittest.TestCase):
                 book.close()
 
     def test_clean_builds_match_all_four_archives(self):
+        reference = ROOT / "examples/trade-schedules/reference/Alder-Cottage-trade-handover.zip"
+        actual, = (self.folder("HOUSE-TRADE") / "outputs/pack").glob("*.zip")
+        self.assertEqual(hashlib.sha256(actual.read_bytes()).digest(), hashlib.sha256(reference.read_bytes()).digest(),
+                         "A clean build must reproduce the downloadable Alder Cottage issue on every tested platform")
         with self.archive("HOUSE-TRADE") as full, fitz.open(stream=full.read("Issue.pdf"), filetype="pdf") as contents:
             schedule_pages = [page.get_text() for page in contents if "Schedules/" in page.get_text()]
             self.assertTrue(schedule_pages)

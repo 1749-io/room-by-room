@@ -1,6 +1,7 @@
 """Render portable publications from a resolved, single-room commission."""
 import base64
 import csv
+from contextlib import contextmanager
 import io
 import zipfile
 from datetime import datetime, timezone
@@ -175,14 +176,36 @@ def csv_bytes(rows):
     return stream.getvalue().encode("utf-8-sig")
 
 
-def write_shopping(delivery, files, spec):
+def stable_office_bytes(stream, replacements=None):
+    """Use the same ZIP headers on every platform when packaging Office parts."""
+    out = io.BytesIO()
+    with zipfile.ZipFile(stream) as source, zipfile.ZipFile(out, "w") as target:
+        for name in sorted(source.namelist()):
+            entry = zipfile.ZipInfo(name, (2000, 1, 1, 0, 0, 0))
+            entry.create_system = 3
+            entry.external_attr = 0o100644 << 16
+            data = replacements[name] if replacements and name in replacements else source.read(name)
+            target.writestr(entry, data, compress_type=zipfile.ZIP_DEFLATED)
+    return out.getvalue()
+
+
+@contextmanager
+def editable_workbook(path):
     import xlsxwriter
+    stream = io.BytesIO()
+    # In-memory XML avoids platform-dependent newlines in XlsxWriter's temporary files.
+    with xlsxwriter.Workbook(stream, {"in_memory": True, "strings_to_formulas": False,
+                                      "strings_to_urls": False}) as book:
+        yield book
+    path.write_bytes(stable_office_bytes(stream))
+
+
+def write_shopping(delivery, files, spec):
     rows = schedule(spec)
     columns = list(rows[0])
     csv_path = next(n for n in files if n.endswith("-shopping.csv"))
     (delivery / csv_path).write_bytes(csv_bytes(rows))
-    with xlsxwriter.Workbook((delivery / csv_path).with_suffix(".xlsx"),
-                             {"strings_to_formulas": False, "strings_to_urls": False}) as book:
+    with editable_workbook((delivery / csv_path).with_suffix(".xlsx")) as book:
         book.set_properties({"title": meta(spec), "created": datetime(2000, 1, 1, tzinfo=timezone.utc)})
         sheet = book.add_worksheet("Shopping")
         sheet.freeze_panes(1, 3)

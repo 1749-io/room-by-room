@@ -4,6 +4,8 @@ The fictional library has two approved paint samples and an optional pair of oak
 
 [Download the complete worked house issue](reference/Alder-Cottage-trade-handover.zip). Extract it and open `Start here.html`. The three schedules sit under `Schedules/` alongside the shopping files. The room review, drawing, homeowner presentation, architect pack and buyer brief are also included.
 
+A clean build on Windows and Linux is checked against the SHA-256 of the downloadable house ZIP. For a deliberate change to the recipient files, regenerate the fictional reference and inspect the revised issue before recording its hash.
+
 | Schedule | Commission and source | What to open or change |
 | --- | --- | --- |
 | Decorator finishes | Named surfaces and revision in each room's `decorator-finishes.csv`, with the actual sample approval or explicit instruction | Check the manufacturer, colour, code, sheen and sample reference. Print the offline page for site. The provisional bookcase finish stays outside the issued rows. |

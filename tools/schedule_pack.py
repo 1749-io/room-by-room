@@ -8,7 +8,6 @@ from pathlib import Path
 from urllib.parse import quote
 
 import openpyxl
-import xlsxwriter
 from openpyxl.utils import get_column_letter
 from xlsxwriter.utility import xl_col_to_name
 
@@ -123,7 +122,7 @@ def write_workbook(path, spec):
     kind = spec["slug"]
     rows = workbook_rows(spec)
     labels = list(rows[0])
-    with xlsxwriter.Workbook(path, {"strings_to_formulas": False, "strings_to_urls": False}) as book:
+    with render_pack.editable_workbook(path) as book:
         book.set_properties({"title": SCHEDULES[kind] + " | " + spec["house_name"], "created": datetime(2000, 1, 1)})
         money = book.add_format({"num_format": '"£"#,##0.00;[Red]("£"#,##0.00);"£"0.00', "valign": "top"})
         dates = book.add_format({"num_format": "dd mmm yyyy", "valign": "top"})

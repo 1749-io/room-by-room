@@ -1,11 +1,11 @@
 {
   "examples/audience-packs/reference/Alder-Cottage-audience-editions.zip": {
-    "sha256": "86538f6c54ae57192869646bf18c33988faa6e68f19cbbaff54f9e4c924d2a58",
+    "sha256": "9732c71a0050bbdf5ec599c517282e7c3545623b9c1ca5e633b8103dd06a55fc",
     "origin": "Fictional Alder Cottage recipient archive. Regenerate with examples/audience-packs/replay.py.",
     "rights": "Original illustrative fixture under LICENSE. Editable PowerPoint includes packaging from python-pptx. See THIRD-PARTY.md."
   },
   "examples/component-pack/reference/Alder-Cottage-handover.zip": {
-    "sha256": "2f75726e3d3fb2e08b2a8d1d0e6e29fd421f027b87311d79979616d70d515ac3",
+    "sha256": "3890089809c6da1d0ee6806698159845029292a2c7ac7c55722aaa539229368b",
     "origin": "Fictional Alder Cottage recipient archive. Regenerate with examples/component-pack/replay.py.",
     "rights": "Original illustrative fixture under LICENSE."
   },
@@ -25,7 +25,7 @@
     "rights": "Original illustrative fixture under LICENSE."
   },
   "examples/trade-schedules/reference/Alder-Cottage-trade-handover.zip": {
-    "sha256": "7e7d92e6d1ce80fbb81e33af25eb10185f98c7959cccb51e0648d4b71c394b5c",
+    "sha256": "a71ee6f9f1d1977ff095c6af65093f1120aee648e8043834ff159840042fee6e",
     "origin": "Fictional Alder Cottage recipient archive. Regenerate with examples/trade-schedules/replay.py.",
     "rights": "Original illustrative fixture under LICENSE. Editable PowerPoint includes packaging from python-pptx. See THIRD-PARTY.md."
   },
