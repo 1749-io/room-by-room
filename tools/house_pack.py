@@ -176,9 +176,10 @@ def build_house(envelope, spec, assets, selection_hash):
                 render_pack.pdf_text(page, (34, 99, 803, 180), spec["purpose"], 15)
                 render_pack.pdf_text(page, (34, 190, 803, 500), "\n".join(printed[start:start+ROOM_FILES_PER_PAGE]), 14)
         if spec.get("editions"):
+            heading = "Included in this handover" if SCHEDULES.keys() & spec["editions"].keys() else "Audience editions"
             for index, (kind, rev) in enumerate(sorted(spec["editions"].items())):
                 if index % 4 == 0:
-                    page = render_pack.sheet_page(doc, spec, "Audience editions")
+                    page = render_pack.sheet_page(doc, spec, heading)
                 label, entry = publication(kind)
                 sections.append(f'<h2><a href="{quote(entry)}">{escape(label)}</a></h2>')
                 render_pack.pdf_text(page, (34, 105+(index%4)*90, 802, 181+(index%4)*90),
@@ -196,7 +197,7 @@ def verify_house(envelope, spec, manifest):
         from tools.check_delivery import Page
         links = Page((envelope / "delivery/Start here.html").read_bytes()).links
         if any(quote(publication(kind)[1]) not in links for kind in spec["editions"]):
-            raise ValueError("A commissioned audience edition is missing from the house entry page")
+            raise ValueError("A commissioned publication is missing from the house entry page")
     for member, source in spec["sources"].items():
         if digest(envelope / "delivery" / member) != source["sha256"]:
             raise ValueError(f"House issue differs from the standalone component: {member}")

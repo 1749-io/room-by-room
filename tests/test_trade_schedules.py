@@ -91,6 +91,10 @@ class TradeSchedules(unittest.TestCase):
                 book.close()
 
     def test_clean_builds_match_all_four_archives(self):
+        with self.archive("HOUSE-TRADE") as full, fitz.open(stream=full.read("Issue.pdf"), filetype="pdf") as contents:
+            schedule_pages = [page.get_text() for page in contents if "Schedules/" in page.get_text()]
+            self.assertTrue(schedule_pages)
+            self.assertTrue(all("Included in this handover" in page for page in schedule_pages))
         for rev in [*ISSUES, "HOUSE-TRADE"]:
             folder = self.folder(rev)
             spec, assets = delivery.resolve(self.home, revisions.verify_revision(self.home, rev), folder)
