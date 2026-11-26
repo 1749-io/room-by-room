@@ -51,3 +51,12 @@ In the existing opening evidence add a `door_heads` object keyed by opening ID. 
 Run `house.py check-openings HOUSE ROOM --input-revision CAD` for the CAD handover. Run it again with `--camera --input-revision SCENE --cad-revision CAD` for the reopened furnished model. For expressly authorised concept pictures, add `--door-heads-only` to check these elevations even while unrelated fit decisions remain open. That narrower result applies only to the doorway section. Include the evidence with the visual's purpose approval. A changed assembly requires a fresh native read-back and inspection of all views looking into it.
 
 Earlier opening reports without a door inventory need a new read-back for a current issue. Keep their saved receipts and images as issued.
+## Applying a saved correction to a registered room
+
+An opening report belongs to the native model identified by its SHA-256. A later head detail can supplement a room review without editing the original revision. The original room and the corrected study each need a saved CAD report and furnished-scene report.
+
+1. Begin a new private revision. Use four `--input` arguments for the two reports at each revision, for example `revisions/R2/outputs/openings/study.json` and `revisions/R2/outputs/openings/study.camera.json`, then the equivalent pair from the corrected revision.
+2. In its outputs, write `opening-addenda/study.json` with `room`, `source_revision`, `study_revision` and `reviewer`. Record the room slug, the original registered revision, the saved corrected study and who compared them. Save this revision with the usual reason, effects and next action.
+3. In `rooms/study/opening-review-addendum.json`, set `source_revision` to the original revision and `revision` to the newly saved addendum revision. The room status and house handover now check the recorded correction. Use `house.py check-openings "House" "Study" --input-revision R2 --current` and repeat with `--camera`. Add `--door-heads-only` for an elevation-only result. Omitting `--current` inspects the named study on its own.
+
+If the native bytes are identical, a verified head-only study can reuse the original operating measurements. A changed model requires fresh full-travel measurements of its installed bodies, moving parts and obstacles. Keep previous contacts and unresolved uncertainty on hold. A change intended to resolve an operating clash needs a new occupied room review. Record survey and supplier returns separately.

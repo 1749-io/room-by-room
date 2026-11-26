@@ -55,9 +55,9 @@ def door_heads(spec, design_folder):
     from shapely.geometry import Polygon, box
     from shapely.ops import unary_union
 
-    doors = spec["door_heads"]
+    doors = spec.get("door_heads")
     if not isinstance(doors, dict):
-        raise ValueError("Inventory the architectural doors visible or operating in this space")
+        raise ValueError("Record door_heads from the reopened model for every architectural door visible or operating here")
     if not doors and not (isinstance(spec.get("no_doors_reason"), str) and spec["no_doors_reason"].strip()):
         raise ValueError("Explain the scope of a door-free inventory")
     intent = {}
@@ -99,85 +99,156 @@ def door_heads(spec, design_folder):
     return intent
 
 
-def review(folder, room, revision, *, camera=False, cad_folder=None, cad_revision=None, heads_only=False):
-    """Read only the named snapshot or draft. A problem returns a descriptive gate hold."""
+def registered_review(root, room, revision, *, camera=False, heads_only=False, verified=None):
+    """Apply a saved room addendum only to the registered source revision it reviewed."""
+    folder = revisions.record_dir(root, revision)
     try:
-        suffix = ".camera.json" if camera else ".json"
-        path = revisions.local_path(folder, f"outputs/openings/{room}{suffix}")
-        if not path.is_file():
-            return f"missing {'furnished scene' if camera else 'CAD'} opening clearance review for {room} at {revision}"
-        spec = json.loads(path.read_text(encoding="utf-8-sig"))
-        if (spec["revision"] != revision or spec["room"] != room or spec["units"] != "mm"
-                or not isinstance(spec["basis"], str) or not spec["basis"].strip()):
-            return "opening clearance revision, room, millimetres and evidence basis must match"
-        model = spec["model"]
-        if not model.startswith(("inputs/", "outputs/")):
-            return "link the reopened model inside this revision's inputs or outputs"
-        source = revisions.local_path(folder, model)
-        expected = {".blend"} if camera else {".fcstd", ".ifc", ".step", ".stp"}
-        if source.suffix.lower() not in expected or not source.is_file():
-            return "opening clearance source model is missing"
-        with source.open("rb") as stream:
-            if revisions.transfer(stream) != spec["model_sha256"]:
-                return "source model changed since the opening clearance read-back"
-        heads = door_heads(spec, (cad_folder or folder) if camera else folder)
+        pointer = revisions.local_path(root, f"rooms/{room}/opening-review-addendum.json")
+        if pointer.is_file():
+            active = revisions.stored_json(pointer)
+            if revisions.revision_id(active["source_revision"]) == revision:
+                binder = revisions.revision_id(active["revision"])
+                checked = {} if verified is None else verified
+                def receipt(key):
+                    if key not in checked:
+                        checked[key] = revisions.verify_revision(root, key)
+                    return checked[key]
+                saved = receipt(binder)
+                name = f"opening-addenda/{room}.json"
+                if name not in saved["outputs"]:
+                    raise ValueError(f"Missing saved opening addendum for {room}")
+                binding = revisions.stored_json(revisions.record_dir(root, binder) / "outputs" / name)
+                if (binding["source_revision"] != revision or binding["room"] != room
+                        or not isinstance(binding["reviewer"], str) or not binding["reviewer"].strip()):
+                    raise ValueError("Opening addendum must match the source revision, room and reviewer")
+                study = revisions.revision_id(binding["study_revision"])
+                if study == revision:
+                    raise ValueError("An opening correction requires a separate saved study")
+                for key in (revision, study):
+                    outputs = receipt(key)["outputs"]
+                    for suffix in (".json", ".camera.json"):
+                        report = f"openings/{room}{suffix}"
+                        frozen = f"revisions/{key}/outputs/{report}"
+                        if report not in outputs or saved["inputs"].get(frozen) != outputs[report]:
+                            raise ValueError(f"Missing or stale opening study binding: {frozen}")
+                return review(folder, room, revision, camera=camera, heads_only=heads_only,
+                              correction=revisions.record_dir(root, study))
+    except (KeyError, OSError, TypeError, ValueError) as exc:
+        return f"invalid saved opening addendum: {exc}"
+    return review(folder, room, revision, camera=camera, heads_only=heads_only)
+
+
+def native_study(folder, room, revision, camera):
+    suffix = ".camera.json" if camera else ".json"
+    path = revisions.local_path(folder, f"outputs/openings/{room}{suffix}")
+    if not path.is_file():
+        raise ValueError(f"missing {'furnished scene' if camera else 'CAD'} opening clearance review for {room} at {revision}")
+    spec = json.loads(path.read_text(encoding="utf-8-sig"))
+    if (spec["revision"] != revision or spec["room"] != room or spec["units"] != "mm"
+            or not isinstance(spec["basis"], str) or not spec["basis"].strip()):
+        raise ValueError("opening clearance revision, room, millimetres and evidence basis must match")
+    model = spec["model"]
+    if not model.startswith(("inputs/", "outputs/")):
+        raise ValueError("link the reopened model inside this revision's inputs or outputs")
+    source = revisions.local_path(folder, model)
+    expected = {".blend"} if camera else {".fcstd", ".ifc", ".step", ".stp"}
+    if source.suffix.lower() not in expected or not source.is_file():
+        raise ValueError("opening clearance source model is missing")
+    with source.open("rb") as stream:
+        if revisions.transfer(stream) != spec["model_sha256"]:
+            raise ValueError("source model changed since the opening clearance read-back")
+    return spec
+
+
+def movement_problem(spec):
+    zones = spec["zones"]
+    if not isinstance(zones, list):
+        return "supply a list of operating areas"
+    solids = spec.get("geometry", {})
+    if not isinstance(solids, dict):
+        return "supply named solid envelopes for the opening review"
+    if not zones:
+        reason = spec.get("no_interfaces_reason")
+        if not isinstance(reason, str) or not reason.strip():
+            return "inventory opening interfaces or explain why none apply"
+        if solids:
+            return "unassessed opening geometry in a review declaring no interfaces"
+        return None
+    issues = []
+    used = set()
+    for zone in zones:
+        title = zone["name"]
+        if not isinstance(title, str) or not title.strip() or not isinstance(zone["travel"], str) or not zone["travel"].strip():
+            return "name the operating area and the full movement tested"
+        required = number(zone["required_mm"])
+        uncertainty = zone["uncertainty_mm"]
+        if required < 0 or (uncertainty is not None and number(uncertainty) < 0):
+            return "opening allowance and uncertainty must be non-negative"
+        parts, fixed = inventory(zone)
+        if set(parts).intersection(fixed):
+            return "a moving assembly and its obstacles must use distinct IDs"
+        parsed = {key: geometry(solids, key) for key in parts + fixed}
+        used.update(parsed)
+        for part in parts:
+            envelope, low, high = parsed[part]
+            for obstacle in fixed:
+                projection, bottom, top = parsed[obstacle]
+                gap = math.hypot(envelope.distance(projection), max(low-top, bottom-high, 0))
+                if gap <= 0 or (uncertainty is not None and (gap <= uncertainty or gap - uncertainty < required)):
+                    issues.append(f"{title}: {part} / {obstacle}, {gap:.1f} mm modelled clearance")
+        if uncertainty is None:
+            issues.append(f"{title}: site or product uncertainty still to measure")
+    if set(solids) - used:
+        issues.append("unassessed opening geometry: " + ", ".join(sorted(set(solids) - used)))
+    return "; ".join(issues) or None
+
+
+def reviewed_study(folder, room, revision, camera, design_folder, correction, heads_only):
+    source = native_study(folder, room, revision, camera)
+    if correction is None:
+        return source, door_heads(source, design_folder)
+    updated = native_study(correction, room, correction.name, camera)
+    if camera and (source.get("cad_revision") != revision or updated.get("cad_revision") != correction.name):
+        raise ValueError("Furnished opening studies must name their respective CAD revisions")
+    heads = door_heads(updated, correction)
+    if set(source.get("door_heads", {})) - heads.keys():
+        raise ValueError("Corrected inventory omits a previously reviewed door")
+    if heads_only:
+        return source, heads
+    if updated.get("zones") is None and source["model_sha256"] == updated["model_sha256"]:
+        return source, heads
+    if not isinstance(updated.get("zones"), list):
+        raise ValueError(f"Door heads checked at {correction.name}. Remeasure full travel on the changed "
+                         f"{'furnished scene' if camera else 'CAD model'} before room handover")
+    problem = movement_problem(source)
+    if problem:
+        raise ValueError(f"Registered movement hold: {problem}")
+    if interfaces(source["zones"]) - interfaces(updated["zones"]):
+        raise ValueError("Corrected model is missing a registered opening interface")
+    return updated, heads
+
+
+def review(folder, room, revision, *, camera=False, cad_folder=None, cad_revision=None, heads_only=False,
+           correction=None):
+    """Check the measured sections and, for a full handover, operating clearances."""
+    try:
+        cad_folder = cad_folder or folder
+        cad_revision = cad_revision or revision
+        spec, heads = reviewed_study(folder, room, revision, camera, cad_folder, correction, heads_only)
         if camera:
-            cad_folder = cad_folder or folder
-            if spec.get("cad_revision") != (cad_revision or revision):
+            expected_cad = correction.name if correction and spec["revision"] == correction.name else cad_revision
+            if spec.get("cad_revision") != expected_cad:
                 return "furnished opening study must name its CAD revision"
-            cad_path = revisions.local_path(cad_folder, f"outputs/openings/{room}.json")
-            if not cad_path.is_file():
-                return "missing matching CAD opening inventory for the furnished scene"
-            cad = json.loads(cad_path.read_text(encoding="utf-8-sig"))
-            if heads != door_heads(cad, cad_folder):
+            cad, cad_heads = reviewed_study(cad_folder, room, cad_revision, False, cad_folder, correction, heads_only)
+            if heads != cad_heads:
                 return "Reconcile the CAD and Blender door inventory, dimensions and intended head sections"
-            if not heads_only and interfaces(spec["zones"]) != interfaces(cad["zones"]):
-                return "CAD and furnished scene cover different opening interfaces. Reconcile the projections and full travel"
-            cad_problem = review(cad_folder, room, cad_revision or revision, heads_only=heads_only)
-        else:
-            cad_problem = None
-        if heads_only:
-            return cad_problem
-        zones = spec["zones"]
-        if not isinstance(zones, list):
-            return "supply a list of operating areas"
-        solids = spec.get("geometry", {})
-        if not isinstance(solids, dict):
-            return "supply named solid envelopes for the opening review"
-        if not zones:
-            reason = spec.get("no_interfaces_reason")
-            if not isinstance(reason, str) or not reason.strip():
-                return "inventory opening interfaces or explain why none apply"
-            if solids:
-                return "unassessed opening geometry in a review declaring no interfaces"
-            return cad_problem
-        issues = []
-        used = set()
-        for zone in zones:
-            title = zone["name"]
-            if not isinstance(title, str) or not title.strip() or not isinstance(zone["travel"], str) or not zone["travel"].strip():
-                return "name the operating area and the full movement tested"
-            required = number(zone["required_mm"])
-            uncertainty = zone["uncertainty_mm"]
-            if required < 0 or (uncertainty is not None and number(uncertainty) < 0):
-                return "opening allowance and uncertainty must be non-negative"
-            parts, fixed = inventory(zone)
-            if set(parts).intersection(fixed):
-                return "a moving assembly and its obstacles must use distinct IDs"
-            parsed = {key: geometry(solids, key) for key in parts + fixed}
-            used.update(parsed)
-            for part in parts:
-                envelope, low, high = parsed[part]
-                for obstacle in fixed:
-                    projection, bottom, top = parsed[obstacle]
-                    gap = math.hypot(envelope.distance(projection), max(low-top, bottom-high, 0))
-                    if gap <= 0 or (uncertainty is not None and (gap <= uncertainty or gap - uncertainty < required)):
-                        issues.append(f"{title}: {part} / {obstacle}, {gap:.1f} mm modelled clearance")
-            if uncertainty is None:
-                issues.append(f"{title}: site or product uncertainty still to measure")
-        if set(solids) - used:
-            issues.append("unassessed opening geometry: " + ", ".join(sorted(set(solids) - used)))
-        return "; ".join(issues) or cad_problem
+            if not heads_only:
+                if interfaces(spec["zones"]) != interfaces(cad["zones"]):
+                    return "CAD and furnished scene cover different opening interfaces. Reconcile the projections and full travel"
+                problem = movement_problem(cad)
+                if problem:
+                    return problem
+        return None if heads_only else movement_problem(spec)
     except ImportError:
         return "install the route dependencies for 3D clearance checks"
     except (KeyError, TypeError, AttributeError, OSError, ValueError, OverflowError) as exc:

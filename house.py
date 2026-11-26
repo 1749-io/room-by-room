@@ -398,8 +398,8 @@ def status_through(path, room, rows, through, *, verified=None, passed=None):
             if problem:
                 return False, f"{stage} / hold / {problem}"
         if stage in ("proposed-cad", "blender") and revision not in legacy:
-            folder = revisions.record_dir(path, revision)
-            problem = house_openings.review(folder, room.parent.name, revision, camera=stage == "blender")
+            problem = house_openings.registered_review(path, room.parent.name, revision,
+                                                       camera=stage == "blender", verified=verified)
             if problem:
                 return False, f"{stage} / hold / {problem}"
         if stage in ("products", "final-ai"):
@@ -449,8 +449,11 @@ def render_status(path, room, stage, *, input_revision=None, scene_revision=None
             folder = opening_folder(path, scene)
             if folder.parent.name == revisions.HISTORY and scene != reviewed_revision:
                 revisions.verify_revision(path, scene)
-            problem = house_openings.review(folder, room.parent.name, scene, camera=True,
-                                            cad_folder=revisions.record_dir(path, reviewed_revision), cad_revision=reviewed_revision)
+            if scene == reviewed_revision:
+                problem = house_openings.registered_review(path, room.parent.name, scene, camera=True)
+            else:
+                problem = house_openings.review(folder, room.parent.name, scene, camera=True,
+                                                cad_folder=revisions.record_dir(path, reviewed_revision), cad_revision=reviewed_revision)
             if problem:
                 return False, f"blender / hold / {problem}"
     return True, f"{stage} may proceed / {reason}"
@@ -547,6 +550,7 @@ def main():
     openings.add_argument("--input-revision", required=True)
     openings.add_argument("--camera", action="store_true", help="Check geometry in the actual furnished Blender scene")
     openings.add_argument("--door-heads-only", action="store_true", help="Review doorway elevations for a planning concept")
+    openings.add_argument("--current", action="store_true", help="Apply a saved addendum to its registered room revision")
     openings.add_argument("--cad-revision", help="Checked CAD inventory when the furnished draft has its own revision")
     for command, purpose in (
         ("check-study", "Verify the existing shell before an unrendered furniture study"),
@@ -695,7 +699,17 @@ def main():
         cad_folder = opening_folder(path, cad)
         if cad != revision and cad_folder.parent.name == revisions.HISTORY:
             revisions.verify_revision(path, cad)
-        problem = house_openings.review(folder, room, revision, camera=args.camera, cad_folder=cad_folder, cad_revision=cad, heads_only=args.door_heads_only)
+        if args.current:
+            if folder.parent.name != revisions.HISTORY or cad != revision:
+                sys.exit("A current room check needs one registered saved CAD and scene revision")
+            rows = review_rows(path / "rooms" / room / "review.csv")
+            stage = "blender" if args.camera else "proposed-cad"
+            registered = next(row["revision"] for row in rows if row["stage"] == stage)
+            if registered != revision:
+                sys.exit(f"{stage} / hold / requested {revision}, currently registered {registered or 'no revision'}")
+            problem = house_openings.registered_review(path, room, revision, camera=args.camera, heads_only=args.door_heads_only)
+        else:
+            problem = house_openings.review(folder, room, revision, camera=args.camera, cad_folder=cad_folder, cad_revision=cad, heads_only=args.door_heads_only)
         label = "door heads" if args.door_heads_only else "opening clearance"
         if problem:
             sys.exit(f"{label} / hold / {problem}")
