@@ -4,7 +4,20 @@ The toolkit's MIT licence applies to its original work. The illustrated examples
 
 The furnished Alder library uses original procedural geometry, materials, book covers and wall art. Its concept photograph was generated from the reviewed Blender camera. The furnished house ZIP embeds those images in its room review and homeowner presentation. The [camera and photograph comparison](examples/furnished-room/reference/review.json) identifies both source files.
 
-The PDF tools use PyMuPDF, which Artifex offers under the AGPL or a commercial licence. Contributors installing or distributing the PDF tools should review the terms for their use. The downloadable fictional audience PDFs use standard PDF fonts. [Publisher's licence details](https://pymupdf.readthedocs.io/en/latest/about.html#license-and-copyright)
+## PDF tools
+
+We distribute the toolkit source and the fictional recipient documents. The combined PDF tools use Artifex's open-source AGPLv3 option for PyMuPDF and its MuPDF engine. The original toolkit source retains its MIT copyright and permission notice. A checkout installs the upstream PDF dependency from [requirements-packs.txt](requirements-packs.txt). The release contains no dependency wheels, native libraries, executable installers or container images.
+
+| Component | Version used by the PDF tools | Source |
+| --- | --- | --- |
+| PyMuPDF | 1.26.7 | [Upstream source distribution](https://pypi.org/project/PyMuPDF/1.26.7/#files), SHA-256 `71add8bdc8eb1aaa207c69a13400693f06ad9b927bea976f5d5ab9df0bb489c3` |
+| MuPDF | 1.26.12 | [Source archive used by the PyMuPDF build](https://mupdf.com/downloads/archive/mupdf-1.26.12-source.tar.gz) and [tagged source tree](https://github.com/ArtifexSoftware/mupdf/tree/1.26.12) |
+
+Keep the applicable copyright and licence notices with redistributed copies. If you distribute a build containing the PDF engine, provide the corresponding source by a method allowed under section 6. Section 13 covers the source offer to remote users of a modified version. The full terms and the publisher's explanation are available here. [AGPLv3](LICENSES/AGPL-3.0.txt) · [Artifex licensing](https://artifex.com/licensing)
+
+The fictional audience PDFs use standard PDF fonts. The [asset inventory](examples/asset-inventory.json) identifies the provenance of the sample content.
+
+## Editable presentations
 
 The editable sample decks use the default Office package in python-pptx 1.0.2. Their opening-slide preview is rendered from the example itself. The package licence follows.
 

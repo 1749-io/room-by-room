@@ -46,7 +46,7 @@ Keep household briefs, listing photos, floor plans, models and backups in privat
 
 The original code, agent skills, documentation, templates and original example assets are available under the [MIT licence](LICENSE). Keep its copyright and permission notice with copies or substantial portions. The licence includes the warranty disclaimer and limitation of liability. External software, services, trademarks and material supplied for a house retain their respective terms. Check the rights to photographs, listing plans, product imagery and other third-party assets before redistributing them.
 
-The PDF tools depend on PyMuPDF. Its publisher offers AGPL and commercial terms. Check the terms for your intended distribution or hosted service. [PyMuPDF licence](https://pymupdf.readthedocs.io/en/latest/about.html#license-and-copyright)
+The combined PDF tools use the GNU Affero General Public License version 3 (AGPLv3). The public release supplies the toolkit source and fictional recipient files. The Python installer fetches the PDF engine separately. See the [distribution terms and pinned dependency sources](THIRD-PARTY.md#pdf-tools) and the [AGPLv3 licence](LICENSES/AGPL-3.0.txt).
 
 ## Start a project
 
