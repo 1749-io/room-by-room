@@ -1,11 +1,11 @@
-# House Renovations
+# Room by Room
 
 A toolkit for taking a renovation brief through survey, checked CAD, furnished concepts and shareable handover packs. [Try a fictional house and explore the repository](CONTRIBUTING.md).
 
 | What you want to do | Where to start |
 | --- | --- |
 | Bring a listing, sketch or brief to an agent | [Start a project](#start-a-project) and [what to send](#what-to-send) |
-| Open a finished example | [Download the fictional Alder Cottage handover ZIP](examples/trade-schedules/reference/Alder-Cottage-trade-handover.zip), extract it and open `Start here.html` |
+| Open a finished example | [Download the fictional Alder Cottage handover ZIP](examples/trade-schedules/reference/Alder-Cottage-trade-handover.zip), extract it and open `Start here.html`. [Download just one pack](examples/furnished-room/README.md#download-just-one-pack) |
 | Issue one drawing, schedule or audience edition | [Delivery workflow](docs/pack-delivery.svg) and [component and audience examples](examples/README.md) |
 | Check an accepted design across drawings and photographs | [Release guide](docs/visual-release.md) and [comparison brochure replay](examples/visual-release/README.md) |
 | Change the toolkit or assess an agent handover | [Repository map, skills and test commands](CONTRIBUTING.md) |

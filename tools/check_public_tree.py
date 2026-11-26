@@ -57,7 +57,7 @@ def check(root):
                     or not row.get("origin") or not row.get("rights")):
                 errors.append(f"Review changed asset, origin and rights: {name}")
             reviewed.add(name)
-        elif path.name in TEXT_NAMES or path.suffix in TEXT_TYPES:
+        elif name == ".github/CODEOWNERS" or path.name in TEXT_NAMES or path.suffix in TEXT_TYPES:
             try:
                 data.decode("utf-8-sig")
             except UnicodeDecodeError:
