@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1060" role="document" aria-labelledby="title description" height="1657" viewBox="0 0 1060 1657">
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" role="document" aria-labelledby="title description" height="1707" viewBox="0 0 1060 1707">
   <title id="title">Room design at a glance</title>
-  <desc id="description">A quick reference for the renovation-pack, FreeCAD and Blender skills, including the return paths at three reviews.</desc>
+  <desc id="description">A quick reference for the renovation-pack, FreeCAD and Blender skills, including the occupied walkthrough and correction paths.</desc>
   <style>a { cursor: pointer } a:focus, a:hover { outline: 2px solid #165D52 } a:hover .node text, a:focus .node text { text-decoration: underline }</style>
-  <rect x="0" y="0" width="1060" height="1657" fill="#FAF8F2" rx="0" />
+  <rect x="0" y="0" width="1060" height="1707" fill="#FAF8F2" rx="0" />
   <rect x="0" y="0" width="1060" height="131" fill="#173D39" rx="0" />
   <text x="48" y="34" fill="#C7DFCE" font-size="13" font-family="Arial, Helvetica, sans-serif" font-weight="bold" letter-spacing="2.6">HOUSE RENOVATIONS</text>
   <text x="48" y="86" fill="#FFFFFF" font-size="43" font-family="Georgia, 'Times New Roman', serif" font-weight="normal">Room design at a glance</text>
@@ -26,279 +26,318 @@
     <polygon points="796,224 802,227 796,230" fill="#507470" />
     <text x="809" y="232" fill="#183735" font-size="14" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Conditional route</text>
   </g>
-  <g transform="translate(24 252) scale(1.15525114)">
-    <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(8.64 1190.68)">
+  <g transform="translate(24 252) scale(1.00496524)">
+    <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(8.64 1419.6)">
       <title>Renovation</title>
       <g id="node1" class="node">
         <title>intake</title>
-        <path fill="#e8f1ed" stroke="#73938d" stroke-width="1.3" d="M433.54,-1182.04C433.54,-1182.04 243.88,-1182.04 243.88,-1182.04 237.88,-1182.04 231.88,-1176.04 231.88,-1170.04 231.88,-1170.04 231.88,-1140.64 231.88,-1140.64 231.88,-1134.64 237.88,-1128.64 243.88,-1128.64 243.88,-1128.64 433.54,-1128.64 433.54,-1128.64 439.54,-1128.64 445.54,-1134.64 445.54,-1140.64 445.54,-1140.64 445.54,-1170.04 445.54,-1170.04 445.54,-1176.04 439.54,-1182.04 433.54,-1182.04" />
-        <text xml:space="preserve" text-anchor="start" x="284.71" y="-1163.49" font-family="Arial" font-weight="bold" font-size="13.00" fill="#173a38">Renovation pack</text>
-        <text xml:space="preserve" text-anchor="start" x="241.96" y="-1150.49" font-family="Arial" font-size="13.00" fill="#173a38">Brief, sources, budget, shopping</text>
-        <text xml:space="preserve" text-anchor="start" x="277.21" y="-1137.49" font-family="Arial" font-size="13.00" fill="#173a38">and limits on change</text>
+        <path fill="#e8f1ed" stroke="#73938d" stroke-width="1.3" d="M619.16,-1410.96C619.16,-1410.96 429.5,-1410.96 429.5,-1410.96 423.5,-1410.96 417.5,-1404.96 417.5,-1398.96 417.5,-1398.96 417.5,-1369.56 417.5,-1369.56 417.5,-1363.56 423.5,-1357.56 429.5,-1357.56 429.5,-1357.56 619.16,-1357.56 619.16,-1357.56 625.16,-1357.56 631.16,-1363.56 631.16,-1369.56 631.16,-1369.56 631.16,-1398.96 631.16,-1398.96 631.16,-1404.96 625.16,-1410.96 619.16,-1410.96" />
+        <text xml:space="preserve" text-anchor="start" x="470.33" y="-1392.41" font-family="Arial" font-weight="bold" font-size="13.00" fill="#173a38">Renovation pack</text>
+        <text xml:space="preserve" text-anchor="start" x="427.58" y="-1379.41" font-family="Arial" font-size="13.00" fill="#173a38">Brief, sources, budget, shopping</text>
+        <text xml:space="preserve" text-anchor="start" x="462.83" y="-1366.41" font-family="Arial" font-size="13.00" fill="#173a38">and limits on change</text>
       </g>
       <g id="node2" class="node">
         <title>checklist</title>
-        <path fill="#f7f2de" stroke="#998451" stroke-width="1.3" d="M301.41,-1092.64C301.41,-1092.64 12,-1092.64 12,-1092.64 6,-1092.64 0,-1086.64 0,-1080.64 0,-1080.64 0,-1051.24 0,-1051.24 0,-1045.24 6,-1039.24 12,-1039.24 12,-1039.24 301.41,-1039.24 301.41,-1039.24 307.41,-1039.24 313.41,-1045.24 313.41,-1051.24 313.41,-1051.24 313.41,-1080.64 313.41,-1080.64 313.41,-1086.64 307.41,-1092.64 301.41,-1092.64" />
-        <text xml:space="preserve" text-anchor="start" x="107.21" y="-1074.09" font-family="Arial" font-weight="bold" font-size="13.00" fill="#173a38">CHECKLIST.md</text>
-        <text xml:space="preserve" text-anchor="start" x="10.08" y="-1061.09" font-family="Arial" font-size="13.00" fill="#173a38">Create at intake. Refresh after each room review.</text>
-        <text xml:space="preserve" text-anchor="start" x="13.46" y="-1048.09" font-family="Arial" font-size="13.00" fill="#173a38">Track evidence, acceptance and survey returns.</text>
+        <path fill="#f7f2de" stroke="#998451" stroke-width="1.3" d="M487.04,-1321.56C487.04,-1321.56 197.62,-1321.56 197.62,-1321.56 191.62,-1321.56 185.63,-1315.56 185.63,-1309.56 185.63,-1309.56 185.63,-1280.16 185.63,-1280.16 185.63,-1274.16 191.63,-1268.16 197.63,-1268.16 197.63,-1268.16 487.04,-1268.16 487.04,-1268.16 493.04,-1268.16 499.04,-1274.16 499.04,-1280.16 499.04,-1280.16 499.04,-1309.56 499.04,-1309.56 499.04,-1315.56 493.04,-1321.56 487.04,-1321.56" />
+        <text xml:space="preserve" text-anchor="start" x="292.83" y="-1303.01" font-family="Arial" font-weight="bold" font-size="13.00" fill="#173a38">CHECKLIST.md</text>
+        <text xml:space="preserve" text-anchor="start" x="195.71" y="-1290.01" font-family="Arial" font-size="13.00" fill="#173a38">Create at intake. Refresh after each room review.</text>
+        <text xml:space="preserve" text-anchor="start" x="199.08" y="-1277.01" font-family="Arial" font-size="13.00" fill="#173a38">Track evidence, acceptance and survey returns.</text>
       </g>
       <g id="edge2" class="edge">
         <title>intake-&gt;checklist</title>
-        <path fill="none" stroke="#507470" d="M281.23,-1128.16C267.11,-1121.72 255.96,-1116.64 255.96,-1116.64 255.96,-1116.64 237.62,-1107.46 216.71,-1096.99" />
-        <polygon fill="#507470" stroke="#507470" points="217.95,-1094.87 210.59,-1093.92 215.75,-1099.25 217.95,-1094.87" />
-        <text xml:space="preserve" text-anchor="middle" x="290.83" y="-1107.14" font-family="Arial" font-size="10.00" fill="#284b48">create and open</text>
+        <path fill="none" stroke="#507470" d="M466.86,-1357.08C452.74,-1350.64 441.58,-1345.56 441.58,-1345.56 441.58,-1345.56 423.25,-1336.38 402.34,-1325.91" />
+        <polygon fill="#507470" stroke="#507470" points="403.57,-1323.79 396.21,-1322.84 401.38,-1328.17 403.57,-1323.79" />
+        <text xml:space="preserve" text-anchor="middle" x="476.46" y="-1336.06" font-family="Arial" font-size="10.00" fill="#284b48">create and open</text>
       </g>
       <g id="node4" class="node">
         <title>shell</title>
-        <path fill="#e8f1ed" stroke="#73938d" stroke-width="1.3" d="M466.16,-913.84C466.16,-913.84 211.25,-913.84 211.25,-913.84 205.25,-913.84 199.25,-907.84 199.25,-901.84 199.25,-901.84 199.25,-872.44 199.25,-872.44 199.25,-866.44 205.25,-860.44 211.25,-860.44 211.25,-860.44 466.16,-860.44 466.16,-860.44 472.16,-860.44 478.16,-866.44 478.16,-872.44 478.16,-872.44 478.16,-901.84 478.16,-901.84 478.16,-907.84 472.16,-913.84 466.16,-913.84" />
-        <text xml:space="preserve" text-anchor="start" x="232.96" y="-895.29" font-family="Arial" font-weight="bold" font-size="13.00" fill="#173a38">Existing building · FreeCAD MCP</text>
-        <text xml:space="preserve" text-anchor="start" x="225.08" y="-882.29" font-family="Arial" font-size="13.00" fill="#173a38">Build the shell, levels and door heads.</text>
-        <text xml:space="preserve" text-anchor="start" x="209.33" y="-869.29" font-family="Arial" font-size="13.00" fill="#173a38">Set working sizes for unmeasured features.</text>
+        <path fill="#e8f1ed" stroke="#73938d" stroke-width="1.3" d="M651.79,-1142.76C651.79,-1142.76 396.88,-1142.76 396.88,-1142.76 390.88,-1142.76 384.88,-1136.76 384.88,-1130.76 384.88,-1130.76 384.88,-1101.36 384.88,-1101.36 384.88,-1095.36 390.88,-1089.36 396.88,-1089.36 396.88,-1089.36 651.79,-1089.36 651.79,-1089.36 657.79,-1089.36 663.79,-1095.36 663.79,-1101.36 663.79,-1101.36 663.79,-1130.76 663.79,-1130.76 663.79,-1136.76 657.79,-1142.76 651.79,-1142.76" />
+        <text xml:space="preserve" text-anchor="start" x="418.58" y="-1124.21" font-family="Arial" font-weight="bold" font-size="13.00" fill="#173a38">Existing building · FreeCAD MCP</text>
+        <text xml:space="preserve" text-anchor="start" x="410.71" y="-1111.21" font-family="Arial" font-size="13.00" fill="#173a38">Build the shell, levels and door heads.</text>
+        <text xml:space="preserve" text-anchor="start" x="394.96" y="-1098.21" font-family="Arial" font-size="13.00" fill="#173a38">Set working sizes for unmeasured features.</text>
       </g>
       <g id="edge1" class="edge">
         <title>intake-&gt;shell</title>
-        <path fill="none" stroke="#507470" d="M338.71,-1128.33C338.71,-1080.02 338.71,-976.47 338.71,-922.48" />
-        <polygon fill="#507470" stroke="#507470" points="341.16,-922.77 338.71,-915.77 336.26,-922.77 341.16,-922.77" />
-        <text xml:space="preserve" text-anchor="middle" x="365.33" y="-1017.74" font-family="Arial" font-size="10.00" fill="#284b48">brief passed</text>
+        <path fill="none" stroke="#507470" d="M524.33,-1357.25C524.33,-1308.94 524.33,-1205.39 524.33,-1151.4" />
+        <polygon fill="#507470" stroke="#507470" points="526.78,-1151.69 524.33,-1144.69 521.88,-1151.69 526.78,-1151.69" />
+        <text xml:space="preserve" text-anchor="middle" x="550.96" y="-1246.66" font-family="Arial" font-size="10.00" fill="#284b48">brief passed</text>
       </g>
-      <g id="node11" class="node">
+      <g id="node12" class="node">
         <title>decor</title>
-        <path fill="#ccdfcd" stroke="#708d72" stroke-width="1.3" d="M615.66,-1086.14C615.66,-1086.14 375.75,-1086.14 375.75,-1086.14 369.75,-1086.14 363.75,-1080.14 363.75,-1074.14 363.75,-1074.14 363.75,-1057.74 363.75,-1057.74 363.75,-1051.74 369.75,-1045.74 375.75,-1045.74 375.75,-1045.74 615.66,-1045.74 615.66,-1045.74 621.66,-1045.74 627.66,-1051.74 627.66,-1057.74 627.66,-1057.74 627.66,-1074.14 627.66,-1074.14 627.66,-1080.14 621.66,-1086.14 615.66,-1086.14" />
-        <text xml:space="preserve" text-anchor="start" x="444.71" y="-1067.59" font-family="Arial" font-weight="bold" font-size="13.00" fill="#173a38">Decorator issue</text>
-        <text xml:space="preserve" text-anchor="start" x="373.83" y="-1054.59" font-family="Arial" font-size="13.00" fill="#173a38">Check each surface, finish and approval.</text>
+        <path fill="#ccdfcd" stroke="#708d72" stroke-width="1.3" d="M801.29,-1315.06C801.29,-1315.06 561.38,-1315.06 561.38,-1315.06 555.38,-1315.06 549.38,-1309.06 549.38,-1303.06 549.38,-1303.06 549.38,-1286.66 549.38,-1286.66 549.38,-1280.66 555.38,-1274.66 561.38,-1274.66 561.38,-1274.66 801.29,-1274.66 801.29,-1274.66 807.29,-1274.66 813.29,-1280.66 813.29,-1286.66 813.29,-1286.66 813.29,-1303.06 813.29,-1303.06 813.29,-1309.06 807.29,-1315.06 801.29,-1315.06" />
+        <text xml:space="preserve" text-anchor="start" x="630.33" y="-1296.51" font-family="Arial" font-weight="bold" font-size="13.00" fill="#173a38">Decorator issue</text>
+        <text xml:space="preserve" text-anchor="start" x="559.46" y="-1283.51" font-family="Arial" font-size="13.00" fill="#173a38">Check each surface, finish and approval.</text>
       </g>
       <g id="edge6" class="edge">
         <title>intake-&gt;decor</title>
-        <path fill="none" stroke="#507470" stroke-dasharray="5,2" d="M385.81,-1128.12C407.05,-1116.29 431.95,-1102.43 452.68,-1090.89" />
-        <polygon fill="#507470" stroke="#507470" points="453.87,-1093.03 458.79,-1087.49 451.49,-1088.75 453.87,-1093.03" />
-        <text xml:space="preserve" text-anchor="middle" x="479.48" y="-1107.14" font-family="Arial" font-size="10.00" fill="#284b48">separate finish schedule</text>
+        <path fill="none" stroke="#507470" stroke-dasharray="5,2" d="M571.44,-1357.04C592.67,-1345.21 617.58,-1331.35 638.31,-1319.81" />
+        <polygon fill="#507470" stroke="#507470" points="639.49,-1321.95 644.42,-1316.41 637.11,-1317.67 639.49,-1321.95" />
+        <text xml:space="preserve" text-anchor="middle" x="665.1" y="-1336.06" font-family="Arial" font-size="10.00" fill="#284b48">separate finish schedule</text>
       </g>
       <g id="node3" class="node">
         <title>survey</title>
-        <path fill="#f7f2de" stroke="#998451" stroke-width="1.3" d="M292.41,-1003.24C292.41,-1003.24 21,-1003.24 21,-1003.24 15,-1003.24 9,-997.24 9,-991.24 9,-991.24 9,-961.84 9,-961.84 9,-955.84 15,-949.84 21,-949.84 21,-949.84 292.41,-949.84 292.41,-949.84 298.41,-949.84 304.41,-955.84 304.41,-961.84 304.41,-961.84 304.41,-991.24 304.41,-991.24 304.41,-997.24 298.41,-1003.24 292.41,-1003.24" />
-        <text xml:space="preserve" text-anchor="start" x="102.71" y="-984.69" font-family="Arial" font-weight="bold" font-size="13.00" fill="#173a38">Survey follow-up</text>
-        <text xml:space="preserve" text-anchor="start" x="50.58" y="-971.69" font-family="Arial" font-size="13.00" fill="#173a38">Name the owner and affected work.</text>
-        <text xml:space="preserve" text-anchor="start" x="19.08" y="-958.69" font-family="Arial" font-size="13.00" fill="#173a38">Link the measured return and repeated check.</text>
+        <path fill="#f7f2de" stroke="#998451" stroke-width="1.3" d="M478.04,-1232.16C478.04,-1232.16 206.62,-1232.16 206.62,-1232.16 200.62,-1232.16 194.63,-1226.16 194.63,-1220.16 194.63,-1220.16 194.63,-1190.76 194.63,-1190.76 194.63,-1184.76 200.63,-1178.76 206.63,-1178.76 206.63,-1178.76 478.04,-1178.76 478.04,-1178.76 484.04,-1178.76 490.04,-1184.76 490.04,-1190.76 490.04,-1190.76 490.04,-1220.16 490.04,-1220.16 490.04,-1226.16 484.04,-1232.16 478.04,-1232.16" />
+        <text xml:space="preserve" text-anchor="start" x="288.33" y="-1213.61" font-family="Arial" font-weight="bold" font-size="13.00" fill="#173a38">Survey follow-up</text>
+        <text xml:space="preserve" text-anchor="start" x="236.21" y="-1200.61" font-family="Arial" font-size="13.00" fill="#173a38">Name the owner and affected work.</text>
+        <text xml:space="preserve" text-anchor="start" x="204.71" y="-1187.61" font-family="Arial" font-size="13.00" fill="#173a38">Link the measured return and repeated check.</text>
       </g>
       <g id="edge3" class="edge">
         <title>checklist-&gt;survey</title>
-        <path fill="none" stroke="#507470" d="M156.71,-1038.72C156.71,-1030.33 156.71,-1020.92 156.71,-1012.04" />
-        <polygon fill="#507470" stroke="#507470" points="159.16,-1012.26 156.71,-1005.26 154.26,-1012.26 159.16,-1012.26" />
-        <text xml:space="preserve" text-anchor="middle" x="203.58" y="-1017.74" font-family="Arial" font-size="10.00" fill="#284b48">measurement needed</text>
+        <path fill="none" stroke="#507470" d="M342.33,-1267.64C342.33,-1259.25 342.33,-1249.84 342.33,-1240.96" />
+        <polygon fill="#507470" stroke="#507470" points="344.78,-1241.18 342.33,-1234.18 339.88,-1241.18 344.78,-1241.18" />
+        <text xml:space="preserve" text-anchor="middle" x="389.21" y="-1246.66" font-family="Arial" font-size="10.00" fill="#284b48">measurement needed</text>
       </g>
       <g id="edge4" class="edge">
         <title>survey-&gt;shell</title>
-        <path fill="none" stroke="#507470" stroke-dasharray="5,2" d="M191.77,-949.23C207.66,-937.31 222.96,-925.84 222.96,-925.84 222.96,-925.84 234.36,-922.13 250.01,-917.03" />
-        <polygon fill="#507470" stroke="#507470" points="250.66,-919.39 256.56,-914.9 249.14,-914.73 250.66,-919.39" />
-        <text xml:space="preserve" text-anchor="middle" x="274.33" y="-928.34" font-family="Arial" font-size="10.00" fill="#284b48">correct measured fabric</text>
+        <path fill="none" stroke="#507470" stroke-dasharray="5,2" d="M377.39,-1178.15C393.29,-1166.23 408.58,-1154.76 408.58,-1154.76 408.58,-1154.76 419.98,-1151.05 435.63,-1145.95" />
+        <polygon fill="#507470" stroke="#507470" points="436.29,-1148.31 442.18,-1143.82 434.77,-1143.65 436.29,-1148.31" />
+        <text xml:space="preserve" text-anchor="middle" x="459.96" y="-1157.26" font-family="Arial" font-size="10.00" fill="#284b48">correct measured fabric</text>
       </g>
       <g id="node6" class="node">
         <title>options</title>
-        <path fill="#e8f1ed" stroke="#73938d" stroke-width="1.3" d="M610.16,-591.4C610.16,-591.4 373.25,-591.4 373.25,-591.4 367.25,-591.4 361.25,-585.4 361.25,-579.4 361.25,-579.4 361.25,-550 361.25,-550 361.25,-544 367.25,-538 373.25,-538 373.25,-538 610.16,-538 610.16,-538 616.16,-538 622.16,-544 622.16,-550 622.16,-550 622.16,-579.4 622.16,-579.4 622.16,-585.4 616.16,-591.4 610.16,-591.4" />
-        <text xml:space="preserve" text-anchor="start" x="387.46" y="-572.85" font-family="Arial" font-weight="bold" font-size="13.00" fill="#173a38">Proposed layout · FreeCAD MCP</text>
-        <text xml:space="preserve" text-anchor="start" x="376.58" y="-559.85" font-family="Arial" font-size="13.00" fill="#173a38">Reopen the option. Compare occupied</text>
-        <text xml:space="preserve" text-anchor="start" x="371.33" y="-546.85" font-family="Arial" font-size="13.00" fill="#173a38">activities and journeys with the baseline.</text>
+        <path fill="#e8f1ed" stroke="#73938d" stroke-width="1.3" d="M795.79,-820.32C795.79,-820.32 558.88,-820.32 558.88,-820.32 552.88,-820.32 546.88,-814.32 546.88,-808.32 546.88,-808.32 546.88,-778.92 546.88,-778.92 546.88,-772.92 552.88,-766.92 558.88,-766.92 558.88,-766.92 795.79,-766.92 795.79,-766.92 801.79,-766.92 807.79,-772.92 807.79,-778.92 807.79,-778.92 807.79,-808.32 807.79,-808.32 807.79,-814.32 801.79,-820.32 795.79,-820.32" />
+        <text xml:space="preserve" text-anchor="start" x="573.08" y="-801.77" font-family="Arial" font-weight="bold" font-size="13.00" fill="#173a38">Proposed layout · FreeCAD MCP</text>
+        <text xml:space="preserve" text-anchor="start" x="562.21" y="-788.77" font-family="Arial" font-size="13.00" fill="#173a38">Reopen the option. Compare occupied</text>
+        <text xml:space="preserve" text-anchor="start" x="556.96" y="-775.77" font-family="Arial" font-size="13.00" fill="#173a38">activities and journeys with the baseline.</text>
       </g>
       <g id="edge5" class="edge">
         <title>survey-&gt;options</title>
-        <path fill="none" stroke="#507470" stroke-dasharray="5,2" d="M142.3,-949.32C128.16,-923.57 108.71,-888.14 108.71,-888.14 108.71,-888.14 108.71,-888.14 108.71,-671.16 108.71,-671.16 133.71,-627.4 133.71,-627.4 133.71,-627.4 251.97,-607.02 352.56,-589.68" />
-        <polygon fill="#507470" stroke="#507470" points="352.71,-592.14 359.19,-588.54 351.88,-587.31 352.71,-592.14" />
-        <text xml:space="preserve" text-anchor="middle" x="160.46" y="-785.18" font-family="Arial" font-size="10.00" fill="#284b48">recheck affected design</text>
+        <path fill="none" stroke="#507470" stroke-dasharray="5,2" d="M327.93,-1178.24C313.79,-1152.49 294.33,-1117.06 294.33,-1117.06 294.33,-1117.06 294.33,-1117.06 294.33,-900.08 294.33,-900.08 319.33,-856.32 319.33,-856.32 319.33,-856.32 437.6,-835.94 538.18,-818.6" />
+        <polygon fill="#507470" stroke="#507470" points="538.34,-821.06 544.82,-817.46 537.5,-816.23 538.34,-821.06" />
+        <text xml:space="preserve" text-anchor="middle" x="346.08" y="-1014.1" font-family="Arial" font-size="10.00" fill="#284b48">recheck affected design</text>
       </g>
-      <g id="node13" class="node">
+      <g id="node14" class="node">
         <title>fixed</title>
-        <polygon fill="#f8e9c4" stroke="#ab854a" stroke-width="1.3" points="338.71,-824.44 228.13,-788.68 338.7,-752.92 449.29,-788.68 338.71,-824.44" />
-        <text xml:space="preserve" text-anchor="middle" x="338.71" y="-791.33" font-family="Arial" font-size="13.00" fill="#483817">Existing CAD fits</text>
-        <text xml:space="preserve" text-anchor="middle" x="338.71" y="-776.33" font-family="Arial" font-size="13.00" fill="#483817">the sources?</text>
+        <polygon fill="#f8e9c4" stroke="#ab854a" stroke-width="1.3" points="524.33,-1053.36 413.75,-1017.6 524.33,-981.84 634.91,-1017.6 524.33,-1053.36" />
+        <text xml:space="preserve" text-anchor="middle" x="524.33" y="-1020.25" font-family="Arial" font-size="13.00" fill="#483817">Existing CAD fits</text>
+        <text xml:space="preserve" text-anchor="middle" x="524.33" y="-1005.25" font-family="Arial" font-size="13.00" fill="#483817">the sources?</text>
       </g>
       <g id="edge7" class="edge">
         <title>shell-&gt;fixed</title>
-        <path fill="none" stroke="#507470" d="M338.71,-860.04C338.71,-851.75 338.71,-842.35 338.71,-833.18" />
-        <polygon fill="#507470" stroke="#507470" points="341.16,-833.37 338.71,-826.37 336.26,-833.38 341.16,-833.37" />
+        <path fill="none" stroke="#507470" d="M524.33,-1088.96C524.33,-1080.67 524.33,-1071.27 524.33,-1062.1" />
+        <polygon fill="#507470" stroke="#507470" points="526.78,-1062.29 524.33,-1055.29 521.88,-1062.3 526.78,-1062.29" />
       </g>
       <g id="node5" class="node">
         <title>study</title>
-        <path fill="#ebedf6" stroke="#8791ae" stroke-width="1.3" d="M763.91,-815.38C763.91,-815.38 573.5,-815.38 573.5,-815.38 567.5,-815.38 561.5,-809.38 561.5,-803.38 561.5,-803.38 561.5,-773.98 561.5,-773.98 561.5,-767.98 567.5,-761.98 573.5,-761.98 573.5,-761.98 763.91,-761.98 763.91,-761.98 769.91,-761.98 775.91,-767.98 775.91,-773.98 775.91,-773.98 775.91,-803.38 775.91,-803.38 775.91,-809.38 769.91,-815.38 763.91,-815.38" />
-        <text xml:space="preserve" text-anchor="start" x="571.58" y="-796.83" font-family="Arial" font-weight="bold" font-size="13.00" fill="#173a38">Furniture study · Blender MCP</text>
-        <text xml:space="preserve" text-anchor="start" x="574.21" y="-783.83" font-family="Arial" font-size="13.00" fill="#173a38">Try poses on the checked shell.</text>
-        <text xml:space="preserve" text-anchor="start" x="585.46" y="-770.83" font-family="Arial" font-size="13.00" fill="#173a38">Keep the study unrendered.</text>
+        <path fill="#ebedf6" stroke="#8791ae" stroke-width="1.3" d="M949.54,-1044.3C949.54,-1044.3 759.12,-1044.3 759.12,-1044.3 753.12,-1044.3 747.12,-1038.3 747.12,-1032.3 747.12,-1032.3 747.12,-1002.9 747.12,-1002.9 747.12,-996.9 753.12,-990.9 759.12,-990.9 759.12,-990.9 949.54,-990.9 949.54,-990.9 955.54,-990.9 961.54,-996.9 961.54,-1002.9 961.54,-1002.9 961.54,-1032.3 961.54,-1032.3 961.54,-1038.3 955.54,-1044.3 949.54,-1044.3" />
+        <text xml:space="preserve" text-anchor="start" x="757.21" y="-1025.75" font-family="Arial" font-weight="bold" font-size="13.00" fill="#173a38">Furniture study · Blender MCP</text>
+        <text xml:space="preserve" text-anchor="start" x="759.83" y="-1012.75" font-family="Arial" font-size="13.00" fill="#173a38">Try poses on the checked shell.</text>
+        <text xml:space="preserve" text-anchor="start" x="771.08" y="-999.75" font-family="Arial" font-size="13.00" fill="#173a38">Keep the study unrendered.</text>
       </g>
       <g id="edge11" class="edge">
         <title>study-&gt;options</title>
-        <path fill="none" stroke="#507470" d="M652.05,-761.67C619.52,-710.87 550.71,-603.4 550.71,-603.4 550.71,-603.4 546.23,-600.54 539.75,-596.4" />
-        <polygon fill="#507470" stroke="#507470" points="541.18,-594.4 533.96,-592.7 538.54,-598.53 541.18,-594.4" />
-        <text xml:space="preserve" text-anchor="middle" x="672.86" y="-668.66" font-family="Arial" font-size="10.00" fill="#284b48">return candidate poses</text>
+        <path fill="none" stroke="#507470" d="M837.67,-990.59C805.15,-939.79 736.33,-832.32 736.33,-832.32 736.33,-832.32 731.86,-829.46 725.37,-825.32" />
+        <polygon fill="#507470" stroke="#507470" points="726.8,-823.32 719.58,-821.62 724.16,-827.45 726.8,-823.32" />
+        <text xml:space="preserve" text-anchor="middle" x="858.49" y="-897.58" font-family="Arial" font-size="10.00" fill="#284b48">return candidate poses</text>
       </g>
-      <g id="node14" class="node">
+      <g id="node15" class="node">
         <title>living</title>
-        <polygon fill="#f8e9c4" stroke="#ab854a" stroke-width="1.3" points="334.71,-502 197.13,-466.24 334.7,-430.48 472.29,-466.24 334.71,-502" />
-        <text xml:space="preserve" text-anchor="middle" x="334.71" y="-468.89" font-family="Arial" font-size="13.00" fill="#483817">Whole room works</text>
-        <text xml:space="preserve" text-anchor="middle" x="334.71" y="-453.89" font-family="Arial" font-size="13.00" fill="#483817">and choice resolved?</text>
+        <polygon fill="#f8e9c4" stroke="#ab854a" stroke-width="1.3" points="514.33,-730.92 376.75,-695.16 514.33,-659.4 651.91,-695.16 514.33,-730.92" />
+        <text xml:space="preserve" text-anchor="middle" x="514.33" y="-697.81" font-family="Arial" font-size="13.00" fill="#483817">Whole room works</text>
+        <text xml:space="preserve" text-anchor="middle" x="514.33" y="-682.81" font-family="Arial" font-size="13.00" fill="#483817">and choice resolved?</text>
       </g>
       <g id="edge14" class="edge">
         <title>options-&gt;living</title>
-        <path fill="none" stroke="#507470" d="M449.22,-537.6C428.49,-524.86 403.5,-509.5 382.15,-496.39" />
-        <polygon fill="#507470" stroke="#507470" points="383.6,-494.4 376.35,-492.83 381.03,-498.58 383.6,-494.4" />
+        <path fill="none" stroke="#507470" d="M633.22,-766.52C611.44,-753.63 585.11,-738.05 562.77,-724.83" />
+        <polygon fill="#507470" stroke="#507470" points="564.25,-722.85 556.98,-721.4 561.75,-727.07 564.25,-722.85" />
       </g>
       <g id="node7" class="node">
         <title>decide</title>
-        <path fill="#f6e7df" stroke="#ac7868" stroke-width="1.3" d="M781.29,-492.94C781.29,-492.94 518.12,-492.94 518.12,-492.94 512.12,-492.94 506.12,-486.94 506.12,-480.94 506.12,-480.94 506.12,-451.54 506.12,-451.54 506.12,-445.54 512.12,-439.54 518.12,-439.54 518.12,-439.54 781.29,-439.54 781.29,-439.54 787.29,-439.54 793.29,-445.54 793.29,-451.54 793.29,-451.54 793.29,-480.94 793.29,-480.94 793.29,-486.94 787.29,-492.94 781.29,-492.94" />
-        <text xml:space="preserve" text-anchor="start" x="577.71" y="-474.39" font-family="Arial" font-weight="bold" font-size="13.00" fill="#173a38">Agent and homeowner</text>
-        <text xml:space="preserve" text-anchor="start" x="527.46" y="-461.39" font-family="Arial" font-size="13.00" fill="#173a38">Show the labelled plan with the question.</text>
-        <text xml:space="preserve" text-anchor="start" x="516.21" y="-448.39" font-family="Arial" font-size="13.00" fill="#173a38">Record the choice or deciding measurement.</text>
+        <path fill="#f6e7df" stroke="#ac7868" stroke-width="1.3" d="M977.91,-721.86C977.91,-721.86 714.75,-721.86 714.75,-721.86 708.75,-721.86 702.75,-715.86 702.75,-709.86 702.75,-709.86 702.75,-680.46 702.75,-680.46 702.75,-674.46 708.75,-668.46 714.75,-668.46 714.75,-668.46 977.91,-668.46 977.91,-668.46 983.91,-668.46 989.91,-674.46 989.91,-680.46 989.91,-680.46 989.91,-709.86 989.91,-709.86 989.91,-715.86 983.91,-721.86 977.91,-721.86" />
+        <text xml:space="preserve" text-anchor="start" x="774.33" y="-703.31" font-family="Arial" font-weight="bold" font-size="13.00" fill="#173a38">Agent and homeowner</text>
+        <text xml:space="preserve" text-anchor="start" x="724.08" y="-690.31" font-family="Arial" font-size="13.00" fill="#173a38">Show the labelled plan with the question.</text>
+        <text xml:space="preserve" text-anchor="start" x="712.83" y="-677.31" font-family="Arial" font-size="13.00" fill="#173a38">Record the choice or deciding measurement.</text>
       </g>
       <g id="edge16" class="edge">
         <title>decide-&gt;options</title>
-        <path fill="none" stroke="#507470" d="M606.64,-493.53C586.57,-505.78 562.57,-520.44 541.7,-533.18" />
-        <polygon fill="#507470" stroke="#507470" points="540.45,-531.07 535.75,-536.81 543.01,-535.25 540.45,-531.07" />
-        <text xml:space="preserve" text-anchor="middle" x="607.08" y="-516.5" font-family="Arial" font-size="10.00" fill="#284b48">revise and retest</text>
+        <path fill="none" stroke="#507470" d="M800.27,-722.45C778.61,-734.81 752.68,-749.61 730.22,-762.43" />
+        <polygon fill="#507470" stroke="#507470" points="729.24,-760.17 724.38,-765.77 731.67,-764.42 729.24,-760.17" />
+        <text xml:space="preserve" text-anchor="middle" x="798.21" y="-745.42" font-family="Arial" font-size="10.00" fill="#284b48">revise and retest</text>
       </g>
       <g id="node8" class="node">
         <title>style</title>
-        <path fill="#f6e7df" stroke="#ac7868" stroke-width="1.3" d="M256.04,-394.48C256.04,-394.48 15.38,-394.48 15.38,-394.48 9.38,-394.48 3.38,-388.48 3.38,-382.48 3.38,-382.48 3.38,-366.08 3.38,-366.08 3.38,-360.08 9.38,-354.08 15.38,-354.08 15.38,-354.08 256.04,-354.08 256.04,-354.08 262.04,-354.08 268.04,-360.08 268.04,-366.08 268.04,-366.08 268.04,-382.48 268.04,-382.48 268.04,-388.48 262.04,-394.48 256.04,-394.48" />
-        <text xml:space="preserve" text-anchor="start" x="50.96" y="-375.93" font-family="Arial" font-weight="bold" font-size="13.00" fill="#173a38">Homeowner styling choice</text>
-        <text xml:space="preserve" text-anchor="start" x="13.46" y="-362.93" font-family="Arial" font-size="13.00" fill="#173a38">Optional colour advice or AI styling study.</text>
+        <path fill="#f6e7df" stroke="#ac7868" stroke-width="1.3" d="M252.66,-616.9C252.66,-616.9 12,-616.9 12,-616.9 6,-616.9 0,-610.9 0,-604.9 0,-604.9 0,-588.5 0,-588.5 0,-582.5 6,-576.5 12,-576.5 12,-576.5 252.66,-576.5 252.66,-576.5 258.66,-576.5 264.66,-582.5 264.66,-588.5 264.66,-588.5 264.66,-604.9 264.66,-604.9 264.66,-610.9 258.66,-616.9 252.66,-616.9" />
+        <text xml:space="preserve" text-anchor="start" x="47.58" y="-598.35" font-family="Arial" font-weight="bold" font-size="13.00" fill="#173a38">Homeowner styling choice</text>
+        <text xml:space="preserve" text-anchor="start" x="10.08" y="-585.35" font-family="Arial" font-size="13.00" fill="#173a38">Optional colour advice or AI styling study.</text>
       </g>
       <g id="node9" class="node">
         <title>finish</title>
-        <path fill="#ebedf6" stroke="#8791ae" stroke-width="1.3" d="M656.29,-394.48C656.29,-394.48 411.12,-394.48 411.12,-394.48 405.12,-394.48 399.12,-388.48 399.12,-382.48 399.12,-382.48 399.12,-366.08 399.12,-366.08 399.12,-360.08 405.12,-354.08 411.12,-354.08 411.12,-354.08 656.29,-354.08 656.29,-354.08 662.29,-354.08 668.29,-360.08 668.29,-366.08 668.29,-366.08 668.29,-382.48 668.29,-382.48 668.29,-388.48 662.29,-394.48 656.29,-394.48" />
-        <text xml:space="preserve" text-anchor="start" x="428.33" y="-375.93" font-family="Arial" font-weight="bold" font-size="13.00" fill="#173a38">Furnished camera · Blender MCP</text>
-        <text xml:space="preserve" text-anchor="start" x="409.21" y="-362.93" font-family="Arial" font-size="13.00" fill="#173a38">Check door heads in the furnished scene.</text>
+        <path fill="#ebedf6" stroke="#8791ae" stroke-width="1.3" d="M640.16,-623.4C640.16,-623.4 408.5,-623.4 408.5,-623.4 402.5,-623.4 396.5,-617.4 396.5,-611.4 396.5,-611.4 396.5,-582 396.5,-582 396.5,-576 402.5,-570 408.5,-570 408.5,-570 640.16,-570 640.16,-570 646.16,-570 652.16,-576 652.16,-582 652.16,-582 652.16,-611.4 652.16,-611.4 652.16,-617.4 646.16,-623.4 640.16,-623.4" />
+        <text xml:space="preserve" text-anchor="start" x="406.96" y="-604.85" font-family="Arial" font-weight="bold" font-size="13.00" fill="#173a38">Dress the whole room · Blender MCP</text>
+        <text xml:space="preserve" text-anchor="start" x="406.58" y="-591.85" font-family="Arial" font-size="13.00" fill="#173a38">Place furniture, plants and accessories.</text>
+        <text xml:space="preserve" text-anchor="start" x="439.96" y="-578.85" font-family="Arial" font-size="13.00" fill="#173a38">Save and reopen the scene.</text>
       </g>
       <g id="edge19" class="edge">
         <title>style-&gt;finish</title>
-        <path fill="none" stroke="#507470" d="M268.51,-374.28C307.55,-374.28 350.43,-374.28 390.12,-374.28" />
-        <polygon fill="#507470" stroke="#507470" points="390.02,-376.73 397.02,-374.28 390.02,-371.83 390.02,-376.73" />
-        <text xml:space="preserve" text-anchor="middle" x="333.58" y="-379.78" font-family="Arial" font-size="10.00" fill="#284b48">items sourced, fit checked</text>
+        <path fill="none" stroke="#507470" d="M265.04,-596.7C304.55,-596.7 347.89,-596.7 387.64,-596.7" />
+        <polygon fill="#507470" stroke="#507470" points="387.55,-599.15 394.55,-596.7 387.55,-594.25 387.55,-599.15" />
+        <text xml:space="preserve" text-anchor="middle" x="330.58" y="-602.2" font-family="Arial" font-size="10.00" fill="#284b48">items sourced, fit checked</text>
       </g>
-      <g id="node15" class="node">
-        <title>fidelity</title>
-        <polygon fill="#f8e9c4" stroke="#ab854a" stroke-width="1.3" points="525.71,-318.08 361.88,-282.32 525.7,-246.56 689.54,-282.32 525.71,-318.08" />
-        <text xml:space="preserve" text-anchor="middle" x="525.71" y="-284.97" font-family="Arial" font-size="13.00" fill="#483817">Lighting, products and</text>
-        <text xml:space="preserve" text-anchor="middle" x="525.71" y="-269.97" font-family="Arial" font-size="13.00" fill="#483817">whole-room palette pass?</text>
+      <g id="node16" class="node">
+        <title>walkthrough</title>
+        <polygon fill="#f8e9c4" stroke="#ab854a" stroke-width="1.3" points="526.33,-534 301,-483.24 526.33,-432.48 751.66,-483.24 526.33,-534" />
+        <text xml:space="preserve" text-anchor="middle" x="526.33" y="-493.39" font-family="Arial" font-size="13.00" fill="#483817">Living in the Room</text>
+        <text xml:space="preserve" text-anchor="middle" x="526.33" y="-478.39" font-family="Arial" font-size="13.00" fill="#483817">Can people enter, sit, rise and leave</text>
+        <text xml:space="preserve" text-anchor="middle" x="526.33" y="-463.39" font-family="Arial" font-size="13.00" fill="#483817">while doors and cupboards open?</text>
       </g>
       <g id="edge20" class="edge">
-        <title>finish-&gt;fidelity</title>
-        <path fill="none" stroke="#507470" d="M531.97,-353.76C531.25,-345.69 530.39,-335.98 529.54,-326.39" />
-        <polygon fill="#507470" stroke="#507470" points="531.99,-326.3 528.93,-319.55 527.11,-326.74 531.99,-326.3" />
+        <title>finish-&gt;walkthrough</title>
+        <path fill="none" stroke="#507470" d="M524.8,-569.57C524.95,-561.41 525.11,-552.05 525.28,-542.6" />
+        <polygon fill="#507470" stroke="#507470" points="527.73,-542.84 525.4,-535.8 522.83,-542.76 527.73,-542.84" />
+        <text xml:space="preserve" text-anchor="middle" x="580.34" y="-548.5" font-family="Arial" font-size="10.00" fill="#284b48">test routes and obstacles</text>
       </g>
       <g id="node10" class="node">
-        <title>ai</title>
-        <path fill="#ebedf6" stroke="#8791ae" stroke-width="1.3" d="M751.04,-210.56C751.04,-210.56 456.38,-210.56 456.38,-210.56 450.38,-210.56 444.38,-204.56 444.38,-198.56 444.38,-198.56 444.38,-182.16 444.38,-182.16 444.38,-176.16 450.38,-170.16 456.38,-170.16 456.38,-170.16 751.04,-170.16 751.04,-170.16 757.04,-170.16 763.04,-176.16 763.04,-182.16 763.04,-182.16 763.04,-198.56 763.04,-198.56 763.04,-204.56 757.04,-210.56 751.04,-210.56" />
-        <text xml:space="preserve" text-anchor="start" x="521.58" y="-192.01" font-family="Arial" font-weight="bold" font-size="13.00" fill="#173a38">Final photo · Image editor</text>
-        <text xml:space="preserve" text-anchor="start" x="454.46" y="-179.01" font-family="Arial" font-size="13.00" fill="#173a38">Use the reviewed camera and product references.</text>
-      </g>
-      <g id="edge24" class="edge">
-        <title>ai-&gt;ai</title>
-        <path fill="none" stroke="#507470" d="M763.59,-195.32C773.24,-194.14 779.04,-192.49 779.04,-190.36 779.04,-188.93 776.42,-187.72 771.77,-186.72" />
-        <polygon fill="#507470" stroke="#507470" points="772.38,-184.33 765.08,-185.64 771.6,-189.17 772.38,-184.33" />
-        <text xml:space="preserve" text-anchor="middle" x="817.66" y="-186.86" font-family="Arial" font-size="10.00" fill="#284b48">retry from camera</text>
-      </g>
-      <g id="node12" class="node">
-        <title>release</title>
-        <path fill="#ccdfcd" stroke="#708d72" stroke-width="1.3" d="M713.04,-134.16C713.04,-134.16 394.38,-134.16 394.38,-134.16 388.38,-134.16 382.38,-128.16 382.38,-122.16 382.38,-122.16 382.38,-92.76 382.38,-92.76 382.38,-86.76 388.38,-80.76 394.38,-80.76 394.38,-80.76 713.04,-80.76 713.04,-80.76 719.04,-80.76 725.04,-86.76 725.04,-92.76 725.04,-92.76 725.04,-122.16 725.04,-122.16 725.04,-128.16 719.04,-134.16 713.04,-134.16" />
-        <text xml:space="preserve" text-anchor="start" x="462.58" y="-115.61" font-family="Arial" font-weight="bold" font-size="13.00" fill="#173a38">Renovation pack · Handover</text>
-        <text xml:space="preserve" text-anchor="start" x="392.46" y="-102.61" font-family="Arial" font-size="13.00" fill="#173a38">Check door heads in the issued photo and room pack.</text>
-        <text xml:space="preserve" text-anchor="start" x="427.33" y="-89.61" font-family="Arial" font-size="13.00" fill="#173a38">Update the checklist and deliver the issue.</text>
-      </g>
-      <g id="edge25" class="edge">
-        <title>ai-&gt;release</title>
-        <path fill="none" stroke="#507470" d="M591.6,-169.78C586.4,-161.35 580.16,-151.27 574.27,-141.74" />
-        <polygon fill="#507470" stroke="#507470" points="576.41,-140.54 570.65,-135.88 572.25,-143.12 576.41,-140.54" />
-        <text xml:space="preserve" text-anchor="middle" x="673.56" y="-148.66" font-family="Arial" font-size="10.00" fill="#284b48">briefed views, operation and colours pass</text>
+        <title>camera</title>
+        <path fill="#ebedf6" stroke="#8791ae" stroke-width="1.3" d="M687.04,-396.48C687.04,-396.48 415.62,-396.48 415.62,-396.48 409.62,-396.48 403.62,-390.48 403.62,-384.48 403.62,-384.48 403.62,-368.08 403.62,-368.08 403.62,-362.08 409.62,-356.08 415.62,-356.08 415.62,-356.08 687.04,-356.08 687.04,-356.08 693.04,-356.08 699.04,-362.08 699.04,-368.08 699.04,-368.08 699.04,-384.48 699.04,-384.48 699.04,-390.48 693.04,-396.48 687.04,-396.48" />
+        <text xml:space="preserve" text-anchor="start" x="458.33" y="-377.93" font-family="Arial" font-weight="bold" font-size="13.00" fill="#173a38">Render the furnished camera</text>
+        <text xml:space="preserve" text-anchor="start" x="413.71" y="-364.93" font-family="Arial" font-size="13.00" fill="#173a38">Inspect door heads, framing and reverse view.</text>
       </g>
       <g id="node17" class="node">
-        <title>assembled</title>
-        <polygon fill="#f8e9c4" stroke="#ab854a" stroke-width="1.3" points="471.62,-44.76 175.79,-44.76 175.79,0 471.62,0 471.62,-44.76" />
-        <text xml:space="preserve" text-anchor="start" x="241.96" y="-30.53" font-family="Arial" font-weight="bold" font-size="13.00" fill="#483817">Whole-house photo issue</text>
-        <text xml:space="preserve" text-anchor="start" x="195.46" y="-17.53" font-family="Arial" font-size="13.00" fill="#483817">Check visible rooms and window coverings</text>
-        <text xml:space="preserve" text-anchor="start" x="180.83" y="-4.53" font-family="Arial" font-size="13.00" fill="#483817">from inside and outside against current designs.</text>
+        <title>fidelity</title>
+        <polygon fill="#f8e9c4" stroke="#ab854a" stroke-width="1.3" points="564.33,-331.08 400.5,-295.32 564.33,-259.56 728.16,-295.32 564.33,-331.08" />
+        <text xml:space="preserve" text-anchor="middle" x="564.33" y="-297.97" font-family="Arial" font-size="13.00" fill="#483817">Lighting, products and</text>
+        <text xml:space="preserve" text-anchor="middle" x="564.33" y="-282.97" font-family="Arial" font-size="13.00" fill="#483817">whole-room palette pass?</text>
       </g>
-      <g id="edge26" class="edge">
+      <g id="edge24" class="edge">
+        <title>camera-&gt;fidelity</title>
+        <path fill="none" stroke="#507470" d="M554.54,-355.76C555.41,-350.49 556.39,-344.57 557.38,-338.56" />
+        <polygon fill="#507470" stroke="#507470" points="559.76,-339.17 558.48,-331.87 554.92,-338.37 559.76,-339.17" />
+      </g>
+      <g id="node11" class="node">
+        <title>ai</title>
+        <path fill="#ebedf6" stroke="#8791ae" stroke-width="1.3" d="M683.41,-223.56C683.41,-223.56 405.25,-223.56 405.25,-223.56 399.25,-223.56 393.25,-217.56 393.25,-211.56 393.25,-211.56 393.25,-182.16 393.25,-182.16 393.25,-176.16 399.25,-170.16 405.25,-170.16 405.25,-170.16 683.41,-170.16 683.41,-170.16 689.41,-170.16 695.41,-176.16 695.41,-182.16 695.41,-182.16 695.41,-211.56 695.41,-211.56 695.41,-217.56 689.41,-223.56 683.41,-223.56" />
+        <text xml:space="preserve" text-anchor="start" x="462.21" y="-205.01" font-family="Arial" font-weight="bold" font-size="13.00" fill="#173a38">Final photo · Image editor</text>
+        <text xml:space="preserve" text-anchor="start" x="407.08" y="-192.01" font-family="Arial" font-size="13.00" fill="#173a38">Compare the photo with the reviewed camera.</text>
+        <text xml:space="preserve" text-anchor="start" x="403.33" y="-179.01" font-family="Arial" font-size="13.00" fill="#173a38">Check door operation and access to each seat.</text>
+      </g>
+      <g id="edge28" class="edge">
+        <title>ai-&gt;ai</title>
+        <path fill="none" stroke="#507470" d="M695.71,-202.81C705.49,-201.42 711.41,-199.44 711.41,-196.86 711.41,-195.13 708.74,-193.67 704.02,-192.47" />
+        <polygon fill="#507470" stroke="#507470" points="704.53,-190.08 697.19,-191.19 703.62,-194.89 704.53,-190.08" />
+        <text xml:space="preserve" text-anchor="middle" x="750.04" y="-193.36" font-family="Arial" font-size="10.00" fill="#284b48">retry from camera</text>
+      </g>
+      <g id="node13" class="node">
+        <title>release</title>
+        <path fill="#ccdfcd" stroke="#708d72" stroke-width="1.3" d="M671.66,-134.16C671.66,-134.16 353,-134.16 353,-134.16 347,-134.16 341,-128.16 341,-122.16 341,-122.16 341,-92.76 341,-92.76 341,-86.76 347,-80.76 353,-80.76 353,-80.76 671.66,-80.76 671.66,-80.76 677.66,-80.76 683.66,-86.76 683.66,-92.76 683.66,-92.76 683.66,-122.16 683.66,-122.16 683.66,-128.16 677.66,-134.16 671.66,-134.16" />
+        <text xml:space="preserve" text-anchor="start" x="421.21" y="-115.61" font-family="Arial" font-weight="bold" font-size="13.00" fill="#173a38">Renovation pack · Handover</text>
+        <text xml:space="preserve" text-anchor="start" x="351.08" y="-102.61" font-family="Arial" font-size="13.00" fill="#173a38">Check door heads in the issued photo and room pack.</text>
+        <text xml:space="preserve" text-anchor="start" x="385.96" y="-89.61" font-family="Arial" font-size="13.00" fill="#173a38">Update the checklist and deliver the issue.</text>
+      </g>
+      <g id="edge29" class="edge">
+        <title>ai-&gt;release</title>
+        <path fill="none" stroke="#507470" d="M534.73,-169.64C531.6,-161.08 528.07,-151.46 524.76,-142.42" />
+        <polygon fill="#507470" stroke="#507470" points="527.15,-141.82 522.44,-136.09 522.55,-143.5 527.15,-141.82" />
+        <text xml:space="preserve" text-anchor="middle" x="620.62" y="-148.66" font-family="Arial" font-size="10.00" fill="#284b48">briefed views, operation and colours pass</text>
+      </g>
+      <g id="node19" class="node">
+        <title>assembled</title>
+        <polygon fill="#f8e9c4" stroke="#ab854a" stroke-width="1.3" points="428.25,-44.76 132.42,-44.76 132.42,0 428.25,0 428.25,-44.76" />
+        <text xml:space="preserve" text-anchor="start" x="198.58" y="-30.53" font-family="Arial" font-weight="bold" font-size="13.00" fill="#483817">Whole-house photo issue</text>
+        <text xml:space="preserve" text-anchor="start" x="152.08" y="-17.53" font-family="Arial" font-size="13.00" fill="#483817">Check visible rooms and window coverings</text>
+        <text xml:space="preserve" text-anchor="start" x="137.46" y="-4.53" font-family="Arial" font-size="13.00" fill="#483817">from inside and outside against current designs.</text>
+      </g>
+      <g id="edge30" class="edge">
         <title>release-&gt;assembled</title>
-        <path fill="none" stroke="#507470" d="M480.93,-80.17C452.54,-69.92 420.16,-58.22 392.2,-48.12" />
-        <polygon fill="#507470" stroke="#507470" points="393.28,-45.91 385.86,-45.83 391.61,-50.51 393.28,-45.91" />
-        <text xml:space="preserve" text-anchor="middle" x="490.98" y="-59.26" font-family="Arial" font-size="10.00" fill="#284b48">all room packs ready</text>
+        <path fill="none" stroke="#507470" d="M438.92,-80.17C410.29,-69.92 377.63,-58.22 349.42,-48.12" />
+        <polygon fill="#507470" stroke="#507470" points="350.43,-45.88 343.01,-45.83 348.78,-50.49 350.43,-45.88" />
+        <text xml:space="preserve" text-anchor="middle" x="448.66" y="-59.26" font-family="Arial" font-size="10.00" fill="#284b48">all room packs ready</text>
       </g>
       <g id="edge8" class="edge">
         <title>fixed:w-&gt;shell:w</title>
-        <path fill="none" stroke="#507470" d="M225.23,-788.68C225.23,-788.68 215.71,-824.44 215.71,-824.44 215.71,-824.44 199.25,-860.44 199.25,-860.44 199.25,-860.44 198.86,-870.87 198.57,-878.69" />
-        <polygon fill="#507470" stroke="#507470" points="196.12,-878.54 198.31,-885.63 201.02,-878.72 196.12,-878.54" />
-        <text xml:space="preserve" text-anchor="middle" x="238.41" y="-838.94" font-family="Arial" font-size="10.00" fill="#284b48">correct fabric</text>
+        <path fill="none" stroke="#507470" d="M410.86,-1017.6C410.86,-1017.6 401.33,-1053.36 401.33,-1053.36 401.33,-1053.36 384.88,-1089.36 384.88,-1089.36 384.88,-1089.36 384.48,-1099.79 384.19,-1107.61" />
+        <polygon fill="#507470" stroke="#507470" points="381.75,-1107.46 383.93,-1114.55 386.64,-1107.64 381.75,-1107.46" />
+        <text xml:space="preserve" text-anchor="middle" x="424.04" y="-1067.86" font-family="Arial" font-size="10.00" fill="#284b48">correct fabric</text>
       </g>
       <g id="edge10" class="edge">
         <title>fixed-&gt;study</title>
-        <path fill="none" stroke="#507470" d="M451.35,-788.68C484.05,-788.68 519.82,-788.68 552.72,-788.68" />
-        <polygon fill="#507470" stroke="#507470" points="552.51,-791.13 559.51,-788.68 552.51,-786.23 552.51,-791.13" />
-        <text xml:space="preserve" text-anchor="middle" x="505.39" y="-794.18" font-family="Arial" font-size="10.00" fill="#284b48">pass + study in scope</text>
+        <path fill="none" stroke="#507470" d="M636.97,-1017.6C669.68,-1017.6 705.44,-1017.6 738.35,-1017.6" />
+        <polygon fill="#507470" stroke="#507470" points="738.14,-1020.05 745.14,-1017.6 738.14,-1015.15 738.14,-1020.05" />
+        <text xml:space="preserve" text-anchor="middle" x="691.02" y="-1023.1" font-family="Arial" font-size="10.00" fill="#284b48">pass + study in scope</text>
       </g>
       <g id="edge9" class="edge">
         <title>fixed-&gt;options</title>
-        <path fill="none" stroke="#507470" d="M389.35,-768.72C445.34,-747.76 527.71,-716.92 527.71,-716.92 527.71,-716.92 537.71,-615.4 537.71,-615.4 537.71,-615.4 537.71,-603.4 537.71,-603.4 537.71,-603.4 534.64,-600.89 530.09,-597.16" />
-        <polygon fill="#507470" stroke="#507470" points="531.79,-595.39 524.82,-592.84 528.69,-599.18 531.79,-595.39" />
-        <text xml:space="preserve" text-anchor="middle" x="546.94" y="-668.66" font-family="Arial" font-size="10.00" fill="#284b48">pass</text>
+        <path fill="none" stroke="#507470" d="M574.98,-997.64C630.96,-976.68 713.33,-945.84 713.33,-945.84 713.33,-945.84 723.33,-844.32 723.33,-844.32 723.33,-844.32 723.33,-832.32 723.33,-832.32 723.33,-832.32 720.26,-829.81 715.71,-826.08" />
+        <polygon fill="#507470" stroke="#507470" points="717.42,-824.31 710.45,-821.76 714.31,-828.1 717.42,-824.31" />
+        <text xml:space="preserve" text-anchor="middle" x="732.57" y="-897.58" font-family="Arial" font-size="10.00" fill="#284b48">pass</text>
       </g>
-      <g id="node16" class="node">
+      <g id="node18" class="node">
         <title>climate</title>
-        <polygon fill="#f8e9c4" stroke="#ab854a" stroke-width="1.3" points="330.71,-716.92 141.38,-672.16 330.7,-627.4 520.04,-672.16 330.71,-716.92" />
-        <text xml:space="preserve" text-anchor="start" x="268.83" y="-680.31" font-family="Arial" font-weight="bold" font-size="13.00" fill="#483817">Highly glazed room</text>
-        <text xml:space="preserve" text-anchor="start" x="241.08" y="-667.31" font-family="Arial" font-size="13.00" fill="#483817">Trees and roofs, seated glare,</text>
-        <text xml:space="preserve" text-anchor="start" x="242.96" y="-654.31" font-family="Arial" font-size="13.00" fill="#483817">summer heat and winter cold.</text>
+        <polygon fill="#f8e9c4" stroke="#ab854a" stroke-width="1.3" points="516.33,-945.84 327,-901.08 516.33,-856.32 705.66,-901.08 516.33,-945.84" />
+        <text xml:space="preserve" text-anchor="start" x="454.46" y="-909.23" font-family="Arial" font-weight="bold" font-size="13.00" fill="#483817">Highly glazed room</text>
+        <text xml:space="preserve" text-anchor="start" x="426.71" y="-896.23" font-family="Arial" font-size="13.00" fill="#483817">Trees and roofs, seated glare,</text>
+        <text xml:space="preserve" text-anchor="start" x="428.58" y="-883.23" font-family="Arial" font-size="13.00" fill="#483817">summer heat and winter cold.</text>
       </g>
       <g id="edge12" class="edge">
         <title>fixed-&gt;climate</title>
-        <path fill="none" stroke="#507470" d="M336.3,-753.32C335.69,-744.45 335,-734.71 334.34,-725.16" />
-        <polygon fill="#507470" stroke="#507470" points="336.79,-725.17 333.86,-718.36 331.91,-725.51 336.79,-725.17" />
-        <text xml:space="preserve" text-anchor="middle" x="379.3" y="-731.42" font-family="Arial" font-size="10.00" fill="#284b48">exposure drives use</text>
+        <path fill="none" stroke="#507470" d="M521.93,-982.24C521.31,-973.37 520.63,-963.63 519.96,-954.08" />
+        <polygon fill="#507470" stroke="#507470" points="522.42,-954.09 519.49,-947.28 517.53,-954.43 522.42,-954.09" />
+        <text xml:space="preserve" text-anchor="middle" x="564.92" y="-960.34" font-family="Arial" font-size="10.00" fill="#284b48">exposure drives use</text>
       </g>
       <g id="edge15" class="edge">
         <title>living-&gt;decide</title>
-        <path fill="none" stroke="#507470" d="M474.7,-466.24C482.31,-466.24 489.96,-466.24 497.6,-466.24" />
-        <polygon fill="#507470" stroke="#507470" points="497.37,-468.69 504.37,-466.24 497.37,-463.79 497.37,-468.69" />
-        <text xml:space="preserve" text-anchor="middle" x="489.21" y="-471.74" font-family="Arial" font-size="10.00" fill="#284b48">hold</text>
+        <path fill="none" stroke="#507470" d="M654.17,-695.16C667.3,-695.16 680.66,-695.16 693.9,-695.16" />
+        <polygon fill="#507470" stroke="#507470" points="693.62,-697.61 700.62,-695.16 693.62,-692.71 693.62,-697.61" />
+        <text xml:space="preserve" text-anchor="middle" x="677.33" y="-700.66" font-family="Arial" font-size="10.00" fill="#284b48">hold</text>
       </g>
       <g id="edge18" class="edge">
         <title>living-&gt;style</title>
-        <path fill="none" stroke="#507470" d="M285,-442.77C255.07,-429.24 217.05,-412.05 186.86,-398.41" />
-        <polygon fill="#507470" stroke="#507470" points="188.13,-396.29 180.75,-395.64 186.12,-400.76 188.13,-396.29" />
-        <text xml:space="preserve" text-anchor="middle" x="261.86" y="-408.98" font-family="Arial" font-size="10.00" fill="#284b48">look undecided</text>
+        <path fill="none" stroke="#507470" d="M445.59,-676.8C382.12,-660.78 287.57,-636.9 218.96,-619.57" />
+        <polygon fill="#507470" stroke="#507470" points="219.58,-617.2 212.19,-617.87 218.38,-621.96 219.58,-617.2" />
+        <text xml:space="preserve" text-anchor="middle" x="355.96" y="-637.9" font-family="Arial" font-size="10.00" fill="#284b48">look undecided</text>
       </g>
       <g id="edge17" class="edge">
         <title>living-&gt;finish</title>
-        <path fill="none" stroke="#507470" d="M384.41,-442.77C414.34,-429.24 452.36,-412.05 482.55,-398.41" />
-        <polygon fill="#507470" stroke="#507470" points="483.29,-400.76 488.66,-395.64 481.28,-396.29 483.29,-400.76" />
-        <text xml:space="preserve" text-anchor="middle" x="505.28" y="-408.98" font-family="Arial" font-size="10.00" fill="#284b48">pass + agreed look</text>
+        <path fill="none" stroke="#507470" d="M517.88,-659.88C518.81,-650.93 519.81,-641.29 520.74,-632.32" />
+        <polygon fill="#507470" stroke="#507470" points="523.16,-632.71 521.45,-625.49 518.29,-632.2 523.16,-632.71" />
+        <text xml:space="preserve" text-anchor="middle" x="561.85" y="-637.9" font-family="Arial" font-size="10.00" fill="#284b48">pass + agreed look</text>
       </g>
       <g id="edge22" class="edge">
-        <title>fidelity-&gt;style</title>
-        <path fill="none" stroke="#507470" d="M446.95,-301.49C384.07,-315.99 295.78,-336.36 229.29,-351.69" />
-        <polygon fill="#507470" stroke="#507470" points="229.04,-349.24 222.77,-353.2 230.14,-354.01 229.04,-349.24" />
-        <text xml:space="preserve" text-anchor="middle" x="368.14" y="-332.58" font-family="Arial" font-size="10.00" fill="#284b48">ask about open choice</text>
+        <title>walkthrough-&gt;options</title>
+        <path fill="none" stroke="#507470" stroke-dasharray="5,2" d="M591.41,-519.81C616.53,-533.54 639.33,-546 639.33,-546 639.33,-546 660.33,-570 660.33,-570 660.33,-570 669.94,-695.81 674.71,-758.27" />
+        <polygon fill="#507470" stroke="#507470" points="672.26,-758.34 675.23,-765.14 677.14,-757.97 672.26,-758.34" />
+        <text xml:space="preserve" text-anchor="middle" x="713" y="-637.9" font-family="Arial" font-size="10.00" fill="#284b48">layout or door change</text>
       </g>
       <g id="edge21" class="edge">
-        <title>fidelity:e-&gt;finish:e</title>
-        <path fill="none" stroke="#507470" d="M693.34,-282.32C693.34,-282.32 692.34,-318.08 692.34,-318.08 692.34,-318.08 678.83,-351.02 672.49,-366.47" />
-        <polygon fill="#507470" stroke="#507470" points="670.25,-365.47 669.86,-372.88 674.78,-367.33 670.25,-365.47" />
-        <text xml:space="preserve" text-anchor="middle" x="723.74" y="-332.58" font-family="Arial" font-size="10.00" fill="#284b48">fix scene or item</text>
+        <title>walkthrough-&gt;finish</title>
+        <path fill="none" stroke="#507470" d="M481.63,-524.4C468.49,-536.2 457.58,-546 457.58,-546 457.58,-546 457.58,-558 457.58,-558 457.58,-558 463.07,-561.1 470.91,-565.53" />
+        <polygon fill="#507470" stroke="#507470" points="469.35,-567.46 476.65,-568.77 471.76,-563.2 469.35,-567.46" />
+        <text xml:space="preserve" text-anchor="middle" x="489.46" y="-548.5" font-family="Arial" font-size="10.00" fill="#284b48">move obstacle</text>
       </g>
       <g id="edge23" class="edge">
+        <title>walkthrough-&gt;camera</title>
+        <path fill="none" stroke="#507470" d="M537.66,-434.67C540.05,-424.64 542.49,-414.37 544.65,-405.34" />
+        <polygon fill="#507470" stroke="#507470" points="547.02,-405.96 546.25,-398.59 542.25,-404.83 547.02,-405.96" />
+        <text xml:space="preserve" text-anchor="middle" x="586.74" y="-410.98" font-family="Arial" font-size="10.00" fill="#284b48">walkthrough passes</text>
+      </g>
+      <g id="edge26" class="edge">
+        <title>fidelity-&gt;style</title>
+        <path fill="none" stroke="#507470" d="M502.84,-318.06C454.52,-335.15 395.33,-356.08 395.33,-356.08 395.33,-356.08 260.33,-432.48 260.33,-432.48 260.33,-432.48 189,-523.43 152.84,-569.55" />
+        <polygon fill="#507470" stroke="#507470" points="151.1,-567.8 148.7,-574.82 154.95,-570.82 151.1,-567.8" />
+        <text xml:space="preserve" text-anchor="middle" x="351.08" y="-410.98" font-family="Arial" font-size="10.00" fill="#284b48">ask about open choice</text>
+      </g>
+      <g id="edge25" class="edge">
+        <title>fidelity:e-&gt;finish:e</title>
+        <path fill="none" stroke="#507470" d="M731.97,-295.32C731.97,-295.32 759.33,-432.48 759.33,-432.48 759.33,-432.48 759.33,-534 759.33,-534 759.33,-534 684.44,-578.22 660.46,-592.39" />
+        <polygon fill="#507470" stroke="#507470" points="659.24,-590.26 654.46,-595.93 661.74,-594.48 659.24,-590.26" />
+        <text xml:space="preserve" text-anchor="middle" x="793.25" y="-410.98" font-family="Arial" font-size="10.00" fill="#284b48">fix scene or item</text>
+      </g>
+      <g id="edge27" class="edge">
         <title>fidelity-&gt;ai</title>
-        <path fill="none" stroke="#507470" d="M551.25,-251.86C560.98,-240.64 571.98,-227.95 581.39,-217.1" />
-        <polygon fill="#507470" stroke="#507470" points="583,-218.98 585.73,-212.09 579.29,-215.77 583,-218.98" />
-        <text xml:space="preserve" text-anchor="middle" x="618.25" y="-225.06" font-family="Arial" font-size="10.00" fill="#284b48">visual checks pass</text>
+        <path fill="none" stroke="#507470" d="M557.33,-260.58C555.44,-251.43 553.38,-241.51 551.48,-232.32" />
+        <polygon fill="#507470" stroke="#507470" points="553.9,-231.97 550.08,-225.61 549.11,-232.96 553.9,-231.97" />
+        <text xml:space="preserve" text-anchor="middle" x="596.33" y="-238.06" font-family="Arial" font-size="10.00" fill="#284b48">visual checks pass</text>
       </g>
       <g id="edge13" class="edge">
         <title>climate-&gt;options</title>
-        <path fill="none" stroke="#507470" d="M380.32,-638.66C400.82,-625.23 424.47,-609.74 444.68,-596.5" />
-        <polygon fill="#507470" stroke="#507470" points="445.9,-598.63 450.41,-592.75 443.22,-594.53 445.9,-598.63" />
-        <text xml:space="preserve" text-anchor="middle" x="482.11" y="-605.9" font-family="Arial" font-size="10.00" fill="#284b48">return seasonal findings</text>
+        <path fill="none" stroke="#507470" d="M565.95,-867.58C586.45,-854.15 610.09,-838.66 630.31,-825.42" />
+        <polygon fill="#507470" stroke="#507470" points="631.53,-827.55 636.04,-821.67 628.84,-823.45 631.53,-827.55" />
+        <text xml:space="preserve" text-anchor="middle" x="667.74" y="-834.82" font-family="Arial" font-size="10.00" fill="#284b48">return seasonal findings</text>
       </g>
-      <g id="edge27" class="edge">
+      <g id="edge31" class="edge">
         <title>assembled-&gt;finish</title>
-        <path fill="none" stroke="#507470" stroke-dasharray="5,2" d="M319.76,-45.21C315.32,-69.82 308.71,-106.46 308.71,-106.46 308.71,-283.32 308.71,-283.32 308.71,-283.32 308.71,-283.32 321.71,-342.08 321.71,-342.08 321.71,-342.08 352.49,-346.61 390.61,-352.22" />
-        <polygon fill="#507470" stroke="#507470" points="390.06,-354.62 397.34,-353.21 390.78,-349.77 390.06,-354.62" />
-        <text xml:space="preserve" text-anchor="middle" x="368.33" y="-186.86" font-family="Arial" font-size="10.00" fill="#284b48">correct incomplete sightline</text>
+        <path fill="none" stroke="#507470" stroke-dasharray="5,2" d="M276.39,-45.21C271.94,-69.82 265.33,-106.46 265.33,-106.46 265.33,-296.32 265.33,-296.32 265.33,-296.32 265.33,-296.32 293.33,-534 293.33,-534 293.33,-534 357.06,-551.02 417.57,-567.18" />
+        <polygon fill="#507470" stroke="#507470" points="416.84,-569.52 424.23,-568.96 418.1,-564.79 416.84,-569.52" />
+        <text xml:space="preserve" text-anchor="middle" x="328.97" y="-291.82" font-family="Arial" font-size="10.00" fill="#284b48">correct incomplete sightline</text>
       </g>
     </g>
   </g>

@@ -101,7 +101,7 @@ NODE_REVIEWS = {
     "intake": "Brief", "checklist": "Brief", "survey": "Existing CAD",
     "shell": "Existing CAD", "fixed": "Existing CAD", "study": "Furniture study",
     "options": "Proposed CAD", "living": "Proposed CAD", "decide": "Scope",
-    "style": "Products", "finish": "Blender", "fidelity": "Products", "ai": "Final AI",
+    "style": "Products", "finish": "Blender", "walkthrough": "Blender", "camera": "Blender", "fidelity": "Products", "ai": "Final AI",
     "decor": "Decorator", "release": "Handover", "assembled": "Handover",
     "climate": "Study-glazing",
 }
@@ -304,7 +304,7 @@ def render(raw_map, detailed, preview=False):
     element(result, "desc", id="description").text = (
         "Room design decisions with correction loops. The full guide includes each stage, homeowner questions, "
         "specialist triggers, scoped issues and a worked support-beam example." if detailed else
-        "A quick reference for the renovation-pack, FreeCAD and Blender skills, including the return paths at three reviews.")
+        "A quick reference for the renovation-pack, FreeCAD and Blender skills, including the occupied walkthrough and correction paths.")
     element(result, "style").text = (
         "a { cursor: pointer } a:focus, a:hover { outline: 2px solid #165D52 } "
         "a:hover .node text, a:focus .node text { text-decoration: underline }"
