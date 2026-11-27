@@ -4,6 +4,7 @@ import re
 import unittest
 import xml.etree.ElementTree as ET
 
+from tools.check_workflow_changes import coverage_problems
 from house import GATES
 
 
@@ -13,6 +14,20 @@ LINK = "{http://www.w3.org/1999/xlink}href"
 
 
 class WorkflowDiagrams(unittest.TestCase):
+    def test_changed_workflow_requires_its_own_published_map(self):
+        room = {"skills/living-in-the-room/SKILL.md", "room_by_room/house_walkthrough.py"}
+        pack = {"house.py", "skills/pack-delivery/SKILL.md"}
+        map_changes = {"docs/workflow.dot", "docs/workflow.svg"}
+        pack_changes = {"docs/pack-delivery.dot", "docs/pack-delivery.svg"}
+        self.assertTrue(coverage_problems(room))
+        self.assertTrue(coverage_problems(room | {"docs/workflow.dot"}))
+        self.assertTrue(coverage_problems(room | {"docs/workflow.svg"}))
+        self.assertTrue(coverage_problems(room | pack_changes))
+        self.assertTrue(coverage_problems(pack | map_changes))
+        self.assertFalse(coverage_problems(room | map_changes))
+        self.assertFalse(coverage_problems(pack | pack_changes))
+        self.assertFalse(coverage_problems({"README.md", "tests/test_house.py"}))
+
     def test_both_maps_keep_the_room_decisions_and_correction_loops(self):
         maps = [ET.parse(DOCS / name) for name in ("workflow.svg", "workflow-quick.svg", "workflow-preview.svg")]
         expected = {

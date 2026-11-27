@@ -1,11 +1,11 @@
 """Render the full house workflow and its quick reference from their editable sources."""
 import argparse
 import base64
-import os
 from pathlib import Path
 import re
 import shutil
 import struct
+import tempfile
 import subprocess
 from textwrap import wrap
 import xml.etree.ElementTree as ET
@@ -84,12 +84,10 @@ def specialist_rows():
 
 
 def map_image(source="workflow.dot"):
-    dot = shutil.which("dot")
-    if not dot and os.name == "nt":
-        dot = Path(os.environ.get("ProgramFiles", "C:/Program Files")) / "Graphviz/bin/dot.exe"
-    if not dot or not Path(dot).is_file():
-        raise SystemExit("Install Graphviz and put dot on PATH to rebuild the workflow diagrams.")
-    return subprocess.check_output([str(dot), "-Tsvg", str(HERE / source)])
+    node = shutil.which("node")
+    if not node or not (HERE / "graphviz/node_modules/@viz-js/viz").is_dir():
+        raise SystemExit("Install Node.js and run npm ci --prefix docs/graphviz --ignore-scripts.")
+    return subprocess.check_output([node, str(HERE / "graphviz/render.mjs"), str(HERE / source)])
 
 
 def slug(value):
@@ -467,18 +465,35 @@ def specialist_diagrams():
     return "\n".join(out)
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output-dir", type=Path, default=HERE)
-    args = parser.parse_args()
-    args.output_dir.mkdir(exist_ok=True, parents=True)
-    (args.output_dir / "pack-delivery.svg").write_bytes(map_image("pack-delivery.dot"))
-    (args.output_dir / "specialist-workflows.md").write_text(specialist_diagrams(), encoding="utf-8")
+def write_outputs(output_dir):
+    output_dir.mkdir(exist_ok=True, parents=True)
+    (output_dir / "pack-delivery.svg").write_bytes(map_image("pack-delivery.dot"))
+    (output_dir / "specialist-workflows.md").write_text(specialist_diagrams(), encoding="utf-8")
     raw_map = map_image()
     for name, detailed in (("workflow.svg", True), ("workflow-quick.svg", False)):
         data = render(raw_map, detailed)
-        (args.output_dir / name).write_bytes(data)
-    (args.output_dir / "workflow-preview.svg").write_bytes(render(raw_map, False, preview=True))
+        (output_dir / name).write_bytes(data)
+    (output_dir / "workflow-preview.svg").write_bytes(render(raw_map, False, preview=True))
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output-dir", type=Path, default=HERE)
+    parser.add_argument("--check", action="store_true", help="Compare every generated diagram with the committed copy")
+    args = parser.parse_args()
+    if not args.check:
+        write_outputs(args.output_dir)
+        return
+    with tempfile.TemporaryDirectory() as tmp:
+        target = Path(tmp)
+        write_outputs(target)
+        stale = []
+        for generated in sorted(target.iterdir()):
+            published = args.output_dir / generated.name
+            if not published.is_file() or published.read_text(encoding="utf-8") != generated.read_text(encoding="utf-8"):
+                stale.append(generated.name)
+        if stale:
+            raise SystemExit("Run python docs/render_workflow.py and commit the regenerated files: " + ", ".join(stale))
 
 
 if __name__ == "__main__":
