@@ -15,7 +15,7 @@
     "rights": "Created for public redistribution with the fictional Room by Room example."
   },
   "examples/conservatory/page.html": {
-    "sha256": "735a860d0df66bf72bb5214cbf0be70d898efcf859320b9e6fa42a0b77a49cd5",
+    "sha256": "faa922c78202b62ee8bbe0ced56124c8d3c2853811bc50d4cfe284e11fd9deb7",
     "origin": "Public Orchard Fold homepage template.",
     "rights": "Created for public redistribution with the fictional Room by Room example."
   },
@@ -65,7 +65,7 @@
     "rights": "The source is the original toolkit render. No listing photographs, retailer images or third-party textures were supplied. Included for redistribution with the toolkit."
   },
   "examples/furnished-room/site/index.html": {
-    "sha256": "494ec8afdc3b776c217424e5951b3a7511a56d6d5caa1abb9baddd8026619f72",
+    "sha256": "29c1f9691c4831b32e59be8a88ed804497cd5522dafc2d87b62c20c615111223",
     "origin": "Original public example Pages template.",
     "rights": "Original toolkit example for public redistribution. No external photographs or purchased assets."
   },
