@@ -1,0 +1,5 @@
+interface:
+  display_name: "Blender House Walkthrough"
+  short_description: "Walk through a house and see it from a chosen seat"
+policy:
+  allow_implicit_invocation: false

@@ -16,6 +16,8 @@ Run the study when its answer could change the design. If a deciding measurement
 
 **People, rooms and finishes**
 
+On request, the [Blender house walkthrough](../skills/blender-house-walkthrough/SKILL.md) lets a homeowner follow a familiar journey and look around from their chosen seat.
+
 [Access](#access) · [Sightlines](#sightlines) · [Acoustics](#acoustics) · [Colour](#colour) · [Furnishing](#furnishing) · [Finishes](#finishes)
 
 **Buying and building**
