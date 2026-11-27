@@ -55,6 +55,38 @@ jobs:
           ./gitleaks git "$GITHUB_WORKSPACE" --log-opts='--no-textconv --all HEAD --full-history -m' --redact --no-banner
           ./gitleaks dir "$GITHUB_WORKSPACE" --max-archive-depth=3 --redact --no-banner
 
+  room-assets:
+    name: Blender room assets
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install the pinned Blender release
+        shell: bash
+        working-directory: ${{ runner.temp }}
+        run: |
+          set -euo pipefail
+          archive=blender-5.3.0-linux-x64.tar.xz
+          curl --fail --silent --show-error --location --retry 3 \
+            "https://download.blender.org/release/Blender5.3/$archive" -o "$archive"
+          echo "dacb8264197a3f7fda6001285a5a506fc97ee943881261c2c3bd63c882f22e05  $archive" | sha256sum --check --status
+          tar -xJf "$archive"
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends \
+            libegl1 libgl1 libsm6 libxfixes3 libxi6 libxkbcommon0 libxrender1 libxxf86vm1
+          echo "BLENDER=$RUNNER_TEMP/blender-5.3.0-linux-x64/blender" >> "$GITHUB_ENV"
+      - name: Build every catalogue asset and read its size back
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$BLENDER" --version
+          python3 -m unittest discover -s tests -p test_room_assets.py -v 2>&1 | tee "$RUNNER_TEMP/room-assets.log"
+          if grep -q "skipped" "$RUNNER_TEMP/room-assets.log"; then
+            echo "The geometry tests were skipped: Blender did not run" >&2
+            exit 1
+          fi
+
   dependencies:
     name: Dependency audit (${{ matrix.suite }})
     runs-on: ubuntu-latest
