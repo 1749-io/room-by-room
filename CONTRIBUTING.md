@@ -35,6 +35,7 @@ Use a new output directory for each replay. Open the printed `Start here.html`. 
 | Furniture options or a furnished camera | [Blender interiors](skills/blender-interiors/SKILL.md) | Permitted study returned to CAD, or product-matched camera and scene read-back |
 | A schedule, drawing, room, audience edition or house ZIP | [Pack delivery](skills/pack-delivery/SKILL.md) | Frozen commission, checked standalone files and a reader receipt |
 | Existing and proposed property brochures | [Property comparison](skills/property-comparison-pack/SKILL.md) | Signed visual placements across the two tours and printed pages |
+| A film or clip about the toolkit | [Room by Room film](skills/room-by-room-film/SKILL.md) | A fictional example run, a figure-to-source table and the checked delivered file |
 
 ## Verify a contribution
 

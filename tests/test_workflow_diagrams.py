@@ -27,6 +27,9 @@ class WorkflowDiagrams(unittest.TestCase):
         self.assertFalse(coverage_problems(room | map_changes))
         self.assertFalse(coverage_problems(pack | pack_changes))
         self.assertFalse(coverage_problems({"README.md", "tests/test_house.py"}))
+        film = {"skills/room-by-room-film/SKILL.md", "skills/room-by-room-film/references/brand.md"}
+        self.assertFalse(coverage_problems(film))
+        self.assertTrue(coverage_problems(film | room))
 
     def test_both_maps_keep_the_room_decisions_and_correction_loops(self):
         maps = [ET.parse(DOCS / name) for name in ("workflow.svg", "workflow-quick.svg", "workflow-preview.svg")]
