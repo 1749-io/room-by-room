@@ -77,18 +77,47 @@ def reposition(geom, change, centre):
     return translate(turned, delta.x, delta.y)
 
 
+def measure_recorded_path(floor, barriers, journey, result):
+    samples = journey["walked_path_mm"]
+    if not isinstance(samples, list) or len(samples) < 2:
+        raise ValueError("Supply at least two ordered walking positions")
+    coords = [point(sample).coords[0] for sample in samples]
+    if coords[0] != tuple(journey["start"]) or coords[-1] != tuple(journey["end"]):
+        raise ValueError("Recorded walking positions must match the journey endpoints")
+    path = LineString(coords)
+    if path.length == 0:
+        raise ValueError("A recorded walking leg must contain movement")
+    boundaries = {"floor edge": floor.boundary, **barriers}
+    name = min(boundaries, key=lambda key: path.distance(boundaries[key]))
+    gap = 2 * path.distance(boundaries[name])
+    pinch, _ = nearest_points(path, boundaries[name])
+    width, error = result["required_mm"], result["uncertainty_mm"]
+    fits = floor.covers(path) and gap >= width + error
+    borderline = floor.covers(path) and gap > 0 and gap >= width - error
+    status = "restricted"
+    if fits and not result["measurements"]:
+        status = "fits"
+    elif borderline:
+        status = "measure"
+    return dict(result, status=status, path_kind="recorded", tested_mm=math.floor(gap), path_mm=coords,
+                length_mm=round(path.length), pinch_mm=list(pinch.coords[0]), beside=name,
+                path_clearance_mm=math.floor(gap), finding="Checked the supplied walking trajectory")
+
+
 def measure(floor, obstacles, journey, movements):
     width = number(journey["width_mm"], "Required width")
     uncertainty = number(journey["uncertainty_mm"], "Overall width uncertainty")
     if width <= 0 or uncertainty < 0:
         raise ValueError("A journey needs positive width and non-negative uncertainty")
     start, end = point(journey["start"]), point(journey["end"])
-    if start.equals(end):
+    if start.equals(end) and "walked_path_mm" not in journey:
         raise ValueError("The start and destination must be distinct")
     if not floor.covers(start) or not floor.covers(end):
         raise ValueError("A journey endpoint lies outside the exported floor")
     barriers = dict(obstacles)
     for name, value in journey.get("in_use", {}).items():
+        if name == "floor edge":
+            raise ValueError("Reserve the name 'floor edge' for the floor boundary")
         if name in barriers:
             raise ValueError(f"Duplicate occupied envelope: {name}")
         if isinstance(value, dict) and "attached_to" in value:
@@ -102,12 +131,14 @@ def measure(floor, obstacles, journey, movements):
             barriers[name] = envelope
         else:
             barriers[name] = footprint(value, name)
-    free = floor.difference(unary_union(list(barriers.values())))
     result = {"status": "restricted", "required_mm": width, "uncertainty_mm": uncertainty,
               "tested_mm": 0, "path_mm": [], "measurements": journey.get("measurements", [])}
     if not isinstance(result["measurements"], list) or not all(
             isinstance(m, str) and m.strip() for m in result["measurements"]):
         raise ValueError("Outstanding measurements must be a list of named checks")
+    if "walked_path_mm" in journey:
+        return measure_recorded_path(floor, barriers, journey, result)
+    free = floor.difference(unary_union(list(barriers.values())))
     if corridor(free, start, end, 0) is None:
         result["finding"] = "Disconnected in the modelled use state"
         if result["measurements"] or uncertainty:

@@ -107,6 +107,7 @@ NODE_REVIEWS = {
 # Same order as the specialist request table. Match the wording as a guard
 # against silently attaching a new request to the wrong review.
 STUDIES = (
+    ("“Take me through", "House walkthrough", "Blender"),
     ("A conservatory", "Glazing", "Proposed CAD"),
     ("“Can we open up", "Structural openings", "Opening enquiry"),
     ("“Could the sink", "Services", "Existing CAD"),
@@ -402,6 +403,7 @@ def render(raw_map, detailed, preview=False):
 # Short labels for GitHub's diagrams. The evidence and return instructions below
 # each diagram come from the same specialist guide used by the interactive SVG.
 SPECIALIST_FLOWS = {
+    "House walkthrough": ("Homeowner requests a first-person tour", "Record the walking path and seated view in Blender", "Check body clearance and timed door movements", "Issue the checked tour"),
     "Glazing": ("Glazed room enters review", "QGIS or LiDAR for obstructions", "Sun Position or pvlib for exposure", "EnergyPlus if thermal inputs support it", "Review seat, shade and ventilation"),
     "Structural openings": ("Wall, opening or post changes", "FreeCAD BIM and TechDraw section", "Engineer verifies loads, bearings and supports", "Return finished supports to occupied CAD"),
     "Services": ("Fitting, duct or drain moves", "FreeCAD section and supplied IFC via IfcOpenShell", "Installer verifies connection and fall", "Update fit and order hold"),
@@ -427,7 +429,7 @@ def specialist_diagrams():
     groups = {
         "Building and site": ("Structural openings", "Services", "Levels and drainage", "Consent"),
         "Sun, glazing and energy": ("Glazing", "Sun and shade", "Thermal comfort", "Solar panels"),
-        "People, rooms and finishes": ("Access", "Sightlines", "Acoustics", "Colour", "Furnishing", "Finishes"),
+        "People, rooms and finishes": ("House walkthrough", "Access", "Sightlines", "Acoustics", "Colour", "Furnishing", "Finishes"),
         "Buying and building": ("Valuation", "Tenders", "Occupation", "Survey returns"),
     }
     rows = specialist_rows()
@@ -447,6 +449,7 @@ def specialist_diagrams():
     for name in grouped:
         trigger, response, result = by_name[name]
         response = response.replace("(valuation.md)", "(../skills/renovation-pack/references/valuation.md)")
+        response = response.replace("(../../blender-house-walkthrough/", "(../skills/blender-house-walkthrough/")
         result = result.replace("(glazed-rooms.md)", "(../skills/renovation-pack/references/glazed-rooms.md)")
         out.extend([f"## {name}", "", trigger, "", "```mermaid", "flowchart TD"])
         for i, caption in enumerate(SPECIALIST_FLOWS[name]):

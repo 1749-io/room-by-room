@@ -589,6 +589,8 @@ def main():
     routes.add_argument("--input-revision", required=True)
     routes.add_argument("--option", help="Named study option or baseline")
     routes.add_argument("--json", action="store_true", help="Include paths and pinch coordinates for CAD")
+    routes.add_argument("--require-walked-path", action="store_true",
+                        help="Fail unless every journey supplies a recorded trajectory that fits")
     args=parser.parse_args()
     if args.houses_dir:
         HOUSES = args.houses_dir.expanduser().resolve()
@@ -684,6 +686,10 @@ def main():
         else:
             for name, result in report["journeys"].items():
                 print(f"{name} / {report['option']} / {route_summary(result)}")
+        if args.require_walked_path and any(
+                result.get("path_kind") != "recorded" or result["status"] != "fits"
+                for result in report["journeys"].values()):
+            sys.exit("Walkthrough held: every journey must have a checked recorded trajectory that fits.")
     elif args.action == "check-openings":
         path = project(args.house)
         room = identifier(args.room)
