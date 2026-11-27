@@ -397,9 +397,9 @@ def status_through(path, room, rows, through, *, verified=None, passed=None):
             problem = check_layout_evidence(path, room.parent, revision)
             if problem:
                 return False, f"{stage} / hold / {problem}"
-        if stage in ("proposed-cad", "blender") and revision not in legacy:
+        if stage == "blender" or (stage == "proposed-cad" and revision not in legacy):
             problem = house_openings.registered_review(path, room.parent.name, revision,
-                                                       camera=stage == "blender", verified=verified)
+                                                       camera=stage == "blender", verified=verified, walkthrough=True)
             if problem:
                 return False, f"{stage} / hold / {problem}"
         if stage in ("products", "final-ai"):
@@ -413,7 +413,8 @@ def status_through(path, room, rows, through, *, verified=None, passed=None):
                                            photo_quality=verified[revision]["delivery_format"] >= 2,
                                            require_windows=verified[revision]["delivery_format"] >= 3,
                                            require_details=verified[revision]["delivery_format"] >= 4,
-                                           require_heads=verified[revision]["delivery_format"] >= 5)
+                                           require_heads=verified[revision]["delivery_format"] >= 5,
+                                           require_operation=verified[revision]["delivery_format"] >= 6)
             except (OSError, ValueError) as exc:
                 return False, f"handover / hold / {exc}"
         if passed is not None:
@@ -443,19 +444,17 @@ def render_status(path, room, stage, *, input_revision=None, scene_revision=None
     if input_revision is not None and input_revision != reviewed_revision:
         return False, f"{stage} / hold / input revision {input_revision} differs from reviewed {reviewed_revision}"
     if stage == "blender":
-        legacy = revisions.stored_json(path / "project.json").get("legacy_output_revisions", {}).get(room.parent.name, [])
-        if scene_revision or reviewed_revision not in legacy:
-            scene = revisions.revision_id(scene_revision or reviewed_revision)
-            folder = opening_folder(path, scene)
-            if folder.parent.name == revisions.HISTORY and scene != reviewed_revision:
-                revisions.verify_revision(path, scene)
-            if scene == reviewed_revision:
-                problem = house_openings.registered_review(path, room.parent.name, scene, camera=True)
-            else:
-                problem = house_openings.review(folder, room.parent.name, scene, camera=True,
-                                                cad_folder=revisions.record_dir(path, reviewed_revision), cad_revision=reviewed_revision)
-            if problem:
-                return False, f"blender / hold / {problem}"
+        scene = revisions.revision_id(scene_revision or reviewed_revision)
+        folder = opening_folder(path, scene)
+        if folder.parent.name == revisions.HISTORY and scene != reviewed_revision:
+            revisions.verify_revision(path, scene)
+        if scene == reviewed_revision:
+            problem = house_openings.registered_review(path, room.parent.name, scene, camera=True, walkthrough=True)
+        else:
+            problem = house_openings.review(folder, room.parent.name, scene, camera=True,
+                                            cad_folder=revisions.record_dir(path, reviewed_revision), cad_revision=reviewed_revision, walkthrough=True)
+        if problem:
+            return False, f"blender / hold / {problem}"
     return True, f"{stage} may proceed / {reason}"
 
 def read_status(path):

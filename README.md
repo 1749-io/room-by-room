@@ -1,3 +1,5 @@
+<img src="docs/brand/room-by-room.svg" width="88" alt="Room by Room floor plan logo">
+
 # Room by Room
 
 **Watch the Ryecroft Road renovation walkthrough (2 min 38 sec)**

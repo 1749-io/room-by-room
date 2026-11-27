@@ -204,6 +204,16 @@ class HomeownerWorkflow(unittest.TestCase):
                         door_heads={}, no_doors_reason="Isolated cabinet test",
                         zones=[dict(name="Drawer and trim", travel="Closed to full extension",
                                     installed=["case"], sweeps=["drawer"], obstacles=["trim"], required_mm=1, uncertainty_mm=0.5)])
+            spec["walkthrough_stops"] = {"hall": "access", "drawer": "operating"}
+            if suffix:
+                spec["walkthrough"] = {
+                    "floor": [[0,0],[4000,0],[4000,3000],[0,3000]],
+                    "scene_objects": ["case"], "obstacles": {"case": [[0,0],[20,0],[20,10],[0,10]]},
+                    "stops": {"hall": {"kind": "access", "point": [3300,1500]},
+                              "drawer": {"kind": "operating", "object": "case", "point": [500,500],
+                                         "use_space": [[0,10],[900,10],[900,900],[0,900]]}},
+                    "journeys": {"hall to drawer": {"from": "hall", "to": "drawer",
+                                                    "width_mm": 650, "uncertainty_mm": 0}}}
             (working / "openings" / ("kitchen" + suffix + ".json")).write_text(json.dumps(spec))
         from PIL import Image
         from zipfile import ZipFile

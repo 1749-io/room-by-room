@@ -172,7 +172,7 @@ def exterior_review(root, outputs, revision, inventory, *, final=False, unresolv
 
 
 def review(outputs, room, revision, *, final_windows=False, require_windows=True, require_details=True, require_heads=True,
-           shared_doorways=None):
+           shared_doorways=None, require_operation=True):
     """The reviewer judges the images. The gate checks coverage and exact evidence."""
     # Addenda let an existing camera acquire a reviewed brief without editing its issue.
     root = room.parent.parent
@@ -301,7 +301,7 @@ def review(outputs, room, revision, *, final_windows=False, require_windows=True
                         raise ValueError(f"Reported photo defect: {defect['finding']}")
         if require_details:
             from .house_photo_details import validate
-            validate(plan, image, require_heads=require_heads)
+            validate(plan, image, require_heads=require_heads, require_operation=require_operation)
         expected = {portals[key] for key, state in visibility.items() if state == "visible"}
         found = set()
         for other in neighbours:
