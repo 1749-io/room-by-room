@@ -1,64 +1,26 @@
+<img src="docs/brand/room-by-room.svg" width="88" alt="Room by Room floor plan logo">
+
 # Room by Room
 
-A toolkit for taking a renovation brief through survey, checked CAD, furnished concepts and shareable handover packs. [Try a fictional house and explore the repository](CONTRIBUTING.md).
+[**Watch the Ryecroft Road renovation walkthrough (2 min 42 sec)**](https://youtu.be/-4anR28Lqd8)
 
-| What you want to do | Where to start |
-| --- | --- |
-| Bring a listing, sketch or brief to an agent | [Start a project](#start-a-project) and [what to send](#what-to-send) |
-| Open a finished example | [Download the fictional Alder Cottage handover ZIP](examples/trade-schedules/reference/Alder-Cottage-trade-handover.zip), extract it and open `Start here.html`. [Download just one pack](examples/furnished-room/README.md#download-just-one-pack) |
-| Issue one drawing, schedule or audience edition | [Delivery workflow](docs/pack-delivery.svg) and [component and audience examples](examples/README.md) |
-| Check an accepted design across drawings and photographs | [Release guide](docs/visual-release.md) and [comparison brochure replay](examples/visual-release/README.md) |
-| Change the toolkit or assess an agent handover | [Repository map, skills and test commands](CONTRIBUTING.md) |
+Plan a renovation room by room, from the first viewing to the drawings, shopping lists and finishes you can hand to a tradesperson.
 
-[Full workflow diagram](docs/workflow.svg) · [Quick reference](docs/workflow-quick.svg) · [Agent workflow guide](docs/agent-workflow.md) · [Start a project](#start-a-project) · [What to send](#what-to-send) · [How agents fill gaps](#how-agents-fill-gaps) · [Design and review stages](#design-and-review-stages) · [Worked examples](examples/README.md)
+[**Visit the Orchard Fold conservatory**](https://roombyroom.pages.dev/) · [Start your own project](#start-a-project) · [Contributor guide](CONTRIBUTING.md)
 
-## Explore the workflow
+[![Furnished concept for Orchard Fold, with a breakfast table looking out through green-framed windows towards the trees](examples/conservatory/reference/concept.png)](https://roombyroom.pages.dev/)
 
-[**Specialist workflow diagrams: when each tool is triggered**](docs/specialist-workflows.md) · [Open the interactive workflow SVG](docs/workflow.svg) · [Open the shorter tool map](docs/workflow-quick.svg)
+*What would it take to eat breakfast here in January and still enjoy the orchard view in July?* At the fictional Orchard Fold, a field maple shades the reading chair late in the day, but the glass roof lets in the midday sun. Follow the household from its first question through a year of modelled temperatures to the furnished design.
 
-[![Room workflow showing tasks, review decisions and return paths](docs/workflow-preview.svg)](docs/workflow.svg)
+**Watch the Orchard Fold walkthrough**
 
-Open either SVG directly in a browser. Select a task or diamond to see its tools, or choose **Specialist studies** for questions such as beam sizing, solar panels and overheating. **Back to map** returns to the diagram. If GitHub shows an image preview, download the SVG and open the saved file. You can also expand the guide here.
+https://github.com/user-attachments/assets/2b56c71a-fcbd-4ecf-aa00-cb0d9256ff42
 
-<details>
-<summary>Explore the stages and tools in this README</summary>
-
-| Where you are in the project | Tools and decisions |
-| --- | --- |
-| [Brief, permissions and revisions](docs/workflow-decisions.md#brief-permissions-and-revisions) | Renovation Pack and the house commands record evidence, permitted changes and homeowner decisions, then save the checked revision. |
-| [Existing building and occupied layout](docs/workflow-decisions.md#existing-building-and-occupied-proposal) | FreeCAD, BIM and TechDraw model the building. IfcOpenShell reads supplied models. Blender explores furniture positions. Shapely and NetworkX check the occupied routes back in CAD. |
-| [Specialist studies](skills/renovation-pack/references/specialist-design-tools.md#requests-that-trigger-a-specialist-study) | Follow a household question to its tools and return point, including QGIS and LiDAR for obstructions, Sun Position and pvlib for sunlight and solar, and EnergyPlus for indoor comfort. |
-| [Structural openings](docs/workflow-decisions.md#worked-example--a-support-beam-over-the-kitchen-opening) | Section the opening in FreeCAD. For a commissioned analysis, PyNite models the beam and FreeCAD FEM runs CalculiX. Return verified support sizes to the layout, tender and works programme. |
-| [Furnishing, colour and final photography](docs/workflow-decisions.md#furnishing-colour-and-final-photography) | Blender checks the furnished camera and product variants. Colour Expert supports palette decisions. Reference-image editing produces the final concept photo from the reviewed camera. |
-| [Issue, costs and occupied works](docs/workflow-decisions.md#issue-shared-costs-and-later-work) | Check the decorator schedule, compare tenders and phase essential facilities using the local programme or OpenProject. Verify the room photographs and assemble the house pack. |
-
-</details>
-
-The diagrams include whole-house photo commands from the working toolkit. Run `python house.py --help` to see which checks this checkout provides.
-
-## Using the toolkit on a real property
-
-Use the plans, calculations, prices and AI images to explore options and brief your professional team. The worked examples use assumed dimensions and costs. A passed software check records what the model showed for those inputs. Before ordering, altering the building or relying on a drawing for construction, have the site dimensions, structure, services, costs and applicable permissions checked by the relevant qualified professionals and authorities. AI images can change openings, clearances and finishes. Check the measured plan and product specification before making a decision.
-
-Keep household briefs, listing photos, floor plans, models and backups in private storage. A saved backup contains the whole house in an unencrypted ZIP. Check what an agent, cloud service or image tool will receive before sharing someone’s material. Use fictional data or material you have permission to redistribute in public issues, pull requests and examples.
-
-## Licence
-
-The original code, agent skills, documentation, templates and original example assets are available under the [MIT licence](LICENSE). Keep its copyright and permission notice with copies or substantial portions. The licence includes the warranty disclaimer and limitation of liability. External software, services, trademarks and material supplied for a house retain their respective terms. Check the rights to photographs, listing plans, product imagery and other third-party assets before redistributing them.
-
-The combined PDF tools use the GNU Affero General Public License version 3 (AGPLv3). The public release supplies the toolkit source and fictional recipient files. The Python installer fetches the PDF engine separately. See the [distribution terms and pinned dependency sources](THIRD-PARTY.md#pdf-tools) and the [AGPLv3 licence](LICENSES/AGPL-3.0.txt).
+[Explore the survey, models and results](examples/conservatory/README.md) · [Browse more worked examples](examples/README.md) · [Download an Alder Cottage handover pack](examples/furnished-room/README.md#download-just-one-pack)
 
 ## Start a project
 
-Open the house’s [renovation checklist](docs/house-checklist.md) at intake and on resume. Run `python house.py checklist "House"` to refresh room evidence and survey returns or to create the checklist for an existing house.
-
-For new drawings, models, schedules, images and packs, start a private working revision with `python house.py begin-revision`. Use `save-revision` to save the checked files and the reason for the change. It automatically creates and verifies a private whole-house backup. On resuming a house, `history` shows the previous work and `status` shows the review holds. See [saving outputs, backup location and recovery](docs/output-revisions.md).
-
-For examples of how an agent handles a brief, a failed layout or a solver check, open the [worked workflow examples and replays](examples/README.md).
-
-You can ask for a route assessment on its own, such as “Can I carry laundry to the utility while people are eating?” The agent can also check the effect of a furniture move or compare a renovation you would consider. Say which pieces or rooms are protected. Routine checks stay in the project record. You see material findings, useful measurements and choices that need your judgement. [How the CAD route review works](skills/freecad-renovation/references/route-studies.md)
-
-Open this repository in your agent and say, for example:
+Open this repository in your agent. Give it the listing, sketch or brief you already have and tell it which decision you want help with.
 
 > Start a house called Maple Cottage. Here’s the listing. Turn the spare room into a Vice City listening room. Keep my turntable and speakers. I’d like an editable CAD design, a furnished view and a UK shopping list. Suggest the finishes and furniture. Tell me what I should measure on the next viewing.
 
@@ -84,7 +46,44 @@ Keep observed fabric, household choices, proposals and unmeasured assumptions id
 
 Follow a [listening room or kitchen swap](docs/intake.md#two-ways-through-the-same-process) from the first request. For a larger commission, use the [whole-house decision guide](skills/renovation-pack/references/whole-house.md). The [example library](examples/README.md) includes garden sun, permissions, occupied access, tender comparisons and living through the works.
 
+## Using the toolkit on a real property
+
+Use the plans, calculations, prices and AI images to explore options and brief your professional team. The worked examples use assumed dimensions and costs. A passed software check records what the model showed for those inputs. Before ordering, altering the building or relying on a drawing for construction, have the site dimensions, structure, services, costs and applicable permissions checked by the relevant qualified professionals and authorities. AI images can change openings, clearances and finishes. Check the measured plan and product specification before making a decision.
+
+Keep household briefs, listing photos, floor plans, models and backups in private storage. A saved backup contains the whole house in an unencrypted ZIP. Check what an agent, cloud service or image tool will receive before sharing someone’s material. Use fictional data or material you have permission to redistribute in public issues, pull requests and examples.
+
+## Explore the workflow
+
+[**Specialist workflow diagrams: when each tool is triggered**](docs/specialist-workflows.md) · [Open the interactive workflow SVG](docs/workflow.svg) · [Open the shorter tool map](docs/workflow-quick.svg)
+
+[![Room workflow showing tasks, review decisions and return paths](docs/workflow-preview.svg)](docs/workflow.svg)
+
+Open either SVG directly in a browser. Select a task or diamond to see its tools, or choose **Specialist studies** for questions such as beam sizing, solar panels and overheating. **Back to map** returns to the diagram. If GitHub shows an image preview, download the SVG and open the saved file. You can also expand the guide here.
+
+<details>
+<summary>Explore the stages and tools in this README</summary>
+
+| Where you are in the project | Tools and decisions |
+| --- | --- |
+| [Brief, permissions and revisions](docs/workflow-decisions.md#brief-permissions-and-revisions) | Renovation Pack and the house commands record evidence, permitted changes and homeowner decisions, then save the checked revision. |
+| [Existing building and occupied layout](docs/workflow-decisions.md#existing-building-and-occupied-proposal) | FreeCAD, BIM and TechDraw model the building. IfcOpenShell reads supplied models. Blender explores furniture positions. Shapely and NetworkX check the occupied routes back in CAD. |
+| [Specialist studies](skills/renovation-pack/references/specialist-design-tools.md#requests-that-trigger-a-specialist-study) | Follow a household question to its tools and return point, including QGIS and LiDAR for obstructions, Sun Position and pvlib for sunlight and solar, and EnergyPlus for indoor comfort. |
+| [Structural openings](docs/workflow-decisions.md#worked-example--a-support-beam-over-the-kitchen-opening) | Section the opening in FreeCAD. For a commissioned analysis, PyNite models the beam and FreeCAD FEM runs CalculiX. Return verified support sizes to the layout, tender and works programme. |
+| [Furnishing, colour and final photography](docs/workflow-decisions.md#furnishing-colour-and-final-photography) | Blender checks the furnished camera and product variants. Colour Expert supports palette decisions. Reference-image editing produces the final concept photo from the reviewed camera. |
+| [Issue, costs and occupied works](docs/workflow-decisions.md#issue-shared-costs-and-later-work) | Check the decorator schedule, compare tenders and phase essential facilities using the local programme or OpenProject. Verify the room photographs and assemble the house pack. |
+
+</details>
+
+The diagrams include whole-house photo commands from the working toolkit. Run `python house.py --help` to see which checks this checkout provides.
+
 ## Agent operating instructions
+
+<details>
+<summary>Setup, commands and evidence for agents</summary>
+
+Open the [house checklist](docs/house-checklist.md) at intake and on resume. Refresh it with `python house.py checklist "House"`. Before changing a drawing or pack, start a private revision with `begin-revision`. Use `save-revision` to record the checked output and verify its backup. On resume, use `history` for previous work and `status` for outstanding reviews. [Revision and recovery guide](docs/output-revisions.md)
+
+For a question about moving through an occupied room, use the [CAD route review](skills/freecad-renovation/references/route-studies.md). Before issuing a pack, follow the [delivery workflow](docs/pack-delivery.svg) and the [drawing and photograph release guide](docs/visual-release.md).
 
 ### Verify the design tools on a new computer
 
@@ -124,6 +123,8 @@ If an original brief is already a local file, include `--brief-file "path/to/bri
 | `models/`, `views/`, `handover/<issue>/` | Earlier models, images and issues can still be opened at their recorded paths. |
 
 The entire house library is ignored by Git. Keep your private backup outside the checkout. [Recover a house from backup](docs/output-revisions.md#back-up-or-restore-one-house).
+
+</details>
 
 ## Design and review stages
 
@@ -176,3 +177,9 @@ Start the shopping schedule during briefing so furniture sizes influence the CAD
 | Architect | Take up the design intent with editable existing and proposed CAD, room and product schedules, plans, relevant sections and elevations, changes to openings or services, evidence and unresolved technical questions. Survey-dependent details stay identified for professional development. |
 
 For the full issue checklist, use [deliverables by audience](skills/renovation-pack/references/deliverables.md). End each working session by updating the named house’s dashboard with its latest reviewed revision, the next action, any decision for the homeowner and the outputs currently on hold. A new chat can then start with “Open House Renovations and resume Maple Cottage.”
+
+## Licence
+
+The original code, agent skills, documentation, templates and original example assets are available under the [MIT licence](LICENSE). Keep its copyright and permission notice with copies or substantial portions. The licence includes the warranty disclaimer and limitation of liability. External software, services, trademarks and material supplied for a house retain their respective terms. Check the rights to photographs, listing plans, product imagery and other third-party assets before redistributing them.
+
+The combined PDF tools use the GNU Affero General Public License version 3 (AGPLv3). The public release supplies the toolkit source and fictional recipient files. The Python installer fetches the PDF engine separately. See the [distribution terms and pinned dependency sources](THIRD-PARTY.md#pdf-tools) and the [AGPLv3 licence](LICENSES/AGPL-3.0.txt).

@@ -16,7 +16,7 @@ Run the study when its answer could change the design. If a deciding measurement
 
 **People, rooms and finishes**
 
-[Access](#access) · [Sightlines](#sightlines) · [Acoustics](#acoustics) · [Colour](#colour) · [Furnishing](#furnishing) · [Finishes](#finishes)
+[House walkthrough](#house-walkthrough) · [Access](#access) · [Sightlines](#sightlines) · [Acoustics](#acoustics) · [Colour](#colour) · [Furnishing](#furnishing) · [Finishes](#finishes)
 
 **Buying and building**
 
@@ -197,6 +197,27 @@ flowchart TD
 Check roof pitch, aspect, usable area and shading. Compare module fit, then pvlib generation. For savings add household demand timing, tariffs and an installed price.
 
 Return the roof layout, yield range and assumptions to the roof decision and budget.
+
+[Back to study list](#choose-a-study)
+
+## House walkthrough
+
+“Take me through the house and show me the view when I sit down.”
+
+```mermaid
+flowchart TD
+    step0["Homeowner requests a first-person tour"]
+    step1["Record the walking path and seated view in Blender"]
+    step0 --> step1
+    step2["Check body clearance and timed door movements"]
+    step1 --> step2
+    step3["Issue the checked tour"]
+    step2 --> step3
+```
+
+Use the [Blender house walkthrough](../skills/blender-house-walkthrough/SKILL.md) only when someone requests a first-person visit, in ordinary language or by skill name.
+
+Give the homeowner the requested playable tour or navigable scene. Routine room checks and brochure tours keep their existing outputs.
 
 [Back to study list](#choose-a-study)
 

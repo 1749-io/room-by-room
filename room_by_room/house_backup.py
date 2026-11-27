@@ -9,7 +9,7 @@ from itertools import zip_longest
 from pathlib import Path
 from zipfile import ZIP_DEFLATED, BadZipFile, ZipFile
 
-from house_revisions import (inventory, local_path, records, regular_path, safe_relative,
+from .house_revisions import (inventory, local_path, records, regular_path, safe_relative,
                              stored_json, transfer, verify_revision)
 
 HEADER = "backup.json"
@@ -153,7 +153,7 @@ def backup_directory():
 
 def automatic_backup(root, destination, repo, *, staged_revision):
     """Replace the shared recovery point only after the full successor verifies."""
-    from house_revisions import _save_lock
+    from .house_revisions import _save_lock
 
     if any(destination.resolve().is_relative_to(p.resolve()) for p in (repo, root.parent)):
         raise ValueError("Choose a private backup destination outside the checkout and house library.")

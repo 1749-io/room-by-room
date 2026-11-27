@@ -1,0 +1,17 @@
+{
+  "design": "OF-02",
+  "floor_mm": [
+    5400.0,
+    3600.0
+  ],
+  "north_sliding_threshold_mm": [
+    1000.0,
+    2100.0
+  ],
+  "clear_route_north_of_occupied_table_mm": 1250,
+  "seat_centre_mm": [
+    3200.0,
+    1450.0
+  ],
+  "objects": 61
+}

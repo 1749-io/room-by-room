@@ -6,8 +6,8 @@ import tempfile
 import zipfile
 from pathlib import Path
 
-import house_revisions as revisions
-import house_openings
+from . import house_revisions as revisions
+from . import house_openings
 
 
 def digest(path):
@@ -172,7 +172,7 @@ def exterior_review(root, outputs, revision, inventory, *, final=False, unresolv
 
 
 def review(outputs, room, revision, *, final_windows=False, require_windows=True, require_details=True, require_heads=True,
-           shared_doorways=None):
+           shared_doorways=None, require_operation=True):
     """The reviewer judges the images. The gate checks coverage and exact evidence."""
     # Addenda let an existing camera acquire a reviewed brief without editing its issue.
     root = room.parent.parent
@@ -300,8 +300,8 @@ def review(outputs, room, revision, *, final_windows=False, require_windows=True
                     if defect["photo_sha256"] == image["photo_sha256"]:
                         raise ValueError(f"Reported photo defect: {defect['finding']}")
         if require_details:
-            from house_photo_details import validate
-            validate(plan, image, require_heads=require_heads)
+            from .house_photo_details import validate
+            validate(plan, image, require_heads=require_heads, require_operation=require_operation)
         expected = {portals[key] for key, state in visibility.items() if state == "visible"}
         found = set()
         for other in neighbours:

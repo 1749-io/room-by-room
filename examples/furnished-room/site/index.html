@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en-GB">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alder Cottage library | Room by Room</title>
+<meta name="description" content="Explore a fictional library renovation and download the reviewed drawing, finish schedule or complete handover.">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#faf8f3;color:#243b32;font:1rem/1.55 'Segoe UI',Arial,sans-serif}
+main,header,footer{max-width:79rem;margin:auto;padding:1.2rem clamp(1rem,4vw,4rem)}
+header,footer{display:flex;justify-content:space-between;align-items:center;gap:1rem;border-bottom:1px solid #c5cabe}
+header b{font-family:Georgia,serif;font-size:1.35rem}
+h1,h2,h3,p,figure{margin:0}
+h1,h2,h3{font-family:Georgia,serif;font-weight:400;line-height:1.12}
+h1{font-size:clamp(2.9rem,6vw,5.5rem);letter-spacing:-.045em;margin:.45rem 0 .7rem}
+h2{font-size:2.4rem;margin-bottom:.7rem} h3{font-size:1.5rem}
+section{margin:2rem 0 3rem} p{max-width:70ch}
+a{color:inherit;text-underline-offset:.22em}
+a:focus-visible{outline:3px solid #9b512c;outline-offset:3px}
+.views,.packs{display:grid;gap:1rem}
+.views{grid-template-columns:repeat(2,minmax(0,1fr));margin:1.6rem 0}
+figure{min-width:0} figure img{display:block;width:100%;aspect-ratio:1.5;object-fit:contain;background:white;border:1px solid #d3d5c9}
+figure:nth-child(2) img{background:#e4dfd3}
+figcaption{padding:.8rem 0} figcaption p{margin-top:.35rem}
+.note{border-left:3px solid #917451;padding:.2rem 1rem}
+.packs{grid-template-columns:repeat(3,minmax(0,1fr));margin:1.25rem 0}
+.pack{display:flex;flex-direction:column;align-items:flex-start;background:#fff;border:1px solid #c5cabe;border-radius:.4rem;padding:1.15rem;text-decoration:none}
+.pack:hover{background:#edf1e7;border-color:#526c5d}
+.pack strong{font-size:1.1rem}.pack small{padding-top:.8rem;margin-top:auto;text-decoration:underline}.pack span{color:#46574d}
+.full{display:inline-block;padding:.75rem 1rem;border-radius:.35rem;background:#284437;color:white}
+footer{border-top:1px solid #c5cabe;border-bottom:0}
+@media(max-width:46rem){.views{grid-template-columns:1fr}.packs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:31rem){.packs{grid-template-columns:1fr}}
+</style>
+<header><b>Room by Room</b><a href="#downloads">Download packs</a></header>
+<main>
+<section aria-labelledby="room">
+<p>Fictional renovation · Worked example</p>
+<h1 id="room">Alder Cottage library</h1>
+<p>One reader wants to reach the bookcase while another sits by the south window. The accepted layout keeps the oak chair in sage linen and adds two oiled oak shelves.</p>
+<div class="views">
+<figure><a href="plan.pdf"><img src="plan.png" alt="Occupied library plan showing the route from the hall to the bookcase beside the seated reader"></a><figcaption><h3>Library plan</h3><a href="plan.pdf">Open the full drawing (PDF)</a></figcaption></figure>
+<figure><a href="library-concept.png"><img src="library-concept.png" alt="Furnished concept viewed from the hall, with the bookcase and sage reading chair by the window"></a><figcaption><h3>Furnished view</h3><p>Concept image from the reviewed Blender camera.</p></figcaption></figure>
+</div>
+<p class="note"><strong>Before ordering</strong> · The installer still needs to confirm the shelf fixings and socket position.</p>
+</section>
+<section id="downloads" aria-labelledby="packs"><h2 id="packs">Download your pack</h2>
+<p>Choose the part you need. Extract the ZIP and open <b>Start here.html</b>.</p>
+<div class="packs"><!-- packs --></div>
+<a class="full" href="downloads/Alder-Cottage-furnished-handover.zip" download>Download the complete handover (ZIP)</a>
+</section></main>
+<footer><a href="https://github.com/1749-io/room-by-room">Room by Room on GitHub</a></footer>
+</html>

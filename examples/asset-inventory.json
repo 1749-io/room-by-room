@@ -1,13 +1,53 @@
 {
   "examples/audience-packs/reference/Alder-Cottage-audience-editions.zip": {
-    "sha256": "9732c71a0050bbdf5ec599c517282e7c3545623b9c1ca5e633b8103dd06a55fc",
+    "sha256": "02a31c6d9165b0535c829b053eba70865448cec4b83b3b6672a6175b4319d56b",
     "origin": "Fictional Alder Cottage recipient archive. Regenerate with examples/audience-packs/replay.py.",
     "rights": "Original illustrative fixture under LICENSE. Editable PowerPoint includes packaging from python-pptx. See THIRD-PARTY.md."
   },
   "examples/component-pack/reference/Alder-Cottage-handover.zip": {
-    "sha256": "3890089809c6da1d0ee6806698159845029292a2c7ac7c55722aaa539229368b",
+    "sha256": "59201b87654e30f9974cbcd60ef7935ad2e24c5329304bf003bc0eb0bac24bf0",
     "origin": "Fictional Alder Cottage recipient archive. Regenerate with examples/component-pack/replay.py.",
     "rights": "Original illustrative fixture under LICENSE."
+  },
+  "examples/conservatory/_worker.js": {
+    "sha256": "f1c4d50238af4236f644fe3226e54c2948cc9c22018da6009ee876fafea4a0cf",
+    "origin": "Original single-film byte-range handler for the public Pages demo.",
+    "rights": "Created for public redistribution with the fictional Room by Room example."
+  },
+  "examples/conservatory/page.html": {
+    "sha256": "faa922c78202b62ee8bbe0ced56124c8d3c2853811bc50d4cfe284e11fd9deb7",
+    "origin": "Public Orchard Fold homepage template.",
+    "rights": "Created for public redistribution with the fictional Room by Room example."
+  },
+  "examples/conservatory/reference/Orchard-Fold.FCStd": {
+    "sha256": "a32f02c32ee9ef0421f29eb8c6455685933bccd95ec1a1f062ea2d85f184f7c8",
+    "origin": "Original FreeCAD geometry for the fictional OF-02 redesign.",
+    "rights": "Original toolkit example for public redistribution. No external photographs or purchased assets."
+  },
+  "examples/conservatory/reference/Orchard-Fold.blend": {
+    "sha256": "b156bcdc33c13bc4f5f35f15af0a5593e35d964bc40c508567b3d8d64fc475a3",
+    "origin": "Procedural fictional Blender room, furnishings and orchard for OF-02.",
+    "rights": "Original toolkit example for public redistribution. No external photographs or purchased assets."
+  },
+  "examples/conservatory/reference/camera.png": {
+    "sha256": "ec08802b62ec3a55e81ed20e39bc82f0d2f47263976658d9f4cc123638275f2d",
+    "origin": "Rendered from the reopened procedural OF-02 model.",
+    "rights": "Original toolkit example for public redistribution. No external photographs or purchased assets."
+  },
+  "examples/conservatory/reference/concept.png": {
+    "sha256": "00771434eecc8440dd0a7336d486b663930ee1626485687c2fc7efe41d90edda",
+    "origin": "ImageGen derivative of the reviewed Orchard Fold camera with planting and two wine glasses.",
+    "rights": "Original toolkit example for public redistribution. No external photographs or purchased assets."
+  },
+  "examples/conservatory/reference/walkthrough-v3.mp4": {
+    "sha256": "2e47c3198329019af0431feeb354fdc1c7e4b69b0c91c878dd472a03ff905df3",
+    "origin": "Orchard Fold 45-second study film from the fictional survey, reviewed concept and Kokoro British neural narration.",
+    "rights": "Created for public redistribution with the fictional Room by Room example."
+  },
+  "examples/conservatory/reference/walkthrough-v3.vtt": {
+    "sha256": "d178d3e8b787ea244541c448ff1dfbdc86b3ab7f554d8709f175c3e4e20f138f",
+    "origin": "English captions from the locked Orchard Fold walkthrough narration.",
+    "rights": "Created for public redistribution with the fictional Room by Room example."
   },
   "examples/furnished-room/reference/Alder-Cottage-furnished-handover.zip": {
     "sha256": "d08771db79bf67e9c7dce80c8cee2c64e4b9be50326e6191b68aee7d9651d726",
@@ -23,6 +63,11 @@
     "sha256": "0fdc25e24b995481ca3f46a83b542ebd560d6c84ad4949d8431826eccd97aaa1",
     "origin": "ImageGen derivative of the reviewed original Alder library camera. See the comparison record in the same directory.",
     "rights": "The source is the original toolkit render. No listing photographs, retailer images or third-party textures were supplied. Included for redistribution with the toolkit."
+  },
+  "examples/furnished-room/site/index.html": {
+    "sha256": "29c1f9691c4831b32e59be8a88ed804497cd5522dafc2d87b62c20c615111223",
+    "origin": "Original public example Pages template.",
+    "rights": "Original toolkit example for public redistribution. No external photographs or purchased assets."
   },
   "examples/garden-sun/september-shadow.png": {
     "sha256": "3140ab5f2bdae9be643b0a1f9ddeb724067dc919a4496301f020e2a5c66b1c25",
@@ -40,7 +85,7 @@
     "rights": "Original illustrative fixture under LICENSE."
   },
   "examples/trade-schedules/reference/Alder-Cottage-trade-handover.zip": {
-    "sha256": "a71ee6f9f1d1977ff095c6af65093f1120aee648e8043834ff159840042fee6e",
+    "sha256": "3b2783ad77a77af99629244fcb5e933ec2c4ed0aa823a12c0761a7b655a7f12f",
     "origin": "Fictional Alder Cottage recipient archive. Regenerate with examples/trade-schedules/replay.py.",
     "rights": "Original illustrative fixture under LICENSE. Editable PowerPoint includes packaging from python-pptx. See THIRD-PARTY.md."
   },

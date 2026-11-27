@@ -3,7 +3,7 @@
 Maple Mews is a fictional flat with a kitchen, shower room and studio. The owner commissions a shopping schedule for each room and a combined purchasing issue. The [four input lines](items.csv) include a retained stool and two packs of floor pads shared between the kitchen and studio.
 
 ```sh
-python -m pip install -r requirements-packs.txt
+python -m pip install -r requirements/packs.txt
 python examples/multi-room-shopping/replay.py "../Maple purchasing"
 ```
 

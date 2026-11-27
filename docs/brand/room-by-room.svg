@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" role="img" aria-labelledby="title">
+  <title id="title">Room by Room floor plan logo</title>
+  <rect width="640" height="640" rx="40" fill="#163c32"/>
+  <g transform="translate(80 80) scale(3)" fill="none" stroke="#fff8e8" stroke-width="9" stroke-linejoin="round">
+    <path d="M24 134V28H134V134H98 M24 134H62 M78 29V72H133 M25 93H54"/>
+    <path d="M61 134V98" stroke="#e7aa68" stroke-width="5"/>
+    <path d="M61 98A36 36 0 0 1 97 134" stroke="#e7aa68" stroke-width="3"/>
+  </g>
+</svg>

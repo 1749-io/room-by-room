@@ -1,0 +1,5 @@
+PyMuPDF==2.1
+Pillow
+XlsxWriter==3.3.4
+openpyxl>=3.1.5,<4
+python-pptx==1.0.2

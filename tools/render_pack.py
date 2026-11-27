@@ -10,8 +10,8 @@ from pathlib import Path
 import tempfile
 from urllib.parse import quote
 
-import house_revisions as revisions
-from house_delivery import digest
+from room_by_room import house_revisions as revisions
+from room_by_room.house_delivery import digest
 from tools.check_delivery import verify_issue
 
 NUMERIC_FIELDS = {"Quantity", "Source quantity", "Unit GBP", "Quantity x unit GBP"}

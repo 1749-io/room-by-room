@@ -34,3 +34,18 @@ __pycache__/
 !examples/component-pack/reference/Alder-Cottage-handover.zip
 !examples/trade-schedules/reference/Alder-Cottage-trade-handover.zip
 !examples/furnished-room/reference/Alder-Cottage-furnished-handover.zip
+
+# Reviewed original Orchard Fold models and published Alder example downloads.
+!examples/conservatory/reference/Orchard-Fold.FCStd
+!examples/conservatory/reference/Orchard-Fold.blend
+!/downloads/Alder-Cottage-architect-pack.zip
+!/downloads/Alder-Cottage-buyer-brief.zip
+!/downloads/Alder-Cottage-cost-schedule.zip
+!/downloads/Alder-Cottage-decorator-finishes.zip
+!/downloads/Alder-Cottage-drawing.zip
+!/downloads/Alder-Cottage-homeowner-presentation.zip
+!/downloads/Alder-Cottage-programme.zip
+!/downloads/Alder-Cottage-room-review.zip
+!/downloads/Alder-Cottage-shopping.zip
+!/downloads/Alder-Cottage-furnished-handover.zip
+/docs/graphviz/node_modules/

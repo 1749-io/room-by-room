@@ -42,3 +42,5 @@ Brief and frame the whole room and the features that matter in use. Record sight
 Before releasing a camera, verify wall-mounted items against architraves and door sweeps, and trace the leaves, hardware and framing of visible openings. Record the [architectural detail checks](../renovation-pack/references/photo-quality.md#architectural-detail-gate).
 
 Before issuing a furnished concept or camera, compare the reopened scene’s door heads with the intended CAD elevations, including openings seen beyond the room. Run the [door elevation check](../freecad-renovation/references/opening-clearances.md#check-the-doorway-in-elevation).
+
+Run the [fully dressed walkthrough](../renovation-pack/references/handover-gates.md#fully-dressed-walkthrough) against the reopened camera scene after placing all accessories.

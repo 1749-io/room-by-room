@@ -132,7 +132,7 @@ def revision_id(value):
 
 
 def toolkit_checkout():
-    root = Path(__file__).resolve().parent
+    root = Path(__file__).resolve().parents[1]
     if not (root / ".git").exists():
         return None
     try:
@@ -206,7 +206,7 @@ def begin(root, revision, parent=None, inputs=(), *, pack_request=None):
             captured[name] = copy_file(source, stage / "inputs" / safe_relative(name))
         base = {"revision": revision, "parent": parent, "inputs": captured}
         if pack_request:
-            import house_delivery
+            from . import house_delivery
             if safe_relative(pack_request).parts[0] == WORK:
                 raise ValueError("Select a house request outside the revision work area")
             if pack_request not in captured:
@@ -306,7 +306,7 @@ def ask(root, revision, question, kind=None, image=None, description=None):
         return staged
 
 
-def verify_room_pack(outputs, room, revision, stages, *, photo_quality=False, require_windows=True, require_details=True, require_heads=True):
+def verify_room_pack(outputs, room, revision, stages, *, photo_quality=False, require_windows=True, require_details=True, require_heads=True, require_operation=True):
     """A full issue must actually carry the current, camera-reviewed finish photos."""
     from PIL import Image
 
@@ -347,8 +347,8 @@ def verify_room_pack(outputs, room, revision, stages, *, photo_quality=False, re
     if hero not in photos:
         raise ValueError(f"{room.name}: link the reviewed final photo in the final-ai row")
     if photo_quality:
-        import house_photos
-        house_photos.review(outputs, room, revision, require_windows=require_windows, require_details=require_details, require_heads=require_heads)
+        from . import house_photos
+        house_photos.review(outputs, room, revision, require_windows=require_windows, require_details=require_details, require_heads=require_heads, require_operation=require_operation)
         for suffix in (".json", "-brief.json"):
             item = local_path(outputs, f"photo-reviews/{room.name}{suffix}")
             required_images[item] = house_photos.digest(item)
@@ -407,6 +407,10 @@ def furnished_actions(root, revision, parent=None, outputs=None, *, completed=No
                 break
         else:
             if outputs is not None:
+                from room_by_room import house_openings
+                problem = house_openings.review(outputs.parent, room.name, revision, camera=True, walkthrough=True)
+                if problem:
+                    raise ValueError(f"{room.name}: furnished walkthrough on hold: {problem}")
                 verify_room_pack(outputs, room, revision, stages, photo_quality=True)
             if completed is not None:
                 completed.append(room.name)
@@ -415,7 +419,7 @@ def furnished_actions(root, revision, parent=None, outputs=None, *, completed=No
 
 def save(root, revision, *, change, why, author, affects, next_step, question=None,
          question_image=None, image_description=None, question_kind=None):
-    from house_backup import automatic_backup, backup_directory
+    from .house_backup import automatic_backup, backup_directory
 
     revision = revision_id(revision)
     details = dict(change=change, why=why, author=author, affects=affects, next_step=next_step)
@@ -468,9 +472,9 @@ def save(root, revision, *, change, why, author, affects, next_step, question=No
                 for folder in sorted(brochure_folders):
                     verify_saved(root, folder, records=stage / "inputs")
             if base.get("pack_request"):
-                import house_delivery
+                from . import house_delivery
                 details["pack_issue"] = house_delivery.release_check(root, base, stage, draft)
-            import house_photos
+            from . import house_photos
             house_photos.exterior_review(root, stage / "outputs", revision,
                                          house_photos.exterior_register(root).get(revision, {}))
             combined = stage / "outputs" / house_photos.ARCHIVE
@@ -490,16 +494,16 @@ def save(root, revision, *, change, why, author, affects, next_step, question=No
             house_id = stored_json(root / "project.json")["id"]
             filename = f"{house_id}/automatic/latest.zip"
             archive = backup_directory() / safe_relative(filename)
-            record = dict(version=1, decision_format=1, delivery_format=5, house=house_id, toolkit=toolkit_checkout(), backup=filename,
+            record = dict(version=1, decision_format=1, delivery_format=6, house=house_id, toolkit=toolkit_checkout(), backup=filename,
                           saved=saved.isoformat(), **base, **details, outputs=hashes)
             write_json(stage / "record.json", record)
             final.parent.mkdir(exist_ok=True)
-            automatic_backup(root, archive, Path(__file__).resolve().parent, staged_revision=stage)
+            automatic_backup(root, archive, Path(__file__).resolve().parents[1], staged_revision=stage)
             try:
                 publish_directory(stage, final)
             except OSError as exc:
                 raise OSError(f"Backup verified at {archive}, but publishing {final} failed: {exc}") from exc
-    import house_checklist
+    from . import house_checklist
     house_checklist.try_refresh(root)
     return final
 

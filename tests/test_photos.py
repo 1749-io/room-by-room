@@ -9,9 +9,9 @@ from zipfile import ZipFile
 from PIL import Image
 
 import house
-import house_photos as photos
-import house_revisions as revisions
-import house_visuals as visuals
+from room_by_room import house_photos as photos
+from room_by_room import house_revisions as revisions
+from room_by_room import house_visuals as visuals
 
 
 class PhotoRelease(unittest.TestCase):
@@ -40,11 +40,14 @@ class PhotoRelease(unittest.TestCase):
             brief = {"windows":{}, "basis":"Glazed room brief","views":{"whole-room":"Show the whole layout","operation":"Show deployed shade"},"openings":{"partition":"dining"} if slug=="sunroom" else {}}
             if slug == "sunroom":
                 brief["shared_openings"] = {"partition": {"kind": "fixed-glazing", "basis": "Two fixed panes separate the rooms."}}
+            brief["opening_operations"] = {name: "fixed" for name in brief["openings"]}
             brief["architectural_details"] = {"wall_mounts": [], "openings": list(brief["openings"])}
             self.put(slug+"-brief",brief)
             item = {k:"Inspected against the model" for k in ["reviewer","composition","products_and_operation","light_and_finish","architecture","opening_inspection"]}
             detail = dict(visibility="visible", finding="Two continuous fixed panels", result="pass",
                           camera=[0, 0, 1, 1], photo=[0, 0, 1, 1], model_leaves=["fixed", "fixed"],
+                          camera_operation="fixed", photo_operation="fixed", occupied_access="clear",
+                          use_finding="Both panes stay in the wall plane beside the route.",
                           photo_leaves=["fixed", "fixed"], continuous_frame_and_hardware=True,
                           head_review=dict(expected="closed above", camera_state="closed above", photo_state="closed above",
                                            camera=[0,0,1,.2], photo=[0,0,1,.2], finding="Wall continues across the head."))
@@ -343,7 +346,7 @@ class PhotoRelease(unittest.TestCase):
         path.write_text(json.dumps(manifest))
         staged = photos.exterior_review(self.root, self.out, "R1", inventory, final=True)
         self.assertIn("exterior/R1/sunroom.png", staged)
-        with patch("house.status_through", return_value=(True, "pass")), patch("house_revisions.verify_revision") as verify:
+        with patch("house.status_through", return_value=(True, "pass")), patch("room_by_room.house_revisions.verify_revision") as verify:
             self.assertIn("exterior/R1/sunroom.png", photos.house_issue(self.root))
             verify.assert_called_once_with(self.root, "R1")
         (self.out / image["camera"]).write_bytes(b"changed")

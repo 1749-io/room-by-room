@@ -7,8 +7,8 @@ from collections import Counter
 from pathlib import Path
 from urllib.parse import quote
 
-import house_photos
-import house_revisions as revisions
+from . import house_photos
+from . import house_revisions as revisions
 
 START = "<!-- BEGIN VERIFIED ROOM STATUS -->"
 END = "<!-- END VERIFIED ROOM STATUS -->"

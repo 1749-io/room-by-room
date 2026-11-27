@@ -2,7 +2,7 @@
 import json
 import math
 
-import house_revisions as revisions
+from . import house_revisions as revisions
 
 
 def number(value):
@@ -141,7 +141,7 @@ def registered_opening_folder(root, room, revision, verified):
     return revisions.record_dir(root, study)
 
 
-def registered_review(root, room, revision, *, camera=False, heads_only=False, verified=None):
+def registered_review(root, room, revision, *, camera=False, heads_only=False, verified=None, walkthrough=False):
     """Apply a saved room addendum only to the registered source revision it reviewed."""
     folder = revisions.record_dir(root, revision)
     try:
@@ -149,7 +149,7 @@ def registered_review(root, room, revision, *, camera=False, heads_only=False, v
     except (KeyError, OSError, TypeError, ValueError) as exc:
         return f"invalid saved opening addendum: {exc}"
     return review(folder, room, revision, camera=camera, heads_only=heads_only,
-                  correction=current if current != folder else None)
+                  correction=current if current != folder else None, walkthrough=walkthrough)
 
 
 def shared_head_sections(root, room, stages, verified):
@@ -285,7 +285,7 @@ def reviewed_study(folder, room, revision, camera, design_folder, correction, he
 
 
 def review(folder, room, revision, *, camera=False, cad_folder=None, cad_revision=None, heads_only=False,
-           correction=None):
+           correction=None, walkthrough=False):
     """Check the measured sections and, for a full handover, operating clearances."""
     try:
         cad_folder = cad_folder or folder
@@ -304,7 +304,13 @@ def review(folder, room, revision, *, camera=False, cad_folder=None, cad_revisio
                 problem = movement_problem(cad)
                 if problem:
                     return problem
-        return None if heads_only else movement_problem(spec)
+        if heads_only:
+            return None
+        problem = movement_problem(spec)
+        if camera and walkthrough and not problem:
+            from room_by_room.house_walkthrough import check
+            return check(spec, cad)
+        return problem
     except ImportError:
         return "install the route dependencies for 3D clearance checks"
     except (KeyError, TypeError, AttributeError, OSError, ValueError, OverflowError) as exc:

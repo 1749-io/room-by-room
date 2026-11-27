@@ -1,0 +1,7 @@
+{
+  "name": "room-by-room-diagrams",
+  "private": true,
+  "dependencies": {
+    "@viz-js/viz": "3.31.0"
+  }
+}

@@ -1,11 +1,13 @@
 import hashlib
 import json
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
 
 import house
-from house_routes import analyse
+from room_by_room.house_routes import analyse
 from shapely.geometry import LineString, Polygon
 
 
@@ -28,6 +30,60 @@ def dining():
 
 
 class HouseholdRoutes(unittest.TestCase):
+    def test_walkthrough_cli_requires_the_recording_even_if_the_planner_fits(self):
+        with tempfile.TemporaryDirectory() as library:
+            home = Path(library) / "cottage"
+            home.mkdir()
+            (home / "project.json").write_text("{}")
+            (home / "brief.md").touch()
+            (home / "decisions.md").touch()
+            study = dining()
+            study["floor"] = rect(0, 0, 8000, 4000)
+            study["obstacles"] = {"Door": rect(3200, 1400, 3300, 2000)}
+            leg = study["journeys"]["carry-shopping"]
+            cmd = [sys.executable, house.__file__, "--houses-dir", library, "check-routes",
+                   "cottage", "film.routes.json", "--input-revision", "R2", "--require-walked-path", "--json"]
+            for samples, expected in [(None, 1), ([leg["start"], leg["end"]], 1),
+                                      ([leg["start"], [2400, 2700], [4500, 2700], leg["end"]], 0)]:
+                with self.subTest(samples=samples):
+                    if samples is not None:
+                        leg["walked_path_mm"] = samples
+                    (home / "film.routes.json").write_text(json.dumps(study))
+                    run = subprocess.run(cmd, capture_output=True, text=True)
+                    self.assertIn("journeys", json.loads(run.stdout))
+                    self.assertEqual(run.returncode, expected, run.stderr)
+
+    def test_recorded_walk_checks_the_film_even_when_a_detour_exists(self):
+        study = dining()
+        study["floor"] = rect(0, 0, 6000, 4000)
+        study["obstacles"] = {"Door leaf": rect(2950, 1500, 3050, 2500)}
+        leg = dict(start=[1000, 2000], end=[5000, 2000], width_mm=600, uncertainty_mm=0)
+        study["journeys"] = {"walk": leg}
+        planned = analyse(study, "baseline")["walk"]
+        self.assertEqual(planned["status"], "fits")
+        for y, expected in [(2000, "restricted"), (1400, "restricted"), (1100, "fits")]:
+            leg["walked_path_mm"] = [leg["start"], [1500, y], [4500, y], leg["end"]]
+            actual = analyse(study, "baseline")["walk"]
+            self.assertEqual(actual["status"], expected)
+            self.assertEqual(actual["beside"], "Door leaf")
+        leg["walked_path_mm"] = [[900, 2000], leg["end"]]
+        with self.assertRaisesRegex(ValueError, "match the journey endpoints"):
+            analyse(study, "baseline")
+        leg["end"] = leg["start"]
+        leg["walked_path_mm"] = [leg["start"], [1200, 1600], leg["end"]]
+        self.assertEqual(analyse(study, "baseline")["walk"]["status"], "fits")
+        leg["walked_path_mm"] = [leg["start"], leg["end"]]
+        with self.assertRaisesRegex(ValueError, "contain movement"):
+            analyse(study, "baseline")
+
+    def test_in_use_envelope_cannot_replace_the_floor_boundary(self):
+        study = dining()
+        leg = study["journeys"]["carry-shopping"]
+        leg["in_use"] = {"floor edge": rect(300, 300, 400, 400)}
+        leg["walked_path_mm"] = [leg["start"], leg["end"]]
+        with self.assertRaisesRegex(ValueError, "floor boundary"):
+            analyse(study, "baseline")
+
     def test_buyer_can_review_a_thin_route_without_proposing_work(self):
         study = dining()
         original = json.dumps(study)

@@ -6,7 +6,7 @@ Start from what the household actually does. Identify the origin and destination
 
 Save and reopen the named CAD revision through FreeCAD MCP. Export closed plan outlines in a single world coordinate frame in millimetres for the floor, walls, door leaves, furniture and working envelopes at the relevant height. Include floor holes, steps or impassable areas. Use a separate same-level study or a section for vertical travel. Keep the door moving, fully open and closed states distinct where they affect use. Attach the read-back, its units, the source of the chosen clearance and the approximate dimensions. Where scale or geometry is missing, ask for the deciding measurement before making a fit claim.
 
-Run the analysis locally from the checkout. Install the route dependencies in that Python environment with `python -m pip install -r requirements-routes.txt`. The normal project starter is independent of these libraries.
+Run the analysis locally from the checkout. Install the route dependencies in that Python environment with `python -m pip install -r requirements/routes.txt`. The normal project starter is independent of these libraries.
 
 Use a house-relative file ending in `.routes.json`. The following synthetic dining study shows the input format. Its dimensions are illustrative.
 
@@ -33,6 +33,8 @@ The default scope permits assessment only. Obtain each object's permission from 
 For each journey, set `width_mm` to the agreed width for the person or load and `uncertainty_mm` to the estimated overall width error. Zero tests the supplied model dimensions. Use `measurements` for outstanding facts that could reverse the result, including turns, thresholds, door operation and floor changes. Add `in_use` with named occupied polygons for people, equipment, open appliances or an area the routine must avoid. For an envelope that moves with furniture, supply `{"attached_to": "Sideboard", "outline": [[...]]}` using its baseline world coordinates. Give different routines their own named journeys. Use `max_loss_mm` only where the household or brief defines a permissible loss against the reference.
 
 ## Read the result
+
+For a filmed walkthrough, add `walked_path_mm` to the journey. Supply the ordered XY positions of the evaluated walking body in the same coordinates as the obstacles, beginning at `start` and ending at `end`. The command measures the supplied polyline against the floor and occupied geometry, including its full required width. This mode supports a return to the starting point. A journey without the field still searches for an available route. Split moving obstacles into time intervals with conservative swept envelopes and account for curvature between exported samples.
 
 Run `python house.py check-routes "House" rooms/dining/occupied.routes.json --input-revision R2`. Add `--option sideboard-east` for an authorised study. Add `--json` for the route centreline, pinch coordinates, nearby object and length for the CAD overlay. The command assesses the model without selecting an option. Set `review_option` in the input when a recorded choice is ready for the proposed-layout gate. Link the house-relative decision under `selection` for that option, including any delegated choice. Its default is `baseline`.
 

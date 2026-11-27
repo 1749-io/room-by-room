@@ -7,7 +7,7 @@ Use Python 3.11 or 3.12 and Git. In a new virtual environment, run the following
 ```sh
 python -m venv .venv
 # Activate .venv before the next command
-python -m pip install -r requirements-dev.txt
+python -m pip install -r requirements/dev.txt
 python examples/trade-schedules/replay.py "../Alder demo"
 ```
 
@@ -17,7 +17,7 @@ Use a new output directory for each replay. Open the printed `Start here.html`. 
 
 | Location | Responsibility |
 | --- | --- |
-| [house.py](house.py) and the root `house_*.py` modules | Create a project, resolve its records, check a handover, save a revision and recover private backups. Start with `python house.py --help`. |
+| [house.py](house.py) and the [implementation package](room_by_room/) | Create a project, resolve its records, check a handover, save a revision and recover private backups. Start with `python house.py --help`. |
 | [AGENTS.md](AGENTS.md) and [skills](skills/) | Project instructions and the five task-specific skills. The agent interprets the brief, inspects evidence and records decisions. |
 | [templates](templates/) | The house dashboard, brief, room files and registers created by the CLI. Keep existing houses readable when adding a field. |
 | [tools](tools/) | Render, assemble and verify recipient files. Native scene and drawing helpers sit beside the skill that runs them. |
@@ -31,6 +31,7 @@ Use a new output directory for each replay. Open the printed `Start here.html`. 
 | --- | --- | --- |
 | A change, trade-off or survey decision | [Renovation pack](skills/renovation-pack/SKILL.md) | Brief, permissions, responsible decision-maker and next evidence |
 | A measured alteration or occupied layout | [FreeCAD renovation](skills/freecad-renovation/SKILL.md) | Reopened native geometry, checked plan and section where required |
+| Does the furnished room work for the people using it? | [Living in the Room](skills/living-in-the-room/SKILL.md) | Occupied use, obstacle and photo findings |
 | Furniture options or a furnished camera | [Blender interiors](skills/blender-interiors/SKILL.md) | Permitted study returned to CAD, or product-matched camera and scene read-back |
 | A schedule, drawing, room, audience edition or house ZIP | [Pack delivery](skills/pack-delivery/SKILL.md) | Frozen commission, checked standalone files and a reader receipt |
 | Existing and proposed property brochures | [Property comparison](skills/property-comparison-pack/SKILL.md) | Signed visual placements across the two tours and printed pages |
@@ -48,7 +49,7 @@ python tests/browser/trade_schedules.py
 
 On a minimal Linux installation, use `python -m playwright install --with-deps chromium` to install the browser and its system libraries. System package installation may require administrator access.
 
-For changes to a workbook or editable deck, also run the matching browser script with `--office /path/to/soffice` to recalculate or render the edited file in LibreOffice. For a diagram change, run `python docs/render_workflow.py` with Graphviz installed. For native geometry or camera changes, follow the [tool readiness checks](docs/tools.md) on a scratch document and inspect the saved result.
+For changes to a workbook or editable deck, also run the matching browser script with `--office /path/to/soffice` to recalculate or render the edited file in LibreOffice. For changes to room workflow code, skills or review registers, update the room map or its review text and commit the regenerated SVGs. Pack-delivery changes use the pack map. Install the locked Graphviz renderer with `npm ci --prefix docs/graphviz --ignore-scripts`, then run `python docs/render_workflow.py`. CI compares a clean render with the published files and checks the PR diff for the corresponding diagram update. Use `python docs/render_workflow.py --check` and `python tools/check_workflow_changes.py origin/main` to repeat the checks locally on your commits. For native geometry or camera changes, follow the [tool readiness checks](docs/tools.md) on a scratch document and inspect the saved result.
 
 Use a fictional example for a regression. Show the input, deciding observation and recipient file. Keep household sources, quotes, camera exports and revision archives in private storage. For changes to agent instructions, review the [behaviour cases](examples/agent-review.md) alongside the applicable software tests.
 

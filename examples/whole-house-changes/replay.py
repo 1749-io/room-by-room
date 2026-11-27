@@ -15,7 +15,7 @@ def rectangle(bounds):
 
 
 def pier_results(states):
-    from house_routes import analyse
+    from room_by_room.house_routes import analyse
 
     results = {}
     for revision, parts in states.items():

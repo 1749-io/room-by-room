@@ -1,11 +1,11 @@
 """Render the full house workflow and its quick reference from their editable sources."""
 import argparse
 import base64
-import os
 from pathlib import Path
 import re
 import shutil
 import struct
+import tempfile
 import subprocess
 from textwrap import wrap
 import xml.etree.ElementTree as ET
@@ -84,12 +84,10 @@ def specialist_rows():
 
 
 def map_image(source="workflow.dot"):
-    dot = shutil.which("dot")
-    if not dot and os.name == "nt":
-        dot = Path(os.environ.get("ProgramFiles", "C:/Program Files")) / "Graphviz/bin/dot.exe"
-    if not dot or not Path(dot).is_file():
-        raise SystemExit("Install Graphviz and put dot on PATH to rebuild the workflow diagrams.")
-    return subprocess.check_output([str(dot), "-Tsvg", str(HERE / source)])
+    node = shutil.which("node")
+    if not node or not (HERE / "graphviz/node_modules/@viz-js/viz").is_dir():
+        raise SystemExit("Install Node.js and run npm ci --prefix docs/graphviz --ignore-scripts.")
+    return subprocess.check_output([node, str(HERE / "graphviz/render.mjs"), str(HERE / source)])
 
 
 def slug(value):
@@ -101,7 +99,7 @@ NODE_REVIEWS = {
     "intake": "Brief", "checklist": "Brief", "survey": "Existing CAD",
     "shell": "Existing CAD", "fixed": "Existing CAD", "study": "Furniture study",
     "options": "Proposed CAD", "living": "Proposed CAD", "decide": "Scope",
-    "style": "Products", "finish": "Blender", "fidelity": "Products", "ai": "Final AI",
+    "style": "Products", "finish": "Blender", "walkthrough": "Blender", "camera": "Blender", "fidelity": "Products", "ai": "Final AI",
     "decor": "Decorator", "release": "Handover", "assembled": "Handover",
     "climate": "Study-glazing",
 }
@@ -109,6 +107,7 @@ NODE_REVIEWS = {
 # Same order as the specialist request table. Match the wording as a guard
 # against silently attaching a new request to the wrong review.
 STUDIES = (
+    ("“Take me through", "House walkthrough", "Blender"),
     ("A conservatory", "Glazing", "Proposed CAD"),
     ("“Can we open up", "Structural openings", "Opening enquiry"),
     ("“Could the sink", "Services", "Existing CAD"),
@@ -304,7 +303,7 @@ def render(raw_map, detailed, preview=False):
     element(result, "desc", id="description").text = (
         "Room design decisions with correction loops. The full guide includes each stage, homeowner questions, "
         "specialist triggers, scoped issues and a worked support-beam example." if detailed else
-        "A quick reference for the renovation-pack, FreeCAD and Blender skills, including the return paths at three reviews.")
+        "A quick reference for the renovation-pack, FreeCAD and Blender skills, including the occupied walkthrough and correction paths.")
     element(result, "style").text = (
         "a { cursor: pointer } a:focus, a:hover { outline: 2px solid #165D52 } "
         "a:hover .node text, a:focus .node text { text-decoration: underline }"
@@ -404,6 +403,7 @@ def render(raw_map, detailed, preview=False):
 # Short labels for GitHub's diagrams. The evidence and return instructions below
 # each diagram come from the same specialist guide used by the interactive SVG.
 SPECIALIST_FLOWS = {
+    "House walkthrough": ("Homeowner requests a first-person tour", "Record the walking path and seated view in Blender", "Check body clearance and timed door movements", "Issue the checked tour"),
     "Glazing": ("Glazed room enters review", "QGIS or LiDAR for obstructions", "Sun Position or pvlib for exposure", "EnergyPlus if thermal inputs support it", "Review seat, shade and ventilation"),
     "Structural openings": ("Wall, opening or post changes", "FreeCAD BIM and TechDraw section", "Engineer verifies loads, bearings and supports", "Return finished supports to occupied CAD"),
     "Services": ("Fitting, duct or drain moves", "FreeCAD section and supplied IFC via IfcOpenShell", "Installer verifies connection and fall", "Update fit and order hold"),
@@ -429,7 +429,7 @@ def specialist_diagrams():
     groups = {
         "Building and site": ("Structural openings", "Services", "Levels and drainage", "Consent"),
         "Sun, glazing and energy": ("Glazing", "Sun and shade", "Thermal comfort", "Solar panels"),
-        "People, rooms and finishes": ("Access", "Sightlines", "Acoustics", "Colour", "Furnishing", "Finishes"),
+        "People, rooms and finishes": ("House walkthrough", "Access", "Sightlines", "Acoustics", "Colour", "Furnishing", "Finishes"),
         "Buying and building": ("Valuation", "Tenders", "Occupation", "Survey returns"),
     }
     rows = specialist_rows()
@@ -449,6 +449,7 @@ def specialist_diagrams():
     for name in grouped:
         trigger, response, result = by_name[name]
         response = response.replace("(valuation.md)", "(../skills/renovation-pack/references/valuation.md)")
+        response = response.replace("(../../blender-house-walkthrough/", "(../skills/blender-house-walkthrough/")
         result = result.replace("(glazed-rooms.md)", "(../skills/renovation-pack/references/glazed-rooms.md)")
         out.extend([f"## {name}", "", trigger, "", "```mermaid", "flowchart TD"])
         for i, caption in enumerate(SPECIALIST_FLOWS[name]):
@@ -467,18 +468,35 @@ def specialist_diagrams():
     return "\n".join(out)
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output-dir", type=Path, default=HERE)
-    args = parser.parse_args()
-    args.output_dir.mkdir(exist_ok=True, parents=True)
-    (args.output_dir / "pack-delivery.svg").write_bytes(map_image("pack-delivery.dot"))
-    (args.output_dir / "specialist-workflows.md").write_text(specialist_diagrams(), encoding="utf-8")
+def write_outputs(output_dir):
+    output_dir.mkdir(exist_ok=True, parents=True)
+    (output_dir / "pack-delivery.svg").write_bytes(map_image("pack-delivery.dot"))
+    (output_dir / "specialist-workflows.md").write_text(specialist_diagrams(), encoding="utf-8")
     raw_map = map_image()
     for name, detailed in (("workflow.svg", True), ("workflow-quick.svg", False)):
         data = render(raw_map, detailed)
-        (args.output_dir / name).write_bytes(data)
-    (args.output_dir / "workflow-preview.svg").write_bytes(render(raw_map, False, preview=True))
+        (output_dir / name).write_bytes(data)
+    (output_dir / "workflow-preview.svg").write_bytes(render(raw_map, False, preview=True))
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output-dir", type=Path, default=HERE)
+    parser.add_argument("--check", action="store_true", help="Compare every generated diagram with the committed copy")
+    args = parser.parse_args()
+    if not args.check:
+        write_outputs(args.output_dir)
+        return
+    with tempfile.TemporaryDirectory() as tmp:
+        target = Path(tmp)
+        write_outputs(target)
+        stale = []
+        for generated in sorted(target.iterdir()):
+            published = args.output_dir / generated.name
+            if not published.is_file() or published.read_text(encoding="utf-8") != generated.read_text(encoding="utf-8"):
+                stale.append(generated.name)
+        if stale:
+            raise SystemExit("Run python docs/render_workflow.py and commit the regenerated files: " + ", ".join(stale))
 
 
 if __name__ == "__main__":
