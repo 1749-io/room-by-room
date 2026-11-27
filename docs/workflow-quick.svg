@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1060" role="document" aria-labelledby="title description" height="7690" viewBox="0 0 1060 7690">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1060" role="document" aria-labelledby="title description" height="7847" viewBox="0 0 1060 7847">
   <title id="title">Room design at a glance</title>
   <desc id="description">A quick reference for the renovation-pack, FreeCAD and Blender skills, including the occupied walkthrough and correction paths.</desc>
   <style>a { cursor: pointer } a:focus, a:hover { outline: 2px solid #165D52 } a:hover .node text, a:focus .node text { text-decoration: underline }</style>
-  <rect x="0" y="0" width="1060" height="7690" fill="#FAF8F2" rx="0" />
+  <rect x="0" y="0" width="1060" height="7847" fill="#FAF8F2" rx="0" />
   <rect x="0" y="0" width="1060" height="131" fill="#173D39" rx="0" />
   <text x="48" y="34" fill="#C7DFCE" font-size="13" font-family="Arial, Helvetica, sans-serif" font-weight="bold" letter-spacing="2.6">HOUSE RENOVATIONS</text>
   <text x="48" y="86" fill="#FFFFFF" font-size="43" font-family="Georgia, 'Times New Roman', serif" font-weight="normal">Room design at a glance</text>
@@ -460,59 +460,62 @@
     <text x="286" y="2113" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Orchard House</text>
   </a>
   <text x="48" y="2159" fill="#165D52" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="bold">Specialist studies</text>
+  <a aria-label="House walkthrough" xlink:href="#study-house-walkthrough">
+    <text x="48" y="2185" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">House walkthrough</text>
+  </a>
   <a aria-label="Glazing" xlink:href="#study-glazing">
-    <text x="48" y="2185" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Glazing</text>
+    <text x="286" y="2185" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Glazing</text>
   </a>
   <a aria-label="Structural openings" xlink:href="#study-structural-openings">
-    <text x="286" y="2185" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Structural openings</text>
+    <text x="524" y="2185" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Structural openings</text>
   </a>
   <a aria-label="Services" xlink:href="#study-services">
-    <text x="524" y="2185" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Services</text>
+    <text x="762" y="2185" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Services</text>
   </a>
   <a aria-label="Access" xlink:href="#study-access">
-    <text x="762" y="2185" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Access</text>
+    <text x="48" y="2211" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Access</text>
   </a>
   <a aria-label="Sightlines" xlink:href="#study-sightlines">
-    <text x="48" y="2211" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Sightlines</text>
+    <text x="286" y="2211" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Sightlines</text>
   </a>
   <a aria-label="Sun and shade" xlink:href="#study-sun-and-shade">
-    <text x="286" y="2211" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Sun and shade</text>
+    <text x="524" y="2211" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Sun and shade</text>
   </a>
   <a aria-label="Thermal comfort" xlink:href="#study-thermal-comfort">
-    <text x="524" y="2211" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Thermal comfort</text>
+    <text x="762" y="2211" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Thermal comfort</text>
   </a>
   <a aria-label="Solar panels" xlink:href="#study-solar-panels">
-    <text x="762" y="2211" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Solar panels</text>
+    <text x="48" y="2237" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Solar panels</text>
   </a>
   <a aria-label="Levels and drainage" xlink:href="#study-levels-and-drainage">
-    <text x="48" y="2237" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Levels and drainage</text>
+    <text x="286" y="2237" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Levels and drainage</text>
   </a>
   <a aria-label="Consent" xlink:href="#study-consent">
-    <text x="286" y="2237" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Consent</text>
+    <text x="524" y="2237" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Consent</text>
   </a>
   <a aria-label="Acoustics" xlink:href="#study-acoustics">
-    <text x="524" y="2237" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Acoustics</text>
+    <text x="762" y="2237" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Acoustics</text>
   </a>
   <a aria-label="Colour" xlink:href="#study-colour">
-    <text x="762" y="2237" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Colour</text>
+    <text x="48" y="2263" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Colour</text>
   </a>
   <a aria-label="Furnishing" xlink:href="#study-furnishing">
-    <text x="48" y="2263" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Furnishing</text>
+    <text x="286" y="2263" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Furnishing</text>
   </a>
   <a aria-label="Finishes" xlink:href="#study-finishes">
-    <text x="286" y="2263" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Finishes</text>
+    <text x="524" y="2263" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Finishes</text>
   </a>
   <a aria-label="Occupation" xlink:href="#study-occupation">
-    <text x="524" y="2263" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Occupation</text>
+    <text x="762" y="2263" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Occupation</text>
   </a>
   <a aria-label="Valuation" xlink:href="#study-valuation">
-    <text x="762" y="2263" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Valuation</text>
+    <text x="48" y="2289" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Valuation</text>
   </a>
   <a aria-label="Tenders" xlink:href="#study-tenders">
-    <text x="48" y="2289" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Tenders</text>
+    <text x="286" y="2289" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Tenders</text>
   </a>
   <a aria-label="Survey returns" xlink:href="#study-survey-returns">
-    <text x="286" y="2289" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Survey returns</text>
+    <text x="524" y="2289" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Survey returns</text>
   </a>
   <g id="brief-permissions-and-revisions">
     <rect x="0" y="2335" width="1060" height="66" fill="#203F3D" rx="0" />
@@ -690,148 +693,146 @@
   <text x="60" y="4649" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="bold">Household request or clue</text>
   <text x="338" y="4649" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="bold">Specialist response</text>
   <text x="728" y="4649" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="bold">Return to the decision</text>
-  <g id="study-glazing">
+  <g id="study-house-walkthrough">
     <rect x="48" y="4662" width="964" height="157" fill="#FFFFFF" rx="0" />
-    <text x="60" y="4686" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">A conservatory, sunroom,</text>
-    <text x="60" y="4707" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">glazed extension or roof-lit</text>
-    <text x="60" y="4728" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">room enters review.</text>
-    <text x="338" y="4686" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Register north against the actual building.</text>
-    <text x="338" y="4707" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Trace sun at the intended viewpoint against</text>
-    <text x="338" y="4728" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">dated tree, roof and terrain heights.</text>
-    <text x="338" y="4749" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Compare glare, summer heat and winter cold</text>
-    <text x="338" y="4770" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">under the relevant use and controls.</text>
-    <text x="728" y="4686" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Record the four current</text>
-    <text x="728" y="4707" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">findings, seasonal use,</text>
-    <text x="728" y="4728" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">furniture and shade choice with</text>
-    <text x="728" y="4749" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">their evidence and survey owner.</text>
-    <text x="728" y="4770" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Glazed rooms</text>
-    <a aria-label="Open Proposed CAD review" xlink:href="#proposed-cad">
-      <text x="728" y="4797" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Proposed CAD review</text>
+    <text x="60" y="4686" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Take me through the house and</text>
+    <text x="60" y="4707" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">show me the view when I sit</text>
+    <text x="60" y="4728" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">down.”</text>
+    <text x="338" y="4686" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Use the Blender house walkthrough only when</text>
+    <text x="338" y="4707" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">someone requests a first-person visit, in</text>
+    <text x="338" y="4728" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">ordinary language or by skill name.</text>
+    <text x="728" y="4686" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Give the homeowner the requested</text>
+    <text x="728" y="4707" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">playable tour or navigable</text>
+    <text x="728" y="4728" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">scene. Routine room checks and</text>
+    <text x="728" y="4749" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">brochure tours keep their</text>
+    <text x="728" y="4770" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">existing outputs.</text>
+    <a aria-label="Open Blender review" xlink:href="#blender">
+      <text x="728" y="4797" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Blender review</text>
     </a>
     <a aria-label="Back to map" xlink:href="#room-map">
       <text x="60" y="4797" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
     </a>
   </g>
-  <g id="study-structural-openings">
-    <rect x="48" y="4819" width="964" height="178" fill="#F0F3EB" rx="0" />
-    <text x="60" y="4843" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Can we open up the kitchen?”</text>
-    <text x="60" y="4864" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">A wall moves, an opening</text>
-    <text x="60" y="4885" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">widens or a post appears on a</text>
-    <text x="60" y="4906" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">returned plan.</text>
-    <text x="338" y="4843" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">FreeCAD and TechDraw overlay both floors and</text>
-    <text x="338" y="4864" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">section the opening. Ask the engineer for</text>
-    <text x="338" y="4885" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">the load path, finished supports and head</text>
-    <text x="338" y="4906" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">height. PyNite or FEM with CalculiX can</text>
-    <text x="338" y="4927" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">support a commissioned analysis with</text>
-    <text x="338" y="4948" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">verified inputs.</text>
-    <text x="728" y="4843" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Insert the support, rerun</text>
-    <text x="728" y="4864" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">occupied layouts, check cabinet</text>
-    <text x="728" y="4885" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">set-out, tender scope and</text>
-    <text x="728" y="4906" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">sequence.</text>
-    <a aria-label="Open Opening enquiry review" xlink:href="#opening-enquiry">
-      <text x="728" y="4975" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Opening enquiry review</text>
+  <g id="study-glazing">
+    <rect x="48" y="4819" width="964" height="157" fill="#F0F3EB" rx="0" />
+    <text x="60" y="4843" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">A conservatory, sunroom,</text>
+    <text x="60" y="4864" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">glazed extension or roof-lit</text>
+    <text x="60" y="4885" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">room enters review.</text>
+    <text x="338" y="4843" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Register north against the actual building.</text>
+    <text x="338" y="4864" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Trace sun at the intended viewpoint against</text>
+    <text x="338" y="4885" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">dated tree, roof and terrain heights.</text>
+    <text x="338" y="4906" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Compare glare, summer heat and winter cold</text>
+    <text x="338" y="4927" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">under the relevant use and controls.</text>
+    <text x="728" y="4843" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Record the four current</text>
+    <text x="728" y="4864" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">findings, seasonal use,</text>
+    <text x="728" y="4885" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">furniture and shade choice with</text>
+    <text x="728" y="4906" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">their evidence and survey owner.</text>
+    <text x="728" y="4927" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Glazed rooms</text>
+    <a aria-label="Open Proposed CAD review" xlink:href="#proposed-cad">
+      <text x="728" y="4954" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Proposed CAD review</text>
     </a>
     <a aria-label="Back to map" xlink:href="#room-map">
-      <text x="60" y="4975" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
+      <text x="60" y="4954" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
+    </a>
+  </g>
+  <g id="study-structural-openings">
+    <rect x="48" y="4976" width="964" height="178" fill="#FFFFFF" rx="0" />
+    <text x="60" y="5000" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Can we open up the kitchen?”</text>
+    <text x="60" y="5021" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">A wall moves, an opening</text>
+    <text x="60" y="5042" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">widens or a post appears on a</text>
+    <text x="60" y="5063" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">returned plan.</text>
+    <text x="338" y="5000" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">FreeCAD and TechDraw overlay both floors and</text>
+    <text x="338" y="5021" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">section the opening. Ask the engineer for</text>
+    <text x="338" y="5042" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">the load path, finished supports and head</text>
+    <text x="338" y="5063" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">height. PyNite or FEM with CalculiX can</text>
+    <text x="338" y="5084" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">support a commissioned analysis with</text>
+    <text x="338" y="5105" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">verified inputs.</text>
+    <text x="728" y="5000" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Insert the support, rerun</text>
+    <text x="728" y="5021" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">occupied layouts, check cabinet</text>
+    <text x="728" y="5042" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">set-out, tender scope and</text>
+    <text x="728" y="5063" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">sequence.</text>
+    <a aria-label="Open Opening enquiry review" xlink:href="#opening-enquiry">
+      <text x="728" y="5132" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Opening enquiry review</text>
+    </a>
+    <a aria-label="Back to map" xlink:href="#room-map">
+      <text x="60" y="5132" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
     </a>
   </g>
   <g id="study-services">
-    <rect x="48" y="4997" width="964" height="178" fill="#FFFFFF" rx="0" />
-    <text x="60" y="5021" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Could the sink go under that</text>
-    <text x="60" y="5042" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">window?” A duct, drain, joist,</text>
-    <text x="60" y="5063" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">floor level or fitting moves.</text>
-    <text x="338" y="5021" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">FreeCAD sections compare falls,</text>
-    <text x="338" y="5042" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">penetrations, outlet positions and service</text>
-    <text x="338" y="5063" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">access. An installer or surveyor verifies</text>
-    <text x="338" y="5084" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">the concealed connection. Inspect supplied</text>
-    <text x="338" y="5105" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">IFC units and placement with IfcOpenShell</text>
-    <text x="338" y="5126" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">where relevant.</text>
-    <text x="728" y="5021" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Update the service drawing,</text>
-    <text x="728" y="5042" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">occupied fit and purchase or</text>
-    <text x="728" y="5063" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">trade hold.</text>
+    <rect x="48" y="5154" width="964" height="178" fill="#F0F3EB" rx="0" />
+    <text x="60" y="5178" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Could the sink go under that</text>
+    <text x="60" y="5199" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">window?” A duct, drain, joist,</text>
+    <text x="60" y="5220" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">floor level or fitting moves.</text>
+    <text x="338" y="5178" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">FreeCAD sections compare falls,</text>
+    <text x="338" y="5199" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">penetrations, outlet positions and service</text>
+    <text x="338" y="5220" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">access. An installer or surveyor verifies</text>
+    <text x="338" y="5241" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">the concealed connection. Inspect supplied</text>
+    <text x="338" y="5262" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">IFC units and placement with IfcOpenShell</text>
+    <text x="338" y="5283" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">where relevant.</text>
+    <text x="728" y="5178" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Update the service drawing,</text>
+    <text x="728" y="5199" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">occupied fit and purchase or</text>
+    <text x="728" y="5220" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">trade hold.</text>
     <a aria-label="Open Existing CAD review" xlink:href="#existing-cad">
-      <text x="728" y="5153" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Existing CAD review</text>
+      <text x="728" y="5310" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Existing CAD review</text>
     </a>
     <a aria-label="Back to map" xlink:href="#room-map">
-      <text x="60" y="5153" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
+      <text x="60" y="5310" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
     </a>
   </g>
   <g id="study-access">
-    <rect x="48" y="5175" width="964" height="136" fill="#F0F3EB" rx="0" />
-    <text x="60" y="5199" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Can Dad get to the shower?” A</text>
-    <text x="60" y="5220" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">chair pulls back, a buggy</text>
-    <text x="60" y="5241" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">turns or a doorway changes.</text>
-    <text x="338" y="5199" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">FreeCAD tests the person or aid, operating</text>
-    <text x="338" y="5220" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">envelopes and connected thresholds. Shapely</text>
-    <text x="338" y="5241" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">and NetworkX compare the whole occupied</text>
-    <text x="338" y="5262" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">journey.</text>
-    <text x="728" y="5199" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Record the pinch or deciding</text>
-    <text x="728" y="5220" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">site measurement. Retest the</text>
-    <text x="728" y="5241" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">adjoining room and each affected</text>
-    <text x="728" y="5262" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">activity.</text>
+    <rect x="48" y="5332" width="964" height="136" fill="#FFFFFF" rx="0" />
+    <text x="60" y="5356" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Can Dad get to the shower?” A</text>
+    <text x="60" y="5377" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">chair pulls back, a buggy</text>
+    <text x="60" y="5398" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">turns or a doorway changes.</text>
+    <text x="338" y="5356" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">FreeCAD tests the person or aid, operating</text>
+    <text x="338" y="5377" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">envelopes and connected thresholds. Shapely</text>
+    <text x="338" y="5398" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">and NetworkX compare the whole occupied</text>
+    <text x="338" y="5419" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">journey.</text>
+    <text x="728" y="5356" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Record the pinch or deciding</text>
+    <text x="728" y="5377" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">site measurement. Retest the</text>
+    <text x="728" y="5398" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">adjoining room and each affected</text>
+    <text x="728" y="5419" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">activity.</text>
     <a aria-label="Open Proposed CAD review" xlink:href="#proposed-cad">
-      <text x="728" y="5289" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Proposed CAD review</text>
+      <text x="728" y="5446" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Proposed CAD review</text>
     </a>
     <a aria-label="Back to map" xlink:href="#room-map">
-      <text x="60" y="5289" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
+      <text x="60" y="5446" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
     </a>
   </g>
   <g id="study-sightlines">
-    <rect x="48" y="5311" width="964" height="136" fill="#FFFFFF" rx="0" />
-    <text x="60" y="5335" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Can everyone see the TV?” A</text>
-    <text x="60" y="5356" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">chair turns, an opening frames</text>
-    <text x="60" y="5377" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">a neighbour or a garden seat</text>
-    <text x="60" y="5398" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">loses privacy.</text>
-    <text x="338" y="5335" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">FreeCAD checks all intended viewpoints,</text>
-    <text x="338" y="5356" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">target, natural fronts and moving people. An</text>
-    <text x="338" y="5377" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">authorised Blender viewport compares the</text>
-    <text x="338" y="5398" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">same eye position across options.</text>
-    <text x="728" y="5335" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Return placements to CAD. Review</text>
-    <text x="728" y="5356" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">sightline, conversation, reach</text>
-    <text x="728" y="5377" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">and passage together.</text>
+    <rect x="48" y="5468" width="964" height="136" fill="#F0F3EB" rx="0" />
+    <text x="60" y="5492" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Can everyone see the TV?” A</text>
+    <text x="60" y="5513" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">chair turns, an opening frames</text>
+    <text x="60" y="5534" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">a neighbour or a garden seat</text>
+    <text x="60" y="5555" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">loses privacy.</text>
+    <text x="338" y="5492" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">FreeCAD checks all intended viewpoints,</text>
+    <text x="338" y="5513" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">target, natural fronts and moving people. An</text>
+    <text x="338" y="5534" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">authorised Blender viewport compares the</text>
+    <text x="338" y="5555" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">same eye position across options.</text>
+    <text x="728" y="5492" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Return placements to CAD. Review</text>
+    <text x="728" y="5513" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">sightline, conversation, reach</text>
+    <text x="728" y="5534" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">and passage together.</text>
     <a aria-label="Open Proposed CAD review" xlink:href="#proposed-cad">
-      <text x="728" y="5425" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Proposed CAD review</text>
+      <text x="728" y="5582" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Proposed CAD review</text>
     </a>
     <a aria-label="Back to map" xlink:href="#room-map">
-      <text x="60" y="5425" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
+      <text x="60" y="5582" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
     </a>
   </g>
   <g id="study-sun-and-shade">
-    <rect x="48" y="5447" width="964" height="136" fill="#F0F3EB" rx="0" />
-    <text x="60" y="5471" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Where can we sit in the</text>
-    <text x="60" y="5492" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">evening sun?” A roof, hedge,</text>
-    <text x="60" y="5513" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">window or neighbouring</text>
-    <text x="60" y="5534" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">obstruction changes.</text>
-    <text x="338" y="5471" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Establish true north, time, site levels and</text>
-    <text x="338" y="5492" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">obstruction heights. Use QGIS or dated LiDAR</text>
-    <text x="338" y="5513" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">for terrain, then Blender Sun Position or</text>
-    <text x="338" y="5534" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">pvlib for seasonal comparisons.</text>
-    <text x="728" y="5471" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Return the shadow or sightline</text>
-    <text x="728" y="5492" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">to the seat, window or garden</text>
-    <text x="728" y="5513" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">option. Survey any height that</text>
-    <text x="728" y="5534" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">could reverse it.</text>
-    <a aria-label="Open Proposed CAD review" xlink:href="#proposed-cad">
-      <text x="728" y="5561" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Proposed CAD review</text>
-    </a>
-    <a aria-label="Back to map" xlink:href="#room-map">
-      <text x="60" y="5561" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
-    </a>
-  </g>
-  <g id="study-thermal-comfort">
-    <rect x="48" y="5583" width="964" height="157" fill="#FFFFFF" rx="0" />
-    <text x="60" y="5607" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Will these doors make the</text>
-    <text x="60" y="5628" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">room too hot?” Insulation,</text>
-    <text x="60" y="5649" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">glazing, shading, moisture or</text>
-    <text x="60" y="5670" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">ventilation changes.</text>
-    <text x="338" y="5607" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Review the section, fabric condition,</text>
-    <text x="338" y="5628" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">airflow and use. Compare indoor conditions</text>
-    <text x="338" y="5649" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">with EnergyPlus if weather, fabric and</text>
-    <text x="338" y="5670" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">operating inputs support it. Seek a survey</text>
-    <text x="338" y="5691" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">or building-services design where needed.</text>
-    <text x="728" y="5607" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Revisit glazing, shading,</text>
-    <text x="728" y="5628" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">ventilation, build-up or heating</text>
-    <text x="728" y="5649" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">decisions and the occupied</text>
-    <text x="728" y="5670" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">dimensions.</text>
+    <rect x="48" y="5604" width="964" height="136" fill="#FFFFFF" rx="0" />
+    <text x="60" y="5628" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Where can we sit in the</text>
+    <text x="60" y="5649" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">evening sun?” A roof, hedge,</text>
+    <text x="60" y="5670" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">window or neighbouring</text>
+    <text x="60" y="5691" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">obstruction changes.</text>
+    <text x="338" y="5628" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Establish true north, time, site levels and</text>
+    <text x="338" y="5649" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">obstruction heights. Use QGIS or dated LiDAR</text>
+    <text x="338" y="5670" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">for terrain, then Blender Sun Position or</text>
+    <text x="338" y="5691" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">pvlib for seasonal comparisons.</text>
+    <text x="728" y="5628" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Return the shadow or sightline</text>
+    <text x="728" y="5649" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">to the seat, window or garden</text>
+    <text x="728" y="5670" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">option. Survey any height that</text>
+    <text x="728" y="5691" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">could reverse it.</text>
     <a aria-label="Open Proposed CAD review" xlink:href="#proposed-cad">
       <text x="728" y="5718" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Proposed CAD review</text>
     </a>
@@ -839,250 +840,272 @@
       <text x="60" y="5718" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
     </a>
   </g>
-  <g id="study-solar-panels">
-    <rect x="48" y="5740" width="964" height="136" fill="#F0F3EB" rx="0" />
-    <text x="60" y="5764" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Is there room for solar</text>
-    <text x="60" y="5785" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">panels?” A rooflight competes</text>
-    <text x="60" y="5806" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">for a sunny roof face.</text>
-    <text x="338" y="5764" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Check roof pitch, aspect, usable area and</text>
-    <text x="338" y="5785" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">shading. Compare module fit, then pvlib</text>
-    <text x="338" y="5806" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">generation. For savings add household demand</text>
-    <text x="338" y="5827" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">timing, tariffs and an installed price.</text>
-    <text x="728" y="5764" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Return the roof layout, yield</text>
-    <text x="728" y="5785" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">range and assumptions to the</text>
-    <text x="728" y="5806" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">roof decision and budget.</text>
-    <a aria-label="Open Whole house review" xlink:href="#whole-house">
-      <text x="728" y="5854" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Whole house review</text>
+  <g id="study-thermal-comfort">
+    <rect x="48" y="5740" width="964" height="157" fill="#F0F3EB" rx="0" />
+    <text x="60" y="5764" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Will these doors make the</text>
+    <text x="60" y="5785" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">room too hot?” Insulation,</text>
+    <text x="60" y="5806" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">glazing, shading, moisture or</text>
+    <text x="60" y="5827" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">ventilation changes.</text>
+    <text x="338" y="5764" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Review the section, fabric condition,</text>
+    <text x="338" y="5785" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">airflow and use. Compare indoor conditions</text>
+    <text x="338" y="5806" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">with EnergyPlus if weather, fabric and</text>
+    <text x="338" y="5827" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">operating inputs support it. Seek a survey</text>
+    <text x="338" y="5848" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">or building-services design where needed.</text>
+    <text x="728" y="5764" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Revisit glazing, shading,</text>
+    <text x="728" y="5785" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">ventilation, build-up or heating</text>
+    <text x="728" y="5806" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">decisions and the occupied</text>
+    <text x="728" y="5827" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">dimensions.</text>
+    <a aria-label="Open Proposed CAD review" xlink:href="#proposed-cad">
+      <text x="728" y="5875" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Proposed CAD review</text>
     </a>
     <a aria-label="Back to map" xlink:href="#room-map">
-      <text x="60" y="5854" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
+      <text x="60" y="5875" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
+    </a>
+  </g>
+  <g id="study-solar-panels">
+    <rect x="48" y="5897" width="964" height="136" fill="#FFFFFF" rx="0" />
+    <text x="60" y="5921" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Is there room for solar</text>
+    <text x="60" y="5942" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">panels?” A rooflight competes</text>
+    <text x="60" y="5963" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">for a sunny roof face.</text>
+    <text x="338" y="5921" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Check roof pitch, aspect, usable area and</text>
+    <text x="338" y="5942" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">shading. Compare module fit, then pvlib</text>
+    <text x="338" y="5963" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">generation. For savings add household demand</text>
+    <text x="338" y="5984" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">timing, tariffs and an installed price.</text>
+    <text x="728" y="5921" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Return the roof layout, yield</text>
+    <text x="728" y="5942" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">range and assumptions to the</text>
+    <text x="728" y="5963" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">roof decision and budget.</text>
+    <a aria-label="Open Whole house review" xlink:href="#whole-house">
+      <text x="728" y="6011" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Whole house review</text>
+    </a>
+    <a aria-label="Back to map" xlink:href="#room-map">
+      <text x="60" y="6011" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
     </a>
   </g>
   <g id="study-levels-and-drainage">
-    <rect x="48" y="5876" width="964" height="136" fill="#FFFFFF" rx="0" />
-    <text x="60" y="5900" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Could this patio be level?” A</text>
-    <text x="60" y="5921" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">threshold, external level,</text>
-    <text x="60" y="5942" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">boundary or outfall changes.</text>
-    <text x="338" y="5900" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Survey levels to a common datum. Trace water</text>
-    <text x="338" y="5921" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">to an evidenced outfall and check access.</text>
-    <text x="338" y="5942" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Match any map, aerial view or terrain data</text>
-    <text x="338" y="5963" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">to the actual plot.</text>
-    <text x="728" y="5900" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Recheck the threshold section,</text>
-    <text x="728" y="5921" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">garden route and drainage</text>
-    <text x="728" y="5942" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">enquiry before pricing.</text>
+    <rect x="48" y="6033" width="964" height="136" fill="#F0F3EB" rx="0" />
+    <text x="60" y="6057" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Could this patio be level?” A</text>
+    <text x="60" y="6078" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">threshold, external level,</text>
+    <text x="60" y="6099" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">boundary or outfall changes.</text>
+    <text x="338" y="6057" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Survey levels to a common datum. Trace water</text>
+    <text x="338" y="6078" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">to an evidenced outfall and check access.</text>
+    <text x="338" y="6099" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Match any map, aerial view or terrain data</text>
+    <text x="338" y="6120" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">to the actual plot.</text>
+    <text x="728" y="6057" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Recheck the threshold section,</text>
+    <text x="728" y="6078" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">garden route and drainage</text>
+    <text x="728" y="6099" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">enquiry before pricing.</text>
     <a aria-label="Open Existing CAD review" xlink:href="#existing-cad">
-      <text x="728" y="5990" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Existing CAD review</text>
-    </a>
-    <a aria-label="Back to map" xlink:href="#room-map">
-      <text x="60" y="5990" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
-    </a>
-  </g>
-  <g id="study-consent">
-    <rect x="48" y="6012" width="964" height="157" fill="#F0F3EB" rx="0" />
-    <text x="60" y="6036" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Can the garage become a gym?”</text>
-    <text x="60" y="6057" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">The footprint, frontage, use</text>
-    <text x="60" y="6078" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">or work near a boundary</text>
-    <text x="60" y="6099" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">changes.</text>
-    <text x="338" y="6036" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Renovation-pack identifies the nation and</text>
-    <text x="338" y="6057" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">authority. Check plot, past decisions,</text>
-    <text x="338" y="6078" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">conditions, other rights and the technical</text>
-    <text x="338" y="6099" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">building-control enquiry against the</text>
-    <text x="338" y="6120" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">proposed drawing.</text>
-    <text x="728" y="6036" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Record dated evidence, who must</text>
-    <text x="728" y="6057" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">reply and what survey, design,</text>
-    <text x="728" y="6078" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">spend or order depends on it.</text>
-    <a aria-label="Open Consent review" xlink:href="#consent">
-      <text x="728" y="6147" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Consent review</text>
+      <text x="728" y="6147" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Existing CAD review</text>
     </a>
     <a aria-label="Back to map" xlink:href="#room-map">
       <text x="60" y="6147" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
     </a>
   </g>
-  <g id="study-acoustics">
-    <rect x="48" y="6169" width="964" height="136" fill="#FFFFFF" rx="0" />
-    <text x="60" y="6193" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Will music disturb a call</text>
-    <text x="60" y="6214" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">upstairs?” A partition, door,</text>
-    <text x="60" y="6235" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">noisy appliance or extract</text>
-    <text x="60" y="6256" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">route changes.</text>
-    <text x="338" y="6193" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Trace likely sound and flanking paths,</text>
-    <text x="338" y="6214" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">compare simultaneous uses and arrange a</text>
-    <text x="338" y="6235" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">listening trial or acoustic advice if it</text>
-    <text x="338" y="6256" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">changes the choice.</text>
-    <text x="728" y="6193" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Return the finding to room use,</text>
-    <text x="728" y="6214" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">door or fabric detail and any</text>
-    <text x="728" y="6235" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">affected ventilation.</text>
-    <a aria-label="Open Proposed CAD review" xlink:href="#proposed-cad">
-      <text x="728" y="6283" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Proposed CAD review</text>
+  <g id="study-consent">
+    <rect x="48" y="6169" width="964" height="157" fill="#FFFFFF" rx="0" />
+    <text x="60" y="6193" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Can the garage become a gym?”</text>
+    <text x="60" y="6214" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">The footprint, frontage, use</text>
+    <text x="60" y="6235" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">or work near a boundary</text>
+    <text x="60" y="6256" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">changes.</text>
+    <text x="338" y="6193" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Renovation-pack identifies the nation and</text>
+    <text x="338" y="6214" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">authority. Check plot, past decisions,</text>
+    <text x="338" y="6235" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">conditions, other rights and the technical</text>
+    <text x="338" y="6256" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">building-control enquiry against the</text>
+    <text x="338" y="6277" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">proposed drawing.</text>
+    <text x="728" y="6193" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Record dated evidence, who must</text>
+    <text x="728" y="6214" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">reply and what survey, design,</text>
+    <text x="728" y="6235" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">spend or order depends on it.</text>
+    <a aria-label="Open Consent review" xlink:href="#consent">
+      <text x="728" y="6304" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Consent review</text>
     </a>
     <a aria-label="Back to map" xlink:href="#room-map">
-      <text x="60" y="6283" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
+      <text x="60" y="6304" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
+    </a>
+  </g>
+  <g id="study-acoustics">
+    <rect x="48" y="6326" width="964" height="136" fill="#F0F3EB" rx="0" />
+    <text x="60" y="6350" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Will music disturb a call</text>
+    <text x="60" y="6371" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">upstairs?” A partition, door,</text>
+    <text x="60" y="6392" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">noisy appliance or extract</text>
+    <text x="60" y="6413" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">route changes.</text>
+    <text x="338" y="6350" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Trace likely sound and flanking paths,</text>
+    <text x="338" y="6371" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">compare simultaneous uses and arrange a</text>
+    <text x="338" y="6392" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">listening trial or acoustic advice if it</text>
+    <text x="338" y="6413" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">changes the choice.</text>
+    <text x="728" y="6350" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Return the finding to room use,</text>
+    <text x="728" y="6371" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">door or fabric detail and any</text>
+    <text x="728" y="6392" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">affected ventilation.</text>
+    <a aria-label="Open Proposed CAD review" xlink:href="#proposed-cad">
+      <text x="728" y="6440" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Proposed CAD review</text>
+    </a>
+    <a aria-label="Back to map" xlink:href="#room-map">
+      <text x="60" y="6440" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
     </a>
   </g>
   <g id="study-colour">
-    <rect x="48" y="6305" width="964" height="136" fill="#F0F3EB" rx="0" />
-    <text x="60" y="6329" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Make the room feel warmer.” A</text>
-    <text x="60" y="6350" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">paint, upholstery, reused</text>
-    <text x="60" y="6371" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">piece or lighting condition</text>
-    <text x="60" y="6392" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">changes.</text>
-    <text x="338" y="6329" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Blender compares the fixed products in the</text>
-    <text x="338" y="6350" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">same camera and in neutral light. Use</text>
-    <text x="338" y="6371" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">color-expert for open choices or casts. Use</text>
-    <text x="338" y="6392" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">an early styling image only within scope.</text>
-    <text x="728" y="6329" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Record the palette decision.</text>
-    <text x="728" y="6350" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Recheck the furnished camera,</text>
-    <text x="728" y="6371" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">the final photo and any affected</text>
-    <text x="728" y="6392" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">physical finish.</text>
+    <rect x="48" y="6462" width="964" height="136" fill="#FFFFFF" rx="0" />
+    <text x="60" y="6486" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Make the room feel warmer.” A</text>
+    <text x="60" y="6507" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">paint, upholstery, reused</text>
+    <text x="60" y="6528" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">piece or lighting condition</text>
+    <text x="60" y="6549" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">changes.</text>
+    <text x="338" y="6486" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Blender compares the fixed products in the</text>
+    <text x="338" y="6507" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">same camera and in neutral light. Use</text>
+    <text x="338" y="6528" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">color-expert for open choices or casts. Use</text>
+    <text x="338" y="6549" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">an early styling image only within scope.</text>
+    <text x="728" y="6486" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Record the palette decision.</text>
+    <text x="728" y="6507" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Recheck the furnished camera,</text>
+    <text x="728" y="6528" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">the final photo and any affected</text>
+    <text x="728" y="6549" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">physical finish.</text>
     <a aria-label="Open Products review" xlink:href="#products">
-      <text x="728" y="6419" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Products review</text>
-    </a>
-    <a aria-label="Back to map" xlink:href="#room-map">
-      <text x="60" y="6419" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
-    </a>
-  </g>
-  <g id="study-furnishing">
-    <rect x="48" y="6441" width="964" height="157" fill="#FFFFFF" rx="0" />
-    <text x="60" y="6465" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Show me how it will look.” A</text>
-    <text x="60" y="6486" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">camera, product substitution,</text>
-    <text x="60" y="6507" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">shopping variant or quantity</text>
-    <text x="60" y="6528" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">changes.</text>
-    <text x="338" y="6465" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Blender interiors dresses and counts the</text>
-    <text x="338" y="6486" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">selected items, checks clearances, assets</text>
-    <text x="338" y="6507" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">and camera transfer. For final photography,</text>
-    <text x="338" y="6528" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">edit the reviewed camera with the product</text>
-    <text x="338" y="6549" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">references and inspect the result beside it.</text>
-    <text x="728" y="6465" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Return fit errors to CAD, scene</text>
-    <text x="728" y="6486" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">errors to Blender and image-only</text>
-    <text x="728" y="6507" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">drift to the image editor.</text>
-    <a aria-label="Open Blender review" xlink:href="#blender">
-      <text x="728" y="6576" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Blender review</text>
+      <text x="728" y="6576" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Products review</text>
     </a>
     <a aria-label="Back to map" xlink:href="#room-map">
       <text x="60" y="6576" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
     </a>
   </g>
-  <g id="study-finishes">
-    <rect x="48" y="6598" width="964" height="136" fill="#F0F3EB" rx="0" />
-    <text x="60" y="6622" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Which paint do I tell the</text>
-    <text x="60" y="6643" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">decorator to buy?” A sample,</text>
-    <text x="60" y="6664" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">sheen or finish instruction</text>
+  <g id="study-furnishing">
+    <rect x="48" y="6598" width="964" height="157" fill="#F0F3EB" rx="0" />
+    <text x="60" y="6622" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Show me how it will look.” A</text>
+    <text x="60" y="6643" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">camera, product substitution,</text>
+    <text x="60" y="6664" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">shopping variant or quantity</text>
     <text x="60" y="6685" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">changes.</text>
-    <text x="338" y="6622" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Review each scheduled surface, manufacturer,</text>
-    <text x="338" y="6643" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">shade, sheen and recorded approval. Inspect</text>
-    <text x="338" y="6664" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">physical samples where required and run</text>
-    <text x="338" y="6685" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">check-decorator for the requested scope.</text>
-    <text x="728" y="6622" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Issue approved surfaces and keep</text>
-    <text x="728" y="6643" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">outstanding choices visible to</text>
-    <text x="728" y="6664" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">the homeowner.</text>
-    <a aria-label="Open Decorator review" xlink:href="#decorator">
-      <text x="728" y="6712" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Decorator review</text>
+    <text x="338" y="6622" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Blender interiors dresses and counts the</text>
+    <text x="338" y="6643" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">selected items, checks clearances, assets</text>
+    <text x="338" y="6664" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">and camera transfer. For final photography,</text>
+    <text x="338" y="6685" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">edit the reviewed camera with the product</text>
+    <text x="338" y="6706" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">references and inspect the result beside it.</text>
+    <text x="728" y="6622" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Return fit errors to CAD, scene</text>
+    <text x="728" y="6643" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">errors to Blender and image-only</text>
+    <text x="728" y="6664" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">drift to the image editor.</text>
+    <a aria-label="Open Blender review" xlink:href="#blender">
+      <text x="728" y="6733" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Blender review</text>
     </a>
     <a aria-label="Back to map" xlink:href="#room-map">
-      <text x="60" y="6712" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
+      <text x="60" y="6733" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
+    </a>
+  </g>
+  <g id="study-finishes">
+    <rect x="48" y="6755" width="964" height="136" fill="#FFFFFF" rx="0" />
+    <text x="60" y="6779" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Which paint do I tell the</text>
+    <text x="60" y="6800" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">decorator to buy?” A sample,</text>
+    <text x="60" y="6821" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">sheen or finish instruction</text>
+    <text x="60" y="6842" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">changes.</text>
+    <text x="338" y="6779" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Review each scheduled surface, manufacturer,</text>
+    <text x="338" y="6800" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">shade, sheen and recorded approval. Inspect</text>
+    <text x="338" y="6821" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">physical samples where required and run</text>
+    <text x="338" y="6842" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">check-decorator for the requested scope.</text>
+    <text x="728" y="6779" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Issue approved surfaces and keep</text>
+    <text x="728" y="6800" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">outstanding choices visible to</text>
+    <text x="728" y="6821" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">the homeowner.</text>
+    <a aria-label="Open Decorator review" xlink:href="#decorator">
+      <text x="728" y="6869" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Decorator review</text>
+    </a>
+    <a aria-label="Back to map" xlink:href="#room-map">
+      <text x="60" y="6869" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
     </a>
   </g>
   <g id="study-occupation">
-    <rect x="48" y="6734" width="964" height="136" fill="#FFFFFF" rx="0" />
-    <text x="60" y="6758" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Can we stay here while it is</text>
-    <text x="60" y="6779" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">built?” A shared isolation,</text>
-    <text x="60" y="6800" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">delivery or delayed trade</text>
-    <text x="60" y="6821" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">changes the sequence.</text>
-    <text x="338" y="6758" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Renovation-pack maps essential facilities,</text>
-    <text x="338" y="6779" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">occupied access and service handovers night</text>
-    <text x="338" y="6800" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">by night. Use a phase table or OpenProject</text>
-    <text x="338" y="6821" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">when a programme is commissioned.</text>
-    <text x="728" y="6758" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Update the programme and</text>
-    <text x="728" y="6779" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">temporary living costs. Hold a</text>
-    <text x="728" y="6800" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">dependent strip-out until the</text>
-    <text x="728" y="6821" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">facility works.</text>
+    <rect x="48" y="6891" width="964" height="136" fill="#F0F3EB" rx="0" />
+    <text x="60" y="6915" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Can we stay here while it is</text>
+    <text x="60" y="6936" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">built?” A shared isolation,</text>
+    <text x="60" y="6957" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">delivery or delayed trade</text>
+    <text x="60" y="6978" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">changes the sequence.</text>
+    <text x="338" y="6915" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Renovation-pack maps essential facilities,</text>
+    <text x="338" y="6936" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">occupied access and service handovers night</text>
+    <text x="338" y="6957" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">by night. Use a phase table or OpenProject</text>
+    <text x="338" y="6978" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">when a programme is commissioned.</text>
+    <text x="728" y="6915" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Update the programme and</text>
+    <text x="728" y="6936" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">temporary living costs. Hold a</text>
+    <text x="728" y="6957" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">dependent strip-out until the</text>
+    <text x="728" y="6978" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">facility works.</text>
     <a aria-label="Open Occupied works review" xlink:href="#occupied-works">
-      <text x="728" y="6848" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Occupied works review</text>
+      <text x="728" y="7005" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Occupied works review</text>
     </a>
     <a aria-label="Back to map" xlink:href="#room-map">
-      <text x="60" y="6848" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
+      <text x="60" y="7005" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
     </a>
   </g>
   <g id="study-valuation">
-    <rect x="48" y="6870" width="964" height="136" fill="#F0F3EB" rx="0" />
-    <text x="60" y="6894" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“What will it be worth after</text>
-    <text x="60" y="6915" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">alteration?”</text>
-    <text x="338" y="6894" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Valuation study records the unpriced house</text>
-    <text x="338" y="6915" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">specification, measured or provisional area,</text>
-    <text x="338" y="6936" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">recent sales, listing condition and local UK</text>
-    <text x="338" y="6957" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">HPI.</text>
-    <text x="728" y="6894" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Return the reconciled range and</text>
-    <text x="728" y="6915" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">evidence gaps to the feasibility</text>
-    <text x="728" y="6936" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">pack.</text>
+    <rect x="48" y="7027" width="964" height="136" fill="#FFFFFF" rx="0" />
+    <text x="60" y="7051" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“What will it be worth after</text>
+    <text x="60" y="7072" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">alteration?”</text>
+    <text x="338" y="7051" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Valuation study records the unpriced house</text>
+    <text x="338" y="7072" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">specification, measured or provisional area,</text>
+    <text x="338" y="7093" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">recent sales, listing condition and local UK</text>
+    <text x="338" y="7114" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">HPI.</text>
+    <text x="728" y="7051" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Return the reconciled range and</text>
+    <text x="728" y="7072" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">evidence gaps to the feasibility</text>
+    <text x="728" y="7093" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">pack.</text>
     <a aria-label="Open Whole house review" xlink:href="#whole-house">
-      <text x="728" y="6984" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Whole house review</text>
+      <text x="728" y="7141" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Whole house review</text>
     </a>
     <a aria-label="Back to map" xlink:href="#room-map">
-      <text x="60" y="6984" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
+      <text x="60" y="7141" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
     </a>
   </g>
   <g id="study-tenders">
-    <rect x="48" y="7006" width="964" height="136" fill="#FFFFFF" rx="0" />
-    <text x="60" y="7030" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Does this quote cover the</text>
-    <text x="60" y="7051" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">same job?” A supplier</text>
-    <text x="60" y="7072" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">substitutes a unit or a</text>
-    <text x="60" y="7093" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">builder excludes an item.</text>
-    <text x="338" y="7030" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Reconcile quantities, dimensions,</text>
-    <text x="338" y="7051" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">installation, exclusions, VAT, lead times</text>
-    <text x="338" y="7072" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">and reserve on a common drawing and scope.</text>
-    <text x="728" y="7030" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Update budget and procurement. A</text>
-    <text x="728" y="7051" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">substitution reopens affected</text>
-    <text x="728" y="7072" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">fit, product and camera reviews.</text>
+    <rect x="48" y="7163" width="964" height="136" fill="#F0F3EB" rx="0" />
+    <text x="60" y="7187" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“Does this quote cover the</text>
+    <text x="60" y="7208" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">same job?” A supplier</text>
+    <text x="60" y="7229" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">substitutes a unit or a</text>
+    <text x="60" y="7250" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">builder excludes an item.</text>
+    <text x="338" y="7187" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Reconcile quantities, dimensions,</text>
+    <text x="338" y="7208" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">installation, exclusions, VAT, lead times</text>
+    <text x="338" y="7229" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">and reserve on a common drawing and scope.</text>
+    <text x="728" y="7187" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Update budget and procurement. A</text>
+    <text x="728" y="7208" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">substitution reopens affected</text>
+    <text x="728" y="7229" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">fit, product and camera reviews.</text>
     <a aria-label="Open Whole house review" xlink:href="#whole-house">
-      <text x="728" y="7120" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Whole house review</text>
+      <text x="728" y="7277" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Whole house review</text>
     </a>
     <a aria-label="Back to map" xlink:href="#room-map">
-      <text x="60" y="7120" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
+      <text x="60" y="7277" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
     </a>
   </g>
   <g id="study-survey-returns">
-    <rect x="48" y="7142" width="964" height="178" fill="#F0F3EB" rx="0" />
-    <text x="60" y="7166" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“What should we check before</text>
-    <text x="60" y="7187" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">buying?” A survey, new</text>
-    <text x="60" y="7208" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">instruction or as-built return</text>
-    <text x="60" y="7229" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">contradicts the issue.</text>
-    <text x="338" y="7166" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Renovation-pack identifies the uncertainty</text>
-    <text x="338" y="7187" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">that could change the decision and routes it</text>
-    <text x="338" y="7208" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">to the relevant surveyor, designer,</text>
-    <text x="338" y="7229" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">installer or authority. At completion,</text>
-    <text x="338" y="7250" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">reconcile commissioned tests, snags and</text>
-    <text x="338" y="7271" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">warranties.</text>
-    <text x="728" y="7166" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Issue a prioritised enquiry or</text>
-    <text x="728" y="7187" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">reopen affected rooms, orders</text>
-    <text x="728" y="7208" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">and records. Report what is</text>
-    <text x="728" y="7229" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">still usable.</text>
+    <rect x="48" y="7299" width="964" height="178" fill="#FFFFFF" rx="0" />
+    <text x="60" y="7323" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">“What should we check before</text>
+    <text x="60" y="7344" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">buying?” A survey, new</text>
+    <text x="60" y="7365" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">instruction or as-built return</text>
+    <text x="60" y="7386" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">contradicts the issue.</text>
+    <text x="338" y="7323" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Renovation-pack identifies the uncertainty</text>
+    <text x="338" y="7344" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">that could change the decision and routes it</text>
+    <text x="338" y="7365" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">to the relevant surveyor, designer,</text>
+    <text x="338" y="7386" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">installer or authority. At completion,</text>
+    <text x="338" y="7407" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">reconcile commissioned tests, snags and</text>
+    <text x="338" y="7428" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">warranties.</text>
+    <text x="728" y="7323" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">Issue a prioritised enquiry or</text>
+    <text x="728" y="7344" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">reopen affected rooms, orders</text>
+    <text x="728" y="7365" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">and records. Report what is</text>
+    <text x="728" y="7386" fill="#183735" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal">still usable.</text>
     <a aria-label="Open Brief review" xlink:href="#brief">
-      <text x="728" y="7298" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Brief review</text>
+      <text x="728" y="7455" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Open Brief review</text>
     </a>
     <a aria-label="Back to map" xlink:href="#room-map">
-      <text x="60" y="7298" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
+      <text x="60" y="7455" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
     </a>
   </g>
   <g id="worked-example-a-support-beam-over-the-kitchen-opening">
-    <rect x="0" y="7352" width="1060" height="66" fill="#203F3D" rx="0" />
-    <text x="48" y="7395" fill="#FFFFFF" font-size="29" font-family="Georgia, 'Times New Roman', serif" font-weight="normal">Worked example · A support beam over the kitchen opening</text>
+    <rect x="0" y="7509" width="1060" height="66" fill="#203F3D" rx="0" />
+    <text x="48" y="7552" fill="#FFFFFF" font-size="29" font-family="Georgia, 'Times New Roman', serif" font-weight="normal">Worked example · A support beam over the kitchen opening</text>
   </g>
   <g id="opening-enquiry">
-    <text x="48" y="7440" fill="#165D52" font-size="20" font-family="Arial, Helvetica, sans-serif" font-weight="bold">Opening enquiry</text>
+    <text x="48" y="7597" fill="#165D52" font-size="20" font-family="Arial, Helvetica, sans-serif" font-weight="bold">Opening enquiry</text>
     <a aria-label="Back to map" xlink:href="#room-map">
-      <text x="897" y="7440" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
+      <text x="897" y="7597" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
     </a>
-    <text x="48" y="7469" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="bold">Tools in use</text>
-    <text x="170" y="7469" fill="#183735" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="normal">FreeCAD BIM and TechDraw overlay the storeys and section the opening. For a commissioned</text>
-    <text x="170" y="7491" fill="#183735" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="normal">analysis with verified inputs, PyNite models the beam or frame and FreeCAD FEM runs CalculiX to</text>
-    <text x="170" y="7513" fill="#183735" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="normal">inspect stress and deflection. Return support dimensions to the occupied plan.</text>
+    <text x="48" y="7626" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="bold">Tools in use</text>
+    <text x="170" y="7626" fill="#183735" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="normal">FreeCAD BIM and TechDraw overlay the storeys and section the opening. For a commissioned</text>
+    <text x="170" y="7648" fill="#183735" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="normal">analysis with verified inputs, PyNite models the beam or frame and FreeCAD FEM runs CalculiX to</text>
+    <text x="170" y="7670" fill="#183735" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="normal">inspect stress and deflection. Return support dimensions to the occupied plan.</text>
   </g>
   <g id="orchard-house">
-    <text x="48" y="7565" fill="#165D52" font-size="20" font-family="Arial, Helvetica, sans-serif" font-weight="bold">Orchard House</text>
+    <text x="48" y="7722" fill="#165D52" font-size="20" font-family="Arial, Helvetica, sans-serif" font-weight="bold">Orchard House</text>
     <a aria-label="Back to map" xlink:href="#room-map">
-      <text x="897" y="7565" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
+      <text x="897" y="7722" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="normal" text-decoration="underline">Back to map</text>
     </a>
-    <text x="48" y="7594" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="bold">Tools in use</text>
-    <text x="170" y="7594" fill="#183735" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="normal">FreeCAD MCP inserts the returned pier. Shapely and NetworkX retest the occupied route. The</text>
-    <text x="170" y="7616" fill="#183735" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="normal">tender comparison and bathroom programme carry the resulting cost and timing into the house</text>
-    <text x="170" y="7638" fill="#183735" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="normal">decision.</text>
+    <text x="48" y="7751" fill="#165D52" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="bold">Tools in use</text>
+    <text x="170" y="7751" fill="#183735" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="normal">FreeCAD MCP inserts the returned pier. Shapely and NetworkX retest the occupied route. The</text>
+    <text x="170" y="7773" fill="#183735" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="normal">tender comparison and bathroom programme carry the resulting cost and timing into the house</text>
+    <text x="170" y="7795" fill="#183735" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="normal">decision.</text>
   </g>
 </svg>
