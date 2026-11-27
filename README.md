@@ -1,3 +1,5 @@
+<img src="docs/brand/room-by-room.svg" width="88" alt="Room by Room floor plan logo">
+
 # Room by Room
 
 Plan a renovation room by room, from the first viewing to the drawings, shopping lists and finishes you can hand to a tradesperson.
