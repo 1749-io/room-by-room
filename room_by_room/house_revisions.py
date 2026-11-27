@@ -407,6 +407,10 @@ def furnished_actions(root, revision, parent=None, outputs=None, *, completed=No
                 break
         else:
             if outputs is not None:
+                from room_by_room import house_openings
+                problem = house_openings.review(outputs.parent, room.name, revision, camera=True, walkthrough=True)
+                if problem:
+                    raise ValueError(f"{room.name}: furnished walkthrough on hold: {problem}")
                 verify_room_pack(outputs, room, revision, stages, photo_quality=True)
             if completed is not None:
                 completed.append(room.name)

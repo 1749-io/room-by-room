@@ -42,3 +42,5 @@ For a completed-value or resale question, run the [two-stage valuation study](re
 For a before-and-after brochure or a portable house issue, follow the [property particulars and link verification workflow](references/property-brochure.md).
 
 For complete existing and proposed property editions, use the [property comparison pack skill](../property-comparison-pack/SKILL.md).
+
+Run the [fully dressed walkthrough](references/handover-gates.md#fully-dressed-walkthrough) after the last furnishing change and before releasing the camera.
