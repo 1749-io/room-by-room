@@ -2,7 +2,11 @@
 
 # Room by Room
 
-[**Watch the Ryecroft Road renovation walkthrough (2 min 42 sec)**](https://youtu.be/-4anR28Lqd8)
+**Ryecroft Road renovation walkthrough (2 min 42 sec)**
+
+https://github.com/user-attachments/assets/97d2bb5d-3ae1-4497-89ff-e56d9500a2bd
+
+[Watch on YouTube](https://youtu.be/-4anR28Lqd8)
 
 Plan a renovation room by room, from the first viewing to the drawings, shopping lists and finishes you can hand to a tradesperson.
 
