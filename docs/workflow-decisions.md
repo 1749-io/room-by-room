@@ -60,7 +60,7 @@ Use this guide beside the [full workflow diagram](workflow.svg) or the [quick re
 
 | Route | What happens |
 | --- | --- |
-| Tools | Run house.py check-study on the shell revision. Blender MCP places dimensioned furniture in the unrendered scene. Return candidate positions to FreeCAD for the occupied test. |
+| Tools | Run house.py check-study on the shell revision. Blender MCP places dimensioned furniture in the unrendered scene. The room asset library builds each candidate at its stated size and reads the size back. Return candidate positions to FreeCAD for the occupied test. |
 | Check | Run check-study with the actual shell revision and inspect the visual instructions. A render-only hold permits an otherwise authorised viewport study. CAD-only or all-visual instructions keep exploration in FreeCAD. |
 | Next review or output | Proposed CAD |
 | Return destinations | Existing CAD / Furniture study |
@@ -98,7 +98,7 @@ Use this guide beside the [full workflow diagram](workflow.svg) or the [quick re
 
 | Route | What happens |
 | --- | --- |
-| Tools | Blender MCP places and counts the selected objects. After the last accessory, reopen the scene. Living in the Room uses the route solver and opening measurements before the camera is rendered. |
+| Tools | Blender MCP places and counts the selected objects. A room asset library stand-in represents a selected product only where it matches that product's distinctive form. After the last accessory, reopen the scene. Living in the Room uses the route solver and opening measurements before the camera is rendered. |
 | Check | Match CAD units, axes, two identifiable features, boundaries and openings. Trace each seat approach and exit with adjacent places occupied. Test plants, door travel and cupboard access. Once the walkthrough passes, render and inspect the named camera and reverse view for placement, clipping, hidden items and light. |
 | Next review or output | Products |
 | Return destinations | Blender / Existing CAD / Proposed CAD |
