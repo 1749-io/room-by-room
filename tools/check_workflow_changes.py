@@ -15,6 +15,8 @@ def coverage_problems(paths):
     pack = set()
     for name in paths:
         path = PurePosixPath(name)
+        if name.startswith("skills/room-by-room-film/"):
+            continue  # Films about the toolkit are publicity. They are not a step in a room review.
         if name in PACK_CODE or name.startswith("skills/pack-delivery/"):
             pack.add(name)
         elif (name == "AGENTS.md"

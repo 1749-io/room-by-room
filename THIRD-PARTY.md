@@ -47,3 +47,33 @@ THE SOFTWARE.
 ## Editable workbooks
 
 The toolkit generates the editable schedules with XlsxWriter 3.3.4, copyright 2013–2026 John McNamara, distributed under the BSD 2-Clause licence. The source distribution has SHA-256 `3512f4210622d4040e0f2882e2caf7263a3fd8be876704304314f0e275377fea`. [Upstream source distribution](https://pypi.org/project/XlsxWriter/3.3.4/#files) · [Copyright and licence](https://github.com/jmcnamara/XlsxWriter/blob/RELEASE_3.3.4/LICENSE.txt)
+
+## Ryecroft film
+
+The [Ryecroft Road film source](examples/ryecroft-film/README.md) contains a page and Node scripts that started from the channel-thread starter in [make-film](https://github.com/clsandoval/make-film). Its licence follows. The film's rebuild installs Playwright from npm under the Apache-2.0 licence. Playwright is not redistributed here.
+
+```text
+MIT License
+
+Copyright (c) 2026 Carlos Sandoval
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+The film's tree and sun card is drawn from Environment Agency LiDAR, which contains public sector information licensed under the [Open Government Licence v3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/), and from building outlines and a road © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors under the Open Database Licence. Its comfort figures use the climate.onebuilding.org TMYx weather file for London Biggin Hill. The film's music and sound are synthesised by its own scripts.

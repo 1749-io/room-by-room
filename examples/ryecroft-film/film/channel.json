@@ -1,0 +1,664 @@
+{
+ "brand": {
+  "name": "room-by-room",
+  "url": "github.com/1749-io/room-by-room",
+  "org": "Open source. Concepts to brief your professional team.",
+  "font": "'Segoe UI', Arial, sans-serif",
+  "mono": "Consolas, 'Courier New', monospace",
+  "mascot": null,
+  "palette": {
+   "ground": "#f3f1eb",
+   "deep": "#e2ded2",
+   "ink": "#1f3833",
+   "accent": "#205d48",
+   "accent2": "#386754",
+   "card": "#ffffff",
+   "cardInk": "#1f3833",
+   "panel": "#e6ebe7",
+   "trial": "#d9a441",
+   "exp": "#c9d4ce",
+   "dot": "#205d48",
+   "app": "#205d48"
+  }
+ },
+ "music": {
+  "file": "music/theme.wav",
+  "bpm": 95,
+  "phase": 0,
+  "offset": 0.0,
+  "phrase_bars": 4,
+  "credit": "Ryecroft is an example house, not a real one · Music and sound synthesised for this film · FreeCAD, Blender, QGIS, EnergyPlus and Codex belong to their owners",
+  "arranged": true
+ },
+ "channel": {
+  "server": "",
+  "name": "James",
+  "topic": "online",
+  "sidebar": []
+ },
+ "people": {
+  "bot": {
+   "name": "room-by-room",
+   "bot": true
+  },
+  "hannah": {
+   "name": "Hannah",
+   "color": "#e9c9a8"
+  },
+  "james": {
+   "name": "James",
+   "color": "#c9d4ce"
+  }
+ },
+ "intro": {
+  "title": "Dream home. Needs work.",
+  "bars": 5,
+  "messages": [
+   {
+    "who": "hannah",
+    "at": 8,
+    "h": 300,
+    "text": "found it. our dream home<div class='lst'><i></i><div><b>Ryecroft Road, Petts Wood</b><span>3 bed semi-detached · 1930s</span><u>view the listing</u></div></div>"
+   },
+   {
+    "who": "james",
+    "at": 12,
+    "typed": true,
+    "text": "it needs SO much work"
+   },
+   {
+    "who": "hannah",
+    "at": 16,
+    "typed": true,
+    "text": "what if we could see it finished before we offer"
+   }
+  ]
+ },
+ "chapters": [
+  {
+   "title": "Codex",
+   "cards": [
+    {
+     "w": 1200,
+     "h": 560,
+     "beats": 7,
+     "push": [
+      {
+       "at": 3.5,
+       "focus": [
+        0,
+        300,
+        1200,
+        260
+       ]
+      }
+     ],
+     "html": "<div class='chrome'><i></i><i></i><i></i><span>Codex</span></div><div style='margin-top:44px'><span class='bub' data-at='0.5'>github.com/1749-io/room-by-room</span></div><div class='k' style='margin:40px 0 18px' data-at='1.5'>Cloning into 'room-by-room'…</div><div class='rows'><i data-at='1.5' data-grow style='width:1110px'></i></div><div class='call' data-at='0.2'><b>git clone<small>fetches the toolkit</small><i data-at='4.7'> ✓</i></b></div>"
+    },
+    {
+     "w": 1160,
+     "h": 700,
+     "beats": 6,
+     "html": "<div class='hd'><div><div class='xt'>5 skills</div><div class='xs'>read from the repository</div></div></div><div class='chips'><span data-at='0.5'>renovation-pack</span><span data-at='0.9'>freecad-renovation</span><span data-at='1.3'>blender-interiors</span><span data-at='1.7'>pack-delivery</span><span data-at='2.1'>property-comparison-pack</span></div><div class='pills'><span data-at='3'>✓ FreeCAD connected</span><span data-at='3.5'>✓ Blender connected</span></div><div class='call' data-at='0.2'><b>get_rpc_status<small>FreeCAD answers</small><i data-at='4.2'> ✓</i></b><b>get_addon_status<small>Blender answers</small><i data-at='4.6'> ✓</i></b></div>"
+    }
+   ]
+  },
+  {
+   "title": "house.py",
+   "cards": [
+    {
+     "w": 1300,
+     "h": 400,
+     "beats": 7,
+     "push": [
+      {
+       "at": 3.5,
+       "focus": [
+        100,
+        60,
+        1100,
+        320
+       ]
+      }
+     ],
+     "html": "<div class='msg'><span class='av ' style='background:#c9d4ce'>J</span><div style='min-width:0'><div class='mname'>James</div><div class='mtext'><span data-at='0.5'>start a house called Ryecroft. here’s the plan. </span><span data-at='1.5'>take out the wall between the kitchen and dining room. </span><span data-at='2.5'>make the conservatory somewhere we can sit all year. </span><span data-at='3.5'>keep the fireplaces. </span><span data-at='4.5'>plans first, then the finished rooms.</span></div></div></div>"
+    },
+    {
+     "w": 1300,
+     "h": 470,
+     "beats": 4,
+     "html": "<div class='msg' data-at='0.5'><span class='av bot' style=''>r</span><div style='min-width:0'><div class='mname'>room-by-room<span class='app'>AGENT</span></div><div class='mtext'>House started. Three rooms affected. First thing to measure at the viewing: the wall between kitchen and dining room.</div></div></div><div class='call' data-at='0.2'><b>house.py start &quot;Ryecroft&quot;<small>starts the house</small><i data-at='2.7'> ✓</i></b><b>begin-revision<small>opens a workspace</small><i data-at='3.1'> ✓</i></b></div>"
+    },
+    {
+     "w": 1300,
+     "h": 520,
+     "beats": 5,
+     "html": "<div class='hd'><div><div class='xt'>Ryecroft</div><div class='xs'>7 review stages</div></div></div><div class='stg'><span data-at='0.5'>brief<small>pending</small></span><span data-at='0.9'>existing-cad<small>pending</small></span><span data-at='1.3'>proposed-cad<small>pending</small></span><span data-at='1.7'>blender<small>pending</small></span><span data-at='2.1'>products<small>pending</small></span><span data-at='2.5'>final-ai<small>pending</small></span><span data-at='2.9'>handover<small>pending</small></span></div>"
+    }
+   ]
+  },
+  {
+   "title": "FreeCAD",
+   "cards": [
+    {
+     "w": 1460,
+     "h": 849,
+     "beats": 8,
+     "html": "<div class='hd'><div><div class='xt'>Existing ground floor</div><div class='xs'>an example house: built, saved, reopened and measured</div></div></div><div class='row'><img class='shot' src='assets/existing-iso.jpg' style='height:580px' data-at='0.9'><div class='side'><span data-at='1.6'>Dining room 3.65 × 4.10 m</span><span data-at='2.3'>Kitchen 2.55 × 3.00 m</span><span data-at='3.0'>Conservatory 3.65 × 2.50 m</span><span class='warn' data-at='3.7'>assumed, measure at viewing</span></div></div><div class='call' data-at='0.2'><b>FreeCAD MCP<small>builds the model</small><i data-at='2.7'> ✓</i></b></div>",
+     "push": [
+      {
+       "at": 4.0,
+       "focus": [
+        792,
+        159,
+        640,
+        446
+       ]
+      },
+      {
+       "at": 5.92,
+       "focus": [
+        20,
+        159,
+        798,
+        600
+       ]
+      }
+     ]
+    },
+    {
+     "w": 1199,
+     "h": 909,
+     "beats": 6,
+     "html": "<div class='hd'><div><div class='xt'>Existing plan</div><div class='xs'>the red wall is the one the buyers want gone</div></div></div><div class='row'><img class='shot' src='assets/existing-plan.jpg' style='height:640px' data-at='0.9'><div class='side'><span data-at='1.6'>Fireplaces stay</span><span class='warn' data-at='2.3'>Is the red wall holding the house up?</span><small data-at='3.0'>the first question before any beam is sized</small></div></div><div class='call' data-at='0.2'><b>house.py save-revision<small>saves and backs up</small><i data-at='2.7'> ✓</i></b></div>",
+     "push": [
+      {
+       "at": 3.0,
+       "focus": [
+        491,
+        159,
+        680,
+        362
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "PyNite · CalculiX",
+   "cards": [
+    {
+     "w": 1429,
+     "h": 909,
+     "beats": 8,
+     "html": "<div class='hd'><div><div class='xt'>The wall comes out</div><div class='xs'>2.68 m clear opening, pier and nib kept</div></div><span class='flag trial'>TRIAL CASE</span></div><div class='row'><img class='shot' src='assets/proposed-plan.jpg' style='height:640px' data-at='0.9'><div class='side'><span class='warn' data-at='1.6'>It carries the floor above: a beam is needed</span><img class='shot' src='assets/fem.jpg' style='height:235px' data-at='2.3'><span data-at='3.0'>Span 2.83 m</span><span data-at='3.7'>Trial beam 203 × 133 UB</span><small data-at='4.4'>for the engineer to size</small></div></div><div class='call' data-at='0.2'><b>FreeCAD FEM<small>sets up the beam</small><i data-at='2.7'> ✓</i></b><b>Gmsh<small>meshes it</small><i data-at='2.7'> ✓</i></b></div>",
+     "push": [
+      {
+       "at": 4.0,
+       "focus": [
+        681,
+        159,
+        720,
+        530
+       ]
+      },
+      {
+       "at": 5.92,
+       "focus": [
+        20,
+        159,
+        687,
+        660
+       ]
+      }
+     ]
+    },
+    {
+     "w": 1638,
+     "h": 869,
+     "beats": 8,
+     "html": "<div class='hd'><div><div class='xt'>Analysis for your structural engineer</div><div class='xs'>every load is an assumption</div></div><span class='flag trial'>NOT A DESIGN</span></div><div class='row'><img class='shot' src='assets/solver.jpg' style='height:600px' data-at='0.9'><div class='side'><span data-at='1.6'>PyNite 2.30 mm</span><span data-at='2.3'>CalculiX 2.51 mm</span><span data-at='3.0'>59 MPa at mid-span</span><small data-at='3.7'>Two solvers, same beam. An engineer sets the limits.</small></div></div><div class='call' data-at='0.2'><b>PyNite<small>frame solver</small><i data-at='2.7'> ✓</i></b><b>CalculiX<small>solid solver</small><i data-at='2.7'> ✓</i></b></div>",
+     "push": [
+      {
+       "at": 4.0,
+       "focus": [
+        970,
+        159,
+        640,
+        446
+       ]
+      },
+      {
+       "at": 5.92,
+       "focus": [
+        20,
+        159,
+        976,
+        620
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Shapely · NetworkX",
+   "cards": [
+    {
+     "w": 1754,
+     "h": 869,
+     "beats": 9,
+     "html": "<div class='hd'><div><div class='xt'>Shopping, front door to kitchen</div><div class='xs'>one person carrying bags while six people eat</div></div></div><div class='row'><img class='shot' src='assets/door-choice.jpg' style='height:600px' data-at='0.9'><div class='side'><span class='warn' data-at='1.6'>A: 756 mm at the kitchen door</span><small data-at='2.3'>825 mm is needed to be sure</small><span data-at='3.0'>B: 895 mm, doorway widened</span><small data-at='3.7'>Both still need measuring at the viewing.</small></div></div><div class='call' data-at='0.2'><b>Shapely<small>clears the floor</small><i data-at='2.7'> ✓</i></b><b>NetworkX<small>finds the path</small><i data-at='2.7'> ✓</i></b><b>house.py check-routes<small>checks the width</small><i data-at='2.7'> ✓</i></b></div>",
+     "push": [
+      {
+       "at": 4.5,
+       "focus": [
+        1006,
+        159,
+        720,
+        446
+       ]
+      },
+      {
+       "at": 6.66,
+       "focus": [
+        20,
+        159,
+        1012,
+        620
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "A choice",
+   "cards": [
+    {
+     "w": 1100,
+     "h": 440,
+     "beats": 4,
+     "html": "<div class='msg' data-at='0'><span class='av bot'>r</span><div style='min-width:0'><div class='mname'>room-by-room<span class='app'>AGENT</span></div><div class='mtext'>Widen the kitchen doorway to 900 mm?</div></div></div><div class='msg' data-at='1.5'><span class='av' style='background:#e9c9a8'>H</span><div style='min-width:0'><div class='mname'>Hannah</div><div class='mtext'>yes, widen it</div></div></div><div class='call' data-at='0.2'><b>house.py ask<small>asks</small><i data-at='2.2'> ✓</i></b><b>house.py answer<small>records the choice</small><i data-at='2.2'> ✓</i></b></div>"
+    }
+   ]
+  },
+  {
+   "title": "QGIS · pvlib",
+   "cards": [
+    {
+     "w": 1528,
+     "h": 889,
+     "beats": 8,
+     "html": "<div class='hd'><div><div class='xt'>Trees and sun</div><div class='xs'>heights from public LiDAR on a 1 m grid</div></div></div><div class='row'><img class='shot' src='assets/trees.jpg' style='height:620px' data-at='0.9'><div class='side'><span data-at='1.6'>Tallest trees: 18 m, down the garden</span><span data-at='2.3'>21 September</span><span class='warn' data-at='3.0'>Low sun in view 15:40 to 16:30</span><span data-at='3.7'>December: no direct sun</span></div></div><div class='call' data-at='0.2'><b>QGIS<small>reads the tree heights</small><i data-at='2.7'> ✓</i></b><b>pvlib<small>places the sun</small><i data-at='2.7'> ✓</i></b></div>",
+     "push": [
+      {
+       "at": 4.0,
+       "focus": [
+        800,
+        159,
+        700,
+        446
+       ]
+      },
+      {
+       "at": 5.92,
+       "focus": [
+        20,
+        159,
+        806,
+        640
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "EnergyPlus",
+   "cards": [
+    {
+     "w": 1781,
+     "h": 869,
+     "beats": 8,
+     "html": "<div class='hd'><div><div class='xt'>Comfort in the conservatory</div><div class='xs'>nine cases, one weather year, assumed fabric</div></div></div><div class='row'><img class='shot' src='assets/comfort.jpg' style='height:600px' data-at='0.9'><div class='side'><span class='warn' data-at='1.6'>As it stands: 35 °C on a hot day</span><span class='warn' data-at='2.3'>Too hot for 85 summer hours</span><span class='warn' data-at='3.0'>Winter: 7 °C on average, unheated</span><span data-at='3.7'>New roof and vents: 30 °C peak</span></div></div><div class='call' data-at='0.2'><b>EnergyPlus<small>simulates the room</small><i data-at='2.7'> ✓</i></b></div>",
+     "push": [
+      {
+       "at": 4.0,
+       "focus": [
+        1073,
+        159,
+        680,
+        446
+       ]
+      },
+      {
+       "at": 5.92,
+       "focus": [
+        20,
+        159,
+        1079,
+        620
+       ]
+      }
+     ]
+    },
+    {
+     "w": 1790,
+     "h": 830,
+     "beats": 8,
+     "html": "<div class='row'><img class='shot' src='assets/cons-choice.jpg' style='height:640px' data-at='0.5'><div class='side' style='padding-top:120px;width:520px'><div class='msg' data-at='4.5'><span class='av' style='background:#e9c9a8'>H</span><div style='min-width:0'><div class='mname'>Hannah</div><div class='mtext'>B. we want it all year</div></div></div></div></div><div class='call' data-at='0.2'><b>house.py answer<small>records the choice</small><i data-at='5.2'> ✓</i></b></div>",
+     "push": [
+      {
+       "at": 1.6,
+       "focus": [
+        44,
+        150,
+        580,
+        520
+       ]
+      },
+      {
+       "at": 3.2,
+       "focus": [
+        600,
+        150,
+        580,
+        520
+       ]
+      },
+      {
+       "at": 5.2,
+       "focus": [
+        1150,
+        100,
+        600,
+        420
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "FreeCAD · the rebuild",
+   "cards": [
+    {
+     "w": 1230,
+     "h": 1010,
+     "beats": 14,
+     "html": "<div class='hd'><div><div class='xt'>The all-year conservatory</div><div class='xs'>rebuilt in FreeCAD, one part at a time</div></div></div><div class='stack' style='width:1138px;height:640px'><canvas class='seq' width='1280' height='720' style='width:1138px;height:640px' data-seq='assets/build/b_' data-first='0' data-count='13' data-fps='2.2' data-start='0.8'></canvas></div><div class='pills' style='margin-top:36px'><span data-at='2.6'>low-energy glazing</span><span data-at='5.0'>150 mm roof insulation</span><span data-at='9.4'>rooflight, heater</span></div><div class='call' data-at='0.2'><b>FreeCAD MCP<small>builds the model</small><i data-at='10.8'> ✓</i></b></div>",
+     "push": [
+      {
+       "at": 1.4,
+       "focus": [
+        106,
+        219,
+        960,
+        540
+       ],
+       "tight": true
+      },
+      {
+       "at": 11.2,
+       "focus": [
+        0,
+        0,
+        1230,
+        1010
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "EnergyPlus · after",
+   "cards": [
+    {
+     "w": 1414,
+     "h": 970,
+     "beats": 9,
+     "html": "<div class='hd'><div><div class='xt'>After the rebuild</div><div class='xs'>between 16 and 28 °C for 90% of waking hours, up from 39%</div></div></div><img class='shot' src='assets/after.jpg' style='height:600px;width:1326px' data-at='0.6'><div class='pills' style='margin-top:30px'><span data-at='2.4'>Winter: 16 °C, heated</span><span data-at='3.1'>Summer peak: 29 °C, was 35</span><span data-at='3.8'>Hot hours: 8, was 85</span></div><div class='call' data-at='0.2'><b>EnergyPlus<small>simulates the room</small><i data-at='2.4'> ✓</i></b></div>",
+     "push": [
+      {
+       "at": 4.6,
+       "focus": [
+        44,
+        169,
+        1326,
+        600
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Shopping list",
+   "cards": [
+    {
+     "w": 1060,
+     "h": 340,
+     "beats": 6,
+     "html": "<div class='msg' data-at='0.5'><span class='av' style='background:#c9d4ce'>J</span><div style='min-width:0'><div class='mname'>James</div><div class='mtext'>found these for the conservatory<div class='lst'><i style='background:#fff url(assets/armchair.jpg) center/cover'></i><div><b>Wren rattan armchair</b><span>740 × 790 × 820 mm · £329</span><u>hazelandthrush.example</u></div></div></div></div></div>",
+     "push": [
+      {
+       "at": 2.6,
+       "focus": [
+        120,
+        100,
+        860,
+        200
+       ]
+      }
+     ]
+    },
+    {
+     "w": 1262,
+     "h": 789,
+     "beats": 8,
+     "html": "<div class='hd'><div><div class='xt'>Shopping list</div><div class='xs'>the listing goes on the list, then into the model</div></div></div><div class='row'><img class='shot' src='assets/armchair.jpg' style='height:520px' data-at='0.9'><div class='side'><span data-at='1.6'>Armchair × 2, £329 each</span><span data-at='2.3'>740 × 790 × 820 mm</span><span data-at='3.0'>Modelled at that size</span><span data-at='3.7'>£658 on the list</span></div></div><div class='call' data-at='0.2'><b>Blender MCP<small>furnishes the scene</small><i data-at='2.7'> ✓</i></b></div>",
+     "push": [
+      {
+       "at": 4.0,
+       "focus": [
+        574,
+        159,
+        660,
+        446
+       ]
+      },
+      {
+       "at": 5.92,
+       "focus": [
+        20,
+        159,
+        580,
+        540
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Sliding doors",
+   "cards": [
+    {
+     "w": 1060,
+     "h": 250,
+     "beats": 4,
+     "html": "<div class='msg' data-at='0.5'><span class='av' style='background:#e9c9a8'>H</span><div style='min-width:0'><div class='mname'>Hannah</div><div class='mtext'>and swap those doors for sliding ones</div></div></div>"
+    },
+    {
+     "w": 1286,
+     "h": 714,
+     "beats": 8,
+     "html": "<div class='hd'><div><div class='xt'>Sliding doors</div><div class='xs'>the plan redrawn and every door rechecked</div></div></div><div class='row'><img class='shot' src='assets/plan-cons.jpg' style='height:445px' data-at='0.9'><div class='side'><span data-at='1.6'>Two sliding glazed leaves</span><span data-at='2.3'>Doorway 1,540 mm clear</span><span data-at='3.0'>130 mm behind each armchair</span><small data-at='3.7'>Nothing swings into either room.</small></div></div><div class='call' data-at='0.2'><b>FreeCAD MCP<small>builds the model</small><i data-at='2.7'> ✓</i></b><b>house.py check-openings<small></small><i data-at='2.7'> ✓</i></b></div>",
+     "push": [
+      {
+       "at": 4.0,
+       "focus": [
+        578,
+        159,
+        680,
+        446
+       ]
+      },
+      {
+       "at": 5.92,
+       "focus": [
+        20,
+        159,
+        584,
+        465
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Blender · Sun Position",
+   "cards": [
+    {
+     "w": 1377,
+     "h": 929,
+     "beats": 8,
+     "html": "<div class='hd'><div><div class='xt'>Furnished in Blender</div><div class='xs'>shell transferred from CAD, sun set to 21 September 16:30</div></div></div><div class='row'><img class='shot' src='assets/blender-top.jpg' style='height:660px' data-at='0.9'><div class='side'><img class='shot' src='assets/CAM-KITCHEN-01.jpg' style='height:380px' data-at='1.6'><span data-at='2.4'>Dining room 3.65 m, same as CAD</span><span data-at='3.1'>20 items placed</span><span data-at='3.8'>Every chair faces its table or the garden</span></div></div><div class='call' data-at='0.2'><b>Blender MCP<small>furnishes the scene</small><i data-at='2.7'> ✓</i></b><b>Sun Position<small>sets the sun</small><i data-at='2.7'> ✓</i></b></div>",
+     "push": [
+      {
+       "at": 4.0,
+       "focus": [
+        519,
+        159,
+        830,
+        614
+       ]
+      },
+      {
+       "at": 5.92,
+       "focus": [
+        20,
+        159,
+        525,
+        680
+       ]
+      }
+     ],
+     "gap": 520
+    }
+   ]
+  },
+  {
+   "title": "Eye level",
+   "breakdown": true,
+   "cards": [
+    {
+     "w": 1640,
+     "h": 1000,
+     "beats": 10,
+     "html": "<div class='hd'><div><div class='xt'>Eye-level walk</div><div class='xs'>kitchen, dining room, conservatory</div></div></div><canvas class='seq' width='1296' height='729' style='margin:0 auto' data-seq='assets/walk/f_' data-first='108' data-count='168' data-fps='29' data-start='0.6'></canvas><div class='call' data-at='0.2'><b>Blender<small>renders the walk</small><i data-at='2.2'> ✓</i></b></div>",
+     "dark": true,
+     "gap": 520
+    }
+   ]
+  },
+  {
+   "title": "IfcOpenShell",
+   "cards": [
+    {
+     "w": 1180,
+     "h": 500,
+     "beats": 5,
+     "html": "<div class='hd'><div><div class='xt'>IFC for the architect</div><div class='xs'>exported from FreeCAD, then reopened to check</div></div></div><div class='pills'><span data-at='1.2'>IFC4</span><span data-at='1.7'>45 elements</span><span data-at='2.2'>metres</span><span data-at='2.7'>3.65 m reads back</span></div><div class='call' data-at='0.2'><b>IfcOpenShell<small>reopens the file</small><i data-at='2.2'> ✓</i></b></div>"
+    },
+    {
+     "w": 1701,
+     "h": 809,
+     "beats": 6,
+     "html": "<div class='hd'><div><div class='xt'>Programme</div><div class='xs'>the agent's allowances, not a contractor's</div></div></div><div class='row'><img class='shot' src='assets/programme.jpg' style='height:540px' data-at='0.9'><div class='side'><span data-at='1.6'>About 8 weeks on site</span><span class='warn' data-at='2.3'>7 weeks without a kitchen</span></div></div><div class='call' data-at='0.2'><b>NetworkX<small>finds the critical path</small><i data-at='2.7'> ✓</i></b></div>",
+     "push": [
+      {
+       "at": 3.0,
+       "focus": [
+        1073,
+        159,
+        600,
+        278
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Concept photos",
+   "cards": [
+    {
+     "w": 1230,
+     "h": 1010,
+     "beats": 9,
+     "html": "<div class='hd'><div><div class='xt'>Dining room</div><div class='xs'>the Blender camera, then the photo made from it</div></div><span class='flag exp'>AI CONCEPT FROM THE MODEL</span></div><div class='stack'><img class='shot' src='assets/CAM-DINING-01.jpg' style='height:640px;width:1138px'><img class='shot' src='assets/photo-dining.jpg' style='height:640px;width:1138px' data-at='3'></div><div class='pills' style='margin-top:20px'><span data-at='4.6'>✓ 6 chairs</span><span data-at='5.1'>✓ 2 pendants</span><span data-at='5.6'>✓ fireplace kept</span></div><div class='call' data-at='0.2'><b>Codex image tool<small>makes the photo</small><i data-at='3.0'> ✓</i></b><b>house.py check-render<small>checks the gate</small><i data-at='3.0'> ✓</i></b></div>"
+    },
+    {
+     "w": 1230,
+     "h": 912,
+     "beats": 5,
+     "html": "<div class='hd'><div><div class='xt'>Kitchen</div><div class='xs'>the garden follows the model: lawn, hedges, trees</div></div><span class='flag exp'>AI CONCEPT</span></div><img class='shot' src='assets/photo-kitchen.jpg' style='height:640px;width:1138px' data-at='0.5'><div class='call' data-at='0.2'><b>Codex image tool<small>makes the photo</small><i data-at='2.0'> ✓</i></b></div>"
+    },
+    {
+     "w": 1230,
+     "h": 1010,
+     "beats": 11,
+     "html": "<div class='hd'><div><div class='xt'>Conservatory</div><div class='xs'>one camera: FreeCAD, Blender, the photo</div></div><span class='flag exp'>AI CONCEPT FROM THE MODEL</span></div><div class='stack'><img class='shot' src='assets/cons-cad.jpg' style='height:640px;width:1138px'><img class='shot' src='assets/cons-blender.jpg' style='height:640px;width:1138px' data-at='2.4'><img class='shot' src='assets/cons-photo.jpg' style='height:640px;width:1138px' data-at='4.8'></div><div class='pills' style='margin-top:20px'><span data-at='6.2'>✓ 2 rattan armchairs</span><span data-at='6.7'>✓ sliding doors</span><span data-at='7.2'>✓ level floor</span></div><div class='call' data-at='0.2'><b>Codex image tool<small>makes the photo</small><i data-at='5.6'> ✓</i></b><b>house.py check-render<small>checks the gate</small><i data-at='5.6'> ✓</i></b></div>"
+    }
+   ]
+  },
+  {
+   "title": "The pack",
+   "cards": [
+    {
+     "w": 1615,
+     "h": 829,
+     "beats": 8,
+     "html": "<div class='hd'><div><div class='xt'>Dining room pack</div><div class='xs'>one room so far: the others wait on a viewing</div></div></div><div class='row'><img class='shot' src='assets/pack-start.jpg' style='height:560px' data-at='0.9'><div class='side'><img class='shot' src='assets/pack-review.jpg' style='height:290px' data-at='1.6'><span data-at='2.4'>Room review</span><span data-at='2.9'>Drawing</span><span data-at='3.4'>Shopping schedule</span></div></div><div class='call' data-at='0.2'><b>build-pack<small>builds</small><i data-at='2.7'> ✓</i></b><b>check-pack<small>reader check</small><i data-at='2.7'> ✓</i></b><b>save-revision<small>saves</small><i data-at='2.7'> ✓</i></b></div>",
+     "push": [
+      {
+       "at": 4.0,
+       "focus": [
+        847,
+        159,
+        740,
+        530
+       ]
+      },
+      {
+       "at": 5.92,
+       "focus": [
+        20,
+        159,
+        853,
+        580
+       ]
+      }
+     ]
+    },
+    {
+     "w": 900,
+     "h": 250,
+     "beats": 5,
+     "html": "<div class='msg' data-at='0.5'><span class='av' style='background:#e9c9a8'>H</span><div style='min-width:0'><div class='mname'>Hannah</div><div class='mtext'>booking the second viewing</div></div></div>"
+    }
+   ]
+  }
+ ],
+ "volley": [],
+ "fixes": [],
+ "pullback": {
+  "title": "room-by-room",
+  "subtitle": "every tool, where it ran"
+ }
+}

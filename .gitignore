@@ -49,3 +49,14 @@ __pycache__/
 !/downloads/Alder-Cottage-shopping.zip
 !/downloads/Alder-Cottage-furnished-handover.zip
 /docs/graphviz/node_modules/
+
+# Rebuilt outputs of the Ryecroft film example.
+/examples/ryecroft-film/film/node_modules/
+/examples/ryecroft-film/film/frames/
+/examples/ryecroft-film/film/stills/
+/examples/ryecroft-film/film/renders/
+/examples/ryecroft-film/film/music/
+/examples/ryecroft-film/film/channel.js
+/examples/ryecroft-film/film/timing.json
+/examples/ryecroft-film/film/assets/*.wav
+/examples/ryecroft-film/film/assets/sfx-events.json
