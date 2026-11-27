@@ -98,8 +98,8 @@ Use this guide beside the [full workflow diagram](workflow.svg) or the [quick re
 
 | Route | What happens |
 | --- | --- |
-| Tools | Blender MCP places and counts the selected objects, measures opening movements and saves the furnished camera. Reopen the scene to check what the camera sees. Asset providers are optional. |
-| Check | Match CAD units, axes, two identifiable features, boundaries and openings. Reopen the individually furnished scene. Inspect the named camera and reverse view for placement, clipping, routes, hidden items and light. |
+| Tools | Blender MCP places and counts the selected objects. After the last accessory, reopen the scene. Living in the Room uses the route solver and opening measurements before the camera is rendered. |
+| Check | Match CAD units, axes, two identifiable features, boundaries and openings. Trace each seat approach and exit with adjacent places occupied. Test plants, door travel and cupboard access. Once the walkthrough passes, render and inspect the named camera and reverse view for placement, clipping, hidden items and light. |
 | Next review or output | Products |
 | Return destinations | Blender / Existing CAD / Proposed CAD |
 | Proceed | Pass the blender review for that scene and camera. Pass the named object list, reviewed camera, reverse view and asset provenance to the product review. |
@@ -123,7 +123,7 @@ Use this guide beside the [full workflow diagram](workflow.svg) or the [quick re
 | Route | What happens |
 | --- | --- |
 | Tools | Reference-image editing uses the checked Blender camera and product references. Compare the photograph beside that camera and run check-room-photos on the required views. |
-| Check | Compare each generated photo beside its reviewed Blender camera and product references. Inspect openings, counts, fronts, clearances, finishes, lighting and colours. Record an ai-colour finding per issued camera. |
+| Check | Compare each generated photo beside its reviewed Blender camera and product references. Compare the intended door mechanism with both views. Inspect seat access, counts, fronts, clearances, finishes, lighting and colours. Record an ai-colour finding per issued camera. |
 | Next review or output | Handover |
 | Return destinations | Final AI / Blender / Proposed CAD / Existing CAD |
 | Proceed | Pass final-ai for that camera and take the reviewed pair into the commissioned presentation. Keep rejected images outside the issue. |
