@@ -29,7 +29,17 @@ def review_head(item, check):
             region(head, view)
 
 
-def validate(plan, image, *, require_heads=True):
+def review_operation(plan, item, check):
+    intended = plan.get("opening_operations", {}).get(item)
+    if intended not in {"hinged", "sliding", "folding", "pivot", "fixed", "open passage", "other"}:
+        raise ValueError(f"{item}: identify the selected opening mechanism in the photo brief")
+    if check.get("camera_operation") != intended or check.get("photo_operation") != intended:
+        raise ValueError(f"{item}: the camera and photo must show the selected opening mechanism")
+    if check.get("occupied_access") != "clear" or not str(check.get("use_finding") or "").strip():
+        raise ValueError(f"{item}: resolve or verify the visible access to the seats and through route")
+
+
+def validate(plan, image, *, require_heads=True, require_operation=True):
     inventory = plan.get("architectural_details")
     results = image.get("architectural_details")
     if not isinstance(inventory, dict) or set(inventory) != {"wall_mounts", "openings"}:
@@ -64,6 +74,8 @@ def validate(plan, image, *, require_heads=True):
                 if check.get("photo_clear_of_opening") is not True:
                     raise ValueError(f"{item}: frame crosses or obscures the opening in the photo")
             else:
+                if require_operation:
+                    review_operation(plan, item, check)
                 if require_heads:
                     review_head(item, check)
                 for key in ("model_leaves", "photo_leaves"):

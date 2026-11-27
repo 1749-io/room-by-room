@@ -4,6 +4,26 @@ import networkx as nx
 from room_by_room.house_routes import analyse, footprint, point
 
 
+def door_sweeps(camera, cad):
+    """Reconcile each architectural door with the measured full-travel geometry."""
+    from room_by_room.house_openings import geometry, names
+
+    doors = camera.get("door_heads", {})
+    operations = camera.get("door_operations", {})
+    if set(operations) != set(doors) or operations != cad.get("door_operations", {}):
+        raise ValueError("Reconcile every door mechanism and sweep ID with the reviewed CAD opening")
+    measured = {part for zone in camera.get("zones", []) for part in zone["sweeps"]}
+    result = {}
+    for door, record in operations.items():
+        if record["mechanism"] not in {"hinged", "sliding", "folding", "pivot", "other"}:
+            raise ValueError(f"{door}: identify the selected door mechanism")
+        for part in names(record["sweeps"]):
+            if part not in measured:
+                raise ValueError(f"{door}: link {part} to its full opening movement")
+            result[door, part] = geometry(camera["geometry"], part)
+    return result
+
+
 def check(camera, cad):
     study = camera.get("walkthrough")
     if not isinstance(study, dict):
@@ -31,6 +51,7 @@ def check(camera, cad):
         return "reconcile the scene object inventory and walkthrough footprints: " + ", ".join(sorted(conflicts))
     obstacles = {name: footprint(outline, name) for name, outline in study["obstacles"].items()}
     floor = footprint(study["floor"], "floor")
+    sweeps = door_sweeps(camera, cad)
     for name, stop in stops.items():
         position = point(stop["point"])
         if stop["kind"] in {"seat", "operating"}:
@@ -42,6 +63,15 @@ def check(camera, cad):
                 return f"{name}: connect the full use space to the native furniture footprint"
             if not space.covers(position) or not floor.covers(space):
                 return f"{name}: check the standing position and full use space inside the room"
+            if stop["kind"] == "seat" and sweeps:
+                from room_by_room.house_openings import number
+                low, high = map(number, stop["occupied_z_mm"])
+                if high <= low:
+                    return f"{name}: measure the occupied height range from sitting to standing"
+                occupied = space.union(obstacles[owner])
+                for (door, part), (travel, bottom, top) in sweeps.items():
+                    if top >= low and high >= bottom and occupied.intersects(travel):
+                        return f"{door}: {part} moves into the space to sit in or rise from {name}"
             for item, solid in obstacles.items():
                 if item != owner and space.intersection(solid).area > 0:
                     return f"{name}: {item} obstructs the space needed to use {owner}"

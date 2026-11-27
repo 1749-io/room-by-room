@@ -306,7 +306,7 @@ def ask(root, revision, question, kind=None, image=None, description=None):
         return staged
 
 
-def verify_room_pack(outputs, room, revision, stages, *, photo_quality=False, require_windows=True, require_details=True, require_heads=True):
+def verify_room_pack(outputs, room, revision, stages, *, photo_quality=False, require_windows=True, require_details=True, require_heads=True, require_operation=True):
     """A full issue must actually carry the current, camera-reviewed finish photos."""
     from PIL import Image
 
@@ -348,7 +348,7 @@ def verify_room_pack(outputs, room, revision, stages, *, photo_quality=False, re
         raise ValueError(f"{room.name}: link the reviewed final photo in the final-ai row")
     if photo_quality:
         from . import house_photos
-        house_photos.review(outputs, room, revision, require_windows=require_windows, require_details=require_details, require_heads=require_heads)
+        house_photos.review(outputs, room, revision, require_windows=require_windows, require_details=require_details, require_heads=require_heads, require_operation=require_operation)
         for suffix in (".json", "-brief.json"):
             item = local_path(outputs, f"photo-reviews/{room.name}{suffix}")
             required_images[item] = house_photos.digest(item)
@@ -494,7 +494,7 @@ def save(root, revision, *, change, why, author, affects, next_step, question=No
             house_id = stored_json(root / "project.json")["id"]
             filename = f"{house_id}/automatic/latest.zip"
             archive = backup_directory() / safe_relative(filename)
-            record = dict(version=1, decision_format=1, delivery_format=5, house=house_id, toolkit=toolkit_checkout(), backup=filename,
+            record = dict(version=1, decision_format=1, delivery_format=6, house=house_id, toolkit=toolkit_checkout(), backup=filename,
                           saved=saved.isoformat(), **base, **details, outputs=hashes)
             write_json(stage / "record.json", record)
             final.parent.mkdir(exist_ok=True)

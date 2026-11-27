@@ -413,7 +413,8 @@ def status_through(path, room, rows, through, *, verified=None, passed=None):
                                            photo_quality=verified[revision]["delivery_format"] >= 2,
                                            require_windows=verified[revision]["delivery_format"] >= 3,
                                            require_details=verified[revision]["delivery_format"] >= 4,
-                                           require_heads=verified[revision]["delivery_format"] >= 5)
+                                           require_heads=verified[revision]["delivery_format"] >= 5,
+                                           require_operation=verified[revision]["delivery_format"] >= 6)
             except (OSError, ValueError) as exc:
                 return False, f"handover / hold / {exc}"
         if passed is not None:

@@ -73,3 +73,5 @@ Keep private evidence, native models and issued packs in the named house's local
 At handover, show the checked output. For feedback, invite the homeowner's reaction first, offer a relevant example or two and explicitly leave room to move on or pause. For a blocking homeowner choice, ask directly and explain what their answer changes. Follow their existing instructions and assign technical checks to the person who can resolve them. Use `house.py next` on resume and `house.py answer` to record their reply. [How to choose a handover question](skills/renovation-pack/references/homeowner-decisions.md#at-the-end-of-a-commission)
 
 After placing the last plant or accessory, run the [fully dressed walkthrough](skills/renovation-pack/references/handover-gates.md#fully-dressed-walkthrough) before releasing the camera, final photo or room pack. Test every seat, access point and operating front against the reopened furnished scene.
+
+For the occupied review before the furnished camera and again beside the final photograph, use [Living in the Room](skills/living-in-the-room/SKILL.md).

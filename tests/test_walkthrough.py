@@ -42,6 +42,36 @@ class FullyDressedWalkthrough(unittest.TestCase):
                 else:
                     self.assertIsNone(result)
 
+    def test_door_travel_with_an_occupied_chair(self):
+        camera, cad = scene()
+        camera["door_heads"] = {"garden": {}}
+        camera["zones"] = [{"sweeps": ["leaf travel"]}]
+        camera["geometry"] = {"leaf travel": {"xy": rect(1200, 900, 1550, 1350), "z": [0, 2050]}}
+        camera["walkthrough"]["stops"]["chair"]["occupied_z_mm"] = [0, 1800]
+        for mechanism in ("hinged", "sliding"):
+            operations = {"garden": {"mechanism": mechanism, "sweeps": ["leaf travel"]}}
+            camera["door_operations"] = cad["door_operations"] = operations
+            with self.subTest(mechanism=mechanism):
+                self.assertIn("rise from chair", check(camera, cad))
+        camera["geometry"]["leaf travel"]["xy"] = rect(2200, 2800, 3100, 2900)
+        self.assertIsNone(check(camera, cad))
+        del camera["door_operations"]
+        with self.assertRaisesRegex(ValueError, "every door"):
+            check(camera, cad)
+
+    def test_photo_changes_mechanism_or_blocks_seat(self):
+        from room_by_room.house_photo_details import review_operation
+        plan = {"opening_operations": {"garden": "sliding"}}
+        observation = dict(camera_operation="sliding", photo_operation="hinged",
+                           occupied_access="clear", use_finding="Seat front visible beside panel")
+        with self.assertRaisesRegex(ValueError, "mechanism"):
+            review_operation(plan, "garden", observation)
+        observation.update(photo_operation="sliding", occupied_access="blocked")
+        with self.assertRaisesRegex(ValueError, "access"):
+            review_operation(plan, "garden", observation)
+        observation.update(occupied_access="clear")
+        review_operation(plan, "garden", observation)
+
     def test_late_native_plant_needs_a_footprint(self):
         camera, cad = scene()
         del camera["walkthrough"]["obstacles"]["Plant"]
