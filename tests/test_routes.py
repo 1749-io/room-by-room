@@ -76,6 +76,14 @@ class HouseholdRoutes(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "contain movement"):
             analyse(study, "baseline")
 
+    def test_in_use_envelope_cannot_replace_the_floor_boundary(self):
+        study = dining()
+        leg = study["journeys"]["carry-shopping"]
+        leg["in_use"] = {"floor edge": rect(300, 300, 400, 400)}
+        leg["walked_path_mm"] = [leg["start"], leg["end"]]
+        with self.assertRaisesRegex(ValueError, "floor boundary"):
+            analyse(study, "baseline")
+
     def test_buyer_can_review_a_thin_route_without_proposing_work(self):
         study = dining()
         original = json.dumps(study)

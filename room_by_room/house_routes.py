@@ -116,6 +116,8 @@ def measure(floor, obstacles, journey, movements):
         raise ValueError("A journey endpoint lies outside the exported floor")
     barriers = dict(obstacles)
     for name, value in journey.get("in_use", {}).items():
+        if name == "floor edge":
+            raise ValueError("Reserve the name 'floor edge' for the floor boundary")
         if name in barriers:
             raise ValueError(f"Duplicate occupied envelope: {name}")
         if isinstance(value, dict) and "attached_to" in value:
