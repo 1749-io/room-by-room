@@ -14,11 +14,21 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: '3.12'
       - run: python -m pip install -r requirements/dev.txt
+      - name: Install the locked workflow diagram renderer
+        working-directory: docs/graphviz
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Rebuild and compare the published workflow diagrams
+        run: python docs/render_workflow.py --check
+      - name: Require diagram updates alongside workflow changes
+        env:
+          DIFF_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: python tools/check_workflow_changes.py "$DIFF_BASE"
       - run: python tools/check_docs.py
       - run: python -m unittest discover -s tests -v
 
